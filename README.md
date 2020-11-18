@@ -8,10 +8,10 @@ I've always been very fascinated with macOS, and have never owned a Mac/book. So
 
 # Stack
 
-Framework - React (`create-react-app` style)
-Bundler - Snowpack, for super fast development. On build, it churns out optimized ES Modules. Not considering older browsers right now.
-Component Library - [Material UI](https://material-ui.com/). Redesigned base components to look like MacOS stuff. This library has really good accessibility support too.
-Styling Solution - Material UI's styling only! It offers a JSS style solution which is really great and well thought out.
+- Framework - React (`create-react-app` style) 
+- Bundler - Snowpack, for super fast development. On build, it churns out optimized ES Modules. Not considering older browsers right now. 
+- Component Library - [Material UI](https://material-ui.com/). Redesigned base components to look like MacOS stuff. This library has really good accessibility support too. 
+- Styling Solution - Material UI's styling only! It offers a JSS style solution which is really great and well thought out. 
 
 # Roadmap
 
