@@ -7,7 +7,7 @@ function App() {
   const [count, setCount] = useState(1);
   // Create the counter (+1 every second).
   useEffect(() => {
-    const timer = setTimeout(() => setCount((c) => c + 1), 1000);
+    const timer = setTimeout(() => setCount((count) => count + 1), 1000);
     return () => clearTimeout(timer);
   }, [count, setCount]);
   // Return the App component.
