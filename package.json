@@ -12,7 +12,7 @@
     "@snowpack/plugin-dotenv": "^2.0.4",
     "@snowpack/plugin-optimize": "^0.2.9",
     "@snowpack/plugin-react-refresh": "^2.3.7",
-    "@snowpack/plugin-typescript": "^1.1.0", 
+    "@snowpack/plugin-typescript": "^1.1.0",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "@types/snowpack-env": "^2.3.2",
