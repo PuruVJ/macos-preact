@@ -9,6 +9,8 @@ const mozjpeg = require('imagemin-mozjpeg');
 const { constants } = require('fs');
 const { readdir, readFile, mkdir, writeFile, access } = require('fs').promises;
 
+const rimraf = require('rimraf');
+
 const ora = require('ora');
 
 const spinner = ora({
@@ -55,6 +57,8 @@ async function main() {
     const { height, width } = await sizeOf(path);
     const aspectRatio = height / width;
 
+    if (width === 2000) continue;
+
     // Resize
     const buffer = await resizeImg(await readFile(path), {
       width: 2000,
@@ -68,19 +72,24 @@ async function main() {
     await writeFile(`../src/assets/wallpapers/optimized/${imagePath}`, buffer, {
       encoding: 'utf-8',
     });
+
+    // Now run imagemin
+    await imagemin([`../src/assets/wallpapers/optimized/${imagePath}.jpg`], {
+      plugins: [
+        mozjpeg({
+          quality: 86,
+        }),
+      ],
+      destination: '../src/assets/wallpapers',
+    });
   }
 
   spinner.text = 'Optimizing...';
 
-  // Now run imagemin
-  await imagemin(['../src/assets/wallpapers/optimized/*.jpg'], {
-    plugins: [
-      mozjpeg({
-        quality: 86,
-      }),
-    ],
-    destination: '../src/assets/wallpapers/minified',
-  });
+  // Delete that folder
+  await promisify(rimraf)('../src/assets/wallpapers/optimized');
+
+  spinner.stop();
 }
 
 main();
