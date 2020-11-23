@@ -20,11 +20,10 @@ module.exports = {
     /* ... */
   ],
   installOptions: {
-    /* ... */
+    sourceMap: true,
+    rollup: {},
   },
-  devOptions: {
-    /* ... */
-  },
+  devOptions: {},
   buildOptions: {
     /* ... */
   },
