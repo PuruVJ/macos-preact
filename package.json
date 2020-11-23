@@ -4,8 +4,11 @@
     "build": "snowpack build"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@mdi/js": "^5.8.55",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-helmet-async": "^1.0.7",
     "restater": "0.0.10"
   },
   "devDependencies": {
