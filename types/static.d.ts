@@ -56,4 +56,10 @@ declare module '*.png' {
   export default ref;
 }
 
+// Sounds
+declare module '*.mp3' {
+  const ref: string;
+  export default ref;
+}
+
 /* CUSTOM: ADD YOUR OWN HERE */
