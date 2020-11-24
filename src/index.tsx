@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { Desktop } from './views/desktop/Desktop';
 import './index.scss';
-
+ 
 ReactDOM.render(
   <Suspense fallback={<span />}>
     <React.StrictMode>
