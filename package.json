@@ -1,7 +1,8 @@
 {
   "scripts": {
     "start": "snowpack dev",
-    "build": "snowpack build"
+    "build": "snowpack build",
+    "postbuild": "workbox generateSW workbox-config.js"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
@@ -23,6 +24,7 @@
     "@types/snowpack-env": "^2.3.2",
     "sass": "^1.29.0",
     "snowpack": "^2.17.1",
-    "typescript": "^4.0.5"
+    "typescript": "^4.0.5",
+    "workbox-cli": "^5.1.4"
   }
 }
