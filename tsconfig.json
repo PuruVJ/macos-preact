@@ -8,7 +8,10 @@
     "lib": ["DOM", "ESNext"],
     "baseUrl": ".",
     /* paths - If you configure Snowpack import aliases, add them here. */
-    "paths": {},
+    "paths": {
+      "__assets/*": ["./src/assets/*"],
+      "__components/*": ["./src/components/*"]
+    },
     /* noEmit - Snowpack builds (emits) files, not tsc. */
     "noEmit": true,
     /* Additional Options */
@@ -18,6 +21,7 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "importsNotUsedAsValues": "error",
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "removeComments": true
   }
 }
