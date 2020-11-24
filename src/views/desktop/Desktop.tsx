@@ -19,6 +19,7 @@ export function Desktop() {
 
         <Helmet>
           <title>MacOS Web</title>
+          <link rel="prefetch" href={StartupSound} />
         </Helmet>
       </GlobalProvider>
     </>
