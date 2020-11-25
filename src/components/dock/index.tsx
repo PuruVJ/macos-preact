@@ -6,6 +6,9 @@ import IconFinder from '__/assets/app-icons/finder/256.png';
 import IconLaunchpad from '__/assets/app-icons/launchpad/256.png';
 import IconSafari from '__/assets/app-icons/safari/256.png';
 
+/**
+ * The famous MacOS Dock
+ */
 function Dock({}) {
   const classes = useStyles();
 
@@ -42,9 +45,9 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
 
   dock: {
     backdropFilter: 'blur(5px)',
-    backgroundColor: fade(palette.grey[100], 0.2),
+    backgroundColor: fade(palette.background.default, 0.1),
 
-    boxShadow: 'rgba(0, 0, 0, 0.3) 2px 5px 19px 7px;',
+    boxShadow: 'rgba(0, 0, 0, 0.3) 2px 5px 19px 7px',
 
     padding: spacing(0.3),
 
