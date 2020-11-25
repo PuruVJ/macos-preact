@@ -32,8 +32,6 @@ module.exports = {
     /* ... */
   },
   alias: {
-    __assets: './src/assets',
-    __components: './src/components',
     __: './src',
   },
 };

@@ -1,9 +1,9 @@
 import { CssBaseline, makeStyles } from '@material-ui/core';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Dock } from '__components/Dock';
+import { Dock } from '__/components/Dock';
 import { GlobalProvider } from '__/global-provider';
-import DefaultBackground from '__assets/wallpapers/24-0.jpg';
+import DefaultBackground from '__/assets/wallpapers/24-0.jpg';
 
 export function Desktop() {
   const classes = useStyles();
