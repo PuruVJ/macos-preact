@@ -1,10 +1,10 @@
 import { fade, makeStyles } from '@material-ui/core';
 import React from 'react';
-import IconSystemPreferences from '__assets/app-icons/system-preferences/256.png';
-import IconGithub from '__assets/app-icons/github/256.png';
-import IconFinder from '__assets/app-icons/finder/256.png';
-import IconLaunchpad from '__assets/app-icons/launchpad/256.png';
-import IconSafari from '__assets/app-icons/safari/256.png';
+import IconSystemPreferences from '__/assets/app-icons/system-preferences/256.png';
+import IconGithub from '__/assets/app-icons/github/256.png';
+import IconFinder from '__/assets/app-icons/finder/256.png';
+import IconLaunchpad from '__/assets/app-icons/launchpad/256.png';
+import IconSafari from '__/assets/app-icons/safari/256.png';
 
 function Dock({}) {
   const classes = useStyles();
