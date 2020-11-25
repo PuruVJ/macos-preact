@@ -13,11 +13,11 @@ function Dock({}) {
     <>
       <section className={classes.dockContainer}>
         <div className={classes.dock}>
-          <img src={IconFinder} />
-          <img src={IconLaunchpad} />
-          <img src={IconSafari} />
-          <img src={IconSystemPreferences} />
-          <img src={IconGithub} />
+          <img src={IconFinder} draggable={false} />
+          <img src={IconLaunchpad} draggable={false} />
+          <img src={IconSafari} draggable={false} />
+          <img src={IconSystemPreferences} draggable={false} />
+          <img src={IconGithub} draggable={false} />
         </div>
       </section>
     </>
