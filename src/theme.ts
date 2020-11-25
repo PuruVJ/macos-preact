@@ -2,7 +2,7 @@ import { createMuiTheme, Theme } from '@material-ui/core';
 
 export const theme: Theme = createMuiTheme({
   palette: {
-    type: 'light',
+    type: window.matchMedia('(prefers-color-scheme: dark)').matches && false ? 'dark' : 'light',
   },
   typography: {
     fontFamily: [

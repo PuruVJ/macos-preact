@@ -1,7 +1,7 @@
 import { CssBaseline, makeStyles } from '@material-ui/core';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Dock } from '__/components/dock';
+import { Dock } from '__/components/dock/Dock';
 import { GlobalProvider } from '__/global-provider';
 import DefaultBackground from '__/assets/wallpapers/24-0.jpg';
 
