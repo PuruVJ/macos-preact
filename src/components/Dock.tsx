@@ -24,7 +24,7 @@ function Dock({}) {
   );
 }
 
-const useStyles = makeStyles(({ spacing, shape, palette }) => ({
+const useStyles = makeStyles(({ spacing, palette }) => ({
   dockContainer: {
     position: 'fixed',
     bottom: spacing(0.3),
