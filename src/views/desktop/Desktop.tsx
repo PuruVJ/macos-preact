@@ -1,27 +1,49 @@
-import { Button } from '@material-ui/core';
+import { CssBaseline, makeStyles } from '@material-ui/core';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import useSound from 'use-sound';
-import StartupSound from '__assets/sounds/mac-startup-sound.mp3';
 import { Dock } from '__components/Dock';
-import { GlobalProvider } from '../../global-provider';
+import { GlobalProvider } from '__/global-provider';
+import DefaultBackground from '__assets/wallpapers/24-0.jpg';
 
 export function Desktop() {
-  const [play] = useSound(StartupSound);
+  const classes = useStyles();
 
   return (
     <>
+      <CssBaseline />
       <GlobalProvider>
-        <Dock />
-        <Button onClick={() => play()} variant="contained" color="primary">
-          Hello
-        </Button>
+        <main className={classes.root}>
+          <Dock />
+        </main>
+
+        <div className={classes.backgroundCover}></div>
 
         <Helmet>
           <title>MacOS Web</title>
-          <link rel="prefetch" href={StartupSound} />
         </Helmet>
       </GlobalProvider>
     </>
   );
 }
+
+const useStyles = makeStyles(({}) => ({
+  root: {
+    height: '100%',
+    width: '100%',
+  },
+
+  backgroundCover: {
+    height: '100%',
+    width: '100%',
+
+    zIndex: -1,
+    position: 'fixed',
+    top: 0,
+    left: 0,
+
+    backgroundImage: `url(${DefaultBackground})`,
+    backgroundRepeat: 'none',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center'
+  },
+}));

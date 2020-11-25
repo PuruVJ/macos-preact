@@ -14,6 +14,8 @@ export const theme: Theme = createMuiTheme({
     ].join(', '),
   },
 
+  spacing: (factor) => `${factor}rem`,
+
   overrides: {
     MuiButton: {
       root: {
