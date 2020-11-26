@@ -47,7 +47,7 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
     backdropFilter: 'blur(5px)',
     backgroundColor: fade(palette.background.default, 0.1),
 
-    boxShadow: `inset 0 0 0 0.5px ${fade(palette.grey[100], 0.3)}, rgba(0, 0, 0, 0.3) 2px 5px 19px 7px`,
+    boxShadow: `inset 0 0 0 0.2px ${fade(palette.grey[100], 0.3)}, rgba(0, 0, 0, 0.3) 2px 5px 19px 7px`,
 
     padding: spacing(0.3),
 
