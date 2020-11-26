@@ -20,10 +20,16 @@ export const theme: Theme = createMuiTheme({
   spacing: (factor) => `${factor}rem`,
 
   overrides: {
-    MuiButton: {
+    MuiButtonBase: {
       root: {
         letterSpacing: '1px',
       },
     },
   },
+
+  props: {
+    MuiButtonBase: {
+      disableRipple: true
+    }
+  }
 });

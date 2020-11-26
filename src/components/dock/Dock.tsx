@@ -1,31 +1,33 @@
 import { fade, makeStyles } from '@material-ui/core';
-import React from 'react';
-import IconSystemPreferences from '__/assets/app-icons/system-preferences/256.png';
-import IconGithub from '__/assets/app-icons/github/256.png';
-import IconFinder from '__/assets/app-icons/finder/256.png';
-import IconLaunchpad from '__/assets/app-icons/launchpad/256.png';
-import IconSafari from '__/assets/app-icons/safari/256.png';
+import React, { useContext } from 'react';
+import { DockItemsContext } from '__/stores/dock.store';
+import { DockItem } from './dock-item';
 
 /**
  * The famous MacOS Dock
  */
-function Dock({}) {
+const Dock = ({}) => {
   const classes = useStyles();
+  const { dockItems } = useContext(DockItemsContext);
+
+  const dockItemsKeys = Object.keys(dockItems);
 
   return (
     <>
       <section className={classes.dockContainer}>
         <div className={classes.dock}>
-          <img src={IconFinder} draggable={false} />
-          <img src={IconLaunchpad} draggable={false} />
-          <img src={IconSafari} draggable={false} />
-          <img src={IconSystemPreferences} draggable={false} />
-          <img src={IconGithub} draggable={false} />
+          {dockItemsKeys.map((dockTitle, i) => {
+            const { breakBefore } = dockItems[dockTitle];
+            return [
+              breakBefore && <div key={`${dockTitle}-divider`} className={classes.divider} />,
+              <DockItem key={dockTitle} {...dockItems[dockTitle]} />,
+            ];
+          })}
         </div>
       </section>
     </>
   );
-}
+};
 
 const useStyles = makeStyles(({ spacing, palette }) => ({
   dockContainer: {
@@ -47,7 +49,10 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
     backdropFilter: 'blur(5px)',
     backgroundColor: fade(palette.background.default, 0.1),
 
-    boxShadow: `inset 0 0 0 0.2px ${fade(palette.grey[100], 0.3)}, rgba(0, 0, 0, 0.3) 2px 5px 19px 7px`,
+    boxShadow: `inset 0 0 0 0.2px ${fade(
+      palette.grey[100],
+      0.3,
+    )}, rgba(0, 0, 0, 0.3) 2px 5px 19px 7px`,
 
     padding: spacing(0.3),
 
@@ -55,9 +60,14 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
 
     height: '100%',
 
-    '& img': {
-      maxHeight: '100%',
-    },
+    display: 'flex',
+  },
+
+  divider: {
+    height: '100%',
+    width: '1px',
+    backgroundColor: palette.grey[800],
+    margin: '0 2px'
   },
 }));
 
