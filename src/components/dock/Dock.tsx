@@ -1,7 +1,6 @@
 import { fade, makeStyles } from '@material-ui/core';
-import React from 'react';
-import { useStore } from 'restater';
-import { DockItemsStore } from '__/stores/dock.store';
+import React, { useContext } from 'react';
+import { DockItemsContext } from '__/stores/dock.store';
 import { DockItem } from './dock-item';
 
 /**
@@ -9,7 +8,7 @@ import { DockItem } from './dock-item';
  */
 const Dock = ({}) => {
   const classes = useStyles();
-  const [dockItems] = useStore(DockItemsStore, 'dockItems');
+  const { dockItems } = useContext(DockItemsContext);
 
   const dockItemsKeys = Object.keys(dockItems);
 
@@ -17,9 +16,13 @@ const Dock = ({}) => {
     <>
       <section className={classes.dockContainer}>
         <div className={classes.dock}>
-          {dockItemsKeys.map((dockTitle) => (
-            <DockItem path={dockItems[dockTitle].icon} />
-          ))}
+          {dockItemsKeys.map((dockTitle, i) => {
+            const { breakBefore } = dockItems[dockTitle];
+            return [
+              breakBefore && <div key={`${dockTitle}-divider`} className={classes.divider} />,
+              <DockItem key={dockTitle} {...dockItems[dockTitle]} />,
+            ];
+          })}
         </div>
       </section>
     </>
@@ -56,6 +59,15 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
     borderRadius: spacing(1),
 
     height: '100%',
+
+    display: 'flex',
+  },
+
+  divider: {
+    height: '100%',
+    width: '1px',
+    backgroundColor: palette.grey[800],
+    margin: '0 2px'
   },
 }));
 

@@ -1,5 +1,4 @@
-import { createStore } from 'restater';
-import type React from 'react';
+import React, { createContext } from 'react';
 
 export interface IDockItem {
   appName: string;
@@ -12,8 +11,8 @@ export interface IDockItem {
 const fullPathOf = (path: string) =>
   new URL(`../assets/app-icons/${path}/256.png`, import.meta.url).href;
 
-const initialState = {
-  dockItems: <{ [key: string]: IDockItem }>{
+const initialState: { dockItems: { [key: string]: IDockItem } } = {
+  dockItems: {
     finder: {
       appName: 'Finder',
       icon: fullPathOf('finder'),
@@ -47,6 +46,10 @@ const initialState = {
   },
 };
 
-const [DockItemsProvider, DockItemsStore] = createStore(initialState);
+const DockItemsContext = createContext(initialState);
 
-export { DockItemsProvider, DockItemsStore };
+const DockItemsProvider = ({ children }) => {
+  return <DockItemsContext.Provider value={initialState}>{children}</DockItemsContext.Provider>;
+};
+
+export { DockItemsProvider, DockItemsContext };
