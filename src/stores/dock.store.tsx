@@ -1,5 +1,11 @@
 import React, { createContext } from 'react';
 
+import IconFinder from '../assets/app-icons/finder/256.png';
+import IconLaunchpad from '../assets/app-icons/launchpad/256.png';
+import IconSafari from '../assets/app-icons/safari/256.png';
+import IconSystemPreferences from '../assets/app-icons/system-preferences/256.png';
+import IconGithub from '../assets/app-icons/github/256.png';
+
 export interface IDockItem {
   appName: string;
   icon: string;
@@ -8,35 +14,32 @@ export interface IDockItem {
   breakBefore?: boolean;
 }
 
-const fullPathOf = (path: string) =>
-  new URL(`../assets/app-icons/${path}/256.png`, import.meta.url).href;
-
 const initialState: { dockItems: { [key: string]: IDockItem } } = {
   dockItems: {
     finder: {
       appName: 'Finder',
-      icon: fullPathOf('finder'),
+      icon: IconFinder,
       isOpen: true,
     },
     launchpad: {
       appName: 'Launchpad',
-      icon: fullPathOf('launchpad'),
+      icon: IconLaunchpad,
       isOpen: false,
     },
     safari: {
       appName: 'Safari',
-      icon: fullPathOf('safari'),
+      icon: IconSafari,
       isOpen: false,
     },
     systemPreferences: {
       appName: 'System Preferences',
-      icon: fullPathOf('system-preferences'),
+      icon: IconSystemPreferences,
       isOpen: false,
     },
 
     viewSource: {
       appName: 'View Source',
-      icon: fullPathOf('github'),
+      icon: IconGithub,
       isOpen: false,
       breakBefore: true,
       action: () => {
