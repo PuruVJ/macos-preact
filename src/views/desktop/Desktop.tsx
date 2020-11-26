@@ -14,9 +14,9 @@ export const Desktop = () => {
       <CssBaseline />
       <GlobalProvider>
         <main className={classes.root}>
-          {/* <DockItemsProvider> */}
+          <DockItemsProvider>
             <Dock />
-          {/* </DockItemsProvider> */}
+          </DockItemsProvider>
         </main>
 
         <div className={classes.backgroundCover} />
