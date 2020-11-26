@@ -4,8 +4,9 @@ import { Helmet } from 'react-helmet-async';
 import { Dock } from '__/components/dock/Dock';
 import { GlobalProvider } from '__/global-provider';
 import DefaultBackground from '__/assets/wallpapers/24-0.jpg';
+import { DockItemsProvider } from '__/stores/dock.store';
 
-export function Desktop() {
+export const Desktop = () => {
   const classes = useStyles();
 
   return (
@@ -13,10 +14,12 @@ export function Desktop() {
       <CssBaseline />
       <GlobalProvider>
         <main className={classes.root}>
-          <Dock />
+          {/* <DockItemsProvider> */}
+            <Dock />
+          {/* </DockItemsProvider> */}
         </main>
 
-        <div className={classes.backgroundCover}></div>
+        <div className={classes.backgroundCover} />
 
         <Helmet>
           <title>MacOS Web</title>
@@ -24,7 +27,7 @@ export function Desktop() {
       </GlobalProvider>
     </>
   );
-}
+};
 
 const useStyles = makeStyles(({}) => ({
   root: {
@@ -44,6 +47,6 @@ const useStyles = makeStyles(({}) => ({
     backgroundImage: `url(${DefaultBackground})`,
     backgroundRepeat: 'none',
     backgroundSize: 'cover',
-    backgroundPosition: 'center'
+    backgroundPosition: 'center',
   },
 }));
