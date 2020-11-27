@@ -1,4 +1,5 @@
 import { fade, makeStyles } from '@material-ui/core';
+import { useMotionValue } from 'framer-motion';
 import React from 'react';
 import { useStore } from 'restater';
 import { dockItemsStore } from '__/stores/dock.store';
@@ -11,17 +12,23 @@ const Dock = ({}) => {
   const classes = useStyles();
   const [dockItems] = useStore(dockItemsStore, 'dockItems');
 
+  const mouseX = useMotionValue<number | null>(null);
+
   const dockItemsKeys = Object.keys(dockItems);
 
   return (
     <>
       <section className={classes.dockContainer}>
-        <div className={classes.dock}>
+        <div
+          className={classes.dock}
+          onMouseMove={(event) => mouseX.set(event.nativeEvent.x)}
+          onMouseLeave={() => mouseX.set(null)}
+        >
           {dockItemsKeys.map((dockTitle) => {
             const { breakBefore } = dockItems[dockTitle];
             return [
               breakBefore && <div key={`${dockTitle}-divider`} className={classes.divider} />,
-              <DockItem key={dockTitle} {...dockItems[dockTitle]} />,
+              <DockItem key={dockTitle} mouseX={mouseX} {...dockItems[dockTitle]} />,
             ];
           })}
         </div>
@@ -48,7 +55,7 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
 
   dock: {
     backdropFilter: 'blur(5px)',
-    backgroundColor: fade(palette.background.default, 0.1),
+    backgroundColor: fade(palette.background.default, 0.2),
 
     boxShadow: `inset 0 0 0 0.2px ${fade(
       palette.grey[100],
@@ -62,6 +69,7 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
     height: '100%',
 
     display: 'flex',
+    alignItems: 'end',
   },
 
   divider: {
