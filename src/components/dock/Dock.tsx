@@ -1,6 +1,7 @@
 import { fade, makeStyles } from '@material-ui/core';
-import React, { useContext } from 'react';
-import { DockItemsContext } from '__/stores/dock.store';
+import React from 'react';
+import { useStore } from 'restater';
+import { dockItemsStore } from '__/stores/dock.store';
 import { DockItem } from './dock-item';
 
 /**
@@ -8,7 +9,7 @@ import { DockItem } from './dock-item';
  */
 const Dock = ({}) => {
   const classes = useStyles();
-  const { dockItems } = useContext(DockItemsContext);
+  const [dockItems] = useStore(dockItemsStore, 'dockItems');
 
   const dockItemsKeys = Object.keys(dockItems);
 
@@ -16,7 +17,7 @@ const Dock = ({}) => {
     <>
       <section className={classes.dockContainer}>
         <div className={classes.dock}>
-          {dockItemsKeys.map((dockTitle, i) => {
+          {dockItemsKeys.map((dockTitle) => {
             const { breakBefore } = dockItems[dockTitle];
             return [
               breakBefore && <div key={`${dockTitle}-divider`} className={classes.divider} />,
@@ -67,7 +68,7 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
     height: '100%',
     width: '1px',
     backgroundColor: palette.grey[800],
-    margin: '0 2px'
+    margin: '0 2px',
   },
 }));
 

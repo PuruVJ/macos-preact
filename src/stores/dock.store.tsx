@@ -1,4 +1,5 @@
-import React, { createContext } from 'react';
+import React from 'react';
+import {createStore} from 'restater';
 
 import IconFinder from '../assets/app-icons/finder/256.png';
 import IconLaunchpad from '../assets/app-icons/launchpad/256.png';
@@ -49,10 +50,7 @@ const initialState: { dockItems: { [key: string]: IDockItem } } = {
   },
 };
 
-const DockItemsContext = createContext(initialState);
+const [DockItemsProvider, dockItemsStore] = createStore(initialState);
 
-const DockItemsProvider = ({ children }) => {
-  return <DockItemsContext.Provider value={initialState}>{children}</DockItemsContext.Provider>;
-};
 
-export { DockItemsProvider, DockItemsContext };
+export { DockItemsProvider, dockItemsStore };
