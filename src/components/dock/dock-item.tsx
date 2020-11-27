@@ -66,7 +66,7 @@ function DockItem({ icon, action, appName, mouseX }: IDockItemProps) {
   return (
     <>
       <ButtonBase onClick={action} className={classes.root}>
-        <Tippy offset={[0, 10]} interactive={true} inertia={true} content={<span>{appName}</span>}>
+        <Tippy delay={50} offset={[0, 10]} interactive={true} inertia={true} content={<span>{appName}</span>}>
           <motion.img ref={ref} src={icon} draggable={false} style={{ width }} />
         </Tippy>
       </ButtonBase>

@@ -3,4 +3,4 @@ build
 web_modules
 node_modules
 
-.vscode
+.vscode/
