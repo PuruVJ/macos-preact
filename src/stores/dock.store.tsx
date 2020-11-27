@@ -1,5 +1,5 @@
-import React from 'react';
-import {createStore} from 'restater';
+import type React from 'react';
+import { createStore } from 'restater';
 
 import IconFinder from '../assets/app-icons/finder/256.png';
 import IconLaunchpad from '../assets/app-icons/launchpad/256.png';
@@ -51,6 +51,5 @@ const initialState: { dockItems: { [key: string]: IDockItem } } = {
 };
 
 const [DockItemsProvider, dockItemsStore] = createStore(initialState);
-
 
 export { DockItemsProvider, dockItemsStore };
