@@ -17,21 +17,21 @@ I've always been very fascinated with macOS, and have never owned a Mac/book. So
 
 ## v1
 
-- Basic wallpaper
-- Basic dock with its cool hovering animations
-- Basic toolbar
-- Everything to built with theme switching in mind
+- [x] Basic wallpaper
+- [x] Basic dock with its cool hovering animations
+- [ ] Basic toolbar
+- [ ] Everything to built with theme switching in mind
 
 ## v2
 
-- Interactive toolbar elements(Action center, just for show) 🧠
-- Light/Dark mode switcher 💡
+- [ ] Interactive toolbar elements(Action center, just for show) 🧠
+- [ ] Light/Dark mode switcher 💡
 
 ## v3
 
-- A wallpaper switcher app. Offers automatic day/light wallpapers too
-- Probably Safari. Uses Iframe and basic tabs functionality.
-- A text editor. Like VSCode or Notepad, haven't thought  ¯\_(ツ)_/¯
+- [ ] A wallpaper switcher app. Offers automatic day/light wallpapers too
+- [ ] Probably Safari. Uses Iframe and basic tabs functionality.
+- [ ] A text editor. Like VSCode or Notepad, haven't thought  ¯\_(ツ)_/¯
 
 ## v4
 
