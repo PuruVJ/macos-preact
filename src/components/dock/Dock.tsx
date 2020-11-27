@@ -64,7 +64,7 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
 
     padding: spacing(0.3),
 
-    borderRadius: spacing(1),
+    borderRadius: spacing(1.2),
 
     height: '100%',
 
