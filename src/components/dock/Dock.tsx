@@ -75,7 +75,7 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
   divider: {
     height: '100%',
     width: '1px',
-    backgroundColor: palette.grey[800],
+    backgroundColor: palette.grey[700],
     margin: '0 2px',
   },
 }));
