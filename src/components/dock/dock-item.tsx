@@ -1,53 +1,75 @@
 import { ButtonBase, makeStyles } from '@material-ui/core';
 import Tippy from '@tippyjs/react';
+import { MotionValue, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import useRaf from '@rooks/use-raf';
 import React from 'react';
 import 'tippy.js/dist/tippy.css';
 import type { IDockItem } from '__/stores/dock.store';
 
-interface IDockItemProps extends IDockItem {}
+interface IDockItemProps extends IDockItem {
+  mouseX: MotionValue<null | number>;
+}
 
-function DockItem({ icon, action, appName }: IDockItemProps) {
+const baseWidth = 57.6;
+const distanceLimit = baseWidth * 6;
+const beyondTheDistanceLimit = distanceLimit + 1;
+const distanceInput = [
+  -distanceLimit,
+  -distanceLimit / 1.25,
+  -distanceLimit / 2,
+  0,
+  distanceLimit / 2,
+  distanceLimit / 1.25,
+  distanceLimit,
+];
+const widthOutput = [
+  baseWidth,
+  baseWidth * 1.1,
+  baseWidth * 1.3,
+  baseWidth * 1.6,
+  baseWidth * 1.3,
+  baseWidth * 1.1,
+  baseWidth,
+];
+
+function DockItem({ icon, action, appName, mouseX }: IDockItemProps) {
   const classes = useStyles();
 
-  const ref = React.useRef<HTMLButtonElement>(null);
+  const distance = useMotionValue(beyondTheDistanceLimit);
+  const width = useSpring(useTransform(distance, distanceInput, widthOutput), {
+    damping: 25,
+    stiffness: 250,
+  });
 
-  function getCommon(e: React.MouseEvent) {
-    let previousButton = ref.current?.previousElementSibling;
-    let nextButton = ref.current?.nextElementSibling;
+  const ref = React.useRef<HTMLImageElement>(null);
 
-    if (previousButton?.tagName === 'DIV') previousButton = previousButton.previousElementSibling;
-    if (nextButton?.tagName === 'DIV') nextButton = nextButton.nextElementSibling;
+  useRaf(() => {
+    const el = ref.current;
+    const mouseXVal = mouseX.get();
+    if (el && mouseXVal !== null) {
+      const rect = el.getBoundingClientRect();
 
-    return { nextButton, previousButton };
-  }
+      // get the x coordinate of the img DOMElement's center
+      // the left x coordinate plus the half of the width
+      const imgCenterX = rect.left + rect.width / 2;
 
-  function handleMouseOver(e: React.MouseEvent) {
-    let { previousButton, nextButton } = getCommon(e);
+      // difference between the x coordinate value of the mouse pointer
+      // and the img center x coordinate value
+      const distanceDelta = mouseXVal - imgCenterX;
+      distance.set(distanceDelta);
+      return;
+    }
 
-    nextButton?.classList.add('secondary-hover');
-    previousButton?.classList.add('secondary-hover');
-  }
-
-  function handleMouseOut(e: React.MouseEvent) {
-    let { previousButton, nextButton } = getCommon(e);
-
-    nextButton?.classList.remove('secondary-hover');
-    previousButton?.classList.remove('secondary-hover');
-  }
+    distance.set(beyondTheDistanceLimit);
+  }, true);
 
   return (
     <>
-      <Tippy content={<span>{appName}</span>}>
-        <ButtonBase
-          ref={ref}
-          onMouseOut={handleMouseOut}
-          onMouseOver={handleMouseOver}
-          onClick={action}
-          className={classes.root}
-        >
-          <img src={icon} draggable={false} />
-        </ButtonBase>
-      </Tippy>
+      <ButtonBase onClick={action} className={classes.root}>
+        <Tippy offset={[0, 10]} interactive={true} inertia={true} content={<span>{appName}</span>}>
+          <motion.img ref={ref} src={icon} draggable={false} style={{ width }} />
+        </Tippy>
+      </ButtonBase>
     </>
   );
 }
@@ -63,20 +85,12 @@ const useStyles = makeStyles(({}) => ({
 
     transformOrigin: 'bottom',
 
+    display: 'flex',
+    alignItems: 'flex-end',
+
     '& img': {
-      maxHeight: '100%',
-    },
-
-    '&.secondary-hover': {
-      transform: 'scale(1.2)',
-
-      margin: `0 ${(10 * 1.3) / 1.5}px`,
-    },
-
-    '&:hover': {
-      transform: 'scale(1.5)',
-
-      margin: '0 10px',
+      width: '57.6px',
+      height: 'auto',
     },
   },
 }));
