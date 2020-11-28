@@ -19,8 +19,8 @@ I've always been very fascinated with macOS, and have never owned a Mac/book. So
 
 - [x] Basic wallpaper
 - [x] Basic dock with its cool hovering animations
-- [ ] Basic toolbar
-- [ ] Everything to built with theme switching in mind
+- [x] Basic toolbar
+- [x] Everything to built with theme switching in mind
 
 ## v2
 
@@ -38,8 +38,7 @@ I've always been very fascinated with macOS, and have never owned a Mac/book. So
 - All kinds of crazy apps like clock, weather, and much more. Would be great if community jumped in to make some of these apps.
 
 # What has been done till now?
-
-Nothing, really 😁! I still need to figure out the basic structures and components and theming and style and just **so** much.
+v1 is done. v2 in progress.
 
 # When will it be ready?
 
