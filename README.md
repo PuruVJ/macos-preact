@@ -31,7 +31,7 @@ I've always been very fascinated with macOS, and have never owned a Mac/book. So
 
 - [ ] A wallpaper switcher app. Offers automatic day/light wallpapers too
 - [ ] Probably Safari. Uses Iframe and basic tabs functionality.
-- [ ] A text editor. Like VSCode or Notepad, haven't thought  ¯\_(ツ)_/¯
+- [ ] A text editor. Like VSCode or Notepad, haven't thought  ¯\\\_(ツ)_/¯
 
 ## v4
 
