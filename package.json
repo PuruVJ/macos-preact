@@ -9,6 +9,7 @@
     "@mdi/js": "^5.8.55",
     "@rooks/use-raf": "^4.0.2",
     "@tippyjs/react": "^4.2.0",
+    "date-fns": "^2.16.1",
     "framer-motion": "^2.9.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
