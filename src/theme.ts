@@ -2,14 +2,17 @@ import { createMuiTheme, Theme } from '@material-ui/core';
 
 export const theme: Theme = createMuiTheme({
   palette: {
-    type: window.matchMedia('(prefers-color-scheme: dark)').matches && false ? 'dark' : 'light',
+    type:
+      window.matchMedia('(prefers-color-scheme: dark)').matches &&
+      import.meta.env.MODE !== 'development'
+        ? 'dark'
+        : 'light',
   },
   typography: {
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
-      `"SF Pro Display"`,
-      `"SF Pro Icons"`,
+      `'Inter'`,
       `"Helvetica Neue"`,
       `"Helvetica"`,
       `"Arial"`,
@@ -29,7 +32,7 @@ export const theme: Theme = createMuiTheme({
 
   props: {
     MuiButtonBase: {
-      disableRipple: true
-    }
-  }
+      disableRipple: true,
+    },
+  },
 });

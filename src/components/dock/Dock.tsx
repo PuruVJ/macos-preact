@@ -3,7 +3,7 @@ import { useMotionValue } from 'framer-motion';
 import React from 'react';
 import { useStore } from 'restater';
 import { dockItemsStore } from '__/stores/dock.store';
-import { DockItem } from './dock-item';
+import { DockItem } from './DockItem';
 
 /**
  * The famous MacOS Dock

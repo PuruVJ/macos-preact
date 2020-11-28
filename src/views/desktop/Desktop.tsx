@@ -5,6 +5,7 @@ import { Dock } from '__/components/dock/Dock';
 import { GlobalProvider } from '__/global-provider';
 import DefaultBackground from '__/assets/wallpapers/24-0.jpg';
 import { DockItemsProvider } from '__/stores/dock.store';
+import { MenuBar } from '__/components/menubar/MenuBar';
 
 export const Desktop = () => {
   const classes = useStyles();
@@ -14,6 +15,7 @@ export const Desktop = () => {
       <CssBaseline />
       <GlobalProvider>
         <main className={classes.root}>
+          <MenuBar />
           <DockItemsProvider>
             <Dock />
           </DockItemsProvider>
