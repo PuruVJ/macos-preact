@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "@mdi/js": "^5.8.55",
     "@rooks/use-raf": "^4.0.2",
     "@tippyjs/react": "^4.2.0",
     "framer-motion": "^2.9.4",
