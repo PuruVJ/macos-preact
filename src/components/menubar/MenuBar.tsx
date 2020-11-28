@@ -41,8 +41,9 @@ const useStyles = makeStyles(({ spacing, palette, typography }) => ({
     fill: palette.text.primary,
 
     '& button': {
-      fontWeight: '500',
+      fontWeight: '400',
       fontSize: typography.subtitle2.fontSize,
+      fontFamily: typography.fontFamily,
 
       padding: spacing(0, 0.2),
       margin: spacing(0, 0.3),
