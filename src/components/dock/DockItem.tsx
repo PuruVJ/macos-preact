@@ -1,7 +1,7 @@
 import { ButtonBase, makeStyles } from '@material-ui/core';
-import Tippy from '@tippyjs/react';
-import { MotionValue, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import useRaf from '@rooks/use-raf';
+import Tippy from '@tippyjs/react';
+import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import React from 'react';
 import 'tippy.js/dist/tippy.css';
 import type { IDockItem } from '__/stores/dock.store';
@@ -66,7 +66,13 @@ function DockItem({ icon, action, appName, mouseX }: IDockItemProps) {
   return (
     <>
       <ButtonBase onClick={action} className={classes.root}>
-        <Tippy delay={50} offset={[0, 10]} interactive={true} inertia={true} content={<span>{appName}</span>}>
+        <Tippy
+          delay={50}
+          offset={[0, 10]}
+          interactive={true}
+          inertia={true}
+          content={<span>{appName}</span>}
+        >
           <motion.img ref={ref} src={icon} draggable={false} style={{ width }} />
         </Tippy>
       </ButtonBase>
