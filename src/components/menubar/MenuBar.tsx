@@ -1,10 +1,10 @@
 import { ButtonBase, fade, makeStyles } from '@material-ui/core';
 import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
-import { format } from 'date-fns';
 import React from 'react';
 import { SwitchSVG } from '__/assets/sf-icons/switch.svg';
 import { VolumeLowSVG } from '__/assets/sf-icons/volume-low.svg';
 import { AppIcon } from '../utils/app-icons';
+import { MenuBarTime } from './MenuBarTime';
 
 const MenuBar = (): React.ReactElement => {
   const classes = useStyles();
@@ -44,7 +44,7 @@ const MenuBar = (): React.ReactElement => {
         </ButtonBase>
 
         <ButtonBase>
-          {format(new Date(), 'EEE MMM d  h:mm aa')}
+          <MenuBarTime />
         </ButtonBase>
       </header>
     </>
