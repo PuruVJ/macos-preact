@@ -10,61 +10,15 @@ interface IDockItemProps extends IDockItem {
   mouseX: MotionValue<null | number>;
 }
 
-const baseWidth = 57.6;
-const distanceLimit = baseWidth * 6;
-const beyondTheDistanceLimit = distanceLimit + 1;
-const distanceInput = [
-  -distanceLimit,
-  -distanceLimit / 1.25,
-  -distanceLimit / 2,
-  0,
-  distanceLimit / 2,
-  distanceLimit / 1.25,
-  distanceLimit,
-];
-const widthOutput = [
-  baseWidth,
-  baseWidth * 1.1,
-  baseWidth * 1.3,
-  baseWidth * 1.6,
-  baseWidth * 1.3,
-  baseWidth * 1.1,
-  baseWidth,
-];
-
 function DockItem({ icon, action, appName, mouseX }: IDockItemProps) {
   const classes = useStyles();
 
-  const distance = useMotionValue(beyondTheDistanceLimit);
-  const width = useSpring(useTransform(distance, distanceInput, widthOutput), {
-    damping: 25,
-    stiffness: 250,
-  });
-
   const ref = React.useRef<HTMLImageElement>(null);
 
-  useRaf(() => {
-    const el = ref.current;
-    const mouseXVal = mouseX.get();
-    if (el && mouseXVal !== null) {
-      const rect = el.getBoundingClientRect();
-
-      // get the x coordinate of the img DOMElement's center
-      // the left x coordinate plus the half of the width
-      const imgCenterX = rect.left + rect.width / 2;
-
-      // difference between the x coordinate value of the mouse pointer
-      // and the img center x coordinate value
-      const distanceDelta = mouseXVal - imgCenterX;
-      distance.set(distanceDelta);
-      return;
-    }
-
-    distance.set(beyondTheDistanceLimit);
-  }, true);
+  const { width } = useDockHoverAnimation(mouseX, ref);
 
   return (
-    <>
+    <section className={classes.root}>
       <ButtonBase onClick={action} className={classes.root}>
         <Tippy
           delay={50}
@@ -76,7 +30,7 @@ function DockItem({ icon, action, appName, mouseX }: IDockItemProps) {
           <motion.img ref={ref} src={icon} draggable={false} style={{ width }} />
         </Tippy>
       </ButtonBase>
-    </>
+    </section>
   );
 }
 
@@ -100,5 +54,60 @@ const useStyles = makeStyles(({}) => ({
     },
   },
 }));
+
+const baseWidth = 57.6;
+const distanceLimit = baseWidth * 6;
+const beyondTheDistanceLimit = distanceLimit + 1;
+const distanceInput = [
+  -distanceLimit,
+  -distanceLimit / 1.25,
+  -distanceLimit / 2,
+  0,
+  distanceLimit / 2,
+  distanceLimit / 1.25,
+  distanceLimit,
+];
+const widthOutput = [
+  baseWidth,
+  baseWidth * 1.1,
+  baseWidth * 1.3,
+  baseWidth * 1.6,
+  baseWidth * 1.3,
+  baseWidth * 1.1,
+  baseWidth,
+];
+
+const useDockHoverAnimation = (
+  mouseX: MotionValue<null | number>,
+  ref: React.RefObject<HTMLImageElement>,
+) => {
+  const distance = useMotionValue(beyondTheDistanceLimit);
+  const width = useSpring(useTransform(distance, distanceInput, widthOutput), {
+    damping: 25,
+    stiffness: 250,
+  });
+
+  useRaf(() => {
+    const el = ref.current;
+    const mouseXVal = mouseX.get();
+    if (el && mouseXVal !== null) {
+      const rect = el.getBoundingClientRect();
+
+      // get the x coordinate of the img DOMElement's center
+      // the left x coordinate plus the half of the width
+      const imgCenterX = rect.left + rect.width / 2;
+
+      // difference between the x coordinate value of the mouse pointer
+      // and the img center x coordinate value
+      const distanceDelta = mouseXVal - imgCenterX;
+      distance.set(distanceDelta);
+      return;
+    }
+
+    distance.set(beyondTheDistanceLimit);
+  }, true);
+
+  return { width, ref };
+};
 
 export { DockItem };
