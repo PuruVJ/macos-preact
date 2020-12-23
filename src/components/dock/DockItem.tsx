@@ -82,10 +82,12 @@ const useDockHoverAnimation = (
   ref: React.RefObject<HTMLImageElement>,
 ) => {
   const distance = useMotionValue(beyondTheDistanceLimit);
-  const width = useSpring(useTransform(distance, distanceInput, widthOutput), {
+  const widthPX = useSpring(useTransform(distance, distanceInput, widthOutput), {
     damping: 25,
     stiffness: 250,
   });
+
+  const width = useTransform(widthPX, (width) => `${width / 16}rem`);
 
   useRaf(() => {
     const el = ref.current;
