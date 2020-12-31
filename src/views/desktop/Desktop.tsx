@@ -1,27 +1,29 @@
-import { CssBaseline, makeStyles } from '@material-ui/core';
+import { Provider } from 'jotai';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Dock } from '__/components/dock/Dock';
-import { GlobalProvider } from '__/global-provider';
+import styled from 'styled-components';
+import { Reset } from 'styled-reset';
 import DefaultBackground from '__/assets/wallpapers/24-0.jpg';
-import { Provider } from 'jotai';
+import { Dock } from '__/components/dock/Dock';
 import { MenuBar } from '__/components/menubar/MenuBar';
+import { GlobalProvider } from '__/global-provider';
+import { useTheme } from '__/hooks/use-theme';
 
 export const Desktop = () => {
-  const classes = useStyles();
+  const [,] = useTheme();
 
   return (
     <>
-      <CssBaseline />
+      <Reset />
       <GlobalProvider>
-        <main className={classes.root}>
+        <Main>
           <MenuBar />
           <Provider>
             <Dock />
           </Provider>
-        </main>
+        </Main>
 
-        <div className={classes.backgroundCover} />
+        <BackgroundCover aria-hidden="true" />
 
         <Helmet>
           <title>MacOS Web</title>
@@ -31,24 +33,22 @@ export const Desktop = () => {
   );
 };
 
-const useStyles = makeStyles(({}) => ({
-  root: {
-    height: '100%',
-    width: '100%',
-  },
+const Main = styled.main`
+  height: 100%;
+  width: 100%;
+`;
 
-  backgroundCover: {
-    height: '100%',
-    width: '100%',
+const BackgroundCover = styled.div`
+  height: 100%;
+  width: 100%;
 
-    zIndex: -1,
-    position: 'fixed',
-    top: 0,
-    left: 0,
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
 
-    backgroundImage: `url(${DefaultBackground})`,
-    backgroundRepeat: 'none',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  },
-}));
+  background-image: url(${DefaultBackground});
+  background-repeat: none;
+  background-size: cover;
+  background-position: center;
+`;

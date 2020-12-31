@@ -1,8 +1,9 @@
-import React from 'react';
-import { ButtonBase, makeStyles } from '@material-ui/core';
+import { ButtonBase } from '@material-ui/core';
 import useRaf from '@rooks/use-raf';
 import Tippy from '@tippyjs/react';
 import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import React from 'react';
+import styled from 'styled-components';
 import 'tippy.js/dist/tippy.css';
 import type { IDockItem } from '__/stores/dock.store';
 
@@ -11,15 +12,13 @@ interface IDockItemProps extends IDockItem {
 }
 
 function DockItem({ icon, action, appName, mouseX }: IDockItemProps) {
-  const classes = useStyles();
-
   const ref = React.useRef<HTMLImageElement>(null);
 
   const { width } = useDockHoverAnimation(mouseX, ref);
 
   return (
-    <section className={classes.root}>
-      <ButtonBase onClick={action} className={classes.root}>
+    <section>
+      <DockItemButton onClick={action}>
         <Tippy
           delay={50}
           offset={[0, 10]}
@@ -29,31 +28,29 @@ function DockItem({ icon, action, appName, mouseX }: IDockItemProps) {
         >
           <motion.img ref={ref} src={icon} draggable={false} style={{ width }} />
         </Tippy>
-      </ButtonBase>
+      </DockItemButton>
     </section>
   );
 }
 
-const useStyles = makeStyles(({}) => ({
-  root: {
-    height: '100%',
-    width: 'auto !important',
+const DockItemButton = styled(ButtonBase)`
+  height: 100%;
+  width: auto !important;
 
-    cursor: 'default',
+  cursor: default !important;
 
-    transition: 'all 200ms ease-in',
+  transition: all 200ms ease-in;
 
-    transformOrigin: 'bottom',
+  transform-origin: bottom;
 
-    display: 'flex',
-    alignItems: 'flex-end',
+  display: flex;
+  align-items: flex-end;
 
-    '& img': {
-      width: '57.6px',
-      height: 'auto',
-    },
-  },
-}));
+  img {
+    width: 57.6px;
+    height: auto;
+  }
+`;
 
 const baseWidth = 57.6;
 const distanceLimit = baseWidth * 6;

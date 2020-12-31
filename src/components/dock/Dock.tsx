@@ -1,15 +1,16 @@
-import { fade, makeStyles } from '@material-ui/core';
+import { fade } from '@material-ui/core';
 import { useMotionValue } from 'framer-motion';
-import React from 'react';
 import { useAtom } from 'jotai';
+import React from 'react';
+import styled from 'styled-components';
 import { dockItemsStore } from '__/stores/dock.store';
+import { theme } from '__/theme';
 import { DockItem } from './DockItem';
 
 /**
  * The famous MacOS Dock
  */
 const Dock = ({}) => {
-  const classes = useStyles();
   const [{ dockItems }] = useAtom(dockItemsStore);
 
   const mouseX = useMotionValue<number | null>(null);
@@ -18,66 +19,63 @@ const Dock = ({}) => {
 
   return (
     <>
-      <section className={classes.dockContainer}>
-        <div
-          className={classes.dock}
+      <DockContainer>
+        <DockEl
           onMouseMove={(event) => mouseX.set(event.nativeEvent.x)}
           onMouseLeave={() => mouseX.set(null)}
         >
           {dockItemsKeys.map((dockTitle) => {
             const { breakBefore } = dockItems[dockTitle];
             return [
-              breakBefore && <div key={`${dockTitle}-divider`} className={classes.divider} />,
+              breakBefore && <Divider key={`${dockTitle}-divider`} aria-hidden="true" />,
               <DockItem key={dockTitle} mouseX={mouseX} {...dockItems[dockTitle]} />,
             ];
           })}
-        </div>
-      </section>
+        </DockEl>
+      </DockContainer>
     </>
   );
 };
 
-const useStyles = makeStyles(({ spacing, palette }) => ({
-  dockContainer: {
-    position: 'fixed',
-    bottom: spacing(0.3),
-    left: 0,
-    zIndex: 999999999999999,
+const DockContainer = styled.section`
+  position: fixed;
+  bottom: 0.3rem;
+  left: 0;
+  z-index: 100000000;
 
-    width: '100%',
-    height: spacing(5),
+  width: 100%;
+  height: 5rem;
 
-    padding: spacing(0.4),
+  padding: 0.4rem;
 
-    display: 'flex',
-    justifyContent: 'center',
-  },
+  display: flex;
+  justify-content: center;
+`;
 
-  dock: {
-    backdropFilter: 'blur(5px)',
-    backgroundColor: fade(palette.background.default, 0.2),
+const DockEl = styled.div`
+  backdrop-filter: blur(5px);
+  background-color: rgba(${theme.colors.light.rgb}, 0.2);
 
-    boxShadow: `inset 0 0 0 0.2px ${fade(
-      palette.grey[100],
-      0.3,
-    )}, rgba(0, 0, 0, 0.3) 2px 5px 19px 7px`,
+  box-shadow: inset 0 0 0 0.2px ${fade(theme.colors.grey[100], 0.3)},
+    rgba(0, 0, 0, 0.3) 2px 5px 19px 7px;
 
-    padding: spacing(0.3),
+  padding: 0.3rem;
 
-    borderRadius: spacing(1.2),
+  border-radius: 1.2rem;
 
-    height: '100%',
+  height: 100%auto;
 
-    display: 'flex',
-    alignItems: 'end',
-  },
+  display: flex;
+  align-items: flex-end;
+`;
 
-  divider: {
-    height: '100%',
-    width: '1px',
-    backgroundColor: palette.grey[700],
-    margin: '0 2px',
-  },
-}));
+const Divider = styled.div`
+  height: 100%;
+  width: 1px;
+
+  background-color: ${theme.colors.grey};
+
+  margin: 0 2px;
+`;
 
 export { Dock };

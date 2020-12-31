@@ -1,112 +1,110 @@
-import { ButtonBase, fade, makeStyles } from '@material-ui/core';
+import { ButtonBase } from '@material-ui/core';
 import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
 import React from 'react';
+import styled from 'styled-components';
 import { SwitchSVG } from '__/assets/sf-icons/switch.svg';
 import { VolumeLowSVG } from '__/assets/sf-icons/volume-low.svg';
+import { theme } from '__/theme';
 import { AppIcon } from '../utils/app-icons';
 import { MenuBarTime } from './MenuBarTime';
 
 const MenuBar = (): React.ReactElement => {
-  const classes = useStyles();
-
   return (
     <>
-      <header className={classes.root}>
-        <ButtonBase className={classes.appleButton}>
+      <Header>
+        <AppleIconButton>
           <AppIcon size={18} path={mdiApple} />
-        </ButtonBase>
+        </AppleIconButton>
         <ButtonBase style={{ fontWeight: 600, margin: `0 6px` }}>Finder</ButtonBase>
 
         {/* menu buttons */}
-        <ButtonBase className={classes.menuButton}>File</ButtonBase>
-        <ButtonBase className={classes.menuButton}>Edit</ButtonBase>
-        <ButtonBase className={classes.menuButton}>View</ButtonBase>
-        <ButtonBase className={classes.menuButton}>Go</ButtonBase>
-        <ButtonBase className={classes.menuButton}>Window</ButtonBase>
-        <ButtonBase className={classes.menuButton}>Help</ButtonBase>
+        <MenuButton>File</MenuButton>
+        <MenuButton>Edit</MenuButton>
+        <MenuButton>View</MenuButton>
+        <MenuButton>Go</MenuButton>
+        <MenuButton>Window</MenuButton>
+        <MenuButton>Help</MenuButton>
 
-        <span className={classes.flex}></span>
+        <Spacer />
 
-        <ButtonBase className={classes.iconButtons}>
+        <MenuIconButton>
           <AppIcon size={24} path={mdiAppleAirplay} />
-        </ButtonBase>
+        </MenuIconButton>
 
-        <ButtonBase className={classes.iconButtons}>
+        <MenuIconButton>
           <AppIcon size={24} path={mdiWifiStrength4} />
-        </ButtonBase>
+        </MenuIconButton>
 
-        <ButtonBase className={classes.iconButtons}>
+        <MenuIconButton>
           <VolumeLowSVG />
-        </ButtonBase>
+        </MenuIconButton>
 
-        <ButtonBase className={classes.iconButtons}>
+        <MenuIconButton>
           <SwitchSVG />
-        </ButtonBase>
+        </MenuIconButton>
 
         <ButtonBase>
           <MenuBarTime />
         </ButtonBase>
-      </header>
+      </Header>
     </>
   );
 };
 
-const useStyles = makeStyles(({ spacing, palette, typography }) => ({
-  root: {
-    display: 'flex',
-    alignItems: 'center',
+const Header = styled.header`
+  display: flex;
+  align-items: center;
 
-    width: '100%',
-    height: spacing(1.4),
+  width: 100%;
+  height: 1.4rem;
 
-    backgroundColor: fade(palette.background.default, 0.3),
-    backdropFilter: 'blur(6px)',
+  background-color: rgba(${theme.colors.light.rgb}, 0.3);
+  backdrop-filter: blur(6px);
 
-    color: palette.text.primary,
-    fill: palette.text.primary,
+  color: ${theme.colors.light.contrast};
+  fill: ${theme.colors.light.contrast};
 
-    '& button': {
-      fontWeight: '500',
-      fontSize: spacing(0.8),
-      fontFamily: typography.fontFamily,
+  button {
+    font-weight: 500;
+    font-size: 0.8rem;
+    font-family: ${theme.typography.fontFamily};
 
-      position: 'relative',
+    position: relative;
 
-      padding: spacing(0, 0.2),
-      margin: spacing(0, 0.3),
-    },
-  },
+    padding: 0 0.2rem;
+    margin: 0 0.3rem;
+  }
+`;
 
-  menuButton: {
-    fontWeight: 500,
-  },
+const AppleIconButton = styled(ButtonBase)`
+  border-radius: 30px;
 
-  appleButton: {
-    borderRadius: '30px',
+  padding: 0 0.5rem;
+  margin: 0 0.6rem;
+`;
 
-    padding: spacing(0, 0.5),
-    margin: spacing(0, 0.6),
-  },
+const MenuButton = styled(ButtonBase)`
+  font-weight: 500;
+`;
 
-  flex: {
-    flex: '1 1 auto',
-  },
+const MenuIconButton = styled(ButtonBase)`
+  max-height: 100%;
 
-  iconButtons: {
-    maxHeight: '100%',
+  margin: 0 0.5rem !important;
 
-    margin: `${spacing(0, 0.5)} !important`,
+  svg,
+  svg path {
+    height: 1rem;
+    width: 1rem;
 
-    '& svg, & svg path': {
-      height: spacing(1),
-      width: 'auto',
+    fill: ${theme.colors.light.contrast} !important;
 
-      fill: `${palette.text.primary} !important`,
+    position: relative;
+  }
+`;
 
-      position: 'relative',
-    },
-  },
-}));
+const Spacer = styled.span`
+  flex: 1 1 auto;
+`;
 
 export { MenuBar };
-
