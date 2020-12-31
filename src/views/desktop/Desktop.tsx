@@ -1,6 +1,5 @@
 import { Provider } from 'jotai';
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import { Reset } from 'styled-reset';
 import DefaultBackground from '__/assets/wallpapers/24-0.jpg';
@@ -24,10 +23,6 @@ export const Desktop = () => {
         </Main>
 
         <BackgroundCover aria-hidden="true" />
-
-        <Helmet>
-          <title>MacOS Web</title>
-        </Helmet>
       </GlobalProvider>
     </>
   );
