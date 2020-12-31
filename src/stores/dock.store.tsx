@@ -1,5 +1,5 @@
 import type React from 'react';
-import { createStore } from 'restater';
+import { atom } from 'jotai';
 
 import IconFinder from '__/assets/app-icons/finder/256.png';
 import IconLaunchpad from '__/assets/app-icons/launchpad/256.png';
@@ -21,7 +21,7 @@ export interface IDockItem {
   breakBefore?: boolean;
 }
 
-const initialState: { dockItems: { [key: string]: IDockItem } } = {
+const initialState = {
   dockItems: {
     finder: {
       appName: 'Finder',
@@ -86,6 +86,6 @@ const initialState: { dockItems: { [key: string]: IDockItem } } = {
   },
 };
 
-const [DockItemsProvider, dockItemsStore] = createStore(initialState);
+const dockItemsStore = atom(initialState);
 
-export { DockItemsProvider, dockItemsStore };
+export { dockItemsStore };

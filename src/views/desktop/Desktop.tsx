@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { Dock } from '__/components/dock/Dock';
 import { GlobalProvider } from '__/global-provider';
 import DefaultBackground from '__/assets/wallpapers/24-0.jpg';
-import { DockItemsProvider } from '__/stores/dock.store';
+import { Provider } from 'jotai';
 import { MenuBar } from '__/components/menubar/MenuBar';
 
 export const Desktop = () => {
@@ -16,9 +16,9 @@ export const Desktop = () => {
       <GlobalProvider>
         <main className={classes.root}>
           <MenuBar />
-          <DockItemsProvider>
+          <Provider>
             <Dock />
-          </DockItemsProvider>
+          </Provider>
         </main>
 
         <div className={classes.backgroundCover} />
