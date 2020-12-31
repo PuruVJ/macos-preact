@@ -1,7 +1,7 @@
 import { fade, makeStyles } from '@material-ui/core';
 import { useMotionValue } from 'framer-motion';
 import React from 'react';
-import { useStore } from 'restater';
+import { useAtom } from 'jotai';
 import { dockItemsStore } from '__/stores/dock.store';
 import { DockItem } from './DockItem';
 
@@ -10,7 +10,7 @@ import { DockItem } from './DockItem';
  */
 const Dock = ({}) => {
   const classes = useStyles();
-  const [dockItems] = useStore(dockItemsStore, 'dockItems');
+  const [{ dockItems }] = useAtom(dockItemsStore);
 
   const mouseX = useMotionValue<number | null>(null);
 
