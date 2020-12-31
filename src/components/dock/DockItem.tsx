@@ -1,8 +1,8 @@
+import React from 'react';
 import { ButtonBase, makeStyles } from '@material-ui/core';
 import useRaf from '@rooks/use-raf';
 import Tippy from '@tippyjs/react';
 import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import React from 'react';
 import 'tippy.js/dist/tippy.css';
 import type { IDockItem } from '__/stores/dock.store';
 
