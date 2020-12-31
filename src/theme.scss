@@ -1,0 +1,20 @@
+body,
+body[data-theme='light'] {
+  // Primary
+  --app-color-primary: rgb(0, 122, 255);
+  --app-color-primary-rgb: 0, 122, 255;
+  --app-color-primary-contrast: #fff;
+
+  // Dark
+  --app-color-dark: #1c1c1e;
+  --app-color-dark-rgb: 28, 28, 30;
+  --app-color-dark-contrast: #f2f2f7;
+
+  // Light
+  --app-color-light: #f2f2f7;
+  --app-color-light-rgb: 242, 242, 247;
+  --app-color-light-contrast: rgb(28, 28, 28);
+
+  --app-font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', 'Helvetica',
+    'Arial', sans-serif;
+}
