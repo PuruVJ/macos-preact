@@ -73,7 +73,7 @@ const Divider = styled.div`
   height: 100%;
   width: 1px;
 
-  background-color: ${theme.colors.grey};
+  background-color: ${fade(theme.colors.grey[700], 0.3)};
 
   margin: 0 2px;
 `;

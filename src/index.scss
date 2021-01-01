@@ -21,3 +21,7 @@ body {
   width: 100%;
   height: 100%;
 }
+
+* {
+  transition: background-color 150ms ease-in, background 150ms ease-in;
+}
