@@ -13,8 +13,25 @@ body[data-theme='light'] {
   // Light
   --app-color-light: #f2f2f7;
   --app-color-light-rgb: 242, 242, 247;
-  --app-color-light-contrast: rgb(28, 28, 28);
+  --app-color-light-contrast: #1c1c1c;
 
   --app-font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', 'Helvetica',
     'Arial', sans-serif;
+}
+
+body[data-theme='dark'] {
+  // Primary
+  --app-color-primary: rgb(0, 122, 255);
+  --app-color-primary-rgb: 0, 122, 255;
+  --app-color-primary-contrast: #fff;
+
+  // Dark
+  --app-color-dark: #f2f2f7;
+  --app-color-dark-rgb: 242, 242, 247;
+  --app-color-dark-contrast: #1c1c1c;
+
+  // Light
+  --app-color-light: #1c1c1e;
+  --app-color-light-rgb: 28, 28, 30;
+  --app-color-light-contrast: #f2f2f7;
 }
