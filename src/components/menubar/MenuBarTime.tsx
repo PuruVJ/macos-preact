@@ -7,7 +7,7 @@ const MenuBarTime = () => {
 
   useInterval(() => setTime(new Date()), 2000);
 
-  return <>{format(time, 'EEE MMM d  h:mm aa')}</>;
+  return <>{format(time, 'EEE MMM dd  h:mm aa')}</>;
 };
 
 export { MenuBarTime };
