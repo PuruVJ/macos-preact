@@ -1,4 +1,4 @@
-import { fade } from '@material-ui/core';
+import { transparentize } from 'color2k';
 import { useMotionValue } from 'framer-motion';
 import { useAtom } from 'jotai';
 import React from 'react';
@@ -56,7 +56,7 @@ const DockEl = styled.div`
   backdrop-filter: blur(5px);
   background-color: rgba(${theme.colors.light.rgb}, 0.2);
 
-  box-shadow: inset 0 0 0 0.2px ${fade(theme.colors.grey[100], 0.3)},
+  box-shadow: inset 0 0 0 0.2px ${transparentize(theme.colors.grey[100], 0.3)},
     rgba(0, 0, 0, 0.3) 2px 5px 19px 7px;
 
   padding: 0.3rem;
@@ -73,7 +73,7 @@ const Divider = styled.div`
   height: 100%;
   width: 1px;
 
-  background-color: ${fade(theme.colors.grey[700], 0.3)};
+  background-color: ${transparentize(theme.colors.grey[700], 0.3)};
 
   margin: 0 2px;
 `;

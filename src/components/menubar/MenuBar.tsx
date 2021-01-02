@@ -1,11 +1,11 @@
-import { ButtonBase } from '@material-ui/core';
+import { ButtonBase } from '../utils/ButtonBase';
 import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
 import React from 'react';
 import styled from 'styled-components';
 import { SwitchSVG } from '__/assets/sf-icons/switch.svg';
 import { VolumeLowSVG } from '__/assets/sf-icons/volume-low.svg';
 import { theme } from '__/theme';
-import { AppIcon } from '../utils/app-icons';
+import { AppIcon } from '../utils/AppIcon';
 import { MenuBarTime } from './MenuBarTime';
 
 const MenuBar = (): React.ReactElement => {

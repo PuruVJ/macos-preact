@@ -5,7 +5,6 @@
     "postbuild": "workbox generateSW workbox-config.js"
   },
   "dependencies": {
-    "@material-ui/core": "^4.11.2",
     "@mdi/js": "^5.8.55",
     "@rooks/use-raf": "^4.5.0",
     "@tippyjs/react": "^4.2.0",
