@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled, { StyledComponentProps } from 'styled-components';
 
 interface IButtonBaseProps {}
 
-export const ButtonBase: React.FC<StyledComponentProps<'button', any, IButtonBaseProps, never>> = ({
+export const ButtonBase: FC<StyledComponentProps<'button', any, IButtonBaseProps, never>> = ({
   children,
   ...props
 }) => {
   return <_Button {...props}>{children}</_Button>;
 };
 
-const _Button = styled.button`
+const _Button = styled.button<IButtonBaseProps>`
   color: inherit;
   text-decoration: none;
   vertical-align: middle;
 
   border: 0;
   border-radius: 0;
+
+  outline: 0;
 
   cursor: pointer;
 
@@ -26,8 +28,6 @@ const _Button = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  outline: 0;
 
   position: relative;
 
