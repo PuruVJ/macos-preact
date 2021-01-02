@@ -4,16 +4,15 @@ export function useTheme() {
   // Media query
   const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
-  const [theme, setTheme] = useState<'light' | 'dark'>(systemTheme);
+  const localValue = localStorage.getItem('theme:type') as 'light' | 'dark';
+
+  const [theme, setTheme] = useState<'light' | 'dark' | ''>('');
 
   useEffect(() => {
-    const localValue = localStorage.getItem('theme:type');
+    setTheme(localValue || systemTheme);
+  }, []);
 
-    if (!localValue) {
-      // Nothing in localStorage. Default to user's preference
-      setTheme(systemTheme);
-    }
-
+  useEffect(() => {
     localStorage.setItem('theme:type', theme);
 
     document.body.dataset.theme = theme;
