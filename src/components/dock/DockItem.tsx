@@ -18,7 +18,7 @@ function DockItem({ icon, action, appName, mouseX }: IDockItemProps) {
 
   return (
     <section>
-      <DockItemButton onClick={action}>
+      <DockItemButton aria-label={`Launch ${appName}`} onClick={action}>
         <Tippy
           delay={50}
           offset={[0, 10]}
