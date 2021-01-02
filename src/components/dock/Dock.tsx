@@ -63,7 +63,7 @@ const DockEl = styled.div`
 
   border-radius: 1.2rem;
 
-  height: 100%auto;
+  height: 100%;
 
   display: flex;
   align-items: flex-end;
