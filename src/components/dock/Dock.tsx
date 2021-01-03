@@ -69,9 +69,9 @@ const DockEl = styled.div`
 
 const Divider = styled.div`
   height: 100%;
-  width: 1px;
+  width: 0.2px;
 
-  background-color: ${transparentize(theme.colors.grey[700], 0.3)};
+  background-color: ${transparentize(theme.colors.grey[400], 0.3)};
 
   margin: 0 2px;
 `;

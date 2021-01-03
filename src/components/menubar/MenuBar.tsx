@@ -1,12 +1,13 @@
 import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
 import React from 'react';
 import styled from 'styled-components';
-import { SwitchSVG } from '__/assets/sf-icons/switch.svg';
 import { VolumeLowSVG } from '__/assets/sf-icons/volume-low.svg';
 import { theme } from '__/theme';
 import { AppIcon } from '../utils/AppIcon';
 import { ButtonBase } from '../utils/ButtonBase';
+import { ActionCenterToggle } from './ActionCenter/ActionCenterToggle';
 import { MenuBarTime } from './MenuBarTime';
+import { MenuIconButton } from './MenuIconButton';
 
 const MenuBar = (): React.ReactElement => {
   return (
@@ -38,9 +39,7 @@ const MenuBar = (): React.ReactElement => {
         <VolumeLowSVG />
       </MenuIconButton>
 
-      <MenuIconButton>
-        <SwitchSVG />
-      </MenuIconButton>
+      <ActionCenterToggle />
 
       <ButtonBase>
         <MenuBarTime />
@@ -85,22 +84,6 @@ const AppleIconButton = styled(ButtonBase)`
 
 const MenuButton = styled(ButtonBase)`
   font-weight: 500;
-`;
-
-const MenuIconButton = styled(ButtonBase)`
-  max-height: 100%;
-
-  margin: 0 0.5rem !important;
-
-  svg,
-  svg path {
-    height: 1rem;
-    width: 1rem;
-
-    fill: ${theme.colors.light.contrast} !important;
-
-    position: relative;
-  }
 `;
 
 const Spacer = styled.span`

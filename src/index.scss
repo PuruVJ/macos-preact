@@ -15,6 +15,8 @@ body {
 
 * {
   box-sizing: border-box;
+
+  transition: background-color 150ms ease-in, background 150ms ease-in;
 }
 
 #root {
@@ -22,6 +24,6 @@ body {
   height: 100%;
 }
 
-* {
-  transition: background-color 150ms ease-in, background 150ms ease-in;
+*:focus {
+  outline: none;
 }
