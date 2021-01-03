@@ -1,4 +1,3 @@
-import { ButtonBase } from '../utils/ButtonBase';
 import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
 import React from 'react';
 import styled from 'styled-components';
@@ -6,6 +5,7 @@ import { SwitchSVG } from '__/assets/sf-icons/switch.svg';
 import { VolumeLowSVG } from '__/assets/sf-icons/volume-low.svg';
 import { theme } from '__/theme';
 import { AppIcon } from '../utils/AppIcon';
+import { ButtonBase } from '../utils/ButtonBase';
 import { MenuBarTime } from './MenuBarTime';
 
 const MenuBar = (): React.ReactElement => {
@@ -66,6 +66,8 @@ const Header = styled.header`
     font-weight: 500;
     font-size: 0.8rem;
     font-family: ${theme.typography.fontFamily};
+
+    letter-spacing: 0.3px;
 
     position: relative;
 
