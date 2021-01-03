@@ -18,22 +18,20 @@ const Dock = ({}) => {
   const dockItemsKeys = Object.keys(dockItems);
 
   return (
-    <>
-      <DockContainer>
-        <DockEl
-          onMouseMove={(event) => mouseX.set(event.nativeEvent.x)}
-          onMouseLeave={() => mouseX.set(null)}
-        >
-          {dockItemsKeys.map((dockTitle) => {
-            const { breakBefore } = dockItems[dockTitle];
-            return [
-              breakBefore && <Divider key={`${dockTitle}-divider`} aria-hidden="true" />,
-              <DockItem key={dockTitle} mouseX={mouseX} {...dockItems[dockTitle]} />,
-            ];
-          })}
-        </DockEl>
-      </DockContainer>
-    </>
+    <DockContainer>
+      <DockEl
+        onMouseMove={(event) => mouseX.set(event.nativeEvent.x)}
+        onMouseLeave={() => mouseX.set(null)}
+      >
+        {dockItemsKeys.map((dockTitle) => {
+          const { breakBefore } = dockItems[dockTitle];
+          return [
+            breakBefore && <Divider key={`${dockTitle}-divider`} aria-hidden="true" />,
+            <DockItem key={dockTitle} mouseX={mouseX} {...dockItems[dockTitle]} />,
+          ];
+        })}
+      </DockEl>
+    </DockContainer>
   );
 };
 

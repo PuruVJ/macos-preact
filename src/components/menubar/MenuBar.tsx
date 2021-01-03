@@ -10,44 +10,42 @@ import { MenuBarTime } from './MenuBarTime';
 
 const MenuBar = (): React.ReactElement => {
   return (
-    <>
-      <Header>
-        <AppleIconButton>
-          <AppIcon size={18} path={mdiApple} />
-        </AppleIconButton>
-        <ButtonBase style={{ fontWeight: 600, margin: `0 6px` }}>Finder</ButtonBase>
+    <Header>
+      <AppleIconButton>
+        <AppIcon size={18} path={mdiApple} />
+      </AppleIconButton>
+      <ButtonBase style={{ fontWeight: 600, margin: `0 6px` }}>Finder</ButtonBase>
 
-        {/* menu buttons */}
-        <MenuButton>File</MenuButton>
-        <MenuButton>Edit</MenuButton>
-        <MenuButton>View</MenuButton>
-        <MenuButton>Go</MenuButton>
-        <MenuButton>Window</MenuButton>
-        <MenuButton>Help</MenuButton>
+      {/* menu buttons */}
+      <MenuButton>File</MenuButton>
+      <MenuButton>Edit</MenuButton>
+      <MenuButton>View</MenuButton>
+      <MenuButton>Go</MenuButton>
+      <MenuButton>Window</MenuButton>
+      <MenuButton>Help</MenuButton>
 
-        <Spacer />
+      <Spacer />
 
-        <MenuIconButton>
-          <AppIcon size={24} path={mdiAppleAirplay} />
-        </MenuIconButton>
+      <MenuIconButton>
+        <AppIcon size={24} path={mdiAppleAirplay} />
+      </MenuIconButton>
 
-        <MenuIconButton>
-          <AppIcon size={24} path={mdiWifiStrength4} />
-        </MenuIconButton>
+      <MenuIconButton>
+        <AppIcon size={24} path={mdiWifiStrength4} />
+      </MenuIconButton>
 
-        <MenuIconButton>
-          <VolumeLowSVG />
-        </MenuIconButton>
+      <MenuIconButton>
+        <VolumeLowSVG />
+      </MenuIconButton>
 
-        <MenuIconButton>
-          <SwitchSVG />
-        </MenuIconButton>
+      <MenuIconButton>
+        <SwitchSVG />
+      </MenuIconButton>
 
-        <ButtonBase>
-          <MenuBarTime />
-        </ButtonBase>
-      </Header>
-    </>
+      <ButtonBase>
+        <MenuBarTime />
+      </ButtonBase>
+    </Header>
   );
 };
 
