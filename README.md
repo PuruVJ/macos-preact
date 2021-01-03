@@ -24,8 +24,19 @@ I've always been very fascinated with macOS, and have never owned a Mac/book. So
 
 ## v2
 
-- [ ] Interactive toolbar elements(Action center, just for show) 🧠
-- [ ] Light/Dark mode switcher 💡
+- [ ] Action center
+  - [ ] Light/Dark mode switcher
+  - [ ] Brightness slider(Functional)
+  - [ ] Sound slider (Not functional)
+    - [ ] Wifi (Not functional)
+    - [ ] Bluetooth (Not functional)
+    - [ ] AirDrop (Not functional)
+  - [ ] Do not disturb (Not functional)
+  - [ ] Keyboard Brightness (Not functional)
+  - [ ] Screen Mirroring (Not functional)
+- [ ] Basic API for Menu Bar
+- [ ] Menu bar, and menu items. Not necessarily functional
+- [ ] Menu for Finder only (For now)
 
 ## v3
 
