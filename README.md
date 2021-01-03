@@ -8,10 +8,10 @@ I've always been very fascinated with macOS, and have never owned a Mac/book. So
 
 # Stack
 
-- Framework - React (`create-react-app` style) 
-- Bundler - Snowpack, for super fast development. On build, it churns out optimized ES Modules. Not considering older browsers right now. 
-- Component Library - [Material UI](https://material-ui.com/). Redesigned base components to look like MacOS stuff. This library has really good accessibility support too. 
-- Styling Solution - Material UI's styling only! It offers a JSS style solution which is really great and well thought out. 
+- Framework - React (`create-react-app` style)
+- Bundler - Snowpack, for super fast development. On build, it churns out optimized ES Modules. Not considering older browsers right now.
+- Component Library - None!! It used Material UI before, but MUI had to be removed because of high lag in Typescript Intellisense. See microsoft/TypeScript#34801
+- Styling Solution - Styled Components.
 
 # Roadmap
 
@@ -31,13 +31,14 @@ I've always been very fascinated with macOS, and have never owned a Mac/book. So
 
 - [ ] A wallpaper switcher app. Offers automatic day/light wallpapers too
 - [ ] Probably Safari. Uses Iframe and basic tabs functionality.
-- [ ] A text editor. Like VSCode or Notepad, haven't thought  ¯\\\_(ツ)_/¯
+- [ ] A text editor. Like VSCode or Notepad, haven't thought ¯\\\_(ツ)\_/¯
 
 ## v4
 
 - All kinds of crazy apps like clock, weather, and much more. Would be great if community jumped in to make some of these apps.
 
 # What has been done till now?
+
 v1 is done. v2 in progress.
 
 # When will it be ready?
