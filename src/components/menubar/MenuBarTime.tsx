@@ -1,9 +1,9 @@
 import { format } from 'date-fns';
-import React from 'react';
+import React, { useState } from 'react';
 import { useInterval } from 'use-interval';
 
 const MenuBarTime = () => {
-  const [time, setTime] = React.useState(new Date());
+  const [time, setTime] = useState(new Date());
 
   useInterval(() => setTime(new Date()), 2000);
 
