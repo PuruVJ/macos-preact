@@ -14,16 +14,14 @@ export const Desktop = () => {
   return (
     <>
       <Reset />
-      <GlobalProvider>
+      <Provider>
         <Main>
           <MenuBar />
-          <Provider>
-            <Dock />
-          </Provider>
+          <Dock />
         </Main>
 
         <BackgroundCover aria-hidden="true" />
-      </GlobalProvider>
+      </Provider>
     </>
   );
 };
