@@ -15,14 +15,14 @@ I've always been very fascinated with macOS, and have never owned a Mac/book. So
 
 # Roadmap
 
-## v1
+## v0.1
 
 - [x] Basic wallpaper
 - [x] Basic dock with its cool hovering animations
 - [x] Basic toolbar
 - [x] Everything to built with theme switching in mind
 
-## v2
+## v0.2
 
 - [ ] Action center
   - [ ] Light/Dark mode switcher
@@ -34,11 +34,14 @@ I've always been very fascinated with macOS, and have never owned a Mac/book. So
   - [ ] Do not disturb (Not functional)
   - [ ] Keyboard Brightness (Not functional)
   - [ ] Screen Mirroring (Not functional)
+
+## v0.3
+
 - [ ] Basic API for Menu Bar
 - [ ] Menu bar, and menu items. Not necessarily functional
 - [ ] Menu for Finder only (For now)
 
-## v3
+## v1
 
 - [ ] A wallpaper switcher app. Offers automatic day/light wallpapers too
 - [ ] Probably Safari. Uses Iframe and basic tabs functionality.
