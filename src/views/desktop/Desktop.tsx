@@ -2,7 +2,7 @@ import { Provider } from 'jotai';
 import React from 'react';
 import styled from 'styled-components';
 import { Reset } from 'styled-reset';
-import DefaultBackground from '__/assets/wallpapers/3-light.jpg';
+import DefaultBackground from '__/assets/wallpapers/3-2.jpg';
 import { Dock } from '__/components/dock/Dock';
 import { MenuBar } from '__/components/menubar/MenuBar';
 import { GlobalProvider } from '__/global-provider';
