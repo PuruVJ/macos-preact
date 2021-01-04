@@ -2,7 +2,7 @@ import { ButtonBase } from '../utils/ButtonBase';
 import useRaf from '@rooks/use-raf';
 import Tippy from '@tippyjs/react';
 import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import React from 'react';
+import React, { RefObject } from 'react';
 import styled from 'styled-components';
 import 'tippy.js/dist/tippy.css';
 import type { IDockItem } from '__/stores/dock.store';
@@ -81,7 +81,7 @@ const widthOutput = [
 
 const useDockHoverAnimation = (
   mouseX: MotionValue<null | number>,
-  ref: React.RefObject<HTMLImageElement>,
+  ref: RefObject<HTMLImageElement>,
 ) => {
   const distance = useMotionValue(beyondTheDistanceLimit);
   const widthPX = useSpring(useTransform(distance, distanceInput, widthOutput), {
