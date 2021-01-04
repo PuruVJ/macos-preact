@@ -26,7 +26,12 @@ function DockItem({ icon, action, appName, mouseX }: IDockItemProps) {
           inertia={true}
           content={<span>{appName}</span>}
         >
-          <motion.img ref={ref} src={icon} draggable={false} style={{ width }} />
+          <motion.img
+            ref={ref}
+            src={icon}
+            draggable={false}
+            style={{ width, willChange: 'width' }}
+          />
         </Tippy>
       </DockItemButton>
     </section>
