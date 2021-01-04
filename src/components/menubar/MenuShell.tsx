@@ -21,15 +21,14 @@ export const MenuShell: FC<IMenuShell> = ({ children }) => {
 const MenuShellContainer = styled.section`
   display: block;
 
-  width: 20rem;
-  height: 30rem;
+  width: 18rem;
 
   position: relative;
 
-  background-color: rgba(${theme.colors.light.rgb}, 0.45);
-  backdrop-filter: blur(16px);
+  background-color: rgba(${theme.colors.light.rgb}, 0.3);
+  backdrop-filter: blur(12px);
 
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 13px 0px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 11px 0px;
   border-radius: 1rem;
 
   padding: 0.75rem;
