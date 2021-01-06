@@ -12,13 +12,15 @@ export const MenuShell: FC<IMenuShell> = ({ children }) => {
   }, []);
 
   return (
-    <MenuShellContainer ref={ref} tabIndex={-1}>
+    <Container ref={ref} tabIndex={-1}>
       {children}
-    </MenuShellContainer>
+    </Container>
   );
 };
 
-const MenuShellContainer = styled.section`
+type IContainer = { theme: 'light' | 'dark' };
+
+const Container = styled.section<IContainer>`
   display: block;
 
   width: 18rem;
@@ -30,6 +32,8 @@ const MenuShellContainer = styled.section`
 
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 11px 0px;
   border-radius: 1rem;
+
+  border: solid 0.5px rgba(var(--app-color-dark-rgb), 0.3);
 
   padding: 0.75rem;
 `;

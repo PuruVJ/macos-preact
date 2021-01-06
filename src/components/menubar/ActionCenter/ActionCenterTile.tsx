@@ -48,5 +48,7 @@ const Container = styled.section<ContainerProps>`
   ${({ columnStart, columnSpan, rowSpan, rowStart }) => css`
     grid-column: ${columnStart} / span ${columnSpan};
     grid-row: ${rowStart} / span ${rowSpan};
+
+    border: solid 0.3px rgba(var(--app-color-dark-rgb), 0.2);
   `};
 `;
