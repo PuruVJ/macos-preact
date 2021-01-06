@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { theme } from '__/theme';
 
 interface IActionCenterTileProps {
-  grid: number[][];
+  grid: [[number, number], [number, number]];
 }
 
 export const ActionCenterTile: FC<IActionCenterTileProps> = ({ grid, children }) => {
@@ -43,6 +43,6 @@ const Container = styled.section<ContainerProps>`
     grid-column: ${columnStart} / span ${columnSpan};
     grid-row: ${rowStart} / span ${rowSpan};
 
-    border: solid 0.3px rgba(var(--app-color-dark-rgb), 0.2);
+    border: solid 0.3px rgba(var(--app-color-dark-rgb), 0.15);
   `};
 `;
