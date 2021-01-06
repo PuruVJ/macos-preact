@@ -3,20 +3,11 @@ import styled, { css } from 'styled-components';
 import { theme } from '__/theme';
 
 interface IActionCenterTileProps {
-  columnStart: number;
-  columnSpan: number;
-
-  rowStart: number;
-  rowSpan: number;
+  grid: number[][];
 }
 
-export const ActionCenterTile: FC<IActionCenterTileProps> = ({
-  columnSpan,
-  columnStart,
-  rowStart,
-  rowSpan,
-  children,
-}) => {
+export const ActionCenterTile: FC<IActionCenterTileProps> = ({ grid, children }) => {
+  const [[columnStart, columnSpan], [rowStart, rowSpan]] = grid;
   return (
     <Container
       columnSpan={columnSpan}
@@ -29,10 +20,13 @@ export const ActionCenterTile: FC<IActionCenterTileProps> = ({
   );
 };
 
-type ContainerProps = Pick<
-  IActionCenterTileProps,
-  'columnSpan' | 'columnStart' | 'rowSpan' | 'rowStart'
->;
+type ContainerProps = {
+  columnStart: number;
+  columnSpan: number;
+
+  rowStart: number;
+  rowSpan: number;
+};
 
 const Container = styled.section<ContainerProps>`
   display: block;

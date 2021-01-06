@@ -9,58 +9,58 @@ export const ActionCenter: FC<{}> = ({}) => {
       <Container>
         {/* Main Controls: Wifi, Bluetooth, Airdrop */}
         <ActionCenterTile
-          columnStart={1}
-          columnSpan={6}
-          rowStart={1}
-          rowSpan={4}
+          grid={[
+            [1, 6],
+            [1, 4],
+          ]}
         ></ActionCenterTile>
 
-        {/* Do not disturb */}
+        {/* Theme Switcher */}
         <ActionCenterTile
-          columnStart={7}
-          columnSpan={6}
-          rowStart={1}
-          rowSpan={2}
+          grid={[
+            [7, 6],
+            [1, 2],
+          ]}
         ></ActionCenterTile>
 
         {/* Keyboard Brightness */}
         <ActionCenterTile
-          columnStart={7}
-          columnSpan={3}
-          rowStart={3}
-          rowSpan={2}
+          grid={[
+            [7, 3],
+            [3, 2],
+          ]}
         ></ActionCenterTile>
 
         {/* Screen Mirroring */}
         <ActionCenterTile
-          columnStart={10}
-          columnSpan={3}
-          rowStart={3}
-          rowSpan={2}
+          grid={[
+            [10, 3],
+            [3, 2],
+          ]}
         ></ActionCenterTile>
 
         {/* Display */}
         <ActionCenterTile
-          columnStart={1}
-          columnSpan={12}
-          rowStart={5}
-          rowSpan={2}
+          grid={[
+            [1, 12],
+            [5, 2],
+          ]}
         ></ActionCenterTile>
 
-        {/* Display */}
+        {/* Sound */}
         <ActionCenterTile
-          columnStart={1}
-          columnSpan={12}
-          rowStart={7}
-          rowSpan={2}
+          grid={[
+            [1, 12],
+            [7, 2],
+          ]}
         ></ActionCenterTile>
 
         {/* Accessibility */}
         <ActionCenterTile
-          columnStart={1}
-          columnSpan={3}
-          rowStart={9}
-          rowSpan={2}
+          grid={[
+            [1, 3],
+            [9, 2],
+          ]}
         ></ActionCenterTile>
       </Container>
     </MenuShell>
