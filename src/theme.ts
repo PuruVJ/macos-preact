@@ -2,20 +2,23 @@ export const theme = {
   colors: {
     primary: {
       main: 'var(--app-color-primary)',
-      rgb: 'var(--app-color-primary-rgb)',
+      hsl: 'var(--app-color-primary-hsl)',
       contrast: 'var(--app-color-primary-contrast)',
+      contrastHsl: 'var(--app-color-primary-contrast-hsl)',
     },
 
     dark: {
       main: 'var(--app-color-dark)',
-      rgb: 'var(--app-color-dark-rgb)',
+      hsl: 'var(--app-color-dark-hsl)',
       contrast: 'var(--app-color-dark-contrast)',
+      contrastHsl: 'var(--app-color-dark-contrast-hsl)',
     },
 
     light: {
       main: 'var(--app-color-light)',
-      rgb: 'var(--app-color-light-rgb)',
+      hsl: 'var(--app-color-light-hsl)',
       contrast: 'var(--app-color-light-contrast)',
+      contrastHsl: 'var(--app-color-light-contrast-hsl)',
     },
 
     grey: {

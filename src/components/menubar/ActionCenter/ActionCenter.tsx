@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 import { DoNotDisturbSVG } from '__/assets/sf-icons/do-not-disturb';
 import { AppIcon } from '__/components/utils/AppIcon';
 import { ButtonBase } from '__/components/utils/ButtonBase';
+import { theme } from '__/theme';
 import { MenuShell } from '../MenuShell';
 import { ActionCenterSurface } from './ActionCenterSurface';
 import { ActionCenterTile } from './ActionCenterTile';
@@ -116,17 +117,16 @@ const Toggle = styled(ButtonBase)<{ filled: boolean }>`
   border-radius: 50%;
 
   ${(props) => css`
-    background-color: rgba(
-      var(--app-color-${props.filled ? 'primary' : 'dark'}-rgb),
+    background-color: hsla(
+      ${theme.colors[props.filled ? 'primary' : 'dark'].hsl},
       ${props.filled ? 1 : 0.1}
     );
   `}
 
   svg {
     ${(props) => css`
-      /* fill: var(--app-color-${props.filled ? 'primary-contrast' : 'light'}); */
-      fill: rgba(
-        var(--app-color-${props.filled ? 'primary' : 'light'}-contrast-rgb),
+      fill: hsla(
+        ${theme.colors[props.filled ? 'primary' : 'light'].contrastHsl},
         ${props.filled ? 1 : 0.9}
       );
     `}
