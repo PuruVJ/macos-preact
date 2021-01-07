@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import styled, { css } from 'styled-components';
 import { theme } from '__/theme';
 
-interface IActionCenterTileProps {
+interface IActionCenterSurfaceProps {
   grid: [[number, number], [number, number]];
 }
 
-export const ActionCenterTile: FC<IActionCenterTileProps> = ({ grid, children }) => {
+export const ActionCenterSurface: FC<IActionCenterSurfaceProps> = ({ grid, children }) => {
   const [[columnStart, columnSpan], [rowStart, rowSpan]] = grid;
   return (
     <Container

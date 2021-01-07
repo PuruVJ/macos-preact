@@ -1,67 +1,67 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { MenuShell } from '../MenuShell';
-import { ActionCenterTile } from './ActionCenterTile';
+import { ActionCenterSurface } from './ActionCenterSurface';
 
 export const ActionCenter: FC<{}> = ({}) => {
   return (
     <MenuShell>
       <Container>
         {/* Main Controls: Wifi, Bluetooth, Airdrop */}
-        <ActionCenterTile
+        <ActionCenterSurface
           grid={[
             [1, 6],
             [1, 4],
           ]}
-        ></ActionCenterTile>
+        ></ActionCenterSurface>
 
         {/* Theme Switcher */}
-        <ActionCenterTile
+        <ActionCenterSurface
           grid={[
             [7, 6],
             [1, 2],
           ]}
-        ></ActionCenterTile>
+        ></ActionCenterSurface>
 
         {/* Keyboard Brightness */}
-        <ActionCenterTile
+        <ActionCenterSurface
           grid={[
             [7, 3],
             [3, 2],
           ]}
-        ></ActionCenterTile>
+        ></ActionCenterSurface>
 
         {/* Screen Mirroring */}
-        <ActionCenterTile
+        <ActionCenterSurface
           grid={[
             [10, 3],
             [3, 2],
           ]}
-        ></ActionCenterTile>
+        ></ActionCenterSurface>
 
         {/* Display */}
-        <ActionCenterTile
+        <ActionCenterSurface
           grid={[
             [1, 12],
             [5, 2],
           ]}
-        ></ActionCenterTile>
+        ></ActionCenterSurface>
 
         {/* Sound */}
-        <ActionCenterTile
+        <ActionCenterSurface
           grid={[
             [1, 12],
             [7, 2],
           ]}
-        ></ActionCenterTile>
+        ></ActionCenterSurface>
 
         {/* Accessibility */}
-        <ActionCenterTile
+        <ActionCenterSurface
           grid={[
             [1, 3],
             [9, 2],
           ]}
-        ></ActionCenterTile>
+        ></ActionCenterSurface>
       </Container>
     </MenuShell>
   );
