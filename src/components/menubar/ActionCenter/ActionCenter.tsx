@@ -37,7 +37,7 @@ export const ActionCenter: FC<{}> = ({}) => {
 
           {/* Airdrop */}
           <ActionCenterTile grid={[3, 1]}>
-            <Toggle filled={!0}>
+            <Toggle filled={!!0}>
               <DoNotDisturbSVG size={16} />
             </Toggle>
             Airdrop
@@ -118,7 +118,7 @@ const Toggle = styled(ButtonBase)<{ filled: boolean }>`
   ${(props) => css`
     background-color: rgba(
       var(--app-color-${props.filled ? 'primary' : 'dark'}-rgb),
-      ${props.filled ? 1 : 0.2}
+      ${props.filled ? 1 : 0.1}
     );
   `}
 
@@ -127,7 +127,7 @@ const Toggle = styled(ButtonBase)<{ filled: boolean }>`
       /* fill: var(--app-color-${props.filled ? 'primary-contrast' : 'light'}); */
       fill: rgba(
         var(--app-color-${props.filled ? 'primary' : 'light'}-contrast-rgb),
-        ${props.filled ? 1 : 0.8}
+        ${props.filled ? 1 : 0.9}
       );
     `}
   }
