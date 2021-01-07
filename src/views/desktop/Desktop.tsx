@@ -1,11 +1,43 @@
 import { Provider } from 'jotai';
 import React from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { Reset } from 'styled-reset';
 import DefaultBackground from '__/assets/wallpapers/3-2.jpg';
 import { Dock } from '__/components/dock/Dock';
 import { MenuBar } from '__/components/menubar/MenuBar';
 import { useTheme } from '__/hooks/use-theme';
+
+const GlobalStyles = createGlobalStyle`
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: var(--app-font-family);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+
+  transition: background-color 150ms ease-in, background 150ms ease-in;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+*:focus {
+  outline: none;
+}
+`;
 
 export const Desktop = () => {
   const [,] = useTheme();
@@ -13,6 +45,7 @@ export const Desktop = () => {
   return (
     <>
       <Reset />
+      <GlobalStyles />
       <Provider>
         <Main>
           <MenuBar />

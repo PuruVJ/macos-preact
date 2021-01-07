@@ -1,7 +1,12 @@
+import { mdiBluetooth, mdiMoonFirstQuarter, mdiWifiStrength4 } from '@mdi/js';
 import React, { FC } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { DoNotDisturbSVG } from '__/assets/sf-icons/do-not-disturb';
+import { AppIcon } from '__/components/utils/AppIcon';
+import { ButtonBase } from '__/components/utils/ButtonBase';
 import { MenuShell } from '../MenuShell';
 import { ActionCenterSurface } from './ActionCenterSurface';
+import { ActionCenterTile } from './ActionCenterTile';
 
 export const ActionCenter: FC<{}> = ({}) => {
   return (
@@ -13,7 +18,31 @@ export const ActionCenter: FC<{}> = ({}) => {
             [1, 6],
             [1, 4],
           ]}
-        ></ActionCenterSurface>
+        >
+          {/* Wifi goes here */}
+          <ActionCenterTile grid={[1, 1]}>
+            <Toggle filled={!0}>
+              <AppIcon path={mdiWifiStrength4} size={16} />
+            </Toggle>
+            Wi-Fi
+          </ActionCenterTile>
+
+          {/* Bluetooth */}
+          <ActionCenterTile grid={[2, 1]}>
+            <Toggle filled={!0}>
+              <AppIcon path={mdiBluetooth} size={18} />
+            </Toggle>
+            Bluetooth
+          </ActionCenterTile>
+
+          {/* Airdrop */}
+          <ActionCenterTile grid={[3, 1]}>
+            <Toggle filled={!0}>
+              <DoNotDisturbSVG size={16} />
+            </Toggle>
+            Airdrop
+          </ActionCenterTile>
+        </ActionCenterSurface>
 
         {/* Theme Switcher */}
         <ActionCenterSurface
@@ -70,6 +99,36 @@ export const ActionCenter: FC<{}> = ({}) => {
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: 1.375rem;
+  grid-auto-rows: 1.6rem;
   gap: 0.75rem;
+`;
+
+const Toggle = styled(ButtonBase)<{ filled: boolean }>`
+  --size: 1.7rem;
+  height: var(--size);
+  width: var(--size);
+
+  padding: 0;
+
+  display: flex;
+  place-items: center;
+
+  border-radius: 50%;
+
+  ${(props) => css`
+    background-color: rgba(
+      var(--app-color-${props.filled ? 'primary' : 'dark'}-rgb),
+      ${props.filled ? 1 : 0.2}
+    );
+  `}
+
+  svg {
+    ${(props) => css`
+      /* fill: var(--app-color-${props.filled ? 'primary-contrast' : 'light'}); */
+      fill: rgba(
+        var(--app-color-${props.filled ? 'primary' : 'light'}-contrast-rgb),
+        ${props.filled ? 1 : 0.8}
+      );
+    `}
+  }
 `;

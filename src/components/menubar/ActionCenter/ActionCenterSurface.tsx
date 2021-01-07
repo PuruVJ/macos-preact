@@ -29,7 +29,10 @@ type ContainerProps = {
 };
 
 const Container = styled.section<ContainerProps>`
-  display: block;
+  display: grid;
+  grid-auto-rows: 1fr;
+  gap: 0.25rem;
+
   position: relative;
 
   padding: 0.5rem;

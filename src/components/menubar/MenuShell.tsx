@@ -23,7 +23,7 @@ type IContainer = { theme: 'light' | 'dark' };
 const Container = styled.section<IContainer>`
   display: block;
 
-  width: 18rem;
+  width: 20rem;
 
   position: relative;
 
