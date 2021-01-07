@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import styled, { css } from 'styled-components';
 import { theme } from '__/theme';
 
-interface IActionCenterSurfaceProps {
+interface ActionCenterSurfaceProps {
   grid: [[number, number], [number, number]];
 }
 
-export const ActionCenterSurface: FC<IActionCenterSurfaceProps> = ({ grid, children }) => {
+export const ActionCenterSurface: FC<ActionCenterSurfaceProps> = ({ grid, children }) => {
   const [[columnStart, columnSpan], [rowStart, rowSpan]] = grid;
   return (
     <Container
@@ -43,6 +43,6 @@ const Container = styled.section<ContainerProps>`
     grid-column: ${columnStart} / span ${columnSpan};
     grid-row: ${rowStart} / span ${rowSpan};
 
-    border: solid 0.3px rgba(var(--app-color-dark-rgb), 0.15);
+    border: solid 0.4px rgba(var(--app-color-dark-rgb), 0.3);
   `};
 `;
