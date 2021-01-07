@@ -99,7 +99,7 @@ export const ActionCenter: FC<{}> = ({}) => {
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: 1.6rem;
+  grid-auto-rows: 1.643rem;
   gap: 0.75rem;
 `;
 
