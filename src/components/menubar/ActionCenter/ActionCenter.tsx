@@ -1,4 +1,4 @@
-import { mdiBluetooth, mdiMoonFirstQuarter, mdiWifiStrength4 } from '@mdi/js';
+import { mdiBluetooth, mdiWifiStrength4 } from '@mdi/js';
 import React, { FC } from 'react';
 import styled, { css } from 'styled-components';
 import { DoNotDisturbSVG } from '__/assets/sf-icons/do-not-disturb';
@@ -100,7 +100,7 @@ export const ActionCenter: FC<{}> = ({}) => {
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: 1.643rem;
+  grid-auto-rows: 1.55rem;
   gap: 0.75rem;
 `;
 

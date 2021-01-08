@@ -1,11 +1,13 @@
 import React, { FC, useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { useTheme } from '__/hooks/use-theme';
 import { theme } from '__/theme';
 
 interface IMenuShell {}
 
 export const MenuShell: FC<IMenuShell> = ({ children }) => {
   const ref = useRef<HTMLElement | null>(null);
+  const [theme] = useTheme();
 
   useEffect(() => {
     ref.current?.focus();
@@ -23,7 +25,7 @@ type IContainer = { theme: 'light' | 'dark' };
 const Container = styled.section<IContainer>`
   display: block;
 
-  width: 20rem;
+  width: 19.5rem;
 
   position: relative;
 
@@ -33,7 +35,11 @@ const Container = styled.section<IContainer>`
   box-shadow: hsla(0, 0%, 0%, 0.3) 0px 0px 11px 0px;
   border-radius: 1rem;
 
-  border: solid 0.5px hsla(var(--app-color-dark-hsl), 0.3);
+  ${(props) =>
+    props.theme === 'dark' &&
+    css`
+      border: solid 0.5px hsla(var(--app-color-dark-hsl), 0.3);
+    `}
 
   padding: 0.75rem;
 `;
