@@ -44,14 +44,14 @@ const Container = styled.section<ContainerProps>`
   padding: 0.5rem;
 
   border-radius: 0.75rem;
-  box-shadow: hsla(0, 0%, 0%, 0.3) 0px 1px 4px -1px;
 
   background-color: hsla(${theme.colors.light.hsl}, 0.5);
 
-  ${({ columnStart, columnSpan, rowSpan, rowStart, theme }) => css`
+  ${({ columnStart, columnSpan, rowSpan, rowStart, theme: localTheme }) => css`
     grid-column: ${columnStart} / span ${columnSpan};
     grid-row: ${rowStart} / span ${rowSpan};
 
-    border: solid ${theme === 'dark' ? 0.4 : 0}px hsla(var(--app-color-dark-hsl), 0.3);
+    box-shadow: hsla(0, 0%, 0%, 0.3) 0px 1px 4px -1px,
+      0 0 0 ${localTheme === 'dark' ? 0.4 : 0}px hsla(${theme.colors.dark.hsl}, 0.3);
   `};
 `;
