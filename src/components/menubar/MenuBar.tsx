@@ -55,7 +55,7 @@ const Header = styled.header`
   width: 100%;
   height: 1.4rem;
 
-  background-color: rgba(${theme.colors.light.rgb}, 0.3);
+  background-color: hsla(${theme.colors.light.hsl}, 0.3);
   backdrop-filter: blur(6px);
 
   color: ${theme.colors.light.contrast};

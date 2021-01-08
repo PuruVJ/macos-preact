@@ -1,19 +1,22 @@
 body,
 body[data-theme='light'] {
   // Primary
-  --app-color-primary: rgb(0, 122, 255);
-  --app-color-primary-rgb: 0, 122, 255;
-  --app-color-primary-contrast: #fff;
+  --app-color-primary: hsl(211, 100%, 50%);
+  --app-color-primary-hsl: 211, 100%, 50%;
+  --app-color-primary-contrast: hsl(240, 24%, 96%);
+  --app-color-primary-contrast-hsl: 240, 24%, 96%;
 
   // Dark
-  --app-color-dark: #1c1c1e;
-  --app-color-dark-rgb: 28, 28, 30;
-  --app-color-dark-contrast: #f2f2f7;
+  --app-color-dark: hsl(240, 3%, 11%);
+  --app-color-dark-hsl: 240, 3%, 11%;
+  --app-color-dark-contrast: hsl(240, 24%, 96%);
+  --app-color-dark-contrast-hsl: 240, 24%, 96%;
 
   // Light
-  --app-color-light: #f2f2f7;
-  --app-color-light-rgb: 242, 242, 247;
-  --app-color-light-contrast: #1c1c1c;
+  --app-color-light: hsl(240, 24%, 96%);
+  --app-color-light-hsl: 240, 24%, 96%;
+  --app-color-light-contrast: hsl(0, 0%, 11%);
+  --app-color-light-contrast-hsl: 0, 0%, 11%;
 
   --app-font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', 'Helvetica',
     'Arial', sans-serif;
@@ -21,17 +24,20 @@ body[data-theme='light'] {
 
 body[data-theme='dark'] {
   // Primary
-  --app-color-primary: rgb(0, 122, 255);
-  --app-color-primary-rgb: 0, 122, 255;
-  --app-color-primary-contrast: #fff;
+  --app-color-primary: hsl(211, 100%, 50%);
+  --app-color-primary-hsl: 211, 100%, 50%;
+  --app-color-primary-contrast: hsl(240, 24%, 96%);
+  --app-color-primary-contrast-hsl: 240, 24%, 96%;
 
   // Dark
-  --app-color-dark: #f2f2f7;
-  --app-color-dark-rgb: 242, 242, 247;
-  --app-color-dark-contrast: #1c1c1c;
+  --app-color-dark: hsl(240, 24%, 96%);
+  --app-color-dark-hsl: 240, 24%, 96%;
+  --app-color-dark-contrast: hsl(0, 0%, 11%);
+  --app-color-dark-contrast-hsl: 0, 0%, 11%;
 
   // Light
-  --app-color-light: #1c1c1e;
-  --app-color-light-rgb: 28, 28, 30;
-  --app-color-light-contrast: #f2f2f7;
+  --app-color-light: hsl(240, 3%, 11%);
+  --app-color-light-hsl: 240, 3%, 11%;
+  --app-color-light-contrast: hsl(240, 24%, 96%);
+  --app-color-light-contrast-hsl: 240, 24%, 96%;
 }
