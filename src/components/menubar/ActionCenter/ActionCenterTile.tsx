@@ -17,6 +17,8 @@ const Container = styled.div<ContainerProps>`
   gap: 0.4rem;
   align-items: center;
 
+  cursor: default !important;
+
   font-size: 0.85rem;
   font-weight: 600;
   color: ${theme.colors.dark.main};

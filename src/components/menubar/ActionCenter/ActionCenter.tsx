@@ -1,15 +1,26 @@
 import { mdiBluetooth, mdiWifiStrength4 } from '@mdi/js';
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import styled, { css } from 'styled-components';
-import { DoNotDisturbSVG } from '__/assets/sf-icons/do-not-disturb';
+import { AirDropSVG } from '__/assets/sf-icons/AirDrop.svg';
+import { MoonSVG } from '__/assets/sf-icons/Moon.svg';
+import { SunSVG } from '__/assets/sf-icons/Sun.svg';
 import { AppIcon } from '__/components/utils/AppIcon';
 import { ButtonBase } from '__/components/utils/ButtonBase';
+import { useTheme } from '__/hooks/use-theme';
 import { theme } from '__/theme';
 import { MenuShell } from '../MenuShell';
 import { ActionCenterSurface } from './ActionCenterSurface';
 import { ActionCenterTile } from './ActionCenterTile';
 
 export const ActionCenter: FC<{}> = ({}) => {
+  const [theme, setTheme] = useTheme();
+
+  const toggleTheme = useCallback(() => {
+    setTheme((theme) => (theme === 'light' ? 'dark' : 'light'));
+  }, [theme]);
+
+  const ThemeSVGComp = MoonSVG;
+
   return (
     <MenuShell>
       <Container>
@@ -39,7 +50,7 @@ export const ActionCenter: FC<{}> = ({}) => {
           {/* Airdrop */}
           <ActionCenterTile grid={[3, 1]}>
             <Toggle filled={!!0}>
-              <DoNotDisturbSVG size={16} />
+              <AirDropSVG size={16} />
             </Toggle>
             Airdrop
           </ActionCenterTile>
@@ -51,7 +62,14 @@ export const ActionCenter: FC<{}> = ({}) => {
             [7, 6],
             [1, 2],
           ]}
-        ></ActionCenterSurface>
+        >
+          <ActionCenterTile grid={[1, 1]}>
+            <Toggle onClick={toggleTheme} filled={theme === 'dark'}>
+              <ThemeSVGComp size={16} />
+            </Toggle>
+            Dark mode
+          </ActionCenterTile>
+        </ActionCenterSurface>
 
         {/* Keyboard Brightness */}
         <ActionCenterSurface

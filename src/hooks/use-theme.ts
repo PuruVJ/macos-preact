@@ -1,7 +1,7 @@
 import { atom, useAtom } from 'jotai';
 import { useEffect } from 'react';
 
-const themeAtom = atom<'light' | 'dark' | ''>('');
+const themeAtom = atom<'light' | 'dark'>('light');
 
 export function useTheme() {
   // Media query
@@ -20,5 +20,5 @@ export function useTheme() {
     document.body.dataset.theme = theme;
   }, [theme]);
 
-  return [theme, setTheme];
+  return [theme, setTheme] as const;
 }

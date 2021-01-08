@@ -14,7 +14,7 @@ export const MenuShell: FC<IMenuShell> = ({ children }) => {
   }, []);
 
   return (
-    <Container ref={ref} tabIndex={-1}>
+    <Container theme={theme} ref={ref} tabIndex={-1}>
       {children}
     </Container>
   );
@@ -28,6 +28,8 @@ const Container = styled.section<IContainer>`
   width: 19.5rem;
 
   position: relative;
+
+  user-select: none;
 
   background-color: hsla(${theme.colors.light.hsl}, 0.3);
   backdrop-filter: blur(12px);
