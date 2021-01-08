@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react';
+import { atom, useAtom } from 'jotai';
+import { useEffect } from 'react';
+
+const themeAtom = atom<'light' | 'dark' | ''>('');
 
 export function useTheme() {
   // Media query
   const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   const localValue = localStorage.getItem('theme:type') as 'light' | 'dark';
 
-  const [theme, setTheme] = useState<'light' | 'dark' | ''>('');
+  const [theme, setTheme] = useAtom(themeAtom);
 
   useEffect(() => {
     setTheme(localValue || systemTheme);
