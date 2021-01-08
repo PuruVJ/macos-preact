@@ -1,4 +1,3 @@
-import { Provider } from 'jotai';
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Reset } from 'styled-reset';
@@ -46,14 +45,12 @@ export const Desktop = () => {
     <>
       <Reset />
       <GlobalStyles />
-      <Provider>
-        <Main>
-          <MenuBar />
-          <Dock />
-        </Main>
+      <Main>
+        <MenuBar />
+        <Dock />
+      </Main>
 
-        <BackgroundCover aria-hidden="true" />
-      </Provider>
+      <BackgroundCover aria-hidden="true" />
     </>
   );
 };
