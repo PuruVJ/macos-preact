@@ -121,14 +121,12 @@ const Toggle = styled(ButtonBase)<{ filled: boolean }>`
       ${theme.colors[props.filled ? 'primary' : 'dark'].hsl},
       ${props.filled ? 1 : 0.1}
     );
-  `}
 
-  svg {
-    ${(props) => css`
+    svg {
       fill: hsla(
         ${theme.colors[props.filled ? 'primary' : 'light'].contrastHsl},
         ${props.filled ? 1 : 0.9}
       );
-    `}
-  }
+    }
+  `}
 `;

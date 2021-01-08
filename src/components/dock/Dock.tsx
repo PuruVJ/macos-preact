@@ -55,7 +55,7 @@ const DockEl = styled.div`
   background-color: hsla(${theme.colors.light.hsl}, 0.35);
 
   box-shadow: inset 0 0 0 0.2px ${transparentize(theme.colors.grey[100], 0.3)},
-    hsla(0, 0, 0, 0.3) 2px 5px 19px 7px;
+    hsla(0, 0%, 0%, 0.3) 2px 5px 19px 7px;
 
   padding: 0.3rem;
 

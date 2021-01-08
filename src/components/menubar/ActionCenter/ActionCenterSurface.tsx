@@ -38,7 +38,7 @@ const Container = styled.section<ContainerProps>`
   padding: 0.5rem;
 
   border-radius: 0.75rem;
-  box-shadow: hsla(0, 0, 0, 0.3) 0px 1px 4px -1px;
+  box-shadow: hsla(0, 0%, 0%, 0.3) 0px 1px 4px -1px;
 
   background-color: hsla(${theme.colors.light.hsl}, 0.5);
 
