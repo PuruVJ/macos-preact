@@ -3,7 +3,6 @@ import React, { FC, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { AirDropSVG } from '__/assets/sf-icons/AirDrop.svg';
 import { MoonSVG } from '__/assets/sf-icons/Moon.svg';
-import { SunSVG } from '__/assets/sf-icons/Sun.svg';
 import { AppIcon } from '__/components/utils/AppIcon';
 import { ButtonBase } from '__/components/utils/ButtonBase';
 import { useTheme } from '__/hooks/use-theme';

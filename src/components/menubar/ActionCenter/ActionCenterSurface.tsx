@@ -6,7 +6,6 @@ import { theme } from '__/theme';
 interface ActionCenterSurfaceProps {
   grid: [[number, number], [number, number]];
 }
-//
 
 export const ActionCenterSurface: FC<ActionCenterSurfaceProps> = ({ grid, children }) => {
   const [[columnStart, columnSpan], [rowStart, rowSpan]] = grid;
