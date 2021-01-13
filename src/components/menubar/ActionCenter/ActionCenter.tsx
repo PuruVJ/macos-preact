@@ -1,5 +1,5 @@
 import { mdiBluetooth, mdiKeyboard, mdiWifiStrength4 } from '@mdi/js';
-import React, { FC, useCallback } from 'react';
+import React, { FC } from 'react';
 import styled, { css } from 'styled-components';
 import { AirDropSVG } from '__/assets/sf-icons/AirDrop.svg';
 import { MoonSVG } from '__/assets/sf-icons/Moon.svg';
@@ -14,9 +14,7 @@ import { ActionCenterTile } from './ActionCenterTile';
 export const ActionCenter: FC<{}> = ({}) => {
   const [theme, setTheme] = useTheme();
 
-  const toggleTheme = useCallback(() => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  }, [theme]);
+  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
   const ThemeSVGComp = MoonSVG;
 
