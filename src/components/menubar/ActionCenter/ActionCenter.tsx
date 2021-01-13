@@ -1,4 +1,4 @@
-import { mdiBluetooth, mdiWifiStrength4 } from '@mdi/js';
+import { mdiBluetooth, mdiKeyboard, mdiWifiStrength4 } from '@mdi/js';
 import React, { FC, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { AirDropSVG } from '__/assets/sf-icons/AirDrop.svg';
@@ -73,18 +73,17 @@ export const ActionCenter: FC<{}> = ({}) => {
         {/* Keyboard Brightness */}
         <ActionCenterSurface
           grid={[
-            [7, 3],
+            [7, 6],
             [3, 2],
           ]}
-        ></ActionCenterSurface>
-
-        {/* Screen Mirroring */}
-        <ActionCenterSurface
-          grid={[
-            [10, 3],
-            [3, 2],
-          ]}
-        ></ActionCenterSurface>
+        >
+          <ActionCenterTile grid={[1, 1]}>
+            <Toggle filled={!0}>
+              <AppIcon path={mdiKeyboard} size={16} />
+            </Toggle>
+            Keyboard
+          </ActionCenterTile>
+        </ActionCenterSurface>
 
         {/* Display */}
         <ActionCenterSurface
