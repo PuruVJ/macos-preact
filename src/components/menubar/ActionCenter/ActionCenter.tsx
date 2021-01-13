@@ -15,7 +15,7 @@ export const ActionCenter: FC<{}> = ({}) => {
   const [theme, setTheme] = useTheme();
 
   const toggleTheme = useCallback(() => {
-    setTheme((theme) => (theme === 'light' ? 'dark' : 'light'));
+    setTheme(theme === 'light' ? 'dark' : 'light');
   }, [theme]);
 
   const ThemeSVGComp = MoonSVG;

@@ -7,7 +7,7 @@ const themeAtom = atom<TTheme>('light');
 
 export function useTheme() {
   // Media query
-  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  const systemTheme: TTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   const localValue = localStorage.getItem('theme:type') as TTheme;
 
   const [theme, setTheme] = useAtom(themeAtom);
