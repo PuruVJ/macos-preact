@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styled, { css } from 'styled-components';
-import { useTheme } from '__/hooks/use-theme';
+import { TTheme, useTheme } from '__/hooks/use-theme';
 import { theme } from '__/theme';
 
 interface ActionCenterSurfaceProps {
@@ -31,7 +31,7 @@ type ContainerProps = {
   rowStart: number;
   rowSpan: number;
 
-  theme: 'light' | 'dark';
+  theme: TTheme;
 };
 
 const Container = styled.section<ContainerProps>`

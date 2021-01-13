@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
-import { useTheme } from '__/hooks/use-theme';
+import { TTheme, useTheme } from '__/hooks/use-theme';
 import { theme } from '__/theme';
 
 interface IMenuShell {}
@@ -20,7 +20,7 @@ export const MenuShell: FC<IMenuShell> = ({ children }) => {
   );
 };
 
-type IContainer = { theme: 'light' | 'dark' };
+type IContainer = { theme: TTheme };
 
 const Container = styled.section<IContainer>`
   display: block;
