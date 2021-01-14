@@ -12,9 +12,9 @@ module.exports = {
   ],
 
   optimize: {
-    bundle: false,
+    bundle: true,
     minify: true,
-    preload: true,
+    // preload: true,
     splitting: true,
     treeshake: true,
   },
