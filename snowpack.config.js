@@ -9,27 +9,14 @@ module.exports = {
     '@snowpack/plugin-sass',
     '@snowpack/plugin-dotenv',
     '@snowpack/plugin-typescript',
-    [
-      '@snowpack/plugin-optimize',
-      {
-        preloadModules: true,
-        target: 'es2015',
-      },
-    ],
   ],
-  install: [
-    /* ... */
-  ],
-  installOptions: {
-    sourceMap: true,
-    rollup: {},
-  },
-  devOptions: {},
-  buildOptions: {
-    clean: true,
-  },
-  proxy: {
-    /* ... */
+
+  optimize: {
+    bundle: false,
+    minify: true,
+    preload: true,
+    splitting: true,
+    treeshake: true,
   },
   alias: {
     __: './src',
