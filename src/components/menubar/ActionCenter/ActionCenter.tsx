@@ -10,9 +10,13 @@ import { theme } from '__/theme';
 import { MenuShell } from '../MenuShell';
 import { ActionCenterSurface } from './ActionCenterSurface';
 import { ActionCenterTile } from './ActionCenterTile';
+import ReactSlider from 'react-slider';
+import { useScreenBrightness } from '__/hooks/use-screen-brightness';
+import { ACSlider } from './ACSlider';
 
 export const ActionCenter: FC<{}> = ({}) => {
   const [theme, setTheme] = useTheme();
+  const [brightness, setBrightness] = useScreenBrightness();
 
   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
@@ -89,7 +93,15 @@ export const ActionCenter: FC<{}> = ({}) => {
             [1, 12],
             [5, 2],
           ]}
-        ></ActionCenterSurface>
+        >
+          <Label>Display</Label>
+          <ACSlider
+            onChange={(val) => setBrightness(val as number)}
+            min={30}
+            value={brightness}
+            max={100}
+          />
+        </ActionCenterSurface>
 
         {/* Sound */}
         <ActionCenterSurface
@@ -114,8 +126,17 @@ export const ActionCenter: FC<{}> = ({}) => {
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: 1.55rem;
+  grid-auto-rows: minmax(1.55rem, auto);
   gap: 0.75rem;
+`;
+
+const Label = styled.div`
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  color: ${theme.colors.dark.main};
+
+  margin: 0.3rem 0;
 `;
 
 const Toggle = styled(ButtonBase)<{ filled: boolean }>`
