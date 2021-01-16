@@ -16,6 +16,9 @@ body {
   margin: 0;
   padding: 0;
 
+  will-change: filter;
+  transition: filter 50ms ease-in;
+
   font-family: var(--app-font-family);
 
   -webkit-font-smoothing: antialiased;
