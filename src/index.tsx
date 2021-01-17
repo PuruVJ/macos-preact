@@ -1,16 +1,16 @@
-import React, { Suspense } from 'react';
-import ReactDOM from 'react-dom';
-import { Desktop } from './views/desktop/Desktop';
-import './index.css';
 import { Provider } from 'jotai';
+import React, { StrictMode, Suspense } from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import { Desktop } from './views/desktop/Desktop';
 
 ReactDOM.render(
   <Suspense fallback={<span />}>
-    <React.StrictMode>
+    <StrictMode>
       <Provider>
         <Desktop />
       </Provider>
-    </React.StrictMode>
+    </StrictMode>
   </Suspense>,
   document.getElementById('root'),
 );
