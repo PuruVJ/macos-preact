@@ -17,7 +17,6 @@ body {
   padding: 0;
 
   will-change: filter;
-  transition: filter 50ms ease-in;
 
   font-family: var(--app-font-family);
 
