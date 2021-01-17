@@ -1,5 +1,5 @@
 import { atom, useAtom } from 'jotai';
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 
 export type TTheme = 'light' | 'dark';
 
@@ -16,7 +16,7 @@ export function useTheme() {
     setTheme(localValue || systemTheme);
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     localStorage.setItem('theme:type', theme);
 
     document.body.dataset.theme = theme;

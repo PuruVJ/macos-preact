@@ -1,10 +1,10 @@
 import { get, set } from 'idb-keyval';
 import { atom, useAtom } from 'jotai';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useLayoutEffect } from 'react';
 import { throttle } from 'throttle-debounce';
 import { SETTINGS } from '__/constants/SETTINGS';
 
-const brightnessAtom = atom<number>(1);
+const brightnessAtom = atom<number>(100);
 
 export function useScreenBrightness() {
   const [brightness, setBrightness] = useAtom(brightnessAtom);
@@ -30,7 +30,7 @@ export function useScreenBrightness() {
     syncInitialBrightness();
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     throttledUpdateBrightness();
   }, [brightness]);
 
