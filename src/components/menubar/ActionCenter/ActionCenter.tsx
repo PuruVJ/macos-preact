@@ -105,7 +105,14 @@ export const ActionCenter: FC<{}> = ({}) => {
             [1, 12],
             [7, 2],
           ]}
-        ></ActionCenterSurface>
+        >
+          <Label>Sound</Label>
+          <ACSlider
+            // onChange={(val) => setBrightness(val as number)}
+            min={30}
+            max={100}
+          />
+        </ActionCenterSurface>
 
         {/* Accessibility */}
         <ActionCenterSurface
