@@ -8,15 +8,12 @@ import { ButtonBase } from '__/components/utils/ButtonBase';
 import { useTheme } from '__/hooks/use-theme';
 import { theme } from '__/theme';
 import { MenuShell } from '../MenuShell';
+import { ACSlider } from './ACSlider';
 import { ActionCenterSurface } from './ActionCenterSurface';
 import { ActionCenterTile } from './ActionCenterTile';
-import ReactSlider from 'react-slider';
-import { useScreenBrightness } from '__/hooks/use-screen-brightness';
-import { ACSlider } from './ACSlider';
 
 export const ActionCenter: FC<{}> = ({}) => {
   const [theme, setTheme] = useTheme();
-  const [brightness, setBrightness] = useScreenBrightness();
 
   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
@@ -96,9 +93,8 @@ export const ActionCenter: FC<{}> = ({}) => {
         >
           <Label>Display</Label>
           <ACSlider
-            onChange={(val) => setBrightness(val as number)}
+            // onChange={(val) => setBrightness(val as number)}
             min={30}
-            value={brightness}
             max={100}
           />
         </ActionCenterSurface>
