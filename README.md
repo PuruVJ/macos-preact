@@ -24,16 +24,16 @@ I've always been very fascinated with macOS, and have never owned a Mac/book. So
 
 ## v0.2
 
-- [ ] Action center
-  - [ ] Light/Dark mode switcher
-  - [ ] Brightness slider(Functional)
-  - [ ] Sound slider (Not functional)
-    - [ ] Wifi (Not functional)
-    - [ ] Bluetooth (Not functional)
-    - [ ] AirDrop (Not functional)
-  - [ ] Do not disturb (Not functional)
-  - [ ] Keyboard Brightness (Not functional)
-  - [ ] Screen Mirroring (Not functional)
+- [x] Action center
+  - [x] Light/Dark mode switcher
+  - [x] Brightness slider(Not functional)
+  - [x] Sound slider (Not functional)
+    - [x] Wifi (Not functional)
+    - [x] Bluetooth (Not functional)
+    - [x] AirDrop (Not functional)
+  - [x] Do not disturb (Not functional)
+  - [x] Keyboard Brightness (Not functional)
+  - [x] Screen Mirroring (Not functional)
 
 ## v0.3
 
