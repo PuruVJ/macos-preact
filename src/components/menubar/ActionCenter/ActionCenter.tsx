@@ -95,6 +95,7 @@ export const ActionCenter: FC<{}> = ({}) => {
           <ACSlider
             // onChange={(val) => setBrightness(val as number)}
             min={30}
+            defaultValue={100}
             max={100}
           />
         </ActionCenterSurface>
@@ -109,18 +110,11 @@ export const ActionCenter: FC<{}> = ({}) => {
           <Label>Sound</Label>
           <ACSlider
             // onChange={(val) => setBrightness(val as number)}
+            defaultValue={100}
             min={30}
             max={100}
           />
         </ActionCenterSurface>
-
-        {/* Accessibility */}
-        <ActionCenterSurface
-          grid={[
-            [1, 3],
-            [9, 2],
-          ]}
-        ></ActionCenterSurface>
       </Container>
     </MenuShell>
   );
