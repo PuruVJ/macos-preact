@@ -1,3 +1,4 @@
+import { createMenuConfig } from '__/helpers/menubar';
 export const finderMenuConfig = createMenuConfig({
   default: {
     title: 'hello',
