@@ -92,12 +92,7 @@ export const ActionCenter: FC<{}> = ({}) => {
           ]}
         >
           <Label>Display</Label>
-          <ACSlider
-            // onChange={(val) => setBrightness(val as number)}
-            min={30}
-            defaultValue={100}
-            max={100}
-          />
+          <ACSlider min={30} defaultValue={100} max={100} />
         </ActionCenterSurface>
 
         {/* Sound */}
