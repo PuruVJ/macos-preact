@@ -4,6 +4,7 @@ type IMenu<T> = {
     breakAfter?: boolean;
     disabled?: boolean;
     menu?: IMenu<T[key]>;
+    iconComp?: JSX.Element;
   };
 };
 

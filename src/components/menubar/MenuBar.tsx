@@ -1,29 +1,54 @@
 import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
+import Tippy from '@tippyjs/react/headless';
+import { useAtom } from 'jotai';
 import React from 'react';
 import styled from 'styled-components';
+import { sticky } from 'tippy.js';
 import { VolumeLowSVG } from '__/assets/sf-icons/volume-low.svg';
+import { menuBarMenusStore } from '__/stores/menubar.store';
 import { theme } from '__/theme';
 import { AppIcon } from '../utils/AppIcon';
 import { ButtonBase } from '../utils/ButtonBase';
 import { ActionCenterToggle } from './ActionCenter/ActionCenterToggle';
 import { MenuBarTime } from './MenuBarTime';
 import { MenuIconButton } from './MenuIconButton';
+import { MenuShell } from './MenuShell';
 
 const MenuBar = (): React.ReactElement => {
+  const [currentAppMenus] = useAtom(menuBarMenusStore);
+  const { default: defaultMenu, ...appMenus } = currentAppMenus;
+
   return (
     <Header>
       <AppleIconButton>
         <AppIcon size={18} path={mdiApple} />
       </AppleIconButton>
-      <ButtonBase style={{ fontWeight: 600, margin: `0 6px` }}>Finder</ButtonBase>
+      <ButtonBase style={{ fontWeight: 600, margin: `0 6px` }}>{defaultMenu.title}</ButtonBase>
 
       {/* menu buttons */}
-      <MenuButton>File</MenuButton>
-      <MenuButton>Edit</MenuButton>
-      <MenuButton>View</MenuButton>
-      <MenuButton>Go</MenuButton>
-      <MenuButton>Window</MenuButton>
-      <MenuButton>Help</MenuButton>
+
+      {/* @ts-ignore */}
+      {Object.keys(appMenus).map((menuID: keyof typeof appMenus) => (
+        <Tippy
+          trigger="focusin click"
+          hideOnClick={false}
+          sticky
+          zIndex={99999}
+          plugins={[sticky]}
+          interactive
+          appendTo={document.body}
+          render={(attrs) => (
+            <div {...attrs}>
+              <MenuShell>Hello</MenuShell>
+            </div>
+          )}
+          onClickOutside={({ hide }) => hide()}
+        >
+          <span>
+            <MenuButton>{appMenus[menuID].title}</MenuButton>
+          </span>
+        </Tippy>
+      ))}
 
       <Spacer />
 

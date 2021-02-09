@@ -18,7 +18,6 @@ body {
 
   font-family: var(--app-font-family);
 
-  will-change: none;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
