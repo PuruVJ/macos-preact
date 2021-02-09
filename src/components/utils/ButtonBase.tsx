@@ -20,8 +20,6 @@ const _Button = styled.button<IButtonBaseProps>`
 
   outline: 0;
 
-  cursor: pointer;
-
   margin: 0;
   padding: 0;
 
@@ -38,4 +36,8 @@ const _Button = styled.button<IButtonBaseProps>`
   background-color: transparent;
 
   -webkit-tap-highlight-color: transparent;
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
 `;

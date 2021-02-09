@@ -10,9 +10,9 @@ import { theme } from '__/theme';
 import { AppIcon } from '../utils/AppIcon';
 import { ButtonBase } from '../utils/ButtonBase';
 import { ActionCenterToggle } from './ActionCenter/ActionCenterToggle';
+import { Menu } from './Menu';
 import { MenuBarTime } from './MenuBarTime';
 import { MenuIconButton } from './MenuIconButton';
-import { MenuShell } from './MenuShell';
 
 const MenuBar = (): React.ReactElement => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
@@ -32,6 +32,7 @@ const MenuBar = (): React.ReactElement => {
         <Tippy
           trigger="focusin click"
           hideOnClick={false}
+          placement="bottom-start"
           sticky
           zIndex={99999}
           plugins={[sticky]}
@@ -39,7 +40,8 @@ const MenuBar = (): React.ReactElement => {
           appendTo={document.body}
           render={(attrs) => (
             <div {...attrs}>
-              <MenuShell>Hello</MenuShell>
+              {/* @ts-ignore */}
+              <Menu menu={appMenus[menuID].menu}>Hello</Menu>
             </div>
           )}
           onClickOutside={({ hide }) => hide()}

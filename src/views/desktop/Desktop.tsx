@@ -40,8 +40,6 @@ body {
 `;
 
 export const Desktop = () => {
-  const [,] = useTheme();
-
   return (
     <>
       <Reset />

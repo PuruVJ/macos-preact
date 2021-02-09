@@ -166,7 +166,6 @@ export const finderMenuConfig = createMenuConfig({
       },
       'emoji-and-symbols': {
         title: 'Emoji & Symbols',
-        breakAfter: true,
       },
     },
   },

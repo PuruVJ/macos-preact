@@ -1,4 +1,4 @@
-type IMenu<T> = {
+export type IMenu<T> = {
   [key in keyof T]: {
     title: string;
     breakAfter?: boolean;

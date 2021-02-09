@@ -8,6 +8,7 @@
     "@mdi/js": "^5.9.55",
     "@rooks/use-raf": "^4.8.1",
     "@tippyjs/react": "^4.2.0",
+    "clsx": "^1.1.1",
     "color2k": "^1.2.2",
     "date-fns": "^2.17.0",
     "framer-motion": "^3.3.0",
