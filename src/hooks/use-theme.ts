@@ -1,9 +1,6 @@
-import { atom, useAtom } from 'jotai';
+import { useAtom } from 'jotai';
 import { useEffect, useLayoutEffect } from 'react';
-
-export type TTheme = 'light' | 'dark';
-
-const themeAtom = atom<TTheme>('light');
+import { themeAtom, TTheme } from '__/stores/theme.store';
 
 export function useTheme() {
   // Media query

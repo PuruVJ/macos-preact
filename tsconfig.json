@@ -2,7 +2,7 @@
   "include": ["src", "types"],
   "compilerOptions": {
     "module": "esnext",
-    "target": "ES2017",
+    "target": "ES2019",
     "moduleResolution": "node",
     "jsx": "preserve",
     "lib": ["DOM", "ESNext"],
