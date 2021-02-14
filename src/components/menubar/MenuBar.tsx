@@ -1,8 +1,9 @@
 import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
 import Tippy from '@tippyjs/react/headless';
+import { transparentize } from 'color2k';
 import { useAtom } from 'jotai';
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { sticky } from 'tippy.js';
 import { VolumeLowSVG } from '__/assets/sf-icons/volume-low.svg';
 import { activeMenuStore } from '__/stores/active-menu.store';
@@ -44,16 +45,11 @@ const MenuBar = (): React.ReactElement => {
               <Menu menu={currentAppMenus[menuID].menu}>Hello</Menu>
             </div>
           )}
-
-          // onClickOutside={({ hide }, e) => {
-          //   console.log(e);
-          //   setActiveMenu('');
-          //   hide();
-          // }}
         >
-          <span>
+          <span style={{ height: '100%' }}>
             <MenuButton
               {...(menuID === 'default' && { style: { fontWeight: 600, margin: `0 6px` } })}
+              active={activeMenu === menuID}
             >
               {currentAppMenus[menuID].title}
             </MenuButton>
@@ -106,8 +102,9 @@ const Header = styled.header`
 
     position: relative;
 
-    padding: 0 0.2rem;
-    margin: 0 0.3rem;
+    padding: 0 0.4rem;
+
+    height: 100%;
   }
 `;
 
@@ -118,8 +115,14 @@ const AppleIconButton = styled(ButtonBase)`
   margin: 0 0.6rem;
 `;
 
-const MenuButton = styled(ButtonBase)`
+const MenuButton = styled(ButtonBase)<{ active: boolean }>`
   font-weight: 500;
+
+  border-radius: 0.25rem;
+
+  ${({ active }) => css`
+    background-color: ${transparentize(theme.colors.grey[100], active ? 0.7 : 1)};
+  `}
 `;
 
 const Spacer = styled.span`
