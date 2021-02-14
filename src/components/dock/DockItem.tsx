@@ -72,9 +72,9 @@ const distanceInput = [
 const widthOutput = [
   baseWidth,
   baseWidth * 1.1,
-  baseWidth * 1.3,
-  baseWidth * 1.7,
-  baseWidth * 1.3,
+  baseWidth * 1.618,
+  baseWidth * 2.618,
+  baseWidth * 1.618,
   baseWidth * 1.1,
   baseWidth,
 ];

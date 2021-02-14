@@ -71,7 +71,7 @@ const Divider = styled.div`
   height: 100%;
   width: 0.2px;
 
-  background-color: ${transparentize(theme.colors.grey[400], 0.3)};
+  background-color: hsla(${theme.colors.dark.hsl}, 0.3);
 
   margin: 0 2px;
 `;

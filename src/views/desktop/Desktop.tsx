@@ -9,6 +9,28 @@ import { MenuBar } from '__/components/menubar/MenuBar';
 import { useTheme } from '__/hooks/use-theme';
 import type { TTheme } from '__/stores/theme.store';
 
+export const Desktop = () => {
+  const [theme] = useTheme();
+
+  return (
+    <>
+      <Reset />
+      <GlobalStyles />
+
+      <Main>
+        <MenuBar />
+        <Dock />
+      </Main>
+      <Helmet>
+        <link rel="prefetch" href={DefaultLightBackground} />
+        <link rel="prefetch" href={DefaultDarkBackground} />
+      </Helmet>
+
+      <BackgroundCover theme={theme} aria-hidden="true" />
+    </>
+  );
+};
+
 const GlobalStyles = createGlobalStyle`
 html,
 body {
@@ -41,28 +63,6 @@ body {
   outline: none;
 }
 `;
-
-export const Desktop = () => {
-  const [theme] = useTheme();
-
-  return (
-    <>
-      <Reset />
-      <GlobalStyles />
-
-      <Main>
-        <MenuBar />
-        <Dock />
-      </Main>
-      <Helmet>
-        <link rel="prefetch" href={DefaultLightBackground} />
-        <link rel="prefetch" href={DefaultDarkBackground} />
-      </Helmet>
-
-      <BackgroundCover theme={theme} aria-hidden="true" />
-    </>
-  );
-};
 
 const Main = styled.main`
   height: 100%;
