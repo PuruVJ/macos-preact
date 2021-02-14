@@ -6,7 +6,8 @@ import DefaultDarkBackground from '__/assets/wallpapers/3-1.jpg';
 import DefaultLightBackground from '__/assets/wallpapers/3-2.jpg';
 import { Dock } from '__/components/dock/Dock';
 import { MenuBar } from '__/components/menubar/MenuBar';
-import { TTheme, useTheme } from '__/hooks/use-theme';
+import { useTheme } from '__/hooks/use-theme';
+import type { TTheme } from '__/stores/theme.store';
 
 const GlobalStyles = createGlobalStyle`
 html,

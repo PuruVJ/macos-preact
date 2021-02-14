@@ -26,6 +26,7 @@ const MenuBar = (): React.ReactElement => {
       {/* @ts-ignore */}
       {Object.keys(currentAppMenus).map((menuID: keyof typeof currentAppMenus) => (
         <Tippy
+          key={menuID}
           trigger="focusin click"
           hideOnClick={false}
           placement="bottom-start"

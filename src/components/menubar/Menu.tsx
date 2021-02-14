@@ -20,10 +20,14 @@ export const Menu: FC<TMenu> = ({ menu }) => {
   return (
     <Container ref={ref} tabIndex={-1}>
       {Object.keys(menu).map((val) => [
-        <MenuItem className={clsx({ disabled: menu[val].disabled })} disabled={menu[val].disabled}>
+        <MenuItem
+          key={val}
+          className={clsx({ disabled: menu[val].disabled })}
+          disabled={menu[val].disabled}
+        >
           {menu[val].title}
         </MenuItem>,
-        menu[val].breakAfter && <Divider />,
+        menu[val].breakAfter && <Divider key={`${val}-divider`} />,
       ])}
     </Container>
   );

@@ -1,17 +1,14 @@
 import { useAtom } from 'jotai';
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
+import { themeAtom, TTheme } from '__/stores/theme.store';
 // import { themeAtom, TTheme } from '__/stores/theme.store';
 
-import { atom } from 'jotai';
-
-export type TTheme = 'light' | 'dark';
-
-export const themeAtom = atom<TTheme>('light');
-
 export function useTheme() {
+  const localValue = localStorage.getItem('theme:type') as TTheme;
   // Media query
   const systemTheme: TTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  const localValue = localStorage.getItem('theme:type') as TTheme;
+
+  const isFirstUpdate = useRef(true);
 
   const [theme, setTheme] = useAtom(themeAtom);
 
@@ -20,6 +17,11 @@ export function useTheme() {
   }, []);
 
   useLayoutEffect(() => {
+    if (isFirstUpdate.current) {
+      isFirstUpdate.current = false;
+      return () => {};
+    }
+
     localStorage.setItem('theme:type', theme);
 
     document.body.dataset.theme = theme;
