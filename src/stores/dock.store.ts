@@ -11,6 +11,7 @@ import IconMessages from '__/assets/app-icons/messages/256.png';
 import IconPhotos from '__/assets/app-icons/photos/256.png';
 import IconSafari from '__/assets/app-icons/safari/256.png';
 import IconSystemPreferences from '__/assets/app-icons/system-preferences/256.png';
+import IconPurusTwitter from '__/assets/app-icons/purus-twitter/256.png';
 
 export interface IDockItem {
   appName: string;
@@ -74,7 +75,7 @@ const initialState = {
     },
     purusTwitter: {
       appName: `My Twitter`,
-      icon: 'https://pbs.twimg.com/profile_images/1316284643675578369/Ym8iAim8_200x200.jpg',
+      icon: IconPurusTwitter,
       isOpen: false,
       breakBefore: true,
       action: () => {
