@@ -1,10 +1,12 @@
 import React from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import { Helmet } from 'react-helmet-async';
+import styled, { createGlobalStyle, css } from 'styled-components';
 import { Reset } from 'styled-reset';
-import DefaultBackground from '__/assets/wallpapers/3-2.jpg';
+import DefaultDarkBackground from '__/assets/wallpapers/3-1.jpg';
+import DefaultLightBackground from '__/assets/wallpapers/3-2.jpg';
 import { Dock } from '__/components/dock/Dock';
 import { MenuBar } from '__/components/menubar/MenuBar';
-import { useTheme } from '__/hooks/use-theme';
+import { TTheme, useTheme } from '__/hooks/use-theme';
 
 const GlobalStyles = createGlobalStyle`
 html,
@@ -40,16 +42,23 @@ body {
 `;
 
 export const Desktop = () => {
+  const [theme] = useTheme();
+
   return (
     <>
       <Reset />
       <GlobalStyles />
+
       <Main>
         <MenuBar />
         <Dock />
       </Main>
+      <Helmet>
+        <link rel="prefetch" href={DefaultLightBackground} />
+        <link rel="prefetch" href={DefaultDarkBackground} />
+      </Helmet>
 
-      <BackgroundCover aria-hidden="true" />
+      <BackgroundCover theme={theme} aria-hidden="true" />
     </>
   );
 };
@@ -59,7 +68,7 @@ const Main = styled.main`
   width: 100%;
 `;
 
-const BackgroundCover = styled.div`
+const BackgroundCover = styled.div<{ theme: TTheme }>`
   height: 100%;
   width: 100%;
 
@@ -68,7 +77,11 @@ const BackgroundCover = styled.div`
   top: 0;
   left: 0;
 
-  background-image: url(${DefaultBackground});
+  ${({ theme }) =>
+    css`
+      background-image: url(${theme === 'light' ? DefaultLightBackground : DefaultDarkBackground});
+    `}
+
   background-repeat: none;
   background-size: cover;
   background-position: center;
