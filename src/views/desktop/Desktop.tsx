@@ -83,6 +83,8 @@ const BackgroundCover = styled.div<{ theme: TTheme }>`
       background-image: url(${theme === 'light' ? DefaultLightBackground : DefaultDarkBackground});
     `}
 
+  will-change: background-image;
+
   background-repeat: none;
   background-size: cover;
   background-position: center;
