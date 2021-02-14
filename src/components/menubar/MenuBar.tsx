@@ -1,10 +1,11 @@
 import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
 import Tippy from '@tippyjs/react/headless';
 import { useAtom } from 'jotai';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { sticky } from 'tippy.js';
 import { VolumeLowSVG } from '__/assets/sf-icons/volume-low.svg';
+import { activeMenuStore } from '__/stores/active-menu.store';
 import { menuBarMenusStore } from '__/stores/menubar.store';
 import { theme } from '__/theme';
 import { AppIcon } from '../utils/AppIcon';
@@ -16,6 +17,7 @@ import { MenuIconButton } from './MenuIconButton';
 
 const MenuBar = (): React.ReactElement => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
+  const [activeMenu, setActiveMenu] = useAtom(activeMenuStore);
 
   return (
     <Header>
@@ -27,12 +29,13 @@ const MenuBar = (): React.ReactElement => {
       {Object.keys(currentAppMenus).map((menuID: keyof typeof currentAppMenus) => (
         <Tippy
           key={menuID}
-          trigger="focusin click"
+          trigger={`focusin ${activeMenu ? 'mouseenter' : 'click'}`}
           hideOnClick={false}
           placement="bottom-start"
           sticky
           zIndex={99999}
           plugins={[sticky]}
+          onShow={() => void setActiveMenu(menuID)}
           interactive
           appendTo={document.body}
           render={(attrs) => (
@@ -41,7 +44,12 @@ const MenuBar = (): React.ReactElement => {
               <Menu menu={currentAppMenus[menuID].menu}>Hello</Menu>
             </div>
           )}
-          onClickOutside={({ hide }) => hide()}
+
+          // onClickOutside={({ hide }, e) => {
+          //   console.log(e);
+          //   setActiveMenu('');
+          //   hide();
+          // }}
         >
           <span>
             <MenuButton
