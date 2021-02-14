@@ -38,8 +38,6 @@ const Container = styled.div`
 
   min-width: 16rem;
 
-  font-size: 0.9rem;
-
   padding: 0.5rem;
 
   position: relative;
@@ -63,7 +61,8 @@ const MenuItem = styled(ButtonBase)`
   padding: 0.2rem 0.4rem;
 
   letter-spacing: 0.4px;
-  font-weight: 500;
+  font-weight: 500 !important;
+  font-size: 0.9rem;
 
   border-radius: 0.4rem;
 
