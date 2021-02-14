@@ -16,19 +16,15 @@ import { MenuIconButton } from './MenuIconButton';
 
 const MenuBar = (): React.ReactElement => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
-  const { default: defaultMenu, ...appMenus } = currentAppMenus;
 
   return (
     <Header>
       <AppleIconButton>
         <AppIcon size={18} path={mdiApple} />
       </AppleIconButton>
-      <ButtonBase style={{ fontWeight: 600, margin: `0 6px` }}>{defaultMenu.title}</ButtonBase>
-
-      {/* menu buttons */}
 
       {/* @ts-ignore */}
-      {Object.keys(appMenus).map((menuID: keyof typeof appMenus) => (
+      {Object.keys(currentAppMenus).map((menuID: keyof typeof currentAppMenus) => (
         <Tippy
           trigger="focusin click"
           hideOnClick={false}
@@ -41,13 +37,17 @@ const MenuBar = (): React.ReactElement => {
           render={(attrs) => (
             <div {...attrs}>
               {/* @ts-ignore */}
-              <Menu menu={appMenus[menuID].menu}>Hello</Menu>
+              <Menu menu={currentAppMenus[menuID].menu}>Hello</Menu>
             </div>
           )}
           onClickOutside={({ hide }) => hide()}
         >
           <span>
-            <MenuButton>{appMenus[menuID].title}</MenuButton>
+            <MenuButton
+              {...(menuID === 'default' && { style: { fontWeight: 600, margin: `0 6px` } })}
+            >
+              {currentAppMenus[menuID].title}
+            </MenuButton>
           </span>
         </Tippy>
       ))}

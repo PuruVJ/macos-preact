@@ -71,7 +71,15 @@ const initialState = {
       appName: 'System Preferences',
       icon: IconSystemPreferences,
       isOpen: false,
+    },
+    purusTwitter: {
+      appName: `My Twitter`,
+      icon: 'https://pbs.twimg.com/profile_images/1316284643675578369/Ym8iAim8_200x200.jpg',
+      isOpen: false,
       breakBefore: true,
+      action: () => {
+        window.open('https://twitter.com/puruvjdev', '_blank');
+      },
     },
 
     viewSource: {
