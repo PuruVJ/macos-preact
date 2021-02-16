@@ -64,13 +64,11 @@ const MenuItem = styled(ButtonBase)`
   font-weight: 500 !important;
   font-size: 0.9rem;
 
-  border-radius: 0.4rem;
+  border-radius: 0.3rem;
 
   transition: none;
 
-  ${({ disabled }) => css`
-    color: hsla(${theme.colors.dark.hsl}, ${disabled ? 0.5 : 1});
-  `}
+  color: ${({ disabled }) => `hsla(${theme.colors.dark.hsl}, ${disabled ? 0.5 : 1})`};
 
   &:not(.disabled):hover {
     background-color: ${theme.colors.primary.main};

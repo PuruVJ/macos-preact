@@ -117,14 +117,12 @@ const MenuButton = styled(ButtonBase)<{ active: boolean; isDefaultMenu: boolean 
 
   border-radius: 0.25rem;
 
-  ${({ active }) => css`
-    background-color: ${transparentize(theme.colors.grey[100], active ? 0.7 : 1)};
-  `}
+  background-color: ${({ active }) => transparentize(theme.colors.grey[100], active ? 0.7 : 1)};
 
   ${({ isDefaultMenu }) =>
     isDefaultMenu &&
     css`
-      font-weight: 600;
+      font-weight: 600 !important;
       margin: 0 6px;
     `}
 `;
