@@ -47,10 +47,7 @@ const MenuBar = (): React.ReactElement => {
           )}
         >
           <span style={{ height: '100%' }}>
-            <MenuButton
-              {...(menuID === 'default' && { style: { fontWeight: 600, margin: `0 6px` } })}
-              active={activeMenu === menuID}
-            >
+            <MenuButton isDefaultMenu={menuID === 'default'} active={activeMenu === menuID}>
               {currentAppMenus[menuID].title}
             </MenuButton>
           </span>
@@ -115,7 +112,7 @@ const AppleIconButton = styled(ButtonBase)`
   margin: 0 0.6rem;
 `;
 
-const MenuButton = styled(ButtonBase)<{ active: boolean }>`
+const MenuButton = styled(ButtonBase)<{ active: boolean; isDefaultMenu: boolean }>`
   font-weight: 500;
 
   border-radius: 0.25rem;
@@ -123,6 +120,13 @@ const MenuButton = styled(ButtonBase)<{ active: boolean }>`
   ${({ active }) => css`
     background-color: ${transparentize(theme.colors.grey[100], active ? 0.7 : 1)};
   `}
+
+  ${({ isDefaultMenu }) =>
+    isDefaultMenu &&
+    css`
+      font-weight: 600;
+      margin: 0 6px;
+    `}
 `;
 
 const Spacer = styled.span`
