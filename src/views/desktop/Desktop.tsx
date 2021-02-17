@@ -1,8 +1,8 @@
 import { Helmet } from 'react-helmet-async';
-import styled, { createGlobalStyle, css } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { Reset } from 'styled-reset';
-import DefaultDarkBackground from '__/assets/wallpapers/3-1.jpg';
-import DefaultLightBackground from '__/assets/wallpapers/3-2.jpg';
+import DarkBackground from '__/assets/wallpapers/3-1.jpg';
+import LightBackground from '__/assets/wallpapers/3-2.jpg';
 import { Dock } from '__/components/dock/Dock';
 import { MenuBar } from '__/components/menubar/MenuBar';
 import { useTheme } from '__/hooks/use-theme';
@@ -21,8 +21,8 @@ export const Desktop = () => {
         <Dock />
       </Main>
       <Helmet>
-        <link rel="prefetch" href={DefaultLightBackground} />
-        <link rel="prefetch" href={DefaultDarkBackground} />
+        <link rel="prefetch" href={LightBackground} />
+        <link rel="prefetch" href={DarkBackground} />
       </Helmet>
 
       <BackgroundCover theme={theme} aria-hidden="true" />
@@ -77,10 +77,7 @@ const BackgroundCover = styled.div<{ theme: TTheme }>`
   top: 0;
   left: 0;
 
-  ${({ theme }) =>
-    css`
-      background-image: url(${theme === 'light' ? DefaultLightBackground : DefaultDarkBackground});
-    `}
+  background-image: url(${({ theme }) => (theme === 'light' ? LightBackground : DarkBackground)});
 
   will-change: background-image;
 
