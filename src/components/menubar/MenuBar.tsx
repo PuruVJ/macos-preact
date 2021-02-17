@@ -5,7 +5,7 @@ import { useAtom } from 'jotai';
 import styled from 'styled-components';
 import { css } from 'styled-components';
 import { sticky } from 'tippy.js';
-import { VolumeLowSVG } from '__/assets/sf-icons/volume-low.svg';
+import { VolumeLowSVG } from '__/assets/sf-icons/VolumeLowSVG';
 import { activeMenuStore } from '__/stores/active-menu.store';
 import { menuBarMenusStore } from '__/stores/menubar.store';
 import { theme } from '__/theme';
