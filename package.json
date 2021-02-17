@@ -2,7 +2,6 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "postbuild": "workbox generateSW workbox-config.js",
     "serve": "vite preview"
   },
   "dependencies": {
