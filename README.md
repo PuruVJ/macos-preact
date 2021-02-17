@@ -2,6 +2,8 @@
 
 This open source project aims to replicate some of the Mac OS(Big Sur, at the time)'s desktop experience on web, using standard web technologies like HTML, CSS and JS
 
+🔗🔗 [macos.now.sh](https://macos.now.sh)
+
 # Why
 
 I've always been very fascinated with macOS, and have never owned a Mac/book. So I'm making the most beautiful aspect of macOS, it's desktop, myself. For web. Inspired from [WinXP](https://winxp.now.sh/).
