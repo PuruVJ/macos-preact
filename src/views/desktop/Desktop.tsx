@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Reset } from 'styled-reset';
-import DarkBackground from '__/assets/wallpapers/3-1.jpg';
-import LightBackground from '__/assets/wallpapers/3-2.jpg';
 import { Dock } from '__/components/dock/Dock';
 import { MenuBar } from '__/components/menubar/MenuBar';
 import { useTheme } from '__/hooks/use-theme';
 import type { TTheme } from '__/stores/theme.store';
+
+const DarkBackground = '/assets/wallpapers/3-1.jpg';
+const LightBackground = '/assets/wallpapers/3-2.jpg';
 
 export const Desktop = () => {
   const [theme] = useTheme();
