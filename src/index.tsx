@@ -1,7 +1,7 @@
 import { Provider } from 'jotai';
 import { StrictMode, Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
+import './theme.css';
 import { Desktop } from './views/desktop/Desktop';
 import { HelmetProvider } from 'react-helmet-async';
 

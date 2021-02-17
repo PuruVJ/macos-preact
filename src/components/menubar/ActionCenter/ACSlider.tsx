@@ -1,10 +1,10 @@
 import { transparentize } from 'color2k';
 import { FC, HTMLProps } from 'react';
-import ReactSlider, { ReactSliderProps } from 'react-slider';
+import ReactSlider from 'react-slider';
 import styled from 'styled-components';
 import { theme } from '__/theme';
 
-export const ACSlider: FC<ReactSliderProps> = ({ children, ...props }) => {
+export const ACSlider: FC<ReactSlider.ReactSliderProps> = ({ children, ...props }) => {
   return <Slider renderTrack={Track} renderThumb={Thumb} {...props}></Slider>;
 };
 
