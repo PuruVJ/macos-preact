@@ -1,5 +1,3 @@
-import React from 'react';
-
 const SwitchSVG = ({ ...props }: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="351"

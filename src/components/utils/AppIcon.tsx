@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface IAppIcon extends React.SVGAttributes<SVGSVGElement> {
   path: string;
   size?: number;

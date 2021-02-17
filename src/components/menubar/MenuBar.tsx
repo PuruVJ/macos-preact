@@ -2,7 +2,6 @@ import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
 import Tippy from '@tippyjs/react/headless';
 import { transparentize } from 'color2k';
 import { useAtom } from 'jotai';
-import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { sticky } from 'tippy.js';
 import { VolumeLowSVG } from '__/assets/sf-icons/volume-low.svg';

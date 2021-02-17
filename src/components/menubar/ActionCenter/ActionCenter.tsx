@@ -1,5 +1,5 @@
 import { mdiBluetooth, mdiKeyboard, mdiWifiStrength4 } from '@mdi/js';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import styled, { css } from 'styled-components';
 import { AirDropSVG } from '__/assets/sf-icons/AirDrop.svg';
 import { MoonSVG } from '__/assets/sf-icons/Moon.svg';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled, { createGlobalStyle, css } from 'styled-components';
 import { Reset } from 'styled-reset';

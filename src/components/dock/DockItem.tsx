@@ -2,7 +2,7 @@ import { ButtonBase } from '../utils/ButtonBase';
 import useRaf from '@rooks/use-raf';
 import Tippy from '@tippyjs/react';
 import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import React, { RefObject } from 'react';
+import { RefObject, useRef } from 'react';
 import styled from 'styled-components';
 import 'tippy.js/dist/tippy.css';
 import type { IDockItem } from '__/stores/dock.store';
@@ -12,7 +12,7 @@ interface IDockItemProps extends IDockItem {
 }
 
 function DockItem({ icon, action, appName, mouseX }: IDockItemProps) {
-  const ref = React.useRef<HTMLImageElement>(null);
+  const ref = useRef<HTMLImageElement>(null);
 
   const { width } = useDockHoverAnimation(mouseX, ref);
 
