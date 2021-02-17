@@ -2,7 +2,4 @@
 build
 web_modules
 node_modules
-haters/
-negative_comments/
-bad_takes/
-negative_people/
+dist/

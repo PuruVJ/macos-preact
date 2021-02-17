@@ -1,6 +1,6 @@
 import Tippy from '@tippyjs/react/headless';
 import { sticky } from 'tippy.js/headless';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { SwitchSVG } from '__/assets/sf-icons/switch.svg';
 import { MenuIconButton } from '../MenuIconButton';
 import { ActionCenter } from './ActionCenter';

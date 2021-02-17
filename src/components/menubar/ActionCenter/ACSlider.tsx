@@ -1,5 +1,5 @@
 import { transparentize } from 'color2k';
-import React, { FC, HTMLProps } from 'react';
+import { FC, HTMLProps } from 'react';
 import ReactSlider, { ReactSliderProps } from 'react-slider';
 import styled from 'styled-components';
 import { theme } from '__/theme';

@@ -21,7 +21,9 @@ export interface IDockItem {
   breakBefore?: boolean;
 }
 
-const initialState = {
+const createDockConfig = <T>(et: { dockItems: { [key in keyof T]: IDockItem } }) => et;
+
+const initialState = createDockConfig({
   dockItems: {
     finder: {
       appName: 'Finder',
@@ -92,7 +94,7 @@ const initialState = {
       },
     },
   },
-};
+});
 
 const dockItemsStore = atom(initialState);
 

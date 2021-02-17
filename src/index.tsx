@@ -1,7 +1,7 @@
 import { Provider } from 'jotai';
-import React, { StrictMode, Suspense } from 'react';
+import { StrictMode, Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 import { Desktop } from './views/desktop/Desktop';
 import { HelmetProvider } from 'react-helmet-async';
 
@@ -19,5 +19,5 @@ ReactDOM.render(
 );
 
 if (import.meta.hot) {
-  import.meta.hot.accept();
+  import.meta.hot?.accept();
 }

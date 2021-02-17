@@ -1,7 +1,6 @@
 import clsx from 'clsx';
-import { transparentize } from 'color2k';
-import React, { FC, useEffect, useRef } from 'react';
-import styled, { css } from 'styled-components';
+import { FC, useEffect, useRef } from 'react';
+import styled from 'styled-components';
 import type { IMenu } from '__/helpers/menubar';
 import { theme } from '__/theme';
 import { ButtonBase } from '../utils/ButtonBase';

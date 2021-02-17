@@ -1,5 +1,6 @@
-import React, { FC, useEffect, useRef } from 'react';
-import styled, { css } from 'styled-components';
+import { FC, useEffect, useRef } from 'react';
+import styled from 'styled-components';
+import { css } from 'styled-components';
 import { useTheme } from '__/hooks/use-theme';
 import type { TTheme } from '__/stores/theme.store';
 import { theme } from '__/theme';

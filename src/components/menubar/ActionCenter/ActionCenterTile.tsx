@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
-import styled, { css } from 'styled-components';
+import { FC } from 'react';
+import styled from 'styled-components';
+import { css } from 'styled-components';
 import { theme } from '__/theme';
 
 interface IActionCenterTileProps {

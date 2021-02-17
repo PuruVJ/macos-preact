@@ -9,7 +9,7 @@ I've always been very fascinated with macOS, and have never owned a Mac/book. So
 # Stack
 
 - Framework - React (`create-react-app` style)
-- Bundler - Snowpack, for super fast development. On build, it churns out optimized ES Modules. Not considering older browsers right now.
+- Bundler - Vite, for super fast development.
 - Component Library - None!! It used Material UI before, but MUI had to be removed because of high lag in Typescript Intellisense. See [microsoft/TypeScript#34801](https://github.com/microsoft/TypeScript/issues/34801)
 - Styling Solution - Styled Components.
 
