@@ -19,16 +19,6 @@
       rel="stylesheet"
     />
 
-    <script type="module">
-      if (import.meta.env.PROD) {
-        if ('serviceWorker' in navigator) {
-          window.addEventListener('load', function () {
-            navigator.serviceWorker.register('/sw.js');
-          });
-        }
-      }
-    </script>
-
     <script type="text/javascript">
       (function (c, l, a, r, i, t, y) {
         c[a] =
