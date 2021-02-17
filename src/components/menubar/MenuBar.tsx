@@ -99,8 +99,6 @@ const Header = styled.header`
 
     position: relative;
 
-    padding: 0 0.4rem;
-
     height: 100%;
   }
 `;
@@ -118,6 +116,8 @@ const MenuButton = styled(ButtonBase)<{ active: boolean; isDefaultMenu: boolean 
   border-radius: 0.25rem;
 
   background-color: ${({ active }) => transparentize(theme.colors.grey[100], active ? 0.7 : 1)};
+
+  padding: 0 0.5rem;
 
   ${({ isDefaultMenu }) =>
     isDefaultMenu &&

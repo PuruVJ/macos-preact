@@ -1,6 +1,5 @@
-import clsx from 'clsx';
 import { FC, useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import type { IMenu } from '__/helpers/menubar';
 import { theme } from '__/theme';
 import { ButtonBase } from '../utils/ButtonBase';
@@ -19,11 +18,7 @@ export const Menu: FC<TMenu> = ({ menu }) => {
   return (
     <Container ref={ref} tabIndex={-1}>
       {Object.keys(menu).map((val) => [
-        <MenuItem
-          key={val}
-          className={clsx({ disabled: menu[val].disabled })}
-          disabled={menu[val].disabled}
-        >
+        <MenuItem key={val} disabled={menu[val].disabled}>
           {menu[val].title}
         </MenuItem>,
         menu[val].breakAfter && <Divider key={`${val}-divider`} />,
@@ -69,10 +64,14 @@ const MenuItem = styled(ButtonBase)`
 
   color: ${({ disabled }) => `hsla(${theme.colors.dark.hsl}, ${disabled ? 0.5 : 1})`};
 
-  &:not(.disabled):hover {
-    background-color: ${theme.colors.primary.main};
-    color: ${theme.colors.primary.contrast};
-  }
+  ${({ disabled }) =>
+    !disabled &&
+    css`
+      &:hover {
+        background-color: ${theme.colors.primary.main};
+        color: ${theme.colors.primary.contrast};
+      }
+    `}
 `;
 
 const Divider = styled.div`

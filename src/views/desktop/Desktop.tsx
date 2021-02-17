@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Reset } from 'styled-reset';
@@ -11,6 +12,11 @@ import type { TTheme } from '__/stores/theme.store';
 export const Desktop = () => {
   const [theme] = useTheme();
 
+  useEffect(() => {
+    preloadImage(DarkBackground);
+    preloadImage(LightBackground);
+  }, []);
+
   return (
     <>
       <Reset />
@@ -20,10 +26,6 @@ export const Desktop = () => {
         <MenuBar />
         <Dock />
       </Main>
-      <Helmet>
-        <link rel="prefetch" href={LightBackground} />
-        <link rel="prefetch" href={DarkBackground} />
-      </Helmet>
 
       <BackgroundCover theme={theme} aria-hidden="true" />
     </>
@@ -85,3 +87,8 @@ const BackgroundCover = styled.div<{ theme: TTheme }>`
   background-size: cover;
   background-position: center;
 `;
+
+function preloadImage(path: string) {
+  const img = new Image();
+  img.src = path;
+}

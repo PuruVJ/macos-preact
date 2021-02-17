@@ -5,7 +5,7 @@ import { ButtonBase } from '../utils/ButtonBase';
 export const MenuIconButton = styled(ButtonBase)`
   max-height: 100%;
 
-  margin: 0 0.5rem !important;
+  margin: 0 0.7rem !important;
 
   svg,
   svg path {
