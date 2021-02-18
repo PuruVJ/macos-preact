@@ -2,6 +2,7 @@ import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
 import Tippy from '@tippyjs/react/headless';
 import { transparentize } from 'color2k';
 import { useAtom } from 'jotai';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
 import { sticky } from 'tippy.js';
@@ -20,6 +21,10 @@ const MenuBar = (): React.ReactElement => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
   const [activeMenu, setActiveMenu] = useAtom(activeMenuStore);
 
+  useEffect(() => {
+    console.log(activeMenu);
+  }, [activeMenu]);
+
   return (
     <Header>
       <AppleIconButton>
@@ -30,13 +35,14 @@ const MenuBar = (): React.ReactElement => {
       {Object.keys(currentAppMenus).map((menuID: keyof typeof currentAppMenus) => (
         <Tippy
           key={menuID}
-          trigger={`focusin ${activeMenu ? 'mouseenter' : 'click'}`}
+          trigger={`focusin mouseenter`}
           hideOnClick={false}
           placement="bottom-start"
           sticky
           zIndex={99999}
           plugins={[sticky]}
-          onShow={() => void setActiveMenu(menuID)}
+          onMount={() => void setActiveMenu(menuID)}
+          onShown={() => void setActiveMenu('')}
           interactive
           appendTo={document.body}
           render={(attrs) => (
@@ -115,7 +121,7 @@ const MenuButton = styled(ButtonBase)<{ active: boolean; isDefaultMenu: boolean 
 
   border-radius: 0.25rem;
 
-  background-color: ${({ active }) => transparentize(theme.colors.grey[100], active ? 0.7 : 1)};
+  position: relative;
 
   padding: 0 0.5rem;
 
@@ -125,6 +131,29 @@ const MenuButton = styled(ButtonBase)<{ active: boolean; isDefaultMenu: boolean 
       font-weight: 600 !important;
       margin: 0 6px;
     `}
+
+  &::after {
+    --scale: ${({ active }) => (active ? 1 : 0)};
+
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    height: 100%;
+    width: 100%;
+
+    border-radius: inherit;
+
+    transform: scale(var(--scale), var(--scale));
+    transform-origin: center center;
+
+    transition: transform 100ms ease;
+
+    background-color: ${transparentize(theme.colors.grey[100], 0.7)};
+  }
 `;
 
 const Spacer = styled.span`
