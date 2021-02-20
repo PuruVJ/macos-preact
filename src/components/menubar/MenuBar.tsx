@@ -2,9 +2,9 @@ import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
 import Tippy from '@tippyjs/react/headless';
 import { transparentize } from 'color2k';
 import { useAtom } from 'jotai';
-import { useEffect } from 'react';
-import styled from 'styled-components';
-import { css } from 'styled-components';
+import { useImmerAtom, withImmer } from 'jotai/immer';
+import { useEffect, useState } from 'react';
+import styled, { css } from 'styled-components';
 import { sticky } from 'tippy.js';
 import { VolumeLowSVG } from '__/assets/sf-icons/VolumeLowSVG';
 import { activeMenuStore } from '__/stores/active-menu.store';
@@ -19,11 +19,7 @@ import { MenuIconButton } from './MenuIconButton';
 
 const MenuBar = (): React.ReactElement => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
-  const [activeMenu, setActiveMenu] = useAtom(activeMenuStore);
-
-  useEffect(() => {
-    console.log(activeMenu);
-  }, [activeMenu]);
+  const [activeMenu, setActiveMenu] = useImmerAtom(activeMenuStore);
 
   return (
     <Header>
@@ -41,8 +37,18 @@ const MenuBar = (): React.ReactElement => {
           sticky
           zIndex={99999}
           plugins={[sticky]}
-          onMount={() => void setActiveMenu(menuID)}
-          onShown={() => void setActiveMenu('')}
+          onMount={() =>
+            void setActiveMenu((val) => {
+              val[menuID] = true;
+              return val;
+            })
+          }
+          onHide={() =>
+            void setActiveMenu((val) => {
+              val[menuID] = false;
+              return val;
+            })
+          }
           interactive
           appendTo={document.body}
           render={(attrs) => (
@@ -53,7 +59,7 @@ const MenuBar = (): React.ReactElement => {
           )}
         >
           <span style={{ height: '100%' }}>
-            <MenuButton isDefaultMenu={menuID === 'default'} active={activeMenu === menuID}>
+            <MenuButton isDefaultMenu={menuID === 'default'} active={activeMenu[menuID]}>
               {currentAppMenus[menuID].title}
             </MenuButton>
           </span>

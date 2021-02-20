@@ -28,6 +28,7 @@ export const Desktop = () => {
       </Main>
 
       <BackgroundCover theme={theme} aria-hidden="true" />
+      <HiddenBackgroundCover />
     </>
   );
 };
@@ -86,6 +87,11 @@ const BackgroundCover = styled.div<{ theme: TTheme }>`
   background-repeat: none;
   background-size: cover;
   background-position: center;
+`;
+
+const HiddenBackgroundCover = styled.div`
+  background-image: url(${LightBackground});
+  background-image: url(${DarkBackground});
 `;
 
 function preloadImage(path: string) {
