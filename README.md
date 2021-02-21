@@ -45,7 +45,15 @@ I've always been very fascinated with macOS, and have never owned a Mac/book. So
 
 ## v0.4
 
-Thinking 🤔
+- [ ] Add the MacOS startup chime.
+- [ ] Make windowing solution
+- [ ] Add open/close trigger to apps(Dock included)
+- [ ] Window should have traffic light buttons, with close, minimize, fullscreen buttons(functional)
+- [ ] Make Puru's twitter a profile for Puru.
+
+## v0.5
+
+- [ ] Clicking on unsupported apps in dock should show a window saying that this app isn't available and list the available ones.
 
 ## v1
 
