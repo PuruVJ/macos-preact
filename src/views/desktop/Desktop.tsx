@@ -92,6 +92,8 @@ const BackgroundCover = styled.div<{ theme: TTheme }>`
 const HiddenBackgroundCover = styled.div`
   background-image: url(${LightBackground});
   background-image: url(${DarkBackground});
+
+  display: none;
 `;
 
 function preloadImage(path: string) {
