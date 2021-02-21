@@ -41,7 +41,11 @@ I've always been very fascinated with macOS, and have never owned a Mac/book. So
 
 - [x] Basic API for Menu Bar
 - [x] Menu bar, and menu items. Not necessarily functional
-- [ ] Menu for Finder only (For now)
+- [x] Menu for Finder only (For now)
+
+## v0.4
+
+Thinking 🤔
 
 ## v1
 
