@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import Sound from 'react-sound';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Reset } from 'styled-reset';
+import { StartupChime } from '__/components/Desktop/StartupChime';
 import { Dock } from '__/components/dock/Dock';
 import { MenuBar } from '__/components/menubar/MenuBar';
 import { AppIcon } from '__/components/utils/AppIcon';
@@ -52,11 +53,8 @@ export const Desktop = () => {
 
       <BackgroundCover theme={theme} aria-hidden="true" />
       <HiddenBackgroundCover />
-      <Sound
-        url="/assets/sounds/mac-startup-sound.mp3"
-        onFinishedPlaying={() => setPlayStatus('STOPPED')}
-        playStatus={playStatus}
-      ></Sound>
+
+      <StartupChime />
     </>
   );
 };
