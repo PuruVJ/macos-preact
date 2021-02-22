@@ -35,7 +35,7 @@ const MenuBar = (): React.ReactElement => {
           hideOnClick={false}
           placement="bottom-start"
           sticky
-          zIndex={99999}
+          zIndex={99999999}
           plugins={[sticky]}
           onMount={() =>
             void setActiveMenu((val) => {

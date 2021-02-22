@@ -45,4 +45,8 @@ const Container = styled.section<IContainer>`
     `}
 
   padding: 0.75rem;
+
+  * {
+    filter: blur(0px);
+  }
 `;

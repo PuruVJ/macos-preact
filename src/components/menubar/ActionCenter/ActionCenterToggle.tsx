@@ -13,7 +13,7 @@ export const ActionCenterToggle: FC<IActionCenterToggle> = ({}) => {
       trigger="focusin click"
       hideOnClick={false}
       sticky
-      zIndex={99999}
+      zIndex={999999999}
       plugins={[sticky]}
       interactive
       appendTo={document.body}

@@ -35,12 +35,10 @@ export const Desktop = () => {
 
   return (
     <>
+      <StartupChime />
+
       <Reset />
       <GlobalStyles />
-
-      <SplashScreen isHidden={hideSplashScreen || import.meta.env.DEV}>
-        <AppIcon path={mdiApple} fill="white" size={100} />
-      </SplashScreen>
 
       <button hidden ref={ref} onClick={() => {}}>
         Hello
@@ -52,9 +50,7 @@ export const Desktop = () => {
       </Main>
 
       <BackgroundCover theme={theme} aria-hidden="true" />
-      <HiddenBackgroundCover />
-
-      <StartupChime />
+      <HiddenBackgroundCover aria-hidden />
     </>
   );
 };
@@ -95,22 +91,6 @@ body {
 const Main = styled.main`
   height: 100%;
   width: 100%;
-`;
-
-const SplashScreen = styled.div<{ isHidden: boolean }>`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  z-index: 9999999999;
-
-  height: 100vh;
-  width: 100vw;
-
-  display: ${({ isHidden }) => (isHidden ? 'none' : 'flex')};
-  justify-content: center;
-  align-items: center;
-
-  background-color: #000;
 `;
 
 const BackgroundCover = styled.div<{ theme: TTheme }>`

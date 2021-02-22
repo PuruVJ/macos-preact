@@ -14,7 +14,7 @@ export const StartupChime: FC<{}> = ({}) => {
   useEffect(() => {
     ref.current?.click();
     // Disable playing again and again in dev environment
-    if (import.meta.env.DEV) setPlayStatus('PLAYING');
+    if (import.meta.env.PROD) setPlayStatus('PLAYING');
   }, []);
 
   useTimeout(() => {
@@ -23,7 +23,7 @@ export const StartupChime: FC<{}> = ({}) => {
 
   return (
     <>
-      <SplashScreen isHidden={hideSplashScreen || import.meta.env.PROD}>
+      <SplashScreen isHidden={hideSplashScreen || import.meta.env.DEV}>
         <AppIcon path={mdiApple} fill="white" size={100} />
       </SplashScreen>
 
@@ -58,7 +58,7 @@ const SplashScreen = styled.div<{ isHidden: boolean }>`
   position: fixed;
   top: 0;
   bottom: 0;
-  z-index: 99999999999999;
+  z-index: 9999;
 
   height: 100vh;
   width: 100vw;
