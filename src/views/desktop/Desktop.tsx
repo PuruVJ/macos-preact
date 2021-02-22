@@ -37,7 +37,7 @@ export const Desktop = () => {
       <Reset />
       <GlobalStyles />
 
-      <SplashScreen hidden={hideSplashScreen || import.meta.env.DEV}>
+      <SplashScreen isHidden={hideSplashScreen || import.meta.env.DEV}>
         <AppIcon path={mdiApple} fill="white" size={100} />
       </SplashScreen>
 
@@ -99,7 +99,7 @@ const Main = styled.main`
   width: 100%;
 `;
 
-const SplashScreen = styled.div`
+const SplashScreen = styled.div<{ isHidden: boolean }>`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -108,7 +108,7 @@ const SplashScreen = styled.div`
   height: 100vh;
   width: 100vw;
 
-  display: flex;
+  display: ${({ isHidden }) => (isHidden ? 'none' : 'flex')};
   justify-content: center;
   align-items: center;
 
