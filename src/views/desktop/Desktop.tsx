@@ -1,14 +1,10 @@
-import { mdiApple } from '@mdi/js';
-import { useEffect, useRef, useState } from 'react';
-import Sound from 'react-sound';
+import { useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Reset } from 'styled-reset';
 import { StartupChime } from '__/components/Desktop/StartupChime';
 import { Dock } from '__/components/dock/Dock';
 import { MenuBar } from '__/components/menubar/MenuBar';
-import { AppIcon } from '__/components/utils/AppIcon';
 import { useTheme } from '__/hooks/use-theme';
-import { useTimeout } from '__/hooks/use-timeout';
 import type { TTheme } from '__/stores/theme.store';
 
 const DarkBackground = '/assets/wallpapers/3-1.jpg';
@@ -16,22 +12,11 @@ const LightBackground = '/assets/wallpapers/3-2.jpg';
 
 export const Desktop = () => {
   const [theme] = useTheme();
-  const ref = useRef<HTMLButtonElement>(null);
-  const [playStatus, setPlayStatus] = useState<'PLAYING' | 'STOPPED' | 'PAUSED'>('PAUSED');
-
-  const [hideSplashScreen, setHideSplashScreen] = useState(false);
 
   useEffect(() => {
     preloadImage(DarkBackground);
     preloadImage(LightBackground);
-    ref.current?.click();
-    // Disable playing again and again in dev environment
-    if (import.meta.env.PROD) setPlayStatus('PLAYING');
   }, []);
-
-  useTimeout(() => {
-    setHideSplashScreen(true);
-  }, 3000);
 
   return (
     <>
@@ -39,10 +24,6 @@ export const Desktop = () => {
 
       <Reset />
       <GlobalStyles />
-
-      <button hidden ref={ref} onClick={() => {}}>
-        Hello
-      </button>
 
       <Main>
         <MenuBar />
