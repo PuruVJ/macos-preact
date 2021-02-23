@@ -27,7 +27,7 @@ export const StartupChime: FC<{}> = ({}) => {
         <AppIcon path={mdiApple} fill="white" size={100} />
       </SplashScreen>
 
-      <button hidden ref={ref} onClick={() => {}}>
+      <button hidden ref={ref}>
         Hello
       </button>
 
@@ -35,7 +35,7 @@ export const StartupChime: FC<{}> = ({}) => {
         url="/assets/sounds/mac-startup-sound.mp3"
         onFinishedPlaying={() => setPlayStatus('STOPPED')}
         playStatus={playStatus}
-      ></Sound>
+      />
     </>
   );
 };
