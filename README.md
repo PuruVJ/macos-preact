@@ -23,4 +23,4 @@ I've always been very fascinated with macOS, and have never owned a Mac/book. So
 
 # Can I contribute?
 
-Sure, open an issue, point out errors, and what not. Wanna fix something yourselves, you're welcome and I appreciate it.
+Sure, open an issue, point out errors, and what not. Wanna fix something yourselves, you're welcome to open a PR and I appreciate it.
