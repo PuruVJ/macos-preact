@@ -17,22 +17,10 @@ I've always been very fascinated with macOS, and have never owned a Mac/book. So
 
 [Roadmap](https://www.notion.so/MacOS-Web-Roadmap-274d703460564ea3bb5493b39bf8f886)
 
-# What has been done till now?
-
-v1 is done. v2 in progress.
-
 # When will it be ready?
 
 ![Who knows?](https://i.imgur.com/6xfbPzs.gif)
 
 # Can I contribute?
 
-I would really really love contributions from the community.
-
-However, for now, I need the contributors to be well versed in React(Or Preact, Svelte, Vue, Angular, Stencil or just any framework), and be confident with complex\[and dirty! 💩] code(That's an oxymoron for every developer with Imposter Syndrome, but hey, that's all of us).
-
-## Why can't beginners contribute?
-
-I'd really want the beginners to jump in, and improve their own skills. I was a beginner once, and wished I had found an oppurtunity to learn alongside other developers from a complex project. But beginners would need lots of mentoring, and this being primarily a personal project(For now 😉), I simply do not have time to prime beginners.
-
-When this project grows into a considerably big community, we can indulge into mentorship and priming beginners.
+Sure, open an issue, point out errors, and what not. Wanna fix something yourselves, you're welcome and I appreciate it.
