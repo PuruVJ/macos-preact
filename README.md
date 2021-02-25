@@ -15,55 +15,7 @@ I've always been very fascinated with macOS, and have never owned a Mac/book. So
 - Component Library - None!! It used Material UI before, but MUI had to be removed because of high lag in Typescript Intellisense. See [microsoft/TypeScript#34801](https://github.com/microsoft/TypeScript/issues/34801)
 - Styling Solution - Styled Components.
 
-# Roadmap
-
-## v0.1
-
-- [x] Basic wallpaper
-- [x] Basic dock with its cool hovering animations
-- [x] Basic toolbar
-- [x] Everything to built with theme switching in mind
-
-## v0.2
-
-- [x] Action center
-  - [x] Light/Dark mode switcher
-  - [x] Brightness slider(Not functional)
-  - [x] Sound slider (Not functional)
-    - [x] Wifi (Not functional)
-    - [x] Bluetooth (Not functional)
-    - [x] AirDrop (Not functional)
-  - [x] Do not disturb (Not functional)
-  - [x] Keyboard Brightness (Not functional)
-  - [x] Screen Mirroring (Not functional)
-
-## v0.3
-
-- [x] Basic API for Menu Bar
-- [x] Menu bar, and menu items. Not necessarily functional
-- [x] Menu for Finder only (For now)
-
-## v0.4
-
-- [ ] Add the MacOS startup chime.
-- [ ] Make windowing solution
-- [ ] Add open/close trigger to apps(Dock included)
-- [ ] Window should have traffic light buttons, with close, minimize, fullscreen buttons(functional)
-- [ ] Make Puru's twitter a profile for Puru.
-
-## v0.5
-
-- [ ] Clicking on unsupported apps in dock should show a window saying that this app isn't available and list the available ones.
-
-## v1
-
-- [ ] A wallpaper switcher app. Offers automatic day/light wallpapers too
-- [ ] Probably Safari. Uses Iframe and basic tabs functionality.
-- [ ] A text editor. Like VSCode or Notepad, haven't thought ¯\\\_(ツ)\_/¯
-
-## v4
-
-- All kinds of crazy apps like clock, weather, and much more. Would be great if community jumped in to make some of these apps.
+[Roadmap](https://www.notion.so/MacOS-Web-Roadmap-274d703460564ea3bb5493b39bf8f886)
 
 # What has been done till now?
 
