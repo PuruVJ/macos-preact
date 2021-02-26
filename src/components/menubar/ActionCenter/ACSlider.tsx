@@ -1,4 +1,11 @@
-import { Slider, SliderHandle, SliderProps, SliderRange, SliderTrack } from '@reach/slider';
+import {
+  Slider,
+  SliderHandle,
+  SliderInput,
+  SliderProps,
+  SliderRange,
+  SliderTrack,
+} from '@reach/slider';
 import '@reach/slider/styles.css';
 import { transparentize } from 'color2k';
 import { FC } from 'react';
@@ -7,17 +14,18 @@ import { theme } from '__/theme';
 
 export const ACSlider: FC<SliderProps> = ({ children, ...props }) => {
   return (
-    <StyledSlider {...props}>
-      <SliderTrack>
-        <SliderRange>
+    <div>
+      <StyledSliderSlider handleAlignment="contain" {...props}>
+        <SliderTrack>
+          <SliderRange />
           <SliderHandle />
-        </SliderRange>
-      </SliderTrack>
-    </StyledSlider>
+        </SliderTrack>
+      </StyledSliderSlider>
+    </div>
   );
 };
 
-const StyledSlider = styled(Slider)`
+const StyledSliderSlider = styled(SliderInput)`
   --size: 1.4rem;
 
   [data-reach-slider-range] {
@@ -25,7 +33,7 @@ const StyledSlider = styled(Slider)`
   }
 
   [data-reach-slider-track] {
-    width: 100%;
+    /* width: 100%; */
     height: var(--size);
 
     border-radius: inherit;

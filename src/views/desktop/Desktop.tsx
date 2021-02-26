@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { Reset } from 'styled-reset';
 import { StartupChime } from '__/components/Desktop/StartupChime';
 import { Dock } from '__/components/dock/Dock';
+import { ACSlider } from '__/components/menubar/ActionCenter/ACSlider';
 import { MenuBar } from '__/components/menubar/MenuBar';
 import { useTheme } from '__/hooks/use-theme';
 import type { TTheme } from '__/stores/theme.store';
@@ -27,6 +28,7 @@ export const Desktop = () => {
 
       <Main>
         <MenuBar />
+        <ACSlider />
         <Dock />
       </Main>
 
