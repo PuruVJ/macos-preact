@@ -1,59 +1,53 @@
+import { Slider, SliderHandle, SliderProps, SliderRange, SliderTrack } from '@reach/slider';
+import '@reach/slider/styles.css';
 import { transparentize } from 'color2k';
-import { FC, HTMLProps } from 'react';
-import ReactSlider from 'react-slider';
+import { FC } from 'react';
 import styled from 'styled-components';
 import { theme } from '__/theme';
 
-export const ACSlider: FC<ReactSlider.ReactSliderProps> = ({ children, ...props }) => {
-  return <Slider renderTrack={Track} renderThumb={Thumb} {...props}></Slider>;
+export const ACSlider: FC<SliderProps> = ({ children, ...props }) => {
+  return (
+    <StyledSlider {...props}>
+      <SliderTrack>
+        <SliderRange>
+          <SliderHandle />
+        </SliderRange>
+      </SliderTrack>
+    </StyledSlider>
+  );
 };
 
-const pickTrackColor = (index: number) => ['white', 'transparent'][index];
-
-const Slider = styled(ReactSlider)`
+const StyledSlider = styled(Slider)`
   --size: 1.4rem;
-  width: 100%;
-  height: var(--size);
 
-  box-shadow: 0 0 0 0.35px ${transparentize(theme.colors.grey[600], 0.3)};
-  border-radius: 1rem;
+  [data-reach-slider-range] {
+    background-color: white;
+  }
 
-  background-color: hsla(${theme.colors.dark.hsl}, 0.1);
+  [data-reach-slider-track] {
+    width: 100%;
+    height: var(--size);
+
+    border-radius: inherit;
+
+    background-color: transparent;
+
+    box-shadow: 0 0 0 0.35px ${transparentize(theme.colors.grey[600], 0.3)};
+    border-radius: 1rem;
+
+    background-color: hsla(${theme.colors.dark.hsl}, 0.1);
+  }
+
+  [data-reach-slider-handle] {
+    height: var(--size);
+    width: var(--size);
+
+    background-color: white;
+
+    border-radius: 50%;
+
+    box-shadow: hsla(0, 0%, 0%, 0.3) 0px 0px 3px 1px;
+
+    cursor: grab;
+  }
 `;
-
-const StyledTrack = styled.div<State>`
-  height: inherit;
-
-  background-color: ${({ index }) => pickTrackColor(index)};
-
-  border-radius: inherit;
-`;
-
-const StyledThumb = styled.div<State>`
-  height: var(--size);
-  width: var(--size);
-
-  background-color: white;
-
-  border-radius: 50%;
-
-  box-shadow: hsla(0, 0%, 0%, 0.3) 0px 0px 3px 1px;
-
-  cursor: grab;
-
-  /* margin-left: calc(-1 * var(--size)); */
-`;
-
-interface State {
-  index: number;
-  value: number | number[];
-}
-const Track = (props: HTMLProps<HTMLDivElement>, state: State) => (
-  // @ts-ignore
-  <StyledTrack {...props} index={state.index} />
-);
-
-const Thumb = (props: HTMLProps<HTMLDivElement>, state: State) => (
-  // @ts-ignore
-  <StyledThumb {...props} />
-);
