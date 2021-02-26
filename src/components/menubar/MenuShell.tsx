@@ -5,7 +5,9 @@ import { useTheme } from '__/hooks/use-theme';
 import type { TTheme } from '__/stores/theme.store';
 import { theme } from '__/theme';
 
-interface IMenuShell {}
+interface IMenuShell {
+  children: React.ReactNode;
+}
 
 export const MenuShell: FC<IMenuShell> = ({ children }) => {
   const ref = useRef<HTMLElement | null>(null);
