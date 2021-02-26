@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@mdi/js": "^5.9.55",
+    "@reach/slider": "^0.13.2",
     "@rooks/use-raf": "^4.9.1",
     "@tippyjs/react": "^4.2.0",
     "color2k": "^1.2.2",
@@ -21,7 +22,6 @@
     "react-helmet-async": "^1.0.7",
     "react-is": "^17.0.1",
     "react-lazily": "^0.9.0",
-    "react-slider": "^1.1.4",
     "react-sound": "^1.2.0",
     "styled-components": "^5.2.1",
     "styled-reset": "^4.3.4",
