@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useInterval } from 'use-interval';
 
 const MenuBarTime = () => {
-  const [time, setTime] = useState(new Date());
+  const [time, setTime] = useState(() => new Date());
 
   useInterval(() => setTime(new Date()), 2000);
 
