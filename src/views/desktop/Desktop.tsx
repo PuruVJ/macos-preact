@@ -31,7 +31,6 @@ export const Desktop = () => {
       </Main>
 
       <BackgroundCover theme={theme} aria-hidden="true" />
-      <HiddenBackgroundCover aria-hidden />
     </>
   );
 };
@@ -78,7 +77,7 @@ const BackgroundCover = styled.div<{ theme: TTheme }>`
   height: 100%;
   width: 100%;
 
-  z-index: -1;
+  z-index: -2;
   position: fixed;
   top: 0;
   left: 0;

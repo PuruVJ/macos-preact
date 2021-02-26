@@ -2,8 +2,7 @@ import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
 import Tippy from '@tippyjs/react/headless';
 import { transparentize } from 'color2k';
 import { useAtom } from 'jotai';
-import { useImmerAtom, withImmer } from 'jotai/immer';
-import { useEffect, useState } from 'react';
+import { useImmerAtom } from 'jotai/immer';
 import styled, { css } from 'styled-components';
 import { sticky } from 'tippy.js';
 import { VolumeLowSVG } from '__/assets/sf-icons/VolumeLowSVG';
@@ -43,6 +42,16 @@ const MenuBar = (): React.ReactElement => {
               return val;
             })
           }
+          popperOptions={{
+            modifiers: [
+              {
+                name: 'computeStyles',
+                options: {
+                  gpuAcceleration: false,
+                },
+              },
+            ],
+          }}
           onHide={() =>
             void setActiveMenu((val) => {
               val[menuID] = false;

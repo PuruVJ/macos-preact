@@ -4,8 +4,9 @@ import Tippy from '@tippyjs/react';
 import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { RefObject, useRef } from 'react';
 import styled from 'styled-components';
-import 'tippy.js/dist/tippy.css';
 import type { IDockItem } from '__/stores/dock.store';
+import { sticky } from 'tippy.js';
+import { DockTooltip } from './DockTooltip';
 
 interface IDockItemProps extends IDockItem {
   mouseX: MotionValue<null | number>;
@@ -19,20 +20,14 @@ function DockItem({ icon, action, appName, mouseX }: IDockItemProps) {
   return (
     <section>
       <DockItemButton aria-label={`Launch ${appName}`} onClick={action}>
-        <Tippy
-          delay={50}
-          offset={[0, 10]}
-          interactive={true}
-          inertia={true}
-          content={<span>{appName}</span>}
-        >
+        <DockTooltip label={appName}>
           <motion.img
             ref={ref}
             src={icon}
             draggable={false}
             style={{ width, willChange: 'width' }}
           />
-        </Tippy>
+        </DockTooltip>
       </DockItemButton>
     </section>
   );

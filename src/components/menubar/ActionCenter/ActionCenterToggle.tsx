@@ -22,6 +22,17 @@ export const ActionCenterToggle: FC<IActionCenterToggle> = ({}) => {
           <ActionCenter>Hello</ActionCenter>
         </div>
       )}
+      // If this is removed, blurry text will be there
+      popperOptions={{
+        modifiers: [
+          {
+            name: 'computeStyles',
+            options: {
+              gpuAcceleration: false,
+            },
+          },
+        ],
+      }}
       onClickOutside={({ hide }) => hide()}
     >
       <span>
