@@ -1,11 +1,9 @@
-import { ButtonBase } from '../utils/ButtonBase';
 import useRaf from '@rooks/use-raf';
-import Tippy from '@tippyjs/react';
 import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { RefObject, useRef } from 'react';
 import styled from 'styled-components';
 import type { IDockItem } from '__/stores/dock.store';
-import { sticky } from 'tippy.js';
+import { ButtonBase } from '../utils/ButtonBase';
 import { DockTooltip } from './DockTooltip';
 
 interface IDockItemProps extends IDockItem {
