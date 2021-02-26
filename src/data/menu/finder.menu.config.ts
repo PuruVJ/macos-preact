@@ -310,7 +310,7 @@ export const finderMenuConfig = createMenuConfig({
         title: 'Applications',
       },
       utilities: {
-        title: 'utilities',
+        title: 'Utilities',
         breakAfter: true,
       },
 
