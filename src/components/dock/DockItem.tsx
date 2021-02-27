@@ -17,16 +17,18 @@ function DockItem({ icon, action, appName, mouseX }: IDockItemProps) {
 
   return (
     <section>
-      <DockItemButton aria-label={`Launch ${appName}`} onClick={action}>
-        <DockTooltip label={appName}>
-          <motion.img
-            ref={ref}
-            src={icon}
-            draggable={false}
-            style={{ width, willChange: 'width' }}
-          />
-        </DockTooltip>
-      </DockItemButton>
+      <DockTooltip label={appName}>
+        <span>
+          <DockItemButton aria-label={`Launch ${appName}`} onClick={action}>
+            <motion.img
+              ref={ref}
+              src={icon}
+              draggable={false}
+              style={{ width, willChange: 'width' }}
+            />
+          </DockItemButton>
+        </span>
+      </DockTooltip>
     </section>
   );
 }

@@ -9,13 +9,13 @@ type IDockTooltip = {
 };
 
 export const DockTooltip: FC<IDockTooltip> = ({ label, children }) => {
-  const ref = useRef<HTMLDivElement>(null);
+  // const ref = useRef<HTMLDivElement>(null);
 
   return (
     <>
       <Tippy
         render={() => <Box>{label}</Box>}
-        // trigger="click"
+        trigger="focusin mouseenter"
         sticky
         plugins={[sticky]}
         delay={50}
