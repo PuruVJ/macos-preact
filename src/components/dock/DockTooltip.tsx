@@ -33,12 +33,6 @@ export const DockTooltip: FC<IDockTooltip> = ({ label, children }) => {
                 gpuAcceleration: false,
               },
             },
-            // {
-            //   name: 'arrow',
-            //   options: {
-            //     element: ref.current,
-            //   },
-            // },
           ],
         }}
       >
@@ -66,29 +60,29 @@ const Box = styled.div`
   letter-spacing: 0.3px;
 `;
 
-const Arrow = styled.div`
-  visibility: hidden;
+// const Arrow = styled.div`
+//   visibility: hidden;
 
-  top: -10px;
+//   top: -10px;
 
-  &,
-  &::before {
-    --size: 0.75rem;
-    position: absolute;
+//   &,
+//   &::before {
+//     --size: 0.75rem;
+//     position: absolute;
 
-    width: var(--size);
-    height: var(--size);
+//     width: var(--size);
+//     height: var(--size);
 
-    background-color: hsla(${theme.colors.light.hsl}, 0.5);
+//     background-color: hsla(${theme.colors.light.hsl}, 0.5);
 
-    border-radius: 0.1rem;
-    box-shadow: hsla(0deg, 0%, 0%, 30%) 0px 1px 5px 2px;
-  }
+//     border-radius: 0.1rem;
+//     box-shadow: hsla(0deg, 0%, 0%, 0.3) 0px 1px 5px 2px;
+//   }
 
-  ::before {
-    visibility: visible;
-    content: '';
+//   ::before {
+//     visibility: visible;
+//     content: '';
 
-    transform: rotate(45deg);
-  }
-`;
+//     transform: rotate(45deg);
+//   }
+// `;
