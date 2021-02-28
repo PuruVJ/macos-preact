@@ -5,6 +5,7 @@ import { AirDropSVG } from '__/assets/sf-icons/AirDrop.svg';
 import { MoonSVG } from '__/assets/sf-icons/Moon.svg';
 import { AppIcon } from '__/components/utils/AppIcon';
 import { ButtonBase } from '__/components/utils/ButtonBase';
+import { useScreenBrightness } from '__/hooks/use-screen-brightness';
 import { useTheme } from '__/hooks/use-theme';
 import { theme } from '__/theme';
 import { MenuShell } from '../MenuShell';
@@ -14,8 +15,14 @@ import { ActionCenterTile } from './ActionCenterTile';
 
 export const ActionCenter: FC<{}> = ({}) => {
   const [theme, setTheme] = useTheme();
+  const [brightness, setBrightness] = useScreenBrightness();
 
   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
+  const updateBrightness = (value: number | number[] | null | undefined) => {
+    if (value && !Array.isArray(value)) {
+      setBrightness(value);
+    }
+  };
 
   const ThemeSVGComp = MoonSVG;
 
@@ -92,7 +99,7 @@ export const ActionCenter: FC<{}> = ({}) => {
           ]}
         >
           <Label>Display</Label>
-          <ACSlider min={30} defaultValue={100} max={100} />
+          <ACSlider min={30} defaultValue={brightness} max={100} onChange={updateBrightness} />
         </ActionCenterSurface>
 
         {/* Sound */}
