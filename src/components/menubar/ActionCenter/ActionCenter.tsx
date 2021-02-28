@@ -1,7 +1,6 @@
 import { mdiBluetooth, mdiKeyboard, mdiWifiStrength4 } from '@mdi/js';
 import { FC } from 'react';
-import styled from 'styled-components';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { AirDropSVG } from '__/assets/sf-icons/AirDrop.svg';
 import { MoonSVG } from '__/assets/sf-icons/Moon.svg';
 import { AppIcon } from '__/components/utils/AppIcon';
