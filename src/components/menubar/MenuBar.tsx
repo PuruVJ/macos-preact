@@ -106,7 +106,7 @@ const Header = styled.header`
   height: 1.4rem;
 
   background-color: hsla(${theme.colors.light.hsl}, 0.3);
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(12px);
 
   color: ${theme.colors.light.contrast};
   fill: ${theme.colors.light.contrast};
