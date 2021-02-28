@@ -3,6 +3,7 @@ import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'fr
 import { RefObject, useRef } from 'react';
 import styled from 'styled-components';
 import type { IDockItem } from '__/stores/dock.store';
+import { theme } from '__/theme';
 import { ButtonBase } from '../utils/ButtonBase';
 import { DockTooltip } from './DockTooltip';
 
@@ -10,7 +11,7 @@ interface IDockItemProps extends IDockItem {
   mouseX: MotionValue<null | number>;
 }
 
-function DockItem({ icon, action, appName, mouseX }: IDockItemProps) {
+function DockItem({ icon, action, appName, isOpen, mouseX }: IDockItemProps) {
   const ref = useRef<HTMLImageElement>(null);
 
   const { width } = useDockHoverAnimation(mouseX, ref);
@@ -26,6 +27,7 @@ function DockItem({ icon, action, appName, mouseX }: IDockItemProps) {
               draggable={false}
               style={{ width, willChange: 'width' }}
             />
+            <Dot visible={isOpen} />
           </DockItemButton>
         </span>
       </DockTooltip>
@@ -44,12 +46,26 @@ const DockItemButton = styled(ButtonBase)`
   transform-origin: bottom;
 
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
 
   img {
     width: 57.6px;
     height: auto;
   }
+`;
+
+const Dot = styled.div<{ visible: boolean }>`
+  height: 4px;
+  width: 4px;
+
+  margin: 0px;
+
+  border-radius: 50%;
+
+  background-color: ${theme.colors.dark.main};
+
+  opacity: ${({ visible }) => (visible ? 1 : 0)};
 `;
 
 const baseWidth = 57.6;

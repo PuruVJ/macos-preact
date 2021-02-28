@@ -41,7 +41,7 @@ const DockContainer = styled.section`
   z-index: 9900;
 
   width: 100%;
-  height: 5rem;
+  height: 5.2rem;
 
   padding: 0.4rem;
 

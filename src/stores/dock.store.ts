@@ -68,7 +68,7 @@ const initialState = createDockConfig({
     purusTwitter: {
       appName: `My Twitter`,
       icon: pathById('purus-twitter'),
-      isOpen: false,
+      isOpen: true,
       breakBefore: true,
       action: () => {
         window.open('https://twitter.com/puruvjdev', '_blank');
@@ -78,7 +78,7 @@ const initialState = createDockConfig({
     viewSource: {
       appName: 'View Source',
       icon: pathById('github'),
-      isOpen: false,
+      isOpen: true,
       action: () => {
         window.open('https://github.com/puruvj/macos-web', '_blank');
       },
