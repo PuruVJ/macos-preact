@@ -12,7 +12,7 @@ import { theme } from '__/theme';
 import { AppIcon } from '../utils/AppIcon';
 import { ButtonBase } from '../utils/ButtonBase';
 import { ActionCenterToggle } from './ActionCenter/ActionCenterToggle';
-import { Menu } from './Menu';
+import { Menu } from './menubar/Menu';
 import { TopBarTime } from './TopBarTime';
 import { TopBarIconButton } from './TopBarIconButton';
 
