@@ -13,8 +13,8 @@ import { AppIcon } from '../utils/AppIcon';
 import { ButtonBase } from '../utils/ButtonBase';
 import { ActionCenterToggle } from './ActionCenter/ActionCenterToggle';
 import { Menu } from './Menu';
-import { MenuBarTime } from './MenuBarTime';
-import { MenuIconButton } from './MenuIconButton';
+import { TopBarTime } from './TopBarTime';
+import { TopBarIconButton } from './TopBarIconButton';
 
 const TopBar = (): React.ReactElement => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
@@ -77,22 +77,22 @@ const TopBar = (): React.ReactElement => {
 
       <Spacer />
 
-      <MenuIconButton>
+      <TopBarIconButton>
         <AppIcon size={24} path={mdiAppleAirplay} />
-      </MenuIconButton>
+      </TopBarIconButton>
 
-      <MenuIconButton>
+      <TopBarIconButton>
         <AppIcon size={24} path={mdiWifiStrength4} />
-      </MenuIconButton>
+      </TopBarIconButton>
 
-      <MenuIconButton>
+      <TopBarIconButton>
         <VolumeLowSVG />
-      </MenuIconButton>
+      </TopBarIconButton>
 
       <ActionCenterToggle />
 
       <ButtonBase>
-        <MenuBarTime />
+        <TopBarTime />
       </ButtonBase>
     </Header>
   );

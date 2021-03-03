@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import { useState } from 'react';
 import { useInterval } from 'use-interval';
 
-const MenuBarTime = () => {
+const TopBarTime = () => {
   const [time, setTime] = useState(new Date());
 
   useInterval(() => setTime(new Date()), 2000);
@@ -14,4 +14,4 @@ const MenuBarTime = () => {
   );
 };
 
-export { MenuBarTime };
+export { TopBarTime };
