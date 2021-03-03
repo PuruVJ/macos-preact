@@ -3,7 +3,7 @@ interface IAppIcon extends React.SVGAttributes<SVGSVGElement> {
   size?: number;
 }
 
-const AppIcon = ({ size = 24, path, ...props }: IAppIcon) => (
+export const AppIcon = ({ size = 24, path, ...props }: IAppIcon) => (
   // @ts-ignore
   <svg
     {...props}
@@ -15,5 +15,3 @@ const AppIcon = ({ size = 24, path, ...props }: IAppIcon) => (
     <path d={path} />
   </svg>
 );
-
-export { AppIcon };

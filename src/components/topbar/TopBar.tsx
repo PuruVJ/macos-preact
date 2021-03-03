@@ -16,7 +16,7 @@ import { Menu } from './menubar/Menu';
 import { TopBarTime } from './TopBarTime';
 import { TopBarIconButton } from './TopBarIconButton';
 
-const TopBar = (): React.ReactElement => {
+export const TopBar = (): React.ReactElement => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
   const [activeMenu, setActiveMenu] = useImmerAtom(activeMenuStore);
 
@@ -174,5 +174,3 @@ const MenuButton = styled(ButtonBase)<{ active: boolean; isDefaultMenu: boolean 
 const Spacer = styled.span`
   flex: 1 1 auto;
 `;
-
-export { TopBar };

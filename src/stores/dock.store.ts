@@ -86,6 +86,4 @@ const initialState = createDockConfig({
   },
 });
 
-const dockItemsStore = atom(initialState);
-
-export { dockItemsStore };
+export const dockItemsStore = atom(initialState);
