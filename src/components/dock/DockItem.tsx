@@ -11,7 +11,7 @@ interface IDockItemProps extends IDockItem {
   mouseX: MotionValue<null | number>;
 }
 
-function DockItem({ icon, action, appName, isOpen, mouseX }: IDockItemProps) {
+export function DockItem({ icon, action, appName, isOpen, mouseX }: IDockItemProps) {
   const ref = useRef<HTMLImageElement>(null);
 
   const { width } = useDockHoverAnimation(mouseX, ref);
@@ -124,5 +124,3 @@ const useDockHoverAnimation = (
 
   return { width, ref };
 };
-
-export { DockItem };
