@@ -16,6 +16,7 @@ export const DockTooltip: FC<IDockTooltip> = ({ label, children }) => {
       <Tippy
         render={() => <Box>{label}</Box>}
         trigger="focusin mouseenter"
+        appendTo={document.body}
         sticky
         plugins={[sticky]}
         delay={50}

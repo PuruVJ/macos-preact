@@ -7,8 +7,8 @@ import { TopBar } from '__/components/topbar/TopBar';
 import { useTheme } from '__/hooks/use-theme';
 import type { TTheme } from '__/stores/theme.store';
 
-const DarkBackground = '/assets/wallpapers/3-1.jpg';
-const LightBackground = '/assets/wallpapers/3-2.jpg';
+const DarkBackground = '/assets/wallpapers/4-1.jpg';
+const LightBackground = '/assets/wallpapers/4-2.jpg';
 
 export const Desktop = () => {
   const [theme] = useTheme();
