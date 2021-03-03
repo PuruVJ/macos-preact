@@ -7,7 +7,7 @@ import { theme } from '__/theme';
 
 interface IMenuShell {}
 
-export const MenuShell: FC<IMenuShell> = ({ children }) => {
+export const ActionCenterShell: FC<IMenuShell> = ({ children }) => {
   const ref = useRef<HTMLElement | null>(null);
   const [theme] = useTheme();
 

@@ -1,31 +1,22 @@
-import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
 import Tippy from '@tippyjs/react/headless';
 import { transparentize } from 'color2k';
 import { useAtom } from 'jotai';
 import { useImmerAtom } from 'jotai/immer';
+import { FC } from 'react';
 import styled, { css } from 'styled-components';
 import { sticky } from 'tippy.js';
-import { VolumeLowSVG } from '__/assets/sf-icons/VolumeLowSVG';
+import { ButtonBase } from '__/components/utils/ButtonBase';
 import { activeMenuStore } from '__/stores/active-menu.store';
 import { menuBarMenusStore } from '__/stores/menubar.store';
 import { theme } from '__/theme';
-import { AppIcon } from '../utils/AppIcon';
-import { ButtonBase } from '../utils/ButtonBase';
-import { ActionCenterToggle } from './ActionCenter/ActionCenterToggle';
 import { Menu } from './Menu';
-import { MenuBarTime } from './MenuBarTime';
-import { MenuIconButton } from './MenuIconButton';
 
-const MenuBar = (): React.ReactElement => {
+export const MenuBar: FC<{}> = ({}) => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
   const [activeMenu, setActiveMenu] = useImmerAtom(activeMenuStore);
 
   return (
-    <Header>
-      <AppleIconButton>
-        <AppIcon size={18} path={mdiApple} />
-      </AppleIconButton>
-
+    <>
       {/* @ts-ignore */}
       {Object.keys(currentAppMenus).map((menuID: keyof typeof currentAppMenus) => (
         <Tippy
@@ -74,62 +65,9 @@ const MenuBar = (): React.ReactElement => {
           </span>
         </Tippy>
       ))}
-
-      <Spacer />
-
-      <MenuIconButton>
-        <AppIcon size={24} path={mdiAppleAirplay} />
-      </MenuIconButton>
-
-      <MenuIconButton>
-        <AppIcon size={24} path={mdiWifiStrength4} />
-      </MenuIconButton>
-
-      <MenuIconButton>
-        <VolumeLowSVG />
-      </MenuIconButton>
-
-      <ActionCenterToggle />
-
-      <ButtonBase>
-        <MenuBarTime />
-      </ButtonBase>
-    </Header>
+    </>
   );
 };
-
-const Header = styled.header`
-  display: flex;
-  align-items: center;
-
-  width: 100%;
-  height: 1.4rem;
-
-  background-color: hsla(${theme.colors.light.hsl}, 0.3);
-  backdrop-filter: blur(12px);
-
-  color: ${theme.colors.light.contrast};
-  fill: ${theme.colors.light.contrast};
-
-  button {
-    font-weight: 500;
-    font-size: 0.8rem;
-    font-family: ${theme.typography.fontFamily};
-
-    letter-spacing: 0.3px;
-
-    position: relative;
-
-    height: 100%;
-  }
-`;
-
-const AppleIconButton = styled(ButtonBase)`
-  border-radius: 30px;
-
-  padding: 0 0.5rem;
-  margin: 0 0.6rem;
-`;
 
 const MenuButton = styled(ButtonBase)<{ active: boolean; isDefaultMenu: boolean }>`
   font-weight: 500;
@@ -170,9 +108,3 @@ const MenuButton = styled(ButtonBase)<{ active: boolean; isDefaultMenu: boolean 
     background-color: ${transparentize(theme.colors.grey[100], 0.7)};
   }
 `;
-
-const Spacer = styled.span`
-  flex: 1 1 auto;
-`;
-
-export { MenuBar };

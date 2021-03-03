@@ -2,7 +2,7 @@ import Tippy from '@tippyjs/react/headless';
 import { sticky } from 'tippy.js/headless';
 import { FC } from 'react';
 import { SwitchSVG } from '__/assets/sf-icons/switch.svg';
-import { MenuIconButton } from '../MenuIconButton';
+import { TopBarIconButton } from '../TopBarIconButton';
 import { ActionCenter } from './ActionCenter';
 
 interface IActionCenterToggle {}
@@ -36,9 +36,9 @@ export const ActionCenterToggle: FC<IActionCenterToggle> = ({}) => {
       onClickOutside={({ hide }) => hide()}
     >
       <span>
-        <MenuIconButton>
+        <TopBarIconButton>
           <SwitchSVG />
-        </MenuIconButton>
+        </TopBarIconButton>
       </span>
     </Tippy>
   );

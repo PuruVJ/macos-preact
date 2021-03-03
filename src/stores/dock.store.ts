@@ -65,6 +65,7 @@ const initialState = createDockConfig({
       icon: pathById('system-preferences'),
       isOpen: false,
     },
+
     purusTwitter: {
       appName: `My Twitter`,
       icon: pathById('purus-twitter'),
@@ -74,7 +75,6 @@ const initialState = createDockConfig({
         window.open('https://twitter.com/puruvjdev', '_blank');
       },
     },
-
     viewSource: {
       appName: 'View Source',
       icon: pathById('github'),
@@ -86,6 +86,4 @@ const initialState = createDockConfig({
   },
 });
 
-const dockItemsStore = atom(initialState);
-
-export { dockItemsStore };
+export const dockItemsStore = atom(initialState);

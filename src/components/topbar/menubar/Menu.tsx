@@ -2,7 +2,7 @@ import { FC, useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import type { IMenu } from '__/helpers/menubar';
 import { theme } from '__/theme';
-import { ButtonBase } from '../utils/ButtonBase';
+import { ButtonBase } from '../../utils/ButtonBase';
 
 type TMenu = {
   menu: IMenu<any>;
