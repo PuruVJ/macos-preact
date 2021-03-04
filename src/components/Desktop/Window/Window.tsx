@@ -48,7 +48,7 @@ const TaskBar = styled.header`
   height: 2.5rem;
   width: 100%;
 
-  cursor: grab;
+  padding: 0 0.75rem;
 `;
 
 const Divider = styled.div`
