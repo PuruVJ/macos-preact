@@ -35,8 +35,7 @@ export const Dock = ({}) => {
 };
 
 const DockContainer = styled.section`
-  position: fixed;
-  bottom: 0.3rem;
+  margin-bottom: 0.3rem;
   left: 0;
   z-index: 9900;
 

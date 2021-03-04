@@ -28,9 +28,9 @@ export const Desktop = () => {
 
       <Main>
         <TopBar />
-        {/* <WindowsArea> */}
-        <Window />
-        {/* </WindowsArea> */}
+        <WindowsArea>
+          <Window />
+        </WindowsArea>
         <Dock />
       </Main>
 
