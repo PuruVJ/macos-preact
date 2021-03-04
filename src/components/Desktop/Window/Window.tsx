@@ -11,12 +11,14 @@ export const Window: FC<TWindow> = ({ children }) => {
     <Rnd
       default={{
         height: 600,
-        width: 800,
+        width: '50%',
         x: (document.body.clientWidth - 800) / 2,
-        y: 200 / 2,
+        y: 100 / 2,
       }}
       dragHandleClassName="app-window-drag-handle"
       bounds="parent"
+      minWidth="200"
+      minHeight="200"
     >
       <Container>
         <TaskBar className="app-window-drag-handle">
