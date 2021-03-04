@@ -45,6 +45,10 @@ const Header = styled.header`
   display: flex;
   align-items: center;
 
+  position: fixed;
+
+  z-index: 999999;
+
   width: 100%;
   height: 1.4rem;
 

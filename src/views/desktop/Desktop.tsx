@@ -2,13 +2,14 @@ import { useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Reset } from 'styled-reset';
 import { StartupChime } from '__/components/Desktop/StartupChime';
+import { Window } from '__/components/Desktop/Window/Window';
 import { Dock } from '__/components/dock/Dock';
 import { TopBar } from '__/components/topbar/TopBar';
 import { useTheme } from '__/hooks/use-theme';
 import type { TTheme } from '__/stores/theme.store';
 
-const DarkBackground = '/assets/wallpapers/4-1.jpg';
-const LightBackground = '/assets/wallpapers/4-2.jpg';
+const DarkBackground = '/assets/wallpapers/3-1.jpg';
+const LightBackground = '/assets/wallpapers/3-2.jpg';
 
 export const Desktop = () => {
   const [theme] = useTheme();
@@ -27,6 +28,9 @@ export const Desktop = () => {
 
       <Main>
         <TopBar />
+        {/* <WindowsArea> */}
+        <Window />
+        {/* </WindowsArea> */}
         <Dock />
       </Main>
 
@@ -47,6 +51,7 @@ body {
 
   font-family: var(--app-font-family);
 
+  overflow: hidden;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -68,9 +73,16 @@ body {
 }
 `;
 
+const WindowsArea = styled.section`
+  display: block;
+`;
+
 const Main = styled.main`
   height: 100%;
   width: 100%;
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 `;
 
 const BackgroundCover = styled.div<{ theme: TTheme }>`
