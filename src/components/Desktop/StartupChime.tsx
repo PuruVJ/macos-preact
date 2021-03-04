@@ -58,7 +58,7 @@ const SplashScreen = styled.div<{ isHidden: boolean }>`
   position: fixed;
   top: 0;
   bottom: 0;
-  z-index: 9999;
+  z-index: 999999999999;
 
   height: 100vh;
   width: 100vw;
