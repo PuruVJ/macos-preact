@@ -20,7 +20,7 @@ export function DockItem({ icon, action, appName, isOpen, mouseX }: IDockItemPro
     <section>
       <DockTooltip label={appName}>
         <span>
-          <DockItemButton aria-label={`Launch ${appName}`} onClick={action}>
+          <DockItemButton aria-label={`Launch ${appName}`} onClick={(e) => action?.(e)}>
             <motion.img
               ref={ref}
               src={icon}

@@ -4,7 +4,7 @@ export interface IDockItem {
   appName: string;
   icon: string;
   isOpen: boolean;
-  action?: (e: KeyboardEvent | MouseEvent) => void;
+  action?: (e: any) => void;
   breakBefore?: boolean;
 }
 
