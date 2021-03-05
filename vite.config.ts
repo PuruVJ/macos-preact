@@ -12,6 +12,8 @@ export default defineConfig({
   resolve: {
     alias: {
       __: resolve(__dirname, './src'),
+      react: 'preact/compat',
+      'react-dom': 'preact/compat',
     },
   },
 });

@@ -1,11 +1,11 @@
 import { Provider } from 'jotai';
 import { StrictMode, Suspense } from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'preact';
 import './theme.css';
 import { Desktop } from './views/desktop/Desktop';
 import { HelmetProvider } from 'react-helmet-async';
 
-ReactDOM.render(
+render(
   <Suspense fallback={<span />}>
     <StrictMode>
       <Provider>
@@ -15,7 +15,7 @@ ReactDOM.render(
       </Provider>
     </StrictMode>
   </Suspense>,
-  document.getElementById('root'),
+  document.getElementById('root') as Element,
 );
 
 if (import.meta.hot) {
