@@ -1,11 +1,10 @@
 import { atom } from 'jotai';
-import type React from 'react';
 
 export interface IDockItem {
   appName: string;
   icon: string;
   isOpen: boolean;
-  action?: (e: React.KeyboardEvent | React.MouseEvent) => void;
+  action?: (e: KeyboardEvent | MouseEvent) => void;
   breakBefore?: boolean;
 }
 

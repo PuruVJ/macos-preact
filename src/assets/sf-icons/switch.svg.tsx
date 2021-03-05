@@ -1,4 +1,6 @@
-export const SwitchSVG = ({ ...props }: React.SVGProps<SVGSVGElement>) => (
+import { SVGProps } from 'react';
+
+export const SwitchSVG = ({ ...props }: SVGProps<SVGSVGElement>) => (
   <svg
     width="351"
     height="348"
