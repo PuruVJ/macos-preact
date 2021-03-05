@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Reset } from 'styled-reset';
 import { StartupChime } from '__/components/Desktop/StartupChime';
-import { Window } from '__/components/Desktop/Window/Window';
 import { WindowsArea } from '__/components/Desktop/WindowsArea/WindowsArea';
 import { Dock } from '__/components/dock/Dock';
 import { TopBar } from '__/components/topbar/TopBar';
