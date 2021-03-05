@@ -1,10 +1,10 @@
-import reactRefresh from '@vitejs/plugin-react-refresh';
+import prefresh from '@prefresh/vite';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [reactRefresh()],
+  plugins: [prefresh()],
   esbuild: {
     jsxInject: `import React from 'react';`,
     minify: true,
