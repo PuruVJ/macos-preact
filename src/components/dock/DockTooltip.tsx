@@ -1,5 +1,5 @@
 import Tippy from '@tippyjs/react/headless';
-import { FC } from 'react';
+import { FC } from 'preact/compat';
 import styled from 'styled-components';
 import { sticky } from 'tippy.js';
 import { theme } from '__/theme';
