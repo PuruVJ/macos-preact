@@ -1,7 +1,3 @@
-// if (import.meta.env.DEV) {
-//   // @ts-ignore
-//   import('preact/debug');
-// }
 import 'preact/debug';
 
 import { Provider } from 'jotai';
