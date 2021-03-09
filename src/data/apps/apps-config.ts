@@ -1,5 +1,5 @@
-import { placeholderAppConfig } from './placeholder';
+import { finderAppConfig } from './finder';
 
 export const appsConfig = {
-  placeholder: placeholderAppConfig,
+  finder: finderAppConfig,
 };
