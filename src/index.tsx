@@ -19,7 +19,3 @@ render(
   </Suspense>,
   document.getElementById('root') as Element,
 );
-
-if (import.meta.hot) {
-  import.meta.hot?.accept();
-}
