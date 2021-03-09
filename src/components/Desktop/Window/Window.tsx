@@ -11,7 +11,7 @@ export const Window: FC<TWindow> = ({ children }) => {
     <Rnd
       default={{
         height: 600,
-        width: '50%',
+        width: 600,
         x: (document.body.clientWidth - 800) / 2,
         y: 100 / 2,
       }}

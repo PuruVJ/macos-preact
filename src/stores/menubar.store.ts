@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 import { finderMenuConfig } from '__/data/menu/finder.menu.config';
-import { activeAppStore } from './active-app.store';
+import { activeAppStore } from './apps.store';
 
 const menuConfigs = { finder: finderMenuConfig };
 
