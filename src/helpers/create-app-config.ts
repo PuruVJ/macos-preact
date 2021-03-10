@@ -1,7 +1,7 @@
 type IAppConfig = {
   title: string;
   resizable: boolean;
-  component: React.ReactNode;
+  component: React.ElementType;
 };
 
 export const createAppConfig = (et: IAppConfig) => et;

@@ -1,7 +1,6 @@
 import { useAtom } from 'jotai';
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'preact/hooks';
 import { themeAtom, TTheme } from '__/stores/theme.store';
-// import { themeAtom, TTheme } from '__/stores/theme.store';
 
 export function useTheme() {
   const localValue = localStorage.getItem('theme:type') as TTheme;

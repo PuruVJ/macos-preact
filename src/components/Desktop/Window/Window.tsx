@@ -1,12 +1,18 @@
-import { FC } from 'react';
+import { FC } from 'preact/compat';
 import { Rnd } from 'react-rnd';
 import styled from 'styled-components';
+import { appsConfig } from '__/data/apps/apps-config';
+import { TApp } from '__/stores/apps.store';
 import { theme } from '__/theme';
 import { TrafficLights } from './TrafficLights';
 
-type TWindow = {};
+type WindowProps = {
+  appID: TApp;
+};
 
-export const Window: FC<TWindow> = ({ children }) => {
+export const Window: FC<WindowProps> = ({ appID }) => {
+  const { component: Component, resizable } = appsConfig[appID];
+
   return (
     <Rnd
       default={{
@@ -15,6 +21,7 @@ export const Window: FC<TWindow> = ({ children }) => {
         x: (document.body.clientWidth - 800) / 2,
         y: 100 / 2,
       }}
+      enableResizing={resizable}
       dragHandleClassName="app-window-drag-handle"
       bounds="parent"
       minWidth="200"
@@ -25,7 +32,7 @@ export const Window: FC<TWindow> = ({ children }) => {
           <TrafficLights />
         </TaskBar>
         <Divider />
-        {children}
+        <Component />
       </Container>
     </Rnd>
   );

@@ -2,7 +2,7 @@ import Tippy from '@tippyjs/react/headless';
 import { transparentize } from 'color2k';
 import { useAtom } from 'jotai';
 import { useImmerAtom } from 'jotai/immer';
-import { FC } from 'react';
+import { FC } from 'preact/compat';
 import styled, { css } from 'styled-components';
 import { sticky } from 'tippy.js';
 import { ButtonBase } from '__/components/utils/ButtonBase';

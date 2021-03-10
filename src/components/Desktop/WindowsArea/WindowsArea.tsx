@@ -12,7 +12,7 @@ export const WindowsArea: FC<{}> = ({}) => {
     <Container>
       {Object.keys(appsConfig)
         // @ts-ignore
-        .map((appId: TApp) => openApps[appId] && <Window />)}
+        .map((appID: TApp) => openApps[appID] && <Window key={appID} appID={appID} />)}
     </Container>
   );
 };
