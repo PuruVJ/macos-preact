@@ -1,6 +1,7 @@
 import useRaf from '@rooks/use-raf';
 import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { RefObject, useRef } from 'react';
+import { RefObject } from 'preact';
+import { useRef } from 'preact/hooks';
 import styled from 'styled-components';
 import type { IDockItem } from '__/stores/dock.store';
 import { theme } from '__/theme';
@@ -9,9 +10,10 @@ import { DockTooltip } from './DockTooltip';
 
 interface IDockItemProps extends IDockItem {
   mouseX: MotionValue<null | number>;
+  appID: string;
 }
 
-export function DockItem({ icon, action, appName, isOpen, mouseX }: IDockItemProps) {
+export function DockItem({ action, appName, isOpen, mouseX, appID }: IDockItemProps) {
   const ref = useRef<HTMLImageElement>(null);
 
   const { width } = useDockHoverAnimation(mouseX, ref);
@@ -23,7 +25,7 @@ export function DockItem({ icon, action, appName, isOpen, mouseX }: IDockItemPro
           <DockItemButton aria-label={`Launch ${appName}`} onClick={(e) => action?.(e)}>
             <motion.img
               ref={ref}
-              src={icon}
+              src={`../../../public/assets/app-icons/${appID}/256.png`}
               draggable={false}
               style={{ width, willChange: 'width' }}
             />

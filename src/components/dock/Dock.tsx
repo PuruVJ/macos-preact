@@ -22,11 +22,11 @@ export const Dock = ({}) => {
         onMouseMove={(event) => mouseX.set(event.nativeEvent.x)}
         onMouseLeave={() => mouseX.set(null)}
       >
-        {dockItemsKeys.map((dockTitle) => {
-          const { breakBefore } = dockItems[dockTitle];
+        {dockItemsKeys.map((appID) => {
+          const { breakBefore } = dockItems[appID];
           return [
-            breakBefore && <Divider key={`${dockTitle}-divider`} aria-hidden="true" />,
-            <DockItem key={dockTitle} mouseX={mouseX} {...dockItems[dockTitle]} />,
+            breakBefore && <Divider key={`${appID}-divider`} aria-hidden="true" />,
+            <DockItem key={appID} mouseX={mouseX} appID={appID} {...dockItems[appID]} />,
           ];
         })}
       </DockEl>
