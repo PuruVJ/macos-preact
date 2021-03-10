@@ -10,7 +10,7 @@ import { DockItem } from './DockItem';
  * The famous MacOS Dock
  */
 export const Dock = ({}) => {
-  const [{ dockItems }] = useAtom(dockItemsStore);
+  const [dockItems] = useAtom(dockItemsStore);
 
   const mouseX = useMotionValue<number | null>(null);
 
