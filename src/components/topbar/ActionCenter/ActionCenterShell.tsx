@@ -10,7 +10,7 @@ interface IMenuShell {
   children: ComponentChildren;
 }
 
-export const ActionCenterShell: FC<IMenuShell> = ({ children }) => {
+export const ActionCenterShell = ({ children }: IMenuShell) => {
   const ref = useRef<HTMLElement | null>(null);
   const [theme] = useTheme();
 
