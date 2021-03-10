@@ -1,5 +1,5 @@
 import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
-import { FC } from 'react';
+import { FC } from 'preact/compat';
 import styled from 'styled-components';
 import { VolumeLowSVG } from '__/assets/sf-icons/VolumeLowSVG';
 import { theme } from '__/theme';
