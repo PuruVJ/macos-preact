@@ -25,7 +25,7 @@ export function DockItem({ action, appName, isOpen, mouseX, appID }: IDockItemPr
           <DockItemButton aria-label={`Launch ${appName}`} onClick={(e) => action?.(e)}>
             <motion.img
               ref={ref}
-              src={`../../../public/assets/app-icons/${appID}/256.png`}
+              src={`/assets/app-icons/${appID}/256.png`}
               draggable={false}
               style={{ width, willChange: 'width' }}
             />
