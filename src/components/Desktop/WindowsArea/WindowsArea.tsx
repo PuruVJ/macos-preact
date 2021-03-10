@@ -2,7 +2,7 @@ import { useImmerAtom } from 'jotai/immer';
 import { FC, useMemo } from 'preact/compat';
 import styled from 'styled-components';
 import { appsConfig } from '__/data/apps/apps-config';
-import { openAppsStore, TApp } from '__/stores/apps.store';
+import { openAppsStore } from '__/stores/apps.store';
 import { Window } from '../Window/Window';
 
 export const WindowsArea: FC<{}> = ({}) => {
