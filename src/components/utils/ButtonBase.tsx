@@ -1,12 +1,11 @@
-import { FC } from 'react';
 import styled, { StyledComponentProps } from 'styled-components';
 
 interface IButtonBaseProps {}
 
-export const ButtonBase: FC<StyledComponentProps<'button', any, IButtonBaseProps, never>> = ({
+export const ButtonBase = ({
   children,
   ...props
-}) => {
+}: StyledComponentProps<'button', any, IButtonBaseProps, never>) => {
   return <_Button {...props}>{children}</_Button>;
 };
 

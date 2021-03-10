@@ -10,7 +10,7 @@ type WindowProps = {
   appID: TApp;
 };
 
-export const Window: FC<WindowProps> = ({ appID }) => {
+export const Window = ({ appID }: WindowProps) => {
   const { component: Component, resizable } = appsConfig[appID];
 
   return (

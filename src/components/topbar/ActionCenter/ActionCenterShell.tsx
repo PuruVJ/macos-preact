@@ -1,3 +1,4 @@
+import { ComponentChildren } from 'preact';
 import { FC, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
@@ -5,7 +6,9 @@ import { useTheme } from '__/hooks/use-theme';
 import type { TTheme } from '__/stores/theme.store';
 import { theme } from '__/theme';
 
-interface IMenuShell {}
+interface IMenuShell {
+  children: ComponentChildren;
+}
 
 export const ActionCenterShell: FC<IMenuShell> = ({ children }) => {
   const ref = useRef<HTMLElement | null>(null);

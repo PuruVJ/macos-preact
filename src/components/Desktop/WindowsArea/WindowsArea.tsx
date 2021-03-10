@@ -1,11 +1,11 @@
 import { useImmerAtom } from 'jotai/immer';
-import { FC, useMemo } from 'preact/compat';
+import { useMemo } from 'preact/compat';
 import styled from 'styled-components';
 import { appsConfig } from '__/data/apps/apps-config';
 import { openAppsStore } from '__/stores/apps.store';
 import { Window } from '../Window/Window';
 
-export const WindowsArea: FC<{}> = ({}) => {
+export const WindowsArea: {} = ({}) => {
   const [openApps] = useImmerAtom(openAppsStore);
 
   const appIDList = useMemo(() => Object.keys(appsConfig) as (keyof typeof appsConfig)[], []);
