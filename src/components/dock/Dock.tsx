@@ -15,7 +15,9 @@ export const Dock = ({}) => {
 
   const mouseX = useMotionValue<number | null>(null);
 
-  const dockItemsKeys = useMemo(() => Object.keys(dockItems) as (keyof typeof dockItems)[], []);
+  const dockItemsKeys = useMemo(() => Object.keys(dockItems) as (keyof typeof dockItems)[], [
+    dockItems,
+  ]);
 
   return (
     <DockContainer>
