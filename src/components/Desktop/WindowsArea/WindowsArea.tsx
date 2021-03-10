@@ -1,5 +1,5 @@
 import { useImmerAtom } from 'jotai/immer';
-import { FC } from 'react';
+import { FC } from 'preact/compat';
 import styled from 'styled-components';
 import { appsConfig } from '__/data/apps/apps-config';
 import { openAppsStore, TApp } from '__/stores/apps.store';
