@@ -5,7 +5,7 @@ import { appsConfig } from '__/data/apps/apps-config';
 import { openAppsStore } from '__/stores/apps.store';
 import { Window } from '../Window/Window';
 
-export const WindowsArea: {} = ({}) => {
+export const WindowsArea = ({}) => {
   const [openApps] = useImmerAtom(openAppsStore);
 
   const appIDList = useMemo(() => Object.keys(appsConfig) as (keyof typeof appsConfig)[], []);

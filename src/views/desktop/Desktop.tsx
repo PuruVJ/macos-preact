@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from 'preact/hooks';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Reset } from 'styled-reset';
 import { StartupChime } from '__/components/Desktop/StartupChime';

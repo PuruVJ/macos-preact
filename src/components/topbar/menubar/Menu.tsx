@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'preact/hooks';
 import styled, { css } from 'styled-components';
 import type { IMenu } from '__/helpers/menubar';
 import { theme } from '__/theme';
@@ -8,7 +8,7 @@ type TMenu = {
   menu: IMenu<any>;
 };
 
-export const Menu: FC<TMenu> = ({ menu }) => {
+export const Menu = ({ menu }: TMenu) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import { get, set } from 'idb-keyval';
 import { atom, useAtom } from 'jotai';
-import { useCallback, useEffect, useLayoutEffect } from 'react';
+import { useCallback, useEffect, useLayoutEffect } from 'preact/hooks';
 import { throttle } from 'throttle-debounce';
 import { SETTINGS } from '__/constants/SETTINGS';
 
