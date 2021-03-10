@@ -1,6 +1,7 @@
 import { transparentize } from 'color2k';
 import { useMotionValue } from 'framer-motion';
 import { useAtom } from 'jotai';
+import { useMemo } from 'preact/hooks';
 import styled from 'styled-components';
 import { dockItemsStore } from '__/stores/dock.store';
 import { theme } from '__/theme';
@@ -14,7 +15,7 @@ export const Dock = ({}) => {
 
   const mouseX = useMotionValue<number | null>(null);
 
-  const dockItemsKeys = Object.keys(dockItems) as (keyof typeof dockItems)[];
+  const dockItemsKeys = useMemo(() => Object.keys(dockItems) as (keyof typeof dockItems)[], []);
 
   return (
     <DockContainer>
