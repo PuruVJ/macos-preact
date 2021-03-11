@@ -19,7 +19,7 @@ export const ActionCenterToggle: FC<IActionCenterToggle> = ({}) => {
       appendTo={document.body}
       render={(attrs) => (
         <div {...attrs}>
-          <ActionCenter>Hello</ActionCenter>
+          <ActionCenter></ActionCenter>
         </div>
       )}
       // If this is removed, blurry text will be there

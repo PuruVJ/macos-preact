@@ -1,8 +1,9 @@
 import { atom } from 'jotai';
 import { finderMenuConfig } from '__/data/menu/finder.menu.config';
-import { activeAppStore } from './apps.store';
+import { activeAppStore, TApp } from './apps.store';
 
 const menuConfigs = { finder: finderMenuConfig };
 
-// @ts-ignore
-export const menuBarMenusStore = atom((get) => menuConfigs[get(activeAppStore)]);
+export const menuBarMenusStore = atom(
+  (get) => menuConfigs[get(activeAppStore) as keyof typeof menuConfigs],
+);
