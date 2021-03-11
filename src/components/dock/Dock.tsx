@@ -4,25 +4,24 @@ import { useAtom } from 'jotai';
 import { useMemo } from 'preact/hooks';
 import styled from 'styled-components';
 import { appsConfig } from '__/data/apps/apps-config';
-import { activeAppStore, openAppsStore } from '__/stores/apps.store';
+import { openAppsStore, TApp } from '__/stores/apps.store';
 import { theme } from '__/theme';
 import { DockItem } from './DockItem';
 
 /**
  * The famous MacOS Dock
  */
-export const Dock = ({}) => {
+export const Dock = () => {
   const [openApps] = useAtom(openAppsStore);
+  const dockItemsKeys = useMemo(() => Object.keys(appsConfig) as TApp[], []);
 
-  const mouseX = useMotionValue<number | null>(null);
-
-  const dockItemsKeys = useMemo(() => Object.keys(appsConfig) as (keyof typeof appsConfig)[], []);
+  const mouseX = useMotionValue(0);
 
   return (
     <DockContainer>
       <DockEl
         onMouseMove={(event) => mouseX.set(event.nativeEvent.x)}
-        onMouseLeave={() => mouseX.set(null)}
+        onMouseLeave={() => mouseX.set(0)}
       >
         {dockItemsKeys.map((appID) => {
           const { dockBreaksBefore } = appsConfig[appID];

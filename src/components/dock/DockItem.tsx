@@ -12,7 +12,7 @@ import { ButtonBase } from '../utils/ButtonBase';
 import { DockTooltip } from './DockTooltip';
 
 type IDockItemProps = IAppConfig & {
-  mouseX: MotionValue<null | number>;
+  mouseX: MotionValue<number>;
   appID: TApp;
   isOpen: boolean;
 };

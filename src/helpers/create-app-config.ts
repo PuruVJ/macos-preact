@@ -11,5 +11,8 @@ export type IAppConfig = {
   dockBreaksBefore?: boolean;
 };
 
-export const createAppConfig = (et: IAppConfig) =>
-  ({ shouldOpenWindow: true, dockBreaksBefore: false, ...et } as IAppConfig);
+export const createAppConfig = (et: IAppConfig) => ({
+  shouldOpenWindow: true,
+  dockBreaksBefore: false,
+  ...et,
+});

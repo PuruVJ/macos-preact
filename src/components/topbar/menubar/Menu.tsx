@@ -17,11 +17,11 @@ export const Menu = ({ menu }: TMenu) => {
 
   return (
     <Container ref={ref} tabIndex={-1}>
-      {Object.keys(menu).map((val) => [
-        <MenuItem key={val} disabled={menu[val].disabled}>
-          {menu[val].title}
+      {Object.keys(menu).map((key) => [
+        <MenuItem key={key} disabled={menu[key].disabled}>
+          {menu[key].title}
         </MenuItem>,
-        menu[val].breakAfter && <Divider key={`${val}-divider`} />,
+        menu[key].breakAfter && <Divider key={`${key}-divider`} />,
       ])}
     </Container>
   );
