@@ -3,26 +3,27 @@ import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'fr
 import { RefObject } from 'preact';
 import { useRef } from 'preact/hooks';
 import styled from 'styled-components';
-import type { IDockItem } from '__/stores/dock.store';
+import { IAppConfig } from '__/helpers/create-app-config';
 import { theme } from '__/theme';
 import { ButtonBase } from '../utils/ButtonBase';
 import { DockTooltip } from './DockTooltip';
 
-interface IDockItemProps extends IDockItem {
+type IDockItemProps = IAppConfig & {
   mouseX: MotionValue<null | number>;
   appID: string;
-}
+  isOpen: boolean;
+};
 
-export function DockItem({ action, appName, isOpen, mouseX, appID }: IDockItemProps) {
+export function DockItem({ title, externalAction, mouseX, appID, isOpen }: IDockItemProps) {
   const ref = useRef<HTMLImageElement>(null);
 
   const { width } = useDockHoverAnimation(mouseX, ref);
 
   return (
     <section>
-      <DockTooltip label={appName}>
+      <DockTooltip label={title}>
         <span>
-          <DockItemButton aria-label={`Launch ${appName}`} onClick={(e) => action?.(e)}>
+          <DockItemButton aria-label={`Launch ${title}`} onClick={(e) => externalAction?.(e)}>
             <motion.img
               ref={ref}
               src={`/assets/app-icons/${appID}/256.png`}

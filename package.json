@@ -8,10 +8,10 @@
   "dependencies": {
     "@mdi/js": "^5.9.55",
     "@rooks/use-raf": "^4.9.2",
-    "@tippyjs/react": "^4.2.3",
+    "@tippyjs/react": "^4.2.4",
     "color2k": "^1.2.4",
     "date-fns": "^2.19.0",
-    "framer-motion": "^3.10.0",
+    "framer-motion": "^3.10.2",
     "idb-keyval": "^5.0.4",
     "immer": "^8.0.1",
     "jotai": "^0.15.2",

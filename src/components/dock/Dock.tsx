@@ -3,7 +3,8 @@ import { useMotionValue } from 'framer-motion';
 import { useAtom } from 'jotai';
 import { useMemo } from 'preact/hooks';
 import styled from 'styled-components';
-import { dockItemsStore } from '__/stores/dock.store';
+import { appsConfig } from '__/data/apps/apps-config';
+import { activeAppStore, openAppsStore } from '__/stores/apps.store';
 import { theme } from '__/theme';
 import { DockItem } from './DockItem';
 
@@ -11,13 +12,11 @@ import { DockItem } from './DockItem';
  * The famous MacOS Dock
  */
 export const Dock = ({}) => {
-  const [dockItems] = useAtom(dockItemsStore);
+  const [openApps] = useAtom(openAppsStore);
 
   const mouseX = useMotionValue<number | null>(null);
 
-  const dockItemsKeys = useMemo(() => Object.keys(dockItems) as (keyof typeof dockItems)[], [
-    dockItems,
-  ]);
+  const dockItemsKeys = useMemo(() => Object.keys(appsConfig) as (keyof typeof appsConfig)[], []);
 
   return (
     <DockContainer>
@@ -26,10 +25,16 @@ export const Dock = ({}) => {
         onMouseLeave={() => mouseX.set(null)}
       >
         {dockItemsKeys.map((appID) => {
-          const { breakBefore } = dockItems[appID];
+          const { dockBreaksBefore } = appsConfig[appID];
           return [
-            breakBefore && <Divider key={`${appID}-divider`} aria-hidden="true" />,
-            <DockItem key={appID} mouseX={mouseX} appID={appID} {...dockItems[appID]} />,
+            dockBreaksBefore && <Divider key={`${appID}-divider`} aria-hidden="true" />,
+            <DockItem
+              key={appID}
+              mouseX={mouseX}
+              appID={appID}
+              isOpen={openApps[appID]}
+              {...appsConfig[appID]}
+            />,
           ];
         })}
       </DockEl>

@@ -11,7 +11,7 @@ type WindowProps = {
 };
 
 export const Window = ({ appID }: WindowProps) => {
-  const { component: Component, resizable } = appsConfig[appID];
+  const { Component, resizable } = appsConfig[appID];
 
   return (
     <Rnd
