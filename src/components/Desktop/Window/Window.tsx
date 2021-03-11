@@ -1,7 +1,8 @@
-import { FC } from 'preact/compat';
+import { FC, useMemo } from 'preact/compat';
 import { Rnd } from 'react-rnd';
 import styled from 'styled-components';
 import { appsConfig } from '__/data/apps/apps-config';
+import { randint } from '__/helpers/utils';
 import { TApp } from '__/stores/apps.store';
 import { theme } from '__/theme';
 import { TrafficLights } from './TrafficLights';
@@ -13,13 +14,16 @@ type WindowProps = {
 export const Window = ({ appID }: WindowProps) => {
   const { Component, resizable } = appsConfig[appID];
 
+  const randY = useMemo(() => randint(-100, 100), []);
+  const randX = useMemo(() => randint(-600, 600), []);
+
   return (
     <Rnd
       default={{
-        height: 600,
+        height: 500,
         width: 600,
-        x: (document.body.clientWidth - 800) / 2,
-        y: 100 / 2,
+        x: (document.body.clientWidth - 800 + randX) / 2,
+        y: (100 + randY) / 2,
       }}
       enableResizing={resizable}
       dragHandleClassName="app-window-drag-handle"
@@ -29,7 +33,7 @@ export const Window = ({ appID }: WindowProps) => {
     >
       <Container>
         <TaskBar className="app-window-drag-handle">
-          <TrafficLights />
+          <TrafficLights appID={appID} />
         </TaskBar>
         <Divider />
         <Component />

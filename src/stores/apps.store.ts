@@ -4,7 +4,7 @@ import { appsConfig } from '__/data/apps/apps-config';
 export type TApp = keyof typeof appsConfig;
 
 export const openAppsStore = atom<Record<TApp, boolean>>({
-  finder: true,
+  finder: false,
   launchpad: false,
   safari: false,
   messages: false,

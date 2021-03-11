@@ -1,29 +1,52 @@
 import useRaf from '@rooks/use-raf';
 import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { useAtom } from 'jotai';
+import { useImmerAtom } from 'jotai/immer';
 import { RefObject } from 'preact';
 import { useRef } from 'preact/hooks';
 import styled from 'styled-components';
 import { IAppConfig } from '__/helpers/create-app-config';
+import { activeAppStore, openAppsStore, TApp } from '__/stores/apps.store';
 import { theme } from '__/theme';
 import { ButtonBase } from '../utils/ButtonBase';
 import { DockTooltip } from './DockTooltip';
 
 type IDockItemProps = IAppConfig & {
   mouseX: MotionValue<null | number>;
-  appID: string;
+  appID: TApp;
   isOpen: boolean;
 };
 
-export function DockItem({ title, externalAction, mouseX, appID, isOpen }: IDockItemProps) {
+export function DockItem({
+  title,
+  externalAction,
+  mouseX,
+  appID,
+  isOpen,
+  shouldOpenWindow,
+}: IDockItemProps) {
+  const [, setOpenApps] = useImmerAtom(openAppsStore);
+  const [, setActiveApps] = useAtom(activeAppStore);
+
   const ref = useRef<HTMLImageElement>(null);
 
   const { width } = useDockHoverAnimation(mouseX, ref);
+
+  function openApp(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    if (!shouldOpenWindow) return void externalAction?.(e);
+
+    setOpenApps((apps) => {
+      apps[appID] = true;
+      return apps;
+    });
+    setActiveApps(appID);
+  }
 
   return (
     <section>
       <DockTooltip label={title}>
         <span>
-          <DockItemButton aria-label={`Launch ${title}`} onClick={(e) => externalAction?.(e)}>
+          <DockItemButton aria-label={`Launch ${title}`} onClick={(e) => openApp(e)}>
             <motion.img
               ref={ref}
               src={`/assets/app-icons/${appID}/256.png`}

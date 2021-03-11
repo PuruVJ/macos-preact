@@ -1,11 +1,25 @@
-import { FC } from 'react';
+import { useImmerAtom } from 'jotai/immer';
 import styled from 'styled-components';
 import { ButtonBase } from '__/components/utils/ButtonBase';
+import { openAppsStore, TApp } from '__/stores/apps.store';
 
-export const TrafficLights: FC<{}> = ({}) => {
+type TrafficLightProps = {
+  appID: TApp;
+};
+
+export const TrafficLights = ({ appID }: TrafficLightProps) => {
+  const [, setOpenApps] = useImmerAtom(openAppsStore);
+
+  function closeApp() {
+    setOpenApps((openApps) => {
+      openApps[appID] = false;
+      return openApps;
+    });
+  }
+
   return (
     <Container>
-      <CloseLight />
+      <CloseLight onClick={() => closeApp()} />
       <StretchLight />
       <MinimizeLight />
     </Container>
@@ -29,13 +43,16 @@ const TrafficLight = styled(ButtonBase)`
 `;
 
 const CloseLight = styled(TrafficLight)`
-  background-color: #ff605c;
+  background-color: #ff5f56;
+  border: solid 0.5px #e0443e;
 `;
 
 const StretchLight = styled(TrafficLight)`
-  background-color: #ffbd44;
+  background-color: #ffbd2e;
+  border: solid 0.5px #dea123;
 `;
 
 const MinimizeLight = styled(TrafficLight)`
-  background-color: #00ca4e;
+  background-color: #27c93f;
+  border: solid 0.5px #1aab29;
 `;

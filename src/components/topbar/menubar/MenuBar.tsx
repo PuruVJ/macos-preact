@@ -22,7 +22,7 @@ export const MenuBar = ({}) => {
 
   return (
     <>
-      {menuIDList.map((menuID: keyof typeof currentAppMenus) => (
+      {menuIDList.map((menuID) => (
         <Tippy
           key={menuID}
           trigger={`focusin mouseenter`}
