@@ -3,18 +3,18 @@ body[data-theme='light'] {
   /* // Primary */
   --app-color-primary: hsl(211, 100%, 50%);
   --app-color-primary-hsl: 211, 100%, 50%;
-  --app-color-primary-contrast: hsl(240, 24%, 96%);
-  --app-color-primary-contrast-hsl: 240, 24%, 96%;
+  --app-color-primary-contrast: hsl(240, 24%, 100%);
+  --app-color-primary-contrast-hsl: 240, 24%, 100%;
 
   /* // Dark */
   --app-color-dark: hsl(240, 3%, 11%);
   --app-color-dark-hsl: 240, 3%, 11%;
-  --app-color-dark-contrast: hsl(240, 24%, 96%);
-  --app-color-dark-contrast-hsl: 240, 24%, 96%;
+  --app-color-dark-contrast: hsl(240, 24%, 100%);
+  --app-color-dark-contrast-hsl: 240, 24%, 100%;
 
   /* // Light */
-  --app-color-light: hsl(240, 24%, 96%);
-  --app-color-light-hsl: 240, 24%, 96%;
+  --app-color-light: hsl(240, 24%, 100%);
+  --app-color-light-hsl: 240, 24%, 100%;
   --app-color-light-contrast: hsl(0, 0%, 11%);
   --app-color-light-contrast-hsl: 0, 0%, 11%;
 
@@ -26,18 +26,18 @@ body[data-theme='dark'] {
   /* // Primary */
   --app-color-primary: hsl(211, 100%, 50%);
   --app-color-primary-hsl: 211, 100%, 50%;
-  --app-color-primary-contrast: hsl(240, 24%, 96%);
-  --app-color-primary-contrast-hsl: 240, 24%, 96%;
+  --app-color-primary-contrast: hsl(240, 24%, 100%);
+  --app-color-primary-contrast-hsl: 240, 24%, 100%;
 
   /* // Dark */
-  --app-color-dark: hsl(240, 24%, 96%);
-  --app-color-dark-hsl: 240, 24%, 96%;
+  --app-color-dark: hsl(240, 24%, 100%);
+  --app-color-dark-hsl: 240, 24%, 100%;
   --app-color-dark-contrast: hsl(0, 0%, 11%);
   --app-color-dark-contrast-hsl: 0, 0%, 11%;
 
   /* // Light */
   --app-color-light: hsl(240, 3%, 11%);
   --app-color-light-hsl: 240, 3%, 11%;
-  --app-color-light-contrast: hsl(240, 24%, 96%);
-  --app-color-light-contrast-hsl: 240, 24%, 96%;
+  --app-color-light-contrast: hsl(240, 24%, 100%);
+  --app-color-light-contrast-hsl: 240, 24%, 100%;
 }
