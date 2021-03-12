@@ -1,11 +1,13 @@
 import { PlaceholderApp } from '__/components/apps/Placeholder/Placeholder';
 import { createAppConfig } from '__/helpers/create-app-config';
 
-export const viewSourceAppConfig = createAppConfig({
+export const purusTwitterAppConfig = createAppConfig({
   title: `Puru's Twitter`,
   resizable: true,
-  Component: PlaceholderApp,
+  Component: () => <PlaceholderApp />,
 
   shouldOpenWindow: false,
-  externalAction: () => window.open('https://github.com/puruvj/macos-web', '_blank'),
+  externalAction: () => window.open('https://twitter.com/puruvjdev', '_blank'),
+
+  dockBreaksBefore: true,
 });
