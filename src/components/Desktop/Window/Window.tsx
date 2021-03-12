@@ -1,9 +1,10 @@
-import { FC, useMemo } from 'preact/compat';
+import { useAtom } from 'jotai';
+import { useEffect, useMemo, useState } from 'preact/compat';
 import { Rnd } from 'react-rnd';
 import styled from 'styled-components';
 import { appsConfig } from '__/data/apps/apps-config';
 import { randint } from '__/helpers/utils';
-import { TApp } from '__/stores/apps.store';
+import { activeAppStore, activeAppZIndexStore, TApp } from '__/stores/apps.store';
 import { theme } from '__/theme';
 import { TrafficLights } from './TrafficLights';
 
@@ -12,13 +13,27 @@ type WindowProps = {
 };
 
 export const Window = ({ appID }: WindowProps) => {
+  const [activeAppZIndex] = useAtom(activeAppZIndexStore);
+  const [activeApp, setActiveApp] = useAtom(activeAppStore);
+
+  const [appZIndex, setAppZIndex] = useState(0);
+
   const { Component, resizable } = appsConfig[appID];
 
   const randY = useMemo(() => randint(-100, 100), []);
   const randX = useMemo(() => randint(-600, 600), []);
 
+  useEffect(() => {
+    if (activeApp === appID) setAppZIndex(activeAppZIndex);
+  }, [activeApp]);
+
+  function setFocusOnCurrentApp() {
+    setActiveApp(appID);
+  }
+
   return (
     <Rnd
+      style={{ zIndex: appZIndex, transition: 'z-index 100ms ease-in' }}
       default={{
         height: 500,
         width: 600,
@@ -31,7 +46,7 @@ export const Window = ({ appID }: WindowProps) => {
       minWidth="200"
       minHeight="200"
     >
-      <Container>
+      <Container tabIndex={-1} onClick={() => setFocusOnCurrentApp()}>
         <TaskBar className="app-window-drag-handle">
           <TrafficLights appID={appID} />
         </TaskBar>
@@ -48,7 +63,7 @@ const Container = styled.section`
 
   background-color: ${theme.colors.light.main};
 
-  position: relative;
+  position: fixed;
 
   border-radius: 0.75rem;
   box-shadow: 0 0.3px 1.9px rgba(0, 0, 0, 0.021), 0 0.8px 4.5px rgba(0, 0, 0, 0.03),
