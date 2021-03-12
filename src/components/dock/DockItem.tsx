@@ -26,7 +26,7 @@ export function DockItem({
   shouldOpenWindow,
 }: IDockItemProps) {
   const [, setOpenApps] = useImmerAtom(openAppsStore);
-  const [, setActiveApps] = useAtom(activeAppStore);
+  const [, setActiveApp] = useAtom(activeAppStore);
 
   const ref = useRef<HTMLImageElement>(null);
 
@@ -39,7 +39,7 @@ export function DockItem({
       apps[appID] = true;
       return apps;
     });
-    setActiveApps(appID);
+    setActiveApp(appID);
   }
 
   return (
@@ -116,10 +116,7 @@ const widthOutput = [
   baseWidth,
 ];
 
-const useDockHoverAnimation = (
-  mouseX: MotionValue<null | number>,
-  ref: RefObject<HTMLImageElement>,
-) => {
+const useDockHoverAnimation = (mouseX: MotionValue<number>, ref: RefObject<HTMLImageElement>) => {
   const distance = useMotionValue(beyondTheDistanceLimit);
   const widthPX = useSpring(useTransform(distance, distanceInput, widthOutput), {
     damping: 50,
