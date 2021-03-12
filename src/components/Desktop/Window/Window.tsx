@@ -33,7 +33,7 @@ export const Window = ({ appID }: WindowProps) => {
 
   return (
     <Rnd
-      style={{ zIndex: appZIndex, transition: 'z-index 100ms ease-in' }}
+      style={{ zIndex: appZIndex }}
       default={{
         height: 500,
         width: 600,
