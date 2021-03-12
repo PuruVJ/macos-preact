@@ -5,7 +5,7 @@ export type TApp = keyof typeof appsConfig;
 
 /** Which apps are currently open */
 export const openAppsStore = atom<Record<TApp, boolean>>({
-  finder: true,
+  finder: false,
   launchpad: false,
   safari: false,
   messages: false,
