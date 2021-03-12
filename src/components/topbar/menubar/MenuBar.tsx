@@ -11,7 +11,7 @@ import { menuBarMenusStore } from '__/stores/menubar.store';
 import { theme } from '__/theme';
 import { Menu } from './Menu';
 
-export const MenuBar = ({}) => {
+export const MenuBar = () => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
   const [activeMenu, setActiveMenu] = useImmerAtom(activeMenuStore);
 
@@ -58,7 +58,7 @@ export const MenuBar = ({}) => {
           render={(attrs) => (
             <div {...attrs}>
               {/* @ts-ignore */}
-              <Menu menu={currentAppMenus[menuID].menu}>Hello</Menu>
+              <Menu menu={currentAppMenus[menuID].menu}></Menu>
             </div>
           )}
         >
