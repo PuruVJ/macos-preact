@@ -45,8 +45,9 @@ export const Window = ({ appID }: WindowProps) => {
       bounds="parent"
       minWidth="200"
       minHeight="200"
+      onDragStart={setFocusOnCurrentApp}
     >
-      <Container tabIndex={-1} onClick={() => setFocusOnCurrentApp()}>
+      <Container tabIndex={-1} onClick={setFocusOnCurrentApp}>
         <TaskBar className="app-window-drag-handle">
           <TrafficLights appID={appID} />
         </TaskBar>
