@@ -46,10 +46,12 @@ export const Window = ({ appID }: WindowProps) => {
       onDragStart={setFocusOnCurrentApp}
     >
       <Container tabIndex={-1} onClick={setFocusOnCurrentApp}>
-        <TaskBar className="app-window-drag-handle">
-          <TrafficLights appID={appID} />
-        </TaskBar>
-        <Divider />
+        <div>
+          <TaskBar className="app-window-drag-handle">
+            <TrafficLights appID={appID} />
+          </TaskBar>
+          <Divider />
+        </div>
         <Component />
       </Container>
     </Rnd>
@@ -60,9 +62,12 @@ const Container = styled.section`
   width: 100%;
   height: 100%;
 
+  display: grid;
+  grid-template-rows: auto 1fr;
+
   background-color: ${theme.colors.light.main};
 
-  position: fixed;
+  position: relative;
 
   border-radius: 0.75rem;
   box-shadow: 0 0.3px 1.9px rgba(0, 0, 0, 0.021), 0 0.8px 4.5px rgba(0, 0, 0, 0.03),
