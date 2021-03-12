@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'preact/hooks';
 import styled, { css } from 'styled-components';
 import type { IMenu } from '__/helpers/menubar';
 import { theme } from '__/theme';
@@ -8,7 +8,7 @@ type TMenu = {
   menu: IMenu<any>;
 };
 
-export const Menu: FC<TMenu> = ({ menu }) => {
+export const Menu = ({ menu }: TMenu) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -17,11 +17,11 @@ export const Menu: FC<TMenu> = ({ menu }) => {
 
   return (
     <Container ref={ref} tabIndex={-1}>
-      {Object.keys(menu).map((val) => [
-        <MenuItem key={val} disabled={menu[val].disabled}>
-          {menu[val].title}
+      {Object.keys(menu).map((key) => [
+        <MenuItem key={key} disabled={menu[key].disabled}>
+          {menu[key].title}
         </MenuItem>,
-        menu[val].breakAfter && <Divider key={`${val}-divider`} />,
+        menu[key].breakAfter && <Divider key={`${key}-divider`} />,
       ])}
     </Container>
   );

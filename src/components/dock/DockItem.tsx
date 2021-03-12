@@ -1,29 +1,55 @@
 import useRaf from '@rooks/use-raf';
 import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { RefObject, useRef } from 'react';
+import { useAtom } from 'jotai';
+import { useImmerAtom } from 'jotai/immer';
+import { RefObject } from 'preact';
+import { useRef } from 'preact/hooks';
 import styled from 'styled-components';
-import type { IDockItem } from '__/stores/dock.store';
+import { IAppConfig } from '__/helpers/create-app-config';
+import { activeAppStore, openAppsStore, TApp } from '__/stores/apps.store';
 import { theme } from '__/theme';
 import { ButtonBase } from '../utils/ButtonBase';
 import { DockTooltip } from './DockTooltip';
 
-interface IDockItemProps extends IDockItem {
-  mouseX: MotionValue<null | number>;
-}
+type IDockItemProps = IAppConfig & {
+  mouseX: MotionValue<number>;
+  appID: TApp;
+  isOpen: boolean;
+};
 
-export function DockItem({ icon, action, appName, isOpen, mouseX }: IDockItemProps) {
+export function DockItem({
+  title,
+  externalAction,
+  mouseX,
+  appID,
+  isOpen,
+  shouldOpenWindow,
+}: IDockItemProps) {
+  const [, setOpenApps] = useImmerAtom(openAppsStore);
+  const [, setActiveApp] = useAtom(activeAppStore);
+
   const ref = useRef<HTMLImageElement>(null);
 
   const { width } = useDockHoverAnimation(mouseX, ref);
 
+  function openApp(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    if (!shouldOpenWindow) return void externalAction?.(e);
+
+    setOpenApps((apps) => {
+      apps[appID] = true;
+      return apps;
+    });
+    setActiveApp(appID);
+  }
+
   return (
     <section>
-      <DockTooltip label={appName}>
+      <DockTooltip label={title}>
         <span>
-          <DockItemButton aria-label={`Launch ${appName}`} onClick={action}>
+          <DockItemButton aria-label={`Launch ${title}`} onClick={(e) => openApp(e)}>
             <motion.img
               ref={ref}
-              src={icon}
+              src={`/assets/app-icons/${appID}/256.png`}
               draggable={false}
               style={{ width, willChange: 'width' }}
             />
@@ -90,10 +116,7 @@ const widthOutput = [
   baseWidth,
 ];
 
-const useDockHoverAnimation = (
-  mouseX: MotionValue<null | number>,
-  ref: RefObject<HTMLImageElement>,
-) => {
+const useDockHoverAnimation = (mouseX: MotionValue<number>, ref: RefObject<HTMLImageElement>) => {
   const distance = useMotionValue(beyondTheDistanceLimit);
   const widthPX = useSpring(useTransform(distance, distanceInput, widthOutput), {
     damping: 50,

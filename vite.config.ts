@@ -6,8 +6,9 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   plugins: [prefresh()],
   esbuild: {
-    jsxInject: `import React from 'react';`,
-    minify: true,
+    jsxFactory: 'h',
+    jsxFragment: 'Fragment',
+    jsxInject: `import { h, Fragment } from 'preact'`,
   },
   resolve: {
     alias: {

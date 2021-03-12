@@ -1,4 +1,5 @@
 import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
+import { FC } from 'preact/compat';
 import styled from 'styled-components';
 import { VolumeLowSVG } from '__/assets/sf-icons/VolumeLowSVG';
 import { theme } from '__/theme';
@@ -9,7 +10,7 @@ import { MenuBar } from './menubar/MenuBar';
 import { TopBarIconButton } from './TopBarIconButton';
 import { TopBarTime } from './TopBarTime';
 
-export const TopBar = (): React.ReactElement => {
+export const TopBar: FC = () => {
   return (
     <Header>
       <AppleIconButton>

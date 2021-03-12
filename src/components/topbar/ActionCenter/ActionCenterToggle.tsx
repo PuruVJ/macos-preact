@@ -1,13 +1,10 @@
 import Tippy from '@tippyjs/react/headless';
 import { sticky } from 'tippy.js/headless';
-import { FC } from 'react';
 import { SwitchSVG } from '__/assets/sf-icons/switch.svg';
 import { TopBarIconButton } from '../TopBarIconButton';
 import { ActionCenter } from './ActionCenter';
 
-interface IActionCenterToggle {}
-
-export const ActionCenterToggle: FC<IActionCenterToggle> = ({}) => {
+export const ActionCenterToggle = ({}) => {
   return (
     <Tippy
       trigger="focusin click"
@@ -19,7 +16,7 @@ export const ActionCenterToggle: FC<IActionCenterToggle> = ({}) => {
       appendTo={document.body}
       render={(attrs) => (
         <div {...attrs}>
-          <ActionCenter>Hello</ActionCenter>
+          <ActionCenter />
         </div>
       )}
       // If this is removed, blurry text will be there

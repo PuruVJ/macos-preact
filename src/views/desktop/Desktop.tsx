@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect } from 'preact/hooks';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Reset } from 'styled-reset';
 import { StartupChime } from '__/components/Desktop/StartupChime';
+import { WindowsArea } from '__/components/Desktop/WindowsArea/WindowsArea';
 import { Dock } from '__/components/dock/Dock';
 import { TopBar } from '__/components/topbar/TopBar';
 import { useTheme } from '__/hooks/use-theme';
@@ -27,6 +28,7 @@ export const Desktop = () => {
 
       <Main>
         <TopBar />
+        <WindowsArea />
         <Dock />
       </Main>
 
@@ -47,6 +49,7 @@ body {
 
   font-family: var(--app-font-family);
 
+  overflow: hidden;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -71,6 +74,9 @@ body {
 const Main = styled.main`
   height: 100%;
   width: 100%;
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 `;
 
 const BackgroundCover = styled.div<{ theme: TTheme }>`
@@ -89,13 +95,6 @@ const BackgroundCover = styled.div<{ theme: TTheme }>`
   background-repeat: none;
   background-size: cover;
   background-position: center;
-`;
-
-const HiddenBackgroundCover = styled.div`
-  background-image: url(${LightBackground});
-  background-image: url(${DarkBackground});
-
-  display: none;
 `;
 
 function preloadImage(path: string) {

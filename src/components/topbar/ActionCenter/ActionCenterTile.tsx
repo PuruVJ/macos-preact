@@ -1,13 +1,13 @@
-import { FC } from 'react';
-import styled from 'styled-components';
-import { css } from 'styled-components';
+import { ComponentChildren } from 'preact';
+import styled, { css } from 'styled-components';
 import { theme } from '__/theme';
 
 interface IActionCenterTileProps {
   grid: [number, number];
+  children: ComponentChildren;
 }
 
-export const ActionCenterTile: FC<IActionCenterTileProps> = ({ grid, children }) => {
+export const ActionCenterTile = ({ grid, children }: IActionCenterTileProps) => {
   return <Container grid={grid}>{children}</Container>;
 };
 

@@ -1,4 +1,6 @@
-interface IAppIcon extends React.SVGAttributes<SVGSVGElement> {
+import { SVGAttributes } from 'react';
+
+interface IAppIcon extends SVGAttributes<SVGSVGElement> {
   path: string;
   size?: number;
 }

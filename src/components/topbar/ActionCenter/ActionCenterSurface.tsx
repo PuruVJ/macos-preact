@@ -1,15 +1,15 @@
-import { FC } from 'react';
-import styled from 'styled-components';
-import { css } from 'styled-components';
+import { ComponentChildren } from 'preact';
+import styled, { css } from 'styled-components';
 import { useTheme } from '__/hooks/use-theme';
 import type { TTheme } from '__/stores/theme.store';
 import { theme } from '__/theme';
 
 interface ActionCenterSurfaceProps {
   grid: [[number, number], [number, number]];
+  children: ComponentChildren;
 }
 
-export const ActionCenterSurface: FC<ActionCenterSurfaceProps> = ({ grid, children }) => {
+export const ActionCenterSurface = ({ grid, children }: ActionCenterSurfaceProps) => {
   const [[columnStart, columnSpan], [rowStart, rowSpan]] = grid;
   const [theme] = useTheme();
 

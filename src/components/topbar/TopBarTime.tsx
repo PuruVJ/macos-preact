@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { useState } from 'react';
+import { useState } from 'preact/hooks';
 import { useInterval } from 'use-interval';
 
 export const TopBarTime = () => {
