@@ -29,7 +29,7 @@ export const MenuBar = () => {
           hideOnClick={false}
           placement="bottom-start"
           sticky
-          zIndex={99999999}
+          zIndex={999999}
           plugins={[sticky]}
           onMount={() =>
             void setActiveMenu((val) => {

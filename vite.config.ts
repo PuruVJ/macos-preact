@@ -1,10 +1,8 @@
-import prefresh from '@prefresh/vite';
 import { resolve } from 'path';
-import { defineConfig } from 'vite';
+import withPreact from '@preact/preset-vite';
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [prefresh()],
+export default withPreact({
   esbuild: {
     jsxFactory: 'h',
     jsxFragment: 'Fragment',
