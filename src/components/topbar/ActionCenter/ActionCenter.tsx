@@ -1,18 +1,21 @@
 import { mdiBluetooth, mdiKeyboard, mdiWifiStrength4 } from '@mdi/js';
+import { useAtom } from 'jotai';
 import styled, { css } from 'styled-components';
 import { AirDropSVG } from '__/assets/sf-icons/AirDrop.svg';
 import { MoonSVG } from '__/assets/sf-icons/Moon.svg';
 import { AppIcon } from '__/components/utils/AppIcon';
 import { ButtonBase } from '__/components/utils/ButtonBase';
 import { useTheme } from '__/hooks/use-theme';
+import { brightnessStore } from '__/stores/brightness.store';
 import { theme } from '__/theme';
 import { ACSlider } from './ACSlider';
 import { ActionCenterShell } from './ActionCenterShell';
 import { ActionCenterSurface } from './ActionCenterSurface';
 import { ActionCenterTile } from './ActionCenterTile';
 
-export const ActionCenter = ({}) => {
+export const ActionCenter = ({ }) => {
   const [theme, setTheme] = useTheme();
+  const [_, setBrightness] = useAtom(brightnessStore)
 
   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
@@ -91,7 +94,12 @@ export const ActionCenter = ({}) => {
           ]}
         >
           <Label>Display</Label>
-          <ACSlider min={30} defaultValue={100} max={100} />
+          <ACSlider
+            onChange={(val) => setBrightness(val as number)}
+            min={0}
+            defaultValue={100}
+            max={100}
+          />
         </ActionCenterSurface>
 
         {/* Sound */}

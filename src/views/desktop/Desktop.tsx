@@ -1,3 +1,4 @@
+import { useAtom } from 'jotai';
 import { useEffect } from 'preact/hooks';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Reset } from 'styled-reset';
@@ -6,6 +7,7 @@ import { WindowsArea } from '__/components/Desktop/WindowsArea/WindowsArea';
 import { Dock } from '__/components/dock/Dock';
 import { TopBar } from '__/components/topbar/TopBar';
 import { useTheme } from '__/hooks/use-theme';
+import { brightnessStore } from '__/stores/brightness.store';
 import type { TTheme } from '__/stores/theme.store';
 
 const DarkBackground = '/assets/wallpapers/3-1.jpg';
@@ -13,6 +15,7 @@ const LightBackground = '/assets/wallpapers/3-2.jpg';
 
 export const Desktop = () => {
   const [theme] = useTheme();
+  const [brightness] = useAtom(brightnessStore)
 
   useEffect(() => {
     preloadImage(DarkBackground);
@@ -26,13 +29,13 @@ export const Desktop = () => {
       <Reset />
       <GlobalStyles />
 
-      <Main>
+      <Main style={{opacity: `${brightness}%`}}>
         <TopBar />
         <WindowsArea />
         <Dock />
       </Main>
 
-      <BackgroundCover theme={theme} aria-hidden="true" />
+      <BackgroundCover style={{opacity: `${brightness}%`}} theme={theme} aria-hidden="true" />
     </>
   );
 };
@@ -53,6 +56,8 @@ body {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: #000;
 }
 
 * {

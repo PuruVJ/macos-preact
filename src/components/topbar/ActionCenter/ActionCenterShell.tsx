@@ -1,7 +1,9 @@
+import { useAtom } from 'jotai';
 import { ComponentChildren } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 import styled, { css } from 'styled-components';
 import { useTheme } from '__/hooks/use-theme';
+import { brightnessStore } from '__/stores/brightness.store';
 import type { TTheme } from '__/stores/theme.store';
 import { theme } from '__/theme';
 
@@ -12,13 +14,16 @@ interface IMenuShell {
 export const ActionCenterShell = ({ children }: IMenuShell) => {
   const ref = useRef<HTMLElement>(null);
   const [theme] = useTheme();
+  const [brightness] = useAtom(brightnessStore)
 
   useEffect(() => {
     ref.current?.focus();
   }, []);
 
   return (
-    <Container theme={theme} ref={ref} tabIndex={-1}>
+    <Container 
+     style={{opacity: `${brightness}%`}}
+     theme={theme} ref={ref} tabIndex={-1}>
       {children}
     </Container>
   );
