@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { useEffect } from 'preact/compat';
+import { useEffect } from 'preact/hooks';
 import styled from 'styled-components';
 import { appsConfig } from '__/data/apps/apps-config';
 import { activeAppStore, activeAppZIndexStore, openAppsStore } from '__/stores/apps.store';
