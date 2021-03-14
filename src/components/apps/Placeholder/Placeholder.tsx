@@ -1,10 +1,21 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { theme } from '__/theme';
 
-export const PlaceholderApp = ({}) => {
+export const PlaceholderApp = () => {
   return (
     <Container>
-      <img draggable={false} src="/assets/app-icons/finder/128.png" />
+      <Img
+        initial={{ scale: 0, rotate: 180 }}
+        animate={{ rotate: 360, scale: 1 }}
+        transition={{
+          type: 'spring',
+          stiffness: 250,
+          damping: 20,
+        }}
+        draggable={false}
+        src="/assets/app-icons/finder/256.png"
+      />
       <h1>Apps coming soon!</h1>
     </Container>
   );
@@ -21,4 +32,9 @@ const Container = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const Img = styled(motion.img)`
+  max-width: 8rem;
+  aspect-ratio: 1 / 1;
 `;
