@@ -41,8 +41,8 @@ export const Window = ({ appID }: WindowProps) => {
       enableResizing={resizable}
       dragHandleClassName="app-window-drag-handle"
       bounds="parent"
-      minWidth="200"
-      minHeight="200"
+      minWidth="300"
+      minHeight="300"
       onDragStart={setFocusOnCurrentApp}
     >
       <Container tabIndex={-1} onClick={setFocusOnCurrentApp}>
