@@ -1,4 +1,4 @@
-export type IMenu<T> = {
+export type IMenu<T extends {}> = {
   [key in keyof T]: {
     title: string;
     breakAfter?: boolean;
@@ -8,4 +8,4 @@ export type IMenu<T> = {
   };
 };
 
-export const createMenuConfig = <T>(et: IMenu<T>) => et;
+export const createMenuConfig = <T extends {}>(et: IMenu<T>) => et;

@@ -28,7 +28,7 @@ export function DockItem({
   const [, setOpenApps] = useImmerAtom(openAppsStore);
   const [, setActiveApp] = useAtom(activeAppStore);
 
-  const ref = useRef<HTMLImageElement>(null);
+  const ref = useRef<HTMLImageElement>();
 
   const { width } = useDockHoverAnimation(mouseX, ref);
 

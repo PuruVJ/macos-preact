@@ -1,4 +1,4 @@
-import { createMenuConfig } from '__/helpers/menubar';
+import { createMenuConfig } from '__/helpers/create-menu-config';
 
 export const finderMenuConfig = createMenuConfig({
   default: {

@@ -6,7 +6,7 @@ import { useTimeout } from '__/hooks/use-timeout';
 import { AppIcon } from '../utils/AppIcon';
 
 export const StartupChime = () => {
-  const ref = useRef<HTMLButtonElement>(null);
+  const ref = useRef<HTMLButtonElement>();
   const [playStatus, setPlayStatus] = useState<'PLAYING' | 'STOPPED' | 'PAUSED'>('PAUSED');
 
   const [hideSplashScreen, setHideSplashScreen] = useState(false);

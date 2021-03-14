@@ -10,7 +10,7 @@ interface IMenuShell {
 }
 
 export const ActionCenterShell = ({ children }: IMenuShell) => {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLElement>();
   const [theme] = useTheme();
 
   useEffect(() => {

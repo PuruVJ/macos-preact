@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'preact/hooks';
 import styled, { css } from 'styled-components';
-import type { IMenu } from '__/helpers/menubar';
+import type { IMenu } from '__/helpers/create-menu-config';
 import { theme } from '__/theme';
 import { ButtonBase } from '__/components/utils/ButtonBase';
 
@@ -9,7 +9,7 @@ type MenuProps = {
 };
 
 export const Menu = ({ menu }: MenuProps) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>();
 
   useEffect(() => {
     ref.current?.focus();

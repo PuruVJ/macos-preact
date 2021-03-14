@@ -58,7 +58,7 @@ export const MenuBar = () => {
           render={(attrs) => (
             <div {...attrs}>
               {/* @ts-ignore */}
-              <Menu menu={currentAppMenus[menuID].menu}></Menu>
+              <Menu menu={currentAppMenus[menuID].menu} />
             </div>
           )}
         >

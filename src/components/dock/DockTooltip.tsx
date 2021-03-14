@@ -9,7 +9,7 @@ type IDockTooltip = {
 };
 
 export const DockTooltip: FC<IDockTooltip> = ({ label, children }) => {
-  // const ref = useRef<HTMLDivElement>(null);
+  // const ref = useRef<HTMLDivElement>();
 
   return (
     <>
