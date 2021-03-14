@@ -1,11 +1,13 @@
-type ObjectKeys<T> = T extends object
-  ? (keyof T)[]
-  : T extends number
+type ObjectKeys<Obj> = Obj extends object
+  ? (keyof Obj)[]
+  : Obj extends number
   ? []
-  : T extends Array<any> | string
+  : Obj extends Array<any> | string
   ? string[]
   : never;
 
 interface ObjectConstructor {
   keys<T>(o: T): ObjectKeys<T>;
 }
+
+type Unpacked<T> = T extends (infer U)[] ? U : T;

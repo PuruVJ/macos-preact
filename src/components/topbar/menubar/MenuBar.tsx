@@ -10,13 +10,38 @@ import { menuBarMenusStore } from '__/stores/menubar.store';
 import { theme } from '__/theme';
 import { Menu } from './Menu';
 
+const popperOptions = {
+  modifiers: [
+    {
+      name: 'computeStyles',
+      options: {
+        gpuAcceleration: false,
+      },
+    },
+  ],
+};
+
 export const MenuBar = () => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
   const [activeMenu, setActiveMenu] = useImmerAtom(activeMenuStore);
 
+  const menuIDList = Object.keys(currentAppMenus);
+
+  const tippyOnMount = (menuID: Unpacked<typeof menuIDList>) =>
+    setActiveMenu((val) => {
+      val[menuID] = true;
+      return val;
+    });
+
+  const tippyOnHide = (menuID: Unpacked<typeof menuIDList>) =>
+    setActiveMenu((val) => {
+      val[menuID] = false;
+      return val;
+    });
+
   return (
     <>
-      {Object.keys(currentAppMenus).map((menuID) => (
+      {menuIDList.map((menuID) => (
         <Tippy
           key={menuID}
           trigger={`focusin mouseenter`}
@@ -25,28 +50,9 @@ export const MenuBar = () => {
           sticky
           zIndex={99999999}
           plugins={[sticky]}
-          onMount={() =>
-            void setActiveMenu((val) => {
-              val[menuID] = true;
-              return val;
-            })
-          }
-          popperOptions={{
-            modifiers: [
-              {
-                name: 'computeStyles',
-                options: {
-                  gpuAcceleration: false,
-                },
-              },
-            ],
-          }}
-          onHide={() =>
-            void setActiveMenu((val) => {
-              val[menuID] = false;
-              return val;
-            })
-          }
+          onMount={() => tippyOnMount(menuID)}
+          popperOptions={popperOptions}
+          onHide={() => tippyOnHide(menuID)}
           interactive
           appendTo={document.body}
           render={(attrs) => (
