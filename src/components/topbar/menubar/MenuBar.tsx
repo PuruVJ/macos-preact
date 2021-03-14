@@ -44,7 +44,7 @@ export const MenuBar = () => {
       {menuIDList.map((menuID) => (
         <Tippy
           key={menuID}
-          trigger={`focusin mouseenter`}
+          trigger="focusin mouseenter"
           hideOnClick={false}
           placement="bottom-start"
           sticky

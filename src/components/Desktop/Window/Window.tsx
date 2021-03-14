@@ -47,9 +47,9 @@ export const Window = ({ appID }: WindowProps) => {
     >
       <Container tabIndex={-1} onClick={setFocusOnCurrentApp}>
         <div>
-          <TaskBar className="app-window-drag-handle">
+          <TitleBar className="app-window-drag-handle">
             <TrafficLights appID={appID} />
-          </TaskBar>
+          </TitleBar>
           <Divider />
         </div>
         <Component />
@@ -76,7 +76,7 @@ const Container = styled.section`
     0 15px 83px rgba(0, 0, 0, 0.08);
 `;
 
-const TaskBar = styled.header`
+const TitleBar = styled.header`
   height: 2.5rem;
   width: 100%;
 
