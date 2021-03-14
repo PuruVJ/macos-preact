@@ -4,7 +4,7 @@ import { SwitchSVG } from '__/assets/sf-icons/switch.svg';
 import { TopBarIconButton } from '../TopBarIconButton';
 import { ActionCenter } from './ActionCenter';
 
-export const ActionCenterToggle = ({}) => {
+export const ActionCenterToggle = () => {
   return (
     <Tippy
       trigger="focusin click"

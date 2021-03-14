@@ -5,7 +5,7 @@ import styled, { css, keyframes } from 'styled-components';
 import { useTimeout } from '__/hooks/use-timeout';
 import { AppIcon } from '../utils/AppIcon';
 
-export const StartupChime = ({}) => {
+export const StartupChime = () => {
   const ref = useRef<HTMLButtonElement>(null);
   const [playStatus, setPlayStatus] = useState<'PLAYING' | 'STOPPED' | 'PAUSED'>('PAUSED');
 

@@ -11,7 +11,7 @@ import { ActionCenterShell } from './ActionCenterShell';
 import { ActionCenterSurface } from './ActionCenterSurface';
 import { ActionCenterTile } from './ActionCenterTile';
 
-export const ActionCenter = ({}) => {
+export const ActionCenter = () => {
   const [theme, setTheme] = useTheme();
 
   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');

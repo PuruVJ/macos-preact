@@ -11,3 +11,5 @@ interface ObjectConstructor {
 }
 
 type Unpacked<T> = T extends (infer U)[] ? U : T;
+
+type Unpromisify<T> = T extends Promise<infer R> ? R : T;
