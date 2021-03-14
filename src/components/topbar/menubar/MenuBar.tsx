@@ -14,7 +14,7 @@ export const MenuBar = () => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
   const [activeMenu, setActiveMenu] = useImmerAtom(activeMenuStore);
 
-  const menuIDList = Object.keys(currentAppMenus) as (keyof typeof currentAppMenus)[];
+  const menuIDList = Object.keys(currentAppMenus);
 
   return (
     <>

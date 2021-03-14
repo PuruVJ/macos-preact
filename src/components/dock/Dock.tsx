@@ -3,7 +3,7 @@ import { useMotionValue } from 'framer-motion';
 import { useAtom } from 'jotai';
 import styled from 'styled-components';
 import { appsConfig } from '__/data/apps/apps-config';
-import { openAppsStore, TApp } from '__/stores/apps.store';
+import { openAppsStore } from '__/stores/apps.store';
 import { theme } from '__/theme';
 import { DockItem } from './DockItem';
 
@@ -12,7 +12,7 @@ import { DockItem } from './DockItem';
  */
 export const Dock = () => {
   const [openApps] = useAtom(openAppsStore);
-  const dockItemsKeys = Object.keys(appsConfig) as TApp[];
+  const dockItemsKeys = Object.keys(appsConfig);
 
   const mouseX = useMotionValue(0);
 

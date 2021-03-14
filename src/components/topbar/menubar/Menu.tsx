@@ -17,7 +17,7 @@ export const Menu = ({ menu }: TMenu) => {
 
   return (
     <Container ref={ref} tabIndex={-1}>
-      {Object.keys(menu).map((key) => [
+      {Object.keys(menu).map((key: any) => [
         <MenuItem key={key} disabled={menu[key].disabled}>
           {menu[key].title}
         </MenuItem>,
