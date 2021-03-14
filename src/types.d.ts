@@ -7,9 +7,11 @@ type ObjectKeys<Obj> = Obj extends object
   : never;
 
 interface ObjectConstructor {
-  keys<T>(o: T): ObjectKeys<T>;
+  keys<ObjectType>(o: ObjectType): ObjectKeys<ObjectType>;
 }
 
-type Unpacked<T> = T extends (infer U)[] ? U : T;
+type Unpacked<ArrayLike> = ArrayLike extends (infer RootType)[] ? RootType : ArrayLike;
 
-type Unpromisify<T> = T extends Promise<infer R> ? R : T;
+type Unpromisify<PromiseLike> = PromiseLike extends Promise<infer RootType>
+  ? RootType
+  : PromiseLike;
