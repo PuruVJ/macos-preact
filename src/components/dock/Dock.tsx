@@ -12,7 +12,6 @@ import { DockItem } from './DockItem';
  */
 export const Dock = () => {
   const [openApps] = useAtom(openAppsStore);
-  const dockItemsKeys = Object.keys(appsConfig);
 
   const mouseX = useMotionValue(0);
 
@@ -22,7 +21,7 @@ export const Dock = () => {
         onMouseMove={(event) => mouseX.set(event.nativeEvent.x)}
         onMouseLeave={() => mouseX.set(0)}
       >
-        {dockItemsKeys.map((appID) => {
+        {Object.keys(appsConfig).map((appID) => {
           const { dockBreaksBefore } = appsConfig[appID];
           return [
             dockBreaksBefore && <Divider key={`${appID}-divider`} aria-hidden="true" />,

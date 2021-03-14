@@ -14,11 +14,9 @@ export const MenuBar = () => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
   const [activeMenu, setActiveMenu] = useImmerAtom(activeMenuStore);
 
-  const menuIDList = Object.keys(currentAppMenus);
-
   return (
     <>
-      {menuIDList.map((menuID) => (
+      {Object.keys(currentAppMenus).map((menuID) => (
         <Tippy
           key={menuID}
           trigger={`focusin mouseenter`}
