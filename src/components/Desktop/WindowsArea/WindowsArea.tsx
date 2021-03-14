@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { useEffect, useMemo } from 'preact/compat';
+import { useEffect } from 'preact/compat';
 import styled from 'styled-components';
 import { appsConfig } from '__/data/apps/apps-config';
 import { activeAppStore, activeAppZIndexStore, openAppsStore, TApp } from '__/stores/apps.store';
@@ -10,7 +10,7 @@ export const WindowsArea = () => {
   const [activeApp] = useAtom(activeAppStore);
   const [activeAppZIndex, setActiveAppZIndex] = useAtom(activeAppZIndexStore);
 
-  const appIDList = useMemo(() => Object.keys(appsConfig) as TApp[], []);
+  const appIDList = Object.keys(appsConfig) as TApp[];
 
   // Update the active app Z Index here
   useEffect(() => {

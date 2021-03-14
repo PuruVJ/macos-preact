@@ -2,7 +2,6 @@ import Tippy from '@tippyjs/react/headless';
 import { transparentize } from 'color2k';
 import { useAtom } from 'jotai';
 import { useImmerAtom } from 'jotai/immer';
-import { useMemo } from 'preact/hooks';
 import styled, { css } from 'styled-components';
 import { sticky } from 'tippy.js';
 import { ButtonBase } from '__/components/utils/ButtonBase';
@@ -15,10 +14,7 @@ export const MenuBar = () => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
   const [activeMenu, setActiveMenu] = useImmerAtom(activeMenuStore);
 
-  const menuIDList = useMemo(
-    () => Object.keys(currentAppMenus) as (keyof typeof currentAppMenus)[],
-    [currentAppMenus],
-  );
+  const menuIDList = Object.keys(currentAppMenus) as (keyof typeof currentAppMenus)[];
 
   return (
     <>

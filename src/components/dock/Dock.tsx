@@ -1,7 +1,6 @@
 import { transparentize } from 'color2k';
 import { useMotionValue } from 'framer-motion';
 import { useAtom } from 'jotai';
-import { useMemo } from 'preact/hooks';
 import styled from 'styled-components';
 import { appsConfig } from '__/data/apps/apps-config';
 import { openAppsStore, TApp } from '__/stores/apps.store';
@@ -13,7 +12,7 @@ import { DockItem } from './DockItem';
  */
 export const Dock = () => {
   const [openApps] = useAtom(openAppsStore);
-  const dockItemsKeys = useMemo(() => Object.keys(appsConfig) as TApp[], []);
+  const dockItemsKeys = Object.keys(appsConfig) as TApp[];
 
   const mouseX = useMotionValue(0);
 
