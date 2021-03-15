@@ -5,13 +5,13 @@ import { useImmerAtom } from 'jotai/immer';
 import { RefObject } from 'preact';
 import { useRef } from 'preact/hooks';
 import styled from 'styled-components';
-import { IAppConfig } from '__/helpers/create-app-config';
-import { activeAppStore, openAppsStore, AppID } from '__/stores/apps.store';
+import { AppConfig } from '__/helpers/create-app-config';
+import { activeAppStore, AppID, openAppsStore } from '__/stores/apps.store';
 import { theme } from '__/theme';
 import { ButtonBase } from '../utils/ButtonBase';
 import { DockTooltip } from './DockTooltip';
 
-type IDockItemProps = IAppConfig & {
+type DockItemProps = AppConfig & {
   mouseX: MotionValue<number>;
   appID: AppID;
   isOpen: boolean;
@@ -24,7 +24,7 @@ export function DockItem({
   appID,
   isOpen,
   shouldOpenWindow,
-}: IDockItemProps) {
+}: DockItemProps) {
   const [, setOpenApps] = useImmerAtom(openAppsStore);
   const [, setActiveApp] = useAtom(activeAppStore);
 

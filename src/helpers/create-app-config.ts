@@ -1,4 +1,4 @@
-export type IAppConfig = {
+export type AppConfig = {
   title: string;
   resizable: boolean;
   Component: React.ElementType;
@@ -11,7 +11,7 @@ export type IAppConfig = {
   dockBreaksBefore?: boolean;
 };
 
-export const createAppConfig = (et: IAppConfig) => ({
+export const createAppConfig = (et: AppConfig) => ({
   shouldOpenWindow: true,
   dockBreaksBefore: false,
   ...et,
