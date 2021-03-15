@@ -1,10 +1,10 @@
 import { useImmerAtom } from 'jotai/immer';
 import styled from 'styled-components';
 import { ButtonBase } from '__/components/utils/ButtonBase';
-import { openAppsStore, TApp } from '__/stores/apps.store';
+import { openAppsStore, AppID } from '__/stores/apps.store';
 
 type TrafficLightProps = {
-  appID: TApp;
+  appID: AppID;
 };
 
 export const TrafficLights = ({ appID }: TrafficLightProps) => {

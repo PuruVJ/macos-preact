@@ -1,10 +1,10 @@
 import { atom } from 'jotai';
 import { appsConfig } from '__/data/apps/apps-config';
 
-export type TApp = keyof typeof appsConfig;
+export type AppID = keyof typeof appsConfig;
 
 /** Which apps are currently open */
-export const openAppsStore = atom<Record<TApp, boolean>>({
+export const openAppsStore = atom<Record<AppID, boolean>>({
   finder: false,
   launchpad: false,
   safari: false,
@@ -21,7 +21,7 @@ export const openAppsStore = atom<Record<TApp, boolean>>({
 });
 
 /** Which app is currently focused */
-export const activeAppStore = atom<TApp>('finder');
+export const activeAppStore = atom<AppID>('finder');
 
 /** Maximum zIndex for the active app */
 export const activeAppZIndexStore = atom(0);

@@ -4,12 +4,12 @@ import { Rnd } from 'react-rnd';
 import styled from 'styled-components';
 import { appsConfig } from '__/data/apps/apps-config';
 import { randint } from '__/helpers/utils';
-import { activeAppStore, activeAppZIndexStore, TApp } from '__/stores/apps.store';
+import { activeAppStore, activeAppZIndexStore, AppID } from '__/stores/apps.store';
 import { theme } from '__/theme';
 import { TrafficLights } from './TrafficLights';
 
 type WindowProps = {
-  appID: TApp;
+  appID: AppID;
 };
 
 export const Window = ({ appID }: WindowProps) => {

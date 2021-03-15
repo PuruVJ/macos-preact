@@ -6,14 +6,14 @@ import { RefObject } from 'preact';
 import { useRef } from 'preact/hooks';
 import styled from 'styled-components';
 import { IAppConfig } from '__/helpers/create-app-config';
-import { activeAppStore, openAppsStore, TApp } from '__/stores/apps.store';
+import { activeAppStore, openAppsStore, AppID } from '__/stores/apps.store';
 import { theme } from '__/theme';
 import { ButtonBase } from '../utils/ButtonBase';
 import { DockTooltip } from './DockTooltip';
 
 type IDockItemProps = IAppConfig & {
   mouseX: MotionValue<number>;
-  appID: TApp;
+  appID: AppID;
   isOpen: boolean;
 };
 
