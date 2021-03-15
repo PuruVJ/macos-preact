@@ -30,7 +30,7 @@
     "use-interval": "^1.3.0"
   },
   "devDependencies": {
-    "@prefresh/vite": "^2.1.0",
+    "@preact/preset-vite": "^1.0.1",
     "@types/react-slider": "^1.1.1",
     "@types/react-sound": "^1.2.2",
     "@types/styled-components": "^5.1.8",
