@@ -5,7 +5,7 @@ export type AppConfig = {
 
   shouldOpenWindow?: boolean;
   /** The action to do when dock button is clicked */
-  externalAction?: (e: any) => void;
+  externalAction?: (e: unknown) => void;
 
   /** Break before this app */
   dockBreaksBefore?: boolean;
