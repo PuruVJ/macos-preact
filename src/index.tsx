@@ -1,5 +1,3 @@
-import 'preact/debug';
-
 import { Provider } from 'jotai';
 import { render } from 'preact';
 import { StrictMode, Suspense } from 'react';

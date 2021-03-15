@@ -1,7 +1,9 @@
 import { resolve } from 'path';
-import withPreact from '@preact/preset-vite';
+import preactPlugin from '@preact/preset-vite';
+import { defineConfig } from 'vite';
 
-export default withPreact({
+export default defineConfig({
+  plugins: [preactPlugin()],
   resolve: {
     alias: {
       __: resolve(__dirname, './src'),
