@@ -70,10 +70,7 @@ const Container = styled.section`
   position: relative;
 
   border-radius: 0.75rem;
-  box-shadow: 0 0.3px 1.9px rgba(0, 0, 0, 0.021), 0 0.8px 4.5px rgba(0, 0, 0, 0.03),
-    0 1.5px 8px rgba(0, 0, 0, 0.037), 0 2.4px 13.3px rgba(0, 0, 0, 0.043),
-    0 4px 22px rgba(0, 0, 0, 0.05), 0 6.9px 38.4px rgba(0, 0, 0, 0.059),
-    0 15px 83px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 33px 81px rgba(0, 0, 0, 0.31);
 `;
 
 const TitleBar = styled.header`
