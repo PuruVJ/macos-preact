@@ -19,7 +19,7 @@ export const TrafficLights = ({ appID }: TrafficLightProps) => {
 
   return (
     <Container>
-      <CloseLight onClick={() => closeApp()} />
+      <CloseLight onClick={closeApp} />
       <StretchLight />
       <MinimizeLight />
     </Container>
