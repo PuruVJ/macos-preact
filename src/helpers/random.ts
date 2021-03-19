@@ -1,5 +1,5 @@
-export function randint(a: number, b: number) {
-  if (a > b) [a, b] = [b, a];
+export function randint(lower: number, upper: number) {
+  if (lower > upper) [lower, upper] = [upper, lower];
 
-  return a + Math.floor((b - a) * Math.random());
+  return lower + Math.floor((upper - lower) * Math.random());
 }
