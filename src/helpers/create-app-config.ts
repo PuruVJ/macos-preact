@@ -4,6 +4,7 @@ export type AppConfig = {
   Component: React.ElementType;
 
   shouldOpenWindow?: boolean;
+
   /** The action to do when dock button is clicked */
   externalAction?: (e: unknown) => void;
 

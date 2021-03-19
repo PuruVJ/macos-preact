@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from 'preact/compat';
 import { Rnd } from 'react-rnd';
 import styled from 'styled-components';
 import { appsConfig } from '__/data/apps/apps-config';
-import { randint } from '__/helpers/utils';
+import { randint } from '__/helpers/random';
 import { activeAppStore, activeAppZIndexStore, AppID } from '__/stores/apps.store';
 import { theme } from '__/theme';
 import { TrafficLights } from './TrafficLights';

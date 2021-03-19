@@ -1,5 +1,5 @@
 export function randint(a: number, b: number) {
   if (a > b) [a, b] = [b, a];
 
-  return a + Math.ceil((b - a) * Math.random());
+  return a + Math.floor((b - a) * Math.random());
 }
