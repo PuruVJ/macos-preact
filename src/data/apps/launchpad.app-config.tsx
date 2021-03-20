@@ -4,5 +4,5 @@ import { createAppConfig } from '__/helpers/create-app-config';
 export const launchpadAppConfig = createAppConfig({
   title: 'Launchpad',
   resizable: true,
-  Component: () => <PlaceholderApp />,
+  Component: ({ appID }: any) => <PlaceholderApp appID={appID} />,
 });

@@ -58,7 +58,7 @@ export const Window = ({ appID }: WindowProps) => {
           </TitleBar>
           <Divider />
         </div>
-        <Component />
+        <Component appID={appID} />
       </Container>
     </Rnd>
   );

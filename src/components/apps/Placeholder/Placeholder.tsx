@@ -1,8 +1,13 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import { AppID } from '__/stores/apps.store';
 import { theme } from '__/theme';
 
-export const PlaceholderApp = () => {
+type PlaceholderAppTypes = {
+  appID: AppID;
+};
+
+export const PlaceholderApp = ({ appID }: PlaceholderAppTypes) => {
   return (
     <Container>
       <Img
@@ -14,7 +19,7 @@ export const PlaceholderApp = () => {
           damping: 20,
         }}
         draggable={false}
-        src="/assets/app-icons/finder/256.png"
+        src={`/assets/app-icons/${appID}/256.png`}
       />
       <h1>Apps coming soon!</h1>
     </Container>
