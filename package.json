@@ -16,7 +16,6 @@
     "immer": "^8.0.4",
     "jotai": "^0.15.3",
     "preact": "^10.5.13",
-    "prop-types": "^15.7.2",
     "react-helmet-async": "^1.0.9",
     "react-is": "^17.0.1",
     "react-rnd": "^10.2.4",
