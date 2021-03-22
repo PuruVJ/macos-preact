@@ -35,7 +35,7 @@ const Container = styled.div`
 `;
 
 const TrafficLight = styled(ButtonBase)`
-  --size: 0.78rem;
+  --size: 0.79rem;
   height: var(--size);
   width: var(--size);
 
@@ -44,15 +44,15 @@ const TrafficLight = styled(ButtonBase)`
 
 const CloseLight = styled(TrafficLight)`
   background-color: #ff5f56;
-  border: solid 0.5px #e0443e;
+  box-shadow: 0 0 0 0.5px #e0443e;
 `;
 
 const StretchLight = styled(TrafficLight)`
   background-color: #ffbd2e;
-  border: solid 0.5px #dea123;
+  box-shadow: 0 0 0 0.5px #dea123;
 `;
 
 const MinimizeLight = styled(TrafficLight)`
   background-color: #27c93f;
-  border: solid 0.5px #1aab29;
+  box-shadow: 0 0 0 0.5px #1aab29;
 `;
