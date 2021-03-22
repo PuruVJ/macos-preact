@@ -10,12 +10,11 @@ type TrafficLightProps = {
 export const TrafficLights = ({ appID }: TrafficLightProps) => {
   const [, setOpenApps] = useImmerAtom(openAppsStore);
 
-  function closeApp() {
+  const closeApp = () =>
     setOpenApps((openApps) => {
       openApps[appID] = false;
       return openApps;
     });
-  }
 
   return (
     <Container>
