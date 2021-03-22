@@ -10,6 +10,10 @@ interface ObjectConstructor {
   keys<ObjectType>(o: ObjectType): ObjectKeys<ObjectType>;
 }
 
+interface Storage {
+  getItem<T extends string>(key: string): T | null;
+}
+
 type Unpacked<ArrayLike> = ArrayLike extends (infer RootType)[] ? RootType : ArrayLike;
 
 type Unpromisify<PromiseLike> = PromiseLike extends Promise<infer RootType>

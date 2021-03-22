@@ -3,7 +3,7 @@ import { useEffect, useLayoutEffect, useRef } from 'preact/hooks';
 import { themeAtom, TTheme } from '__/stores/theme.store';
 
 export function useTheme() {
-  const localValue = localStorage.getItem('theme:type') as TTheme;
+  const localValue = localStorage.getItem<TTheme>('theme:type');
   // Media query
   const systemTheme: TTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
