@@ -3,7 +3,7 @@ import { useEffect } from 'preact/hooks';
 import styled from 'styled-components';
 import { appsConfig } from '__/data/apps/apps-config';
 import { activeAppStore, activeAppZIndexStore, openAppsStore } from '__/stores/apps.store';
-import { Window } from '../Window/Window';
+import { Window } from './Window';
 
 export const WindowsArea = () => {
   const [openApps] = useAtom(openAppsStore);

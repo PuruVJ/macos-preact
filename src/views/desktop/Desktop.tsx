@@ -2,7 +2,7 @@ import { useEffect } from 'preact/hooks';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Reset } from 'styled-reset';
 import { StartupChime } from '__/components/Desktop/StartupChime';
-import { WindowsArea } from '__/components/Desktop/WindowsArea/WindowsArea';
+import { WindowsArea } from '__/components/Desktop/Window/WindowsArea';
 import { Dock } from '__/components/dock/Dock';
 import { TopBar } from '__/components/topbar/TopBar';
 import { useTheme } from '__/hooks/use-theme';
