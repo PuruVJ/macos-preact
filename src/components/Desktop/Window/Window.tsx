@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
 import { useEffect, useMemo, useRef, useState } from 'preact/compat';
 import { Rnd } from 'react-rnd';
-import styled from 'styled-components';
+import styled, { CSSProperties } from 'styled-components';
 import { appsConfig } from '__/data/apps/apps-config';
 import { randint } from '__/helpers/random';
 import { activeAppStore, activeAppZIndexStore, AppID } from '__/stores/apps.store';
@@ -20,8 +20,8 @@ export const Window = ({ appID }: WindowProps) => {
 
   const [appZIndex, setAppZIndex] = useState(0);
 
-  const randY = useMemo(() => randint(-100, 100), []);
   const randX = useMemo(() => randint(-600, 600), []);
+  const randY = useMemo(() => randint(-100, 100), []);
 
   const { Component, resizable } = appsConfig[appID];
 
@@ -33,7 +33,7 @@ export const Window = ({ appID }: WindowProps) => {
     containerRef.current?.focus();
   }, []);
 
-  const setFocusOnCurrentApp = () => void setActiveApp(appID);
+  const focusCurrentApp = () => void setActiveApp(appID);
 
   return (
     <Rnd
@@ -49,9 +49,9 @@ export const Window = ({ appID }: WindowProps) => {
       bounds="parent"
       minWidth="300"
       minHeight="300"
-      onDragStart={setFocusOnCurrentApp}
+      onDragStart={focusCurrentApp}
     >
-      <Container tabIndex={-1} ref={containerRef} onClick={setFocusOnCurrentApp}>
+      <Container tabIndex={-1} ref={containerRef} onClick={focusCurrentApp}>
         <div>
           <TitleBar className="app-window-drag-handle">
             <TrafficLights appID={appID} />
