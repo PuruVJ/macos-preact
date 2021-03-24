@@ -7,5 +7,5 @@ render(
   <Provider>
     <Desktop />
   </Provider>,
-  document.getElementById('root') as Element,
+  document.getElementById('root')!,
 );
