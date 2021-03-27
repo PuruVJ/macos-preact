@@ -12,7 +12,7 @@ import { ButtonBase } from '../utils/ButtonBase';
 import { DockTooltip } from './DockTooltip';
 
 type DockItemProps = AppConfig & {
-  mouseX: MotionValue<number>;
+  mouseX: MotionValue<number | null>;
   appID: AppID;
   isOpen: boolean;
 };
@@ -116,7 +116,10 @@ const widthOutput = [
   baseWidth,
 ];
 
-const useDockHoverAnimation = (mouseX: MotionValue<number>, ref: RefObject<HTMLImageElement>) => {
+const useDockHoverAnimation = (
+  mouseX: MotionValue<number | null>,
+  ref: RefObject<HTMLImageElement>,
+) => {
   const distance = useMotionValue(beyondTheDistanceLimit);
   const widthPX = useSpring(useTransform(distance, distanceInput, widthOutput), {
     stiffness: 800,

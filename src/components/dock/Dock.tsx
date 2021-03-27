@@ -13,13 +13,13 @@ import { DockItem } from './DockItem';
 export const Dock = () => {
   const [openApps] = useAtom(openAppsStore);
 
-  const mouseX = useMotionValue(0);
+  const mouseX = useMotionValue<number | null>(null);
 
   return (
     <DockContainer>
       <DockEl
         onMouseMove={(event) => mouseX.set(event.nativeEvent.x)}
-        onMouseLeave={() => mouseX.set(0)}
+        onMouseLeave={() => mouseX.set(null)}
       >
         {Object.keys(appsConfig).map((appID) => {
           const { dockBreaksBefore } = appsConfig[appID];
