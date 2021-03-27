@@ -119,8 +119,8 @@ const widthOutput = [
 const useDockHoverAnimation = (mouseX: MotionValue<number>, ref: RefObject<HTMLImageElement>) => {
   const distance = useMotionValue(beyondTheDistanceLimit);
   const widthPX = useSpring(useTransform(distance, distanceInput, widthOutput), {
-    damping: 50,
-    stiffness: 760,
+    stiffness: 800,
+    damping: 40,
   });
 
   const width = useTransform(widthPX, (width) => `${width / 16}rem`);
