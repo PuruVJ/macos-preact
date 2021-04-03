@@ -1,5 +1,4 @@
 import { ComponentChildren } from 'preact';
-import { theme } from '__/theme';
 import css from './ActionCenterTile.module.scss';
 
 interface IActionCenterTileProps {
