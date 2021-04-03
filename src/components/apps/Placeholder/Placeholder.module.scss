@@ -1,0 +1,17 @@
+.container {
+  font-size: 1.618rem;
+  color: var(--app-color-light-contrast);
+
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.img {
+  max-width: 8rem;
+  aspect-ratio: 1 / 1;
+}

@@ -1,8 +1,7 @@
 import Tippy from '@tippyjs/react/headless';
 import { FC } from 'preact/compat';
-import styled from 'styled-components';
 import { sticky } from 'tippy.js';
-import { theme } from '__/theme';
+import css from './DockTooltip.module.scss';
 
 type IDockTooltip = {
   label: string;
@@ -14,7 +13,7 @@ export const DockTooltip: FC<IDockTooltip> = ({ label, children }) => {
   return (
     <>
       <Tippy
-        render={() => <Box>{label}</Box>}
+        render={() => <div className={css.box}>{label}</div>}
         trigger="focusin mouseenter"
         appendTo={document.body}
         sticky
@@ -43,23 +42,6 @@ export const DockTooltip: FC<IDockTooltip> = ({ label, children }) => {
     </>
   );
 };
-
-const Box = styled.div`
-  background-color: hsla(${theme.colors.light.hsl}, 0.5);
-
-  backdrop-filter: blur(5px);
-
-  padding: 0.5rem 0.75rem;
-
-  border-radius: 0.375rem;
-  box-shadow: hsla(0deg, 0%, 0%, 30%) 0px 1px 5px 2px;
-
-  color: ${theme.colors.light.contrast};
-  font-family: ${theme.typography.fontFamily};
-  font-weight: 500;
-  font-size: 0.8rem;
-  letter-spacing: 0.3px;
-`;
 
 // const Arrow = styled.div`
 //   visibility: hidden;

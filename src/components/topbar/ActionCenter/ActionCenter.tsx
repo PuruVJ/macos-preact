@@ -32,7 +32,6 @@ import { AppIcon } from '__/components/utils/AppIcon';
 import { ButtonBase } from '__/components/utils/ButtonBase';
 import { useTheme } from '__/hooks/use-theme';
 import { theme } from '__/theme';
-import { ACSlider } from './ACSlider';
 import { ActionCenterShell } from './ActionCenterShell';
 import { ActionCenterSurface } from './ActionCenterSurface';
 import { ActionCenterTile } from './ActionCenterTile';
@@ -108,33 +107,6 @@ export const ActionCenter = () => {
             Keyboard
           </ActionCenterTile>
         </ActionCenterSurface>
-
-        {/* Display */}
-        <ActionCenterSurface
-          grid={[
-            [1, 12],
-            [5, 2],
-          ]}
-        >
-          <Label>Display</Label>
-          <ACSlider min={30} defaultValue={100} max={100} />
-        </ActionCenterSurface>
-
-        {/* Sound */}
-        <ActionCenterSurface
-          grid={[
-            [1, 12],
-            [7, 2],
-          ]}
-        >
-          <Label>Sound</Label>
-          <ACSlider
-            // onChange={(val) => setBrightness(val as number)}
-            defaultValue={100}
-            min={30}
-            max={100}
-          />
-        </ActionCenterSurface>
       </Container>
     </ActionCenterShell>
   );
@@ -147,14 +119,14 @@ const Container = styled.div`
   gap: 0.75rem;
 `;
 
-const Label = styled.div`
-  font-size: 0.8rem;
-  font-weight: 600;
+// const Label = styled.div`
+//   font-size: 0.8rem;
+//   font-weight: 600;
 
-  color: ${theme.colors.dark.main};
+//   color: ${theme.colors.dark.main};
 
-  margin: 0.3rem 0;
-`;
+//   margin: 0.3rem 0;
+// `;
 
 const Toggle = styled(ButtonBase)<{ filled: boolean }>`
   --size: 1.7rem;

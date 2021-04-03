@@ -4,11 +4,10 @@ import { useAtom } from 'jotai';
 import { useImmerAtom } from 'jotai/immer';
 import { RefObject } from 'preact';
 import { useRef } from 'preact/hooks';
-import styled from 'styled-components';
 import { AppConfig } from '__/helpers/create-app-config';
 import { activeAppStore, AppID, openAppsStore } from '__/stores/apps.store';
-import { theme } from '__/theme';
 import { ButtonBase } from '../utils/ButtonBase';
+import css from './DockItem.module.scss';
 import { DockTooltip } from './DockTooltip';
 
 type DockItemProps = AppConfig & {
@@ -44,55 +43,24 @@ export function DockItem({
 
   return (
     <section>
-      <DockTooltip label={title}>
-        <span>
-          <DockItemButton aria-label={`Launch ${title}`} onClick={(e) => openApp(e)}>
-            <motion.img
-              ref={ref}
-              src={`/assets/app-icons/${appID}/256.png`}
-              draggable={false}
-              style={{ width, willChange: 'width' }}
-            />
-            <Dot visible={isOpen} />
-          </DockItemButton>
-        </span>
-      </DockTooltip>
+      <span>
+        <ButtonBase
+          className={css.dockItemButton}
+          aria-label={`Launch ${title}`}
+          onClick={(e) => openApp(e)}
+        >
+          <motion.img
+            ref={ref}
+            src={`/assets/app-icons/${appID}/256.png`}
+            draggable={false}
+            style={{ width, willChange: 'width' }}
+          />
+          <div className={css.dot} style={{ '--opacity': +isOpen } as React.CSSProperties} />
+        </ButtonBase>
+      </span>
     </section>
   );
 }
-
-const DockItemButton = styled(ButtonBase)`
-  height: 100%;
-  width: auto !important;
-
-  cursor: default !important;
-
-  transition: all 200ms ease-in;
-
-  transform-origin: bottom;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-
-  img {
-    width: 57.6px;
-    height: auto;
-  }
-`;
-
-const Dot = styled.div<{ visible: boolean }>`
-  height: 4px;
-  width: 4px;
-
-  margin: 0px;
-
-  border-radius: 50%;
-
-  background-color: ${theme.colors.dark.main};
-
-  opacity: ${({ visible }) => (visible ? 1 : 0)};
-`;
 
 const baseWidth = 57.6;
 const distanceLimit = baseWidth * 6;
