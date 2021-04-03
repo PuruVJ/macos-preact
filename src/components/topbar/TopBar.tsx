@@ -1,5 +1,4 @@
 import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
-import { FC } from 'preact/compat';
 import { VolumeLowSVG } from '__/assets/sf-icons/VolumeLowSVG';
 import { AppIcon } from '../utils/AppIcon';
 import { ButtonBase } from '../utils/ButtonBase';
@@ -9,7 +8,7 @@ import css from './Topbar.module.scss';
 import { TopBarIconButton } from './TopBarIconButton';
 import { TopBarTime } from './TopBarTime';
 
-export const TopBar: FC = () => {
+export const TopBar = () => {
   return (
     <header className={css.header}>
       <ButtonBase className={css.appleIconButton}>
