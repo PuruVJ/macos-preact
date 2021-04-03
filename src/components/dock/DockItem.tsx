@@ -90,8 +90,8 @@ const useDockHoverAnimation = (
 ) => {
   const distance = useMotionValue(beyondTheDistanceLimit);
   const widthPX = useSpring(useTransform(distance, distanceInput, widthOutput), {
-    stiffness: 800,
-    damping: 40,
+    stiffness: 900,
+    damping: 60,
   });
 
   const width = useTransform(widthPX, (width) => `${width / 16}rem`);
