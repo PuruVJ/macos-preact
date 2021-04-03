@@ -1,6 +1,5 @@
 import { ComponentChildren } from 'preact';
-import styled, { css } from 'styled-components';
-import { theme } from '__/theme';
+import css from './ActionCenterTile.module.scss';
 
 interface IActionCenterTileProps {
   grid: [number, number];
@@ -8,23 +7,12 @@ interface IActionCenterTileProps {
 }
 
 export const ActionCenterTile = ({ grid, children }: IActionCenterTileProps) => {
-  return <Container grid={grid}>{children}</Container>;
+  return (
+    <div
+      className={css.container}
+      style={{ '--row-start': grid[0], '--row-span': grid[1] } as React.CSSProperties}
+    >
+      {children}
+    </div>
+  );
 };
-
-type ContainerProps = Pick<IActionCenterTileProps, 'grid'>;
-
-const Container = styled.div<ContainerProps>`
-  display: flex;
-  gap: 0.4rem;
-  align-items: center;
-
-  cursor: default !important;
-
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: ${theme.colors.dark.main};
-
-  ${({ grid }) => css`
-    grid-row: ${grid[0]} / span ${grid[1]};
-  `};
-`;

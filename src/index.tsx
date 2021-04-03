@@ -1,6 +1,6 @@
 import { Provider } from 'jotai';
 import { render } from 'preact';
-import './theme.css';
+import './css/global.scss';
 import { Desktop } from './views/desktop/Desktop';
 
 render(

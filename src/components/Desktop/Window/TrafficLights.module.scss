@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+
+  height: 100%;
+}
+
+.trafficLight {
+  --size: 0.79rem;
+  height: var(--size);
+  width: var(--size);
+
+  border-radius: 50%;
+}
+
+.closeLight {
+  composes: trafficLight;
+  background-color: #ff5f56;
+  box-shadow: 0 0 0 0.5px #e0443e;
+}
+
+.stretchLight {
+  composes: trafficLight;
+  background-color: #ffbd2e;
+  box-shadow: 0 0 0 0.5px #dea123;
+}
+
+.minimizeLight {
+  composes: trafficLight;
+  background-color: #27c93f;
+  box-shadow: 0 0 0 0.5px #1aab29;
+}

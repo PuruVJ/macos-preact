@@ -1,59 +1,49 @@
-import { transparentize } from 'color2k';
-import { FC, HTMLProps } from 'react';
-import ReactSlider from 'react-slider';
-import styled from 'styled-components';
-import { theme } from '__/theme';
+import { Slider, SliderProps } from '@reach/slider';
+import clsx from 'clsx';
+import { FC } from 'preact/compat';
+import css from './ACSlider.module.scss';
 
-export const ACSlider: FC<ReactSlider.ReactSliderProps> = ({ children, ...props }) => {
-  return <Slider renderTrack={Track} renderThumb={Thumb} {...props}></Slider>;
+export const ACSlider: FC<SliderProps> = ({ children, ...props }) => {
+  return <Slider {...props} className={clsx({ [css.slider]: true })}></Slider>;
 };
 
-const pickTrackColor = (index: number) => ['white', 'transparent'][index];
+// const pickTrackColor = (index: number) => ['white', 'transparent'][index];
 
-const Slider = styled(ReactSlider)`
-  --size: 1.4rem;
-  width: 100%;
-  height: var(--size);
+// const StyledTrack = styled.div<State>`
+//   height: inherit;
 
-  box-shadow: 0 0 0 0.35px ${transparentize(theme.colors.grey[600], 0.3)};
-  border-radius: 1rem;
+//   background-color: ${({ index }) => pickTrackColor(index)};
 
-  background-color: hsla(${theme.colors.dark.hsl}, 0.1);
-`;
+//   border-radius: inherit;
+// `;
 
-const StyledTrack = styled.div<State>`
-  height: inherit;
+// const StyledThumb = styled.div<State>`
+//   height: var(--size);
+//   width: var(--size);
 
-  background-color: ${({ index }) => pickTrackColor(index)};
+//   background-color: white;
 
-  border-radius: inherit;
-`;
+//   border-radius: 50%;
 
-const StyledThumb = styled.div<State>`
-  height: var(--size);
-  width: var(--size);
+//   box-shadow: hsla(0, 0%, 0%, 0.3) 0px 0px 3px 1px;
 
-  background-color: white;
+//   cursor: grab;
 
-  border-radius: 50%;
+//   /* margin-left: calc(-1 * var(--size)); */
+// `;
 
-  box-shadow: hsla(0, 0%, 0%, 0.3) 0px 0px 3px 1px;
+// interface State {
+//   index: number;
+//   value: number | number[];
+// }
+// const Track = (props: HTMLProps<HTMLDivElement>, state: State) => (
+//   <div
+//     {...props}
+//     className={clsx({ [css.track]: true, [props.className as string]: true })}
+//     style={{ '--bgcolor': pickTrackColor(state.index) } as React.CSSProperties}
+//   />
+// );
 
-  cursor: grab;
-
-  /* margin-left: calc(-1 * var(--size)); */
-`;
-
-interface State {
-  index: number;
-  value: number | number[];
-}
-const Track = (props: HTMLProps<HTMLDivElement>, state: State) => (
-  // @ts-ignore
-  <StyledTrack {...props} index={state.index} />
-);
-
-const Thumb = (props: HTMLProps<HTMLDivElement>, state: State) => (
-  // @ts-ignore
-  <StyledThumb {...props} />
-);
+// const Thumb = (props: HTMLProps<HTMLDivElement>, state: State) => (
+//   <div {...props} className={clsx({ [css.thumb]: true, [props.className as string]: true })} />
+// );

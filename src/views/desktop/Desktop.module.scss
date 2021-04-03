@@ -1,0 +1,25 @@
+.main {
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.backgroundCover {
+  height: 100%;
+  width: 100%;
+
+  z-index: -2;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  background-image: var(--bgurl);
+
+  will-change: background-image;
+
+  background-repeat: none;
+  background-size: cover;
+  background-position: center;
+}

@@ -1,0 +1,32 @@
+.dockItemButton {
+  height: 100%;
+  width: auto !important;
+
+  cursor: default !important;
+
+  transition: all 200ms ease-in;
+
+  transform-origin: bottom;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  img {
+    width: 57.6px;
+    height: auto;
+  }
+}
+
+.dot {
+  height: 4px;
+  width: 4px;
+
+  margin: 0px;
+
+  border-radius: 50%;
+
+  background-color: var(--app-color-dark);
+
+  opacity: var(--opacity);
+}

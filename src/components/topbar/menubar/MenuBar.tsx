@@ -1,14 +1,13 @@
 import Tippy from '@tippyjs/react/headless';
-import { transparentize } from 'color2k';
+import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { useImmerAtom } from 'jotai/immer';
-import styled, { css } from 'styled-components';
 import { sticky } from 'tippy.js';
 import { ButtonBase } from '__/components/utils/ButtonBase';
 import { activeMenuStore } from '__/stores/active-menu.store';
 import { menuBarMenusStore } from '__/stores/menubar.store';
-import { theme } from '__/theme';
 import { Menu } from './Menu';
+import css from './MenuBar.module.scss';
 
 const popperOptions = {
   modifiers: [
@@ -63,52 +62,19 @@ export const MenuBar = () => {
           )}
         >
           <span style={{ height: '100%' }}>
-            <MenuButton isDefaultMenu={menuID === 'default'} active={activeMenu[menuID]}>
+            <ButtonBase
+              className={clsx({
+                [css.menuButton]: true,
+                defaultMenu: menuID === 'default',
+                active: activeMenu[menuID],
+              })}
+              style={{ '--scale': activeMenu[menuID] ? 1 : 0 } as React.CSSProperties}
+            >
               {currentAppMenus[menuID].title}
-            </MenuButton>
+            </ButtonBase>
           </span>
         </Tippy>
       ))}
     </>
   );
 };
-
-const MenuButton = styled(ButtonBase)<{ active: boolean; isDefaultMenu: boolean }>`
-  font-weight: 500;
-
-  border-radius: 0.25rem;
-
-  position: relative;
-
-  padding: 0 0.5rem;
-
-  ${({ isDefaultMenu }) =>
-    isDefaultMenu &&
-    css`
-      font-weight: 600 !important;
-      margin: 0 6px;
-    `}
-
-  &::after {
-    --scale: ${({ active }) => (active ? 1 : 0)};
-
-    content: '';
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-
-    height: 100%;
-    width: 100%;
-
-    border-radius: inherit;
-
-    transform: scale(var(--scale), var(--scale));
-    transform-origin: center center;
-
-    transition: transform 100ms ease;
-
-    background-color: ${transparentize(theme.colors.grey[100], 0.7)};
-  }
-`;

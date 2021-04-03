@@ -1,12 +1,12 @@
+import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { useEffect, useMemo, useRef, useState } from 'preact/compat';
 import { Rnd } from 'react-rnd';
-import styled, { CSSProperties } from 'styled-components';
 import { appsConfig } from '__/data/apps/apps-config';
 import { randint } from '__/helpers/random';
 import { activeAppStore, activeAppZIndexStore, AppID } from '__/stores/apps.store';
-import { theme } from '__/theme';
 import { TrafficLights } from './TrafficLights';
+import css from './Window.module.scss';
 
 type WindowProps = {
   appID: AppID;
@@ -51,44 +51,15 @@ export const Window = ({ appID }: WindowProps) => {
       minHeight="300"
       onDragStart={focusCurrentApp}
     >
-      <Container tabIndex={-1} ref={containerRef} onClick={focusCurrentApp}>
+      <section className={css.container} tabIndex={-1} ref={containerRef} onClick={focusCurrentApp}>
         <div>
-          <TitleBar className="app-window-drag-handle">
+          <header className={clsx({ 'app-window-drag-handle': true, [css.titleBar]: true })}>
             <TrafficLights appID={appID} />
-          </TitleBar>
-          <Divider />
+          </header>
+          <div className={css.divider} />
         </div>
         <Component appID={appID} />
-      </Container>
+      </section>
     </Rnd>
   );
 };
-
-const Container = styled.section`
-  width: 100%;
-  height: 100%;
-
-  display: grid;
-  grid-template-rows: auto 1fr;
-
-  background-color: ${theme.colors.light.main};
-
-  position: relative;
-
-  border-radius: 0.75rem;
-  box-shadow: 0 33px 81px rgba(0, 0, 0, 0.31);
-`;
-
-const TitleBar = styled.header`
-  height: 2.5rem;
-  width: 100%;
-
-  padding: 0 0.75rem;
-`;
-
-const Divider = styled.div`
-  width: 100%;
-  height: 0.2px;
-
-  background-color: hsla(${theme.colors.dark.hsl}, 0.2);
-`;

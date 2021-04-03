@@ -1,19 +1,14 @@
-import styled from 'styled-components';
-import { theme } from '__/theme';
+import clsx from 'clsx';
+import { FC } from 'preact/compat';
 import { ButtonBase } from '../utils/ButtonBase';
+import css from './TopBarIconButton.module.scss';
 
-export const TopBarIconButton = styled(ButtonBase)`
-  max-height: 100%;
-
-  margin: 0 0.7rem !important;
-
-  svg,
-  svg path {
-    height: 1rem;
-    width: 1rem;
-
-    fill: ${theme.colors.light.contrast} !important;
-
-    position: relative;
-  }
-`;
+export const TopBarIconButton: FC<React.ComponentProps<typeof ButtonBase>> = (props) => (
+  <ButtonBase
+    {...props}
+    className={clsx({
+      [css.button]: true,
+      [props.className as string]: true,
+    })}
+  />
+);
