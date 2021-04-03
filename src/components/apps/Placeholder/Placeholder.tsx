@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { AppID } from '__/stores/apps.store';
+import type { AppID } from '__/stores/apps.store';
 import css from './Placeholder.module.scss';
 
 type PlaceholderAppTypes = {
