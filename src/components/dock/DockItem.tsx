@@ -8,7 +8,6 @@ import { AppConfig } from '__/helpers/create-app-config';
 import { activeAppStore, AppID, openAppsStore } from '__/stores/apps.store';
 import { ButtonBase } from '../utils/ButtonBase';
 import css from './DockItem.module.scss';
-import { DockTooltip } from './DockTooltip';
 
 type DockItemProps = AppConfig & {
   mouseX: MotionValue<number | null>;

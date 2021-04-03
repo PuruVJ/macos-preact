@@ -2,7 +2,6 @@ import Tippy from '@tippyjs/react/headless';
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { useImmerAtom } from 'jotai/immer';
-import { sticky } from 'tippy.js';
 import { ButtonBase } from '__/components/utils/ButtonBase';
 import { activeMenuStore } from '__/stores/active-menu.store';
 import { menuBarMenusStore } from '__/stores/menubar.store';
@@ -48,7 +47,7 @@ export const MenuBar = () => {
           placement="bottom-start"
           sticky
           zIndex={99999999}
-          plugins={[sticky]}
+          // plugins={[sticky]}
           onMount={() => tippyOnMount(menuID)}
           popperOptions={popperOptions}
           onHide={() => tippyOnHide(menuID)}
