@@ -25,16 +25,16 @@ Thank you for your attention
 */
 
 import { mdiBluetooth, mdiKeyboard, mdiWifiStrength4 } from '@mdi/js';
-import styled, { css } from 'styled-components';
 import { AirDropSVG } from '__/assets/sf-icons/AirDrop.svg';
 import { MoonSVG } from '__/assets/sf-icons/Moon.svg';
 import { AppIcon } from '__/components/utils/AppIcon';
 import { ButtonBase } from '__/components/utils/ButtonBase';
 import { useTheme } from '__/hooks/use-theme';
-import { theme } from '__/theme';
 import { ActionCenterShell } from './ActionCenterShell';
 import { ActionCenterSurface } from './ActionCenterSurface';
 import { ActionCenterTile } from './ActionCenterTile';
+import css from './ActionCenter.module.scss';
+import { FC } from 'preact/compat';
 
 export const ActionCenter = () => {
   const [theme, setTheme] = useTheme();
@@ -45,7 +45,7 @@ export const ActionCenter = () => {
 
   return (
     <ActionCenterShell>
-      <Container>
+      <section className={css.container}>
         {/* Main Controls: Wifi, Bluetooth, Airdrop */}
         <ActionCenterSurface
           grid={[
@@ -107,44 +107,29 @@ export const ActionCenter = () => {
             Keyboard
           </ActionCenterTile>
         </ActionCenterSurface>
-      </Container>
+      </section>
     </ActionCenterShell>
   );
 };
 
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: minmax(1.55rem, auto);
-  gap: 0.75rem;
-`;
+const Toggle: FC<{ filled: boolean } & React.ComponentProps<typeof ButtonBase>> = ({
+  filled,
+  children,
+  ...props
+}) => (
+  <ButtonBase
+    className={css.toggle}
+    style={
+      {
+        '--bgcolor': `var(--app-color-${filled ? 'primary' : 'dark'}-hsl)`,
+        '--bgalpha': filled ? 1 : 0.1,
 
-// const Label = styled.div`
-//   font-size: 0.8rem;
-//   font-weight: 600;
-
-//   color: ${theme.colors.dark.main};
-
-//   margin: 0.3rem 0;
-// `;
-
-const Toggle = styled(ButtonBase)<{ filled: boolean }>`
-  --size: 1.7rem;
-  height: var(--size);
-  width: var(--size);
-
-  padding: 0;
-
-  display: flex;
-  place-items: center;
-
-  border-radius: 50%;
-
-  ${({ filled }) => css`
-    background-color: hsla(${theme.colors[filled ? 'primary' : 'dark'].hsl}, ${filled ? 1 : 0.1});
-
-    svg {
-      fill: hsla(${theme.colors[filled ? 'primary' : 'light'].contrastHsl}, ${filled ? 1 : 0.9});
+        '--svgcolor': `var(--app-color-${filled ? 'primary' : 'light'}-contrast-hsl)`,
+        '--svgalpha': filled ? 1 : 0.9,
+      } as React.CSSProperties
     }
-  `}
-`;
+    {...props}
+  >
+    {children}
+  </ButtonBase>
+);

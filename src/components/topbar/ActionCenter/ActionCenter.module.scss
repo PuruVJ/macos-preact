@@ -7,6 +7,7 @@
 
 .toggle {
   --size: 1.7rem;
+
   height: var(--size);
   width: var(--size);
 
@@ -16,4 +17,19 @@
   place-items: center;
 
   border-radius: 50%;
+
+  background-color: hsla(var(--bgcolor), var(--bgalpha));
+
+  svg {
+    fill: hsla(var(--svgcolor), var(--svgalpha));
+  }
 }
+
+// const Label = styled.div`
+//   font-size: 0.8rem;
+//   font-weight: 600;
+
+//   color: ${theme.colors.dark.main};
+
+//   margin: 0.3rem 0;
+// `;
