@@ -30,6 +30,9 @@ export const MenuBar = () => {
   const parentRef = useRef<HTMLDivElement>();
 
   useOutsideClick(parentRef, () => {
+    // If no menu open, then ignore
+    if (activeMenu === '') return setForceCLosed(false);
+
     setActiveMenu('');
 
     // To override the animation
@@ -38,10 +41,10 @@ export const MenuBar = () => {
 
   return (
     <div className={css.container} ref={parentRef}>
-      {menuIDList.map((menuID, i) => (
+      {menuIDList.map((menuID) => (
         <Tippy
           key={menuID}
-          visible={activeMenu === menuID && !forceClosed}
+          visible={activeMenu === menuID}
           placement="bottom-start"
           animation={true}
           zIndex={99999999}
