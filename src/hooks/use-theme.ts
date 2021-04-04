@@ -6,7 +6,6 @@ import { themeAtom, Theme } from '__/stores/theme.store';
 let isFirstUpdate = true;
 
 const localValue = localStorage.getItem<Theme>('theme:type');
-
 const systemTheme: Theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 export function useTheme() {
