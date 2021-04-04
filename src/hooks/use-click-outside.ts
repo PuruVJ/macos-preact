@@ -6,7 +6,6 @@ export function useOutsideClick<T extends HTMLElement>(
   callback: () => void,
 ): void {
   const handleClick = (e: MouseEvent) => {
-    console.log(ref.current?.contains(e.target as Node));
     if (ref.current && !ref.current.contains(e.target as Node)) {
       callback();
     }

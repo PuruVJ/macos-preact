@@ -1,7 +1,8 @@
 import Tippy from '@tippyjs/react/headless';
 import clsx from 'clsx';
+import { motion, useSpring } from 'framer-motion';
 import { useAtom } from 'jotai';
-import { useRef } from 'preact/hooks';
+import { useRef, useState } from 'preact/hooks';
 import { ButtonBase } from '__/components/utils/ButtonBase';
 import { useOutsideClick } from '__/hooks/use-click-outside';
 import { activeMenuStore, menuBarMenusStore } from '__/stores/menubar.store';
@@ -22,6 +23,7 @@ const popperOptions = {
 export const MenuBar = () => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
   const [activeMenu, setActiveMenu] = useAtom(activeMenuStore);
+  const [forceClosed, setForceCLosed] = useState(false);
 
   const menuIDList = Object.keys(currentAppMenus);
 
@@ -29,6 +31,9 @@ export const MenuBar = () => {
 
   useOutsideClick(parentRef, () => {
     setActiveMenu('');
+
+    // To override the animation
+    setForceCLosed(true);
   });
 
   return (
@@ -37,8 +42,8 @@ export const MenuBar = () => {
         <Tippy
           key={menuID}
           visible={activeMenu === menuID}
-          onClickOutside={console.log}
           placement="bottom-start"
+          animation={true}
           zIndex={99999999}
           popperOptions={popperOptions}
           interactive
@@ -46,7 +51,11 @@ export const MenuBar = () => {
           render={(attrs) => (
             <div {...attrs}>
               {/* @ts-ignore */}
-              <Menu menu={currentAppMenus[menuID].menu} />
+              <Menu
+                isHidden={activeMenu !== menuID}
+                forceHidden={forceClosed}
+                menu={currentAppMenus[menuID].menu}
+              />
             </div>
           )}
         >
@@ -56,7 +65,7 @@ export const MenuBar = () => {
               onMouseOver={() => activeMenu && setActiveMenu(menuID)}
               className={clsx({
                 [css.menuButton]: true,
-                defaultMenu: menuID === 'default',
+                [css.defaultMenu]: menuID === 'default',
                 active: activeMenu === menuID,
               })}
               style={{ '--scale': activeMenu === menuID ? 1 : 0 } as React.CSSProperties}
