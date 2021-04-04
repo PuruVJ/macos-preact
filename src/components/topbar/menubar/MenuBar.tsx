@@ -1,8 +1,10 @@
 import Tippy from '@tippyjs/react/headless';
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
-import { useImmerAtom } from 'jotai/immer';
+import { createRef, RefObject } from 'preact';
+import { useRef } from 'preact/hooks';
 import { ButtonBase } from '__/components/utils/ButtonBase';
+import { useOutsideClick } from '__/hooks/use-click-outside';
 import { activeMenuStore, menuBarMenusStore } from '__/stores/menubar.store';
 import { Menu } from './Menu';
 import css from './MenuBar.module.scss';
@@ -20,36 +22,26 @@ const popperOptions = {
 
 export const MenuBar = () => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
-  const [activeMenu, setActiveMenu] = useImmerAtom(activeMenuStore);
+  const [activeMenu, setActiveMenu] = useAtom(activeMenuStore);
 
   const menuIDList = Object.keys(currentAppMenus);
 
-  const tippyOnMount = (menuID: Unpacked<typeof menuIDList>) =>
-    setActiveMenu((val) => {
-      val[menuID] = true;
-      return val;
-    });
+  const parentRef = useRef<HTMLDivElement>();
 
-  const tippyOnHide = (menuID: Unpacked<typeof menuIDList>) =>
-    setActiveMenu((val) => {
-      val[menuID] = false;
-      return val;
-    });
+  useOutsideClick(parentRef, () => {
+    setActiveMenu('');
+  });
 
   return (
-    <>
-      {menuIDList.map((menuID) => (
+    <div className={css.container} ref={parentRef}>
+      {menuIDList.map((menuID, i) => (
         <Tippy
           key={menuID}
-          trigger="focusin mouseenter"
-          hideOnClick={false}
+          visible={activeMenu === menuID}
+          onClickOutside={console.log}
           placement="bottom-start"
-          sticky
           zIndex={99999999}
-          // plugins={[sticky]}
-          onMount={() => tippyOnMount(menuID)}
           popperOptions={popperOptions}
-          onHide={() => tippyOnHide(menuID)}
           interactive
           appendTo={document.body}
           render={(attrs) => (
@@ -61,18 +53,20 @@ export const MenuBar = () => {
         >
           <span style={{ height: '100%' }}>
             <ButtonBase
+              onClick={() => setActiveMenu(menuID)}
+              onMouseOver={() => activeMenu && setActiveMenu(menuID)}
               className={clsx({
                 [css.menuButton]: true,
                 defaultMenu: menuID === 'default',
-                active: activeMenu[menuID],
+                active: activeMenu === menuID,
               })}
-              style={{ '--scale': activeMenu[menuID] ? 1 : 0 } as React.CSSProperties}
+              style={{ '--scale': activeMenu === menuID ? 1 : 0 } as React.CSSProperties}
             >
               {currentAppMenus[menuID].title}
             </ButtonBase>
           </span>
         </Tippy>
       ))}
-    </>
+    </div>
   );
 };

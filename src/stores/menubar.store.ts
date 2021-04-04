@@ -9,4 +9,4 @@ export const menuBarMenusStore = atom(
   menuConfigs.finder,
 );
 
-export const activeMenuStore = atom<Record<string, boolean>>({});
+export const activeMenuStore = atom<string>('');
