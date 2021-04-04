@@ -1,10 +1,7 @@
 import clsx from 'clsx';
 import { motion, useSpring } from 'framer-motion';
-import { useAtom } from 'jotai';
 import { useEffect, useRef } from 'preact/hooks';
 import { ButtonBase } from '__/components/utils/ButtonBase';
-import type { IMenu } from '__/helpers/create-menu-config';
-import { activeAppStore } from '__/stores/apps.store';
 import css from './Menu.module.scss';
 
 type MenuProps = {
