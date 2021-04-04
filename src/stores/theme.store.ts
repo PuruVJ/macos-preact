@@ -1,5 +1,5 @@
 import { atom } from 'jotai';
 
-export type TTheme = 'light' | 'dark';
+export type Theme = 'light' | 'dark';
 
-export const themeAtom = atom<TTheme>('light');
+export const themeAtom = atom<Theme>('light');
