@@ -1,27 +1,25 @@
 import { useAtom } from 'jotai';
-import { useEffect, useLayoutEffect, useRef } from 'preact/hooks';
+import { useEffect } from 'preact/hooks';
 import { themeAtom, TTheme } from '__/stores/theme.store';
 
+// This is needed here
+let isFirstUpdate = true;
+
+const localValue = localStorage.getItem<TTheme>('theme:type');
+
+// Media query
+const systemTheme: TTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
 export function useTheme() {
-  const localValue = localStorage.getItem<TTheme>('theme:type');
-  // Media query
-  const systemTheme: TTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-  // This is needed here
-  const isFirstUpdate = useRef(true);
-
   const [theme, setTheme] = useAtom(themeAtom);
 
   useEffect(() => {
     setTheme(localValue || systemTheme);
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     // Needed, because without it, the theme after reload stays light only
-    if (isFirstUpdate.current) {
-      isFirstUpdate.current = false;
-      return () => {};
-    }
+    if (isFirstUpdate) return void (isFirstUpdate = false);
 
     localStorage.setItem('theme:type', theme);
 
