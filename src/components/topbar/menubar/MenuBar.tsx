@@ -1,6 +1,5 @@
 import Tippy from '@tippyjs/react/headless';
 import clsx from 'clsx';
-import { motion, useSpring } from 'framer-motion';
 import { useAtom } from 'jotai';
 import { useRef, useState } from 'preact/hooks';
 import { ButtonBase } from '__/components/utils/ButtonBase';
