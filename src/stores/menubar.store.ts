@@ -8,3 +8,5 @@ export const menuBarMenusStore = atom(
   // (get) => menuConfigs[get(activeAppStore) as keyof typeof menuConfigs],
   menuConfigs.finder,
 );
+
+export const activeMenuStore = atom<Record<string, boolean>>({});

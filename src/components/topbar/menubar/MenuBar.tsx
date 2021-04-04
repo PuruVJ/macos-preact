@@ -3,8 +3,7 @@ import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { useImmerAtom } from 'jotai/immer';
 import { ButtonBase } from '__/components/utils/ButtonBase';
-import { activeMenuStore } from '__/stores/active-menu.store';
-import { menuBarMenusStore } from '__/stores/menubar.store';
+import { activeMenuStore, menuBarMenusStore } from '__/stores/menubar.store';
 import { Menu } from './Menu';
 import css from './MenuBar.module.scss';
 
