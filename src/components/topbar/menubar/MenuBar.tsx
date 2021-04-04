@@ -31,6 +31,7 @@ export const MenuBar = () => {
 
   useOutsideClick(parentRef, () => {
     // If no menu open, then ignore
+    // set force close here cuz clicking anywhere else makes the menu stay closed after clicking on it
     if (activeMenu === '') return setForceCLosed(false);
 
     setActiveMenu('');
