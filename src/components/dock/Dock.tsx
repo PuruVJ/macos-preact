@@ -5,9 +5,6 @@ import { openAppsStore } from '__/stores/apps.store';
 import css from './Dock.module.scss';
 import { DockItem } from './DockItem';
 
-/**
- * The famous MacOS Dock
- */
 export const Dock = () => {
   const [openApps] = useAtom(openAppsStore);
 

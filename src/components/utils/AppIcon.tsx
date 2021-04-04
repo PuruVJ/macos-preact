@@ -1,12 +1,11 @@
-import { SVGAttributes } from 'react';
+import { SVGProps } from 'react';
 
-interface IAppIcon extends SVGAttributes<SVGSVGElement> {
+type AppIconProps = {
   path: string;
   size?: number;
-}
+};
 
-export const AppIcon = ({ size = 24, path, ...props }: IAppIcon) => (
-  // @ts-ignore
+export const AppIcon = ({ size = 24, path, ...props }: AppIconProps & SVGProps<SVGSVGElement>) => (
   <svg
     {...props}
     xmlns="http://www.w3.org/2000/svg"
