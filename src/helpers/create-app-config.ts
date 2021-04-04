@@ -1,7 +1,6 @@
 export type AppConfig = {
   title: string;
   resizable: boolean;
-  Component: React.ElementType;
 
   shouldOpenWindow?: boolean;
 
