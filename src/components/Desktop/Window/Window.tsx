@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { useEffect, useMemo, useRef, useState } from 'preact/compat';
 import { Rnd } from 'react-rnd';
+import { PlaceholderApp } from '__/components/apps/Placeholder/Placeholder';
 import { appsConfig } from '__/data/apps/apps-config';
 import { randint } from '__/helpers/random';
 import { activeAppStore, activeAppZIndexStore, AppID } from '__/stores/apps.store';
@@ -23,7 +24,7 @@ export const Window = ({ appID }: WindowProps) => {
   const randX = useMemo(() => randint(-600, 600), []);
   const randY = useMemo(() => randint(-100, 100), []);
 
-  const { Component, resizable } = appsConfig[appID];
+  const { resizable } = appsConfig[appID];
 
   useEffect(() => {
     if (activeApp === appID) setAppZIndex(activeAppZIndex);
@@ -58,7 +59,7 @@ export const Window = ({ appID }: WindowProps) => {
           </header>
           <div className={css.divider} />
         </div>
-        <Component appID={appID} />
+        <PlaceholderApp appID={appID} />
       </section>
     </Rnd>
   );
