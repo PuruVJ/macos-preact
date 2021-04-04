@@ -70,7 +70,6 @@ export const MenuBar = () => {
               className={clsx({
                 [css.menuButton]: true,
                 [css.defaultMenu]: menuID === 'default',
-                active: activeMenu === menuID,
               })}
               style={{ '--scale': activeMenu === menuID ? 1 : 0 } as React.CSSProperties}
             >
