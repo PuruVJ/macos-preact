@@ -1,7 +1,6 @@
 import Tippy from '@tippyjs/react/headless';
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
-import { createRef, RefObject } from 'preact';
 import { useRef } from 'preact/hooks';
 import { ButtonBase } from '__/components/utils/ButtonBase';
 import { useOutsideClick } from '__/hooks/use-click-outside';
