@@ -24,9 +24,7 @@ export const Menu = ({ menu, forceHidden, isHidden }: MenuProps) => {
 
   useEffect(() => {
     // Menu closed from outside. Close with animation
-    if (forceHidden) {
-      return opacity.set(0);
-    }
+    if (forceHidden) return opacity.set(0);
 
     // No animation on open or on consecutive menu open/close
     opacity.updateAndNotify(+!isHidden);
