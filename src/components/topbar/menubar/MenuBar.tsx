@@ -41,11 +41,12 @@ export const MenuBar = () => {
       {menuIDList.map((menuID, i) => (
         <Tippy
           key={menuID}
-          visible={activeMenu === menuID}
+          visible={activeMenu === menuID && !forceClosed}
           placement="bottom-start"
           animation={true}
           zIndex={99999999}
           popperOptions={popperOptions}
+          onHide={() => setForceCLosed(false)}
           interactive
           appendTo={document.body}
           render={(attrs) => (
