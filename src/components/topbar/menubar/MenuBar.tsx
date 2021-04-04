@@ -54,7 +54,6 @@ export const MenuBar = () => {
           appendTo={document.body}
           render={(attrs) => (
             <div {...attrs}>
-              {/* @ts-ignore */}
               <Menu
                 isHidden={activeMenu !== menuID}
                 forceHidden={forceClosed}

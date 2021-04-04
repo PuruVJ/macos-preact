@@ -31,7 +31,7 @@ export const Menu = ({ menu, forceHidden, isHidden }: MenuProps) => {
     <motion.div style={{ opacity }} className={css.container} ref={ref} tabIndex={-1}>
       {Object.keys(menu).map((key: any) => [
         <ButtonBase
-          className={clsx({ disabled: menu[key].disabled, [css.menuItem]: true })}
+          className={clsx({ [css.disabled]: menu[key].disabled, [css.menuItem]: true })}
           key={key}
         >
           {menu[key].title}
