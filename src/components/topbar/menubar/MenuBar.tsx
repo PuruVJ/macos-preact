@@ -1,7 +1,7 @@
 import Tippy from '@tippyjs/react/headless';
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
-import { useRef } from 'preact/hooks';
+import { useRef, useState } from 'preact/hooks';
 import { ButtonBase } from '__/components/utils/ButtonBase';
 import { useOutsideClick } from '__/hooks/use-click-outside';
 import { activeMenuStore, menuBarMenusStore } from '__/stores/menubar.store';
@@ -22,31 +22,43 @@ const popperOptions = {
 export const MenuBar = () => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
   const [activeMenu, setActiveMenu] = useAtom(activeMenuStore);
+  const [forceClosed, setForceCLosed] = useState(false);
 
   const menuIDList = Object.keys(currentAppMenus);
 
   const parentRef = useRef<HTMLDivElement>();
 
   useOutsideClick(parentRef, () => {
+    // If no menu open, then ignore
+    // set force close here cuz clicking anywhere else makes the menu stay closed after clicking on it
+    if (activeMenu === '') return setForceCLosed(false);
+
     setActiveMenu('');
+
+    // To override the animation
+    setForceCLosed(true);
   });
 
   return (
     <div className={css.container} ref={parentRef}>
-      {menuIDList.map((menuID, i) => (
+      {menuIDList.map((menuID) => (
         <Tippy
           key={menuID}
           visible={activeMenu === menuID}
-          onClickOutside={console.log}
           placement="bottom-start"
+          animation={true}
           zIndex={99999999}
           popperOptions={popperOptions}
+          onHide={() => setForceCLosed(false)}
           interactive
           appendTo={document.body}
           render={(attrs) => (
             <div {...attrs}>
-              {/* @ts-ignore */}
-              <Menu menu={currentAppMenus[menuID].menu} />
+              <Menu
+                isHidden={activeMenu !== menuID}
+                forceHidden={forceClosed}
+                menu={currentAppMenus[menuID].menu}
+              />
             </div>
           )}
         >
@@ -56,8 +68,7 @@ export const MenuBar = () => {
               onMouseOver={() => activeMenu && setActiveMenu(menuID)}
               className={clsx({
                 [css.menuButton]: true,
-                defaultMenu: menuID === 'default',
-                active: activeMenu === menuID,
+                [css.defaultMenu]: menuID === 'default',
               })}
               style={{ '--scale': activeMenu === menuID ? 1 : 0 } as React.CSSProperties}
             >
