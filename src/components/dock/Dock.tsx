@@ -19,18 +19,20 @@ export const Dock = () => {
       >
         {Object.keys(appsConfig).map((appID) => {
           const { dockBreaksBefore } = appsConfig[appID];
-          return [
-            dockBreaksBefore && (
-              <div className={css.divider} key={`${appID}-divider`} aria-hidden="true" />
-            ),
-            <DockItem
-              key={appID}
-              mouseX={mouseX}
-              appID={appID}
-              isOpen={openApps[appID]}
-              {...appsConfig[appID]}
-            />,
-          ];
+          return (
+            <>
+              {dockBreaksBefore && (
+                <div className={css.divider} key={`${appID}-divider`} aria-hidden="true" />
+              )}
+              <DockItem
+                key={appID}
+                mouseX={mouseX}
+                appID={appID}
+                isOpen={openApps[appID]}
+                {...appsConfig[appID]}
+              />
+            </>
+          );
         })}
       </div>
     </section>

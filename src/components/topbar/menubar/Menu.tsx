@@ -29,16 +29,18 @@ export const Menu = ({ menu, forceHidden, isHidden }: MenuProps) => {
 
   return (
     <motion.div style={{ opacity }} className={css.container} ref={ref} tabIndex={-1}>
-      {Object.keys(menu).map((key: any) => [
-        <ButtonBase
-          className={clsx({ [css.disabled]: menu[key].disabled, [css.menuItem]: true })}
-          disabled={menu[key].disabled}
-          key={key}
-        >
-          {menu[key].title}
-        </ButtonBase>,
-        menu[key].breakAfter && <div className={css.divider} key={`${key}-divider`} />,
-      ])}
+      {Object.keys(menu).map((key: any) => (
+        <>
+          <ButtonBase
+            className={clsx({ [css.disabled]: menu[key].disabled, [css.menuItem]: true })}
+            disabled={menu[key].disabled}
+            key={key}
+          >
+            {menu[key].title}
+          </ButtonBase>
+          {menu[key].breakAfter && <div className={css.divider} key={`${key}-divider`} />}
+        </>
+      ))}
     </motion.div>
   );
 };
