@@ -18,14 +18,14 @@
   position: relative;
 
   user-select: none;
-
   appearance: none;
+  cursor: pointer;
 
   background-color: transparent;
 
   -webkit-tap-highlight-color: transparent;
-}
 
-.button:not(:disabled) {
-  cursor: pointer;
+  &:disabled {
+    cursor: default;
+  }
 }

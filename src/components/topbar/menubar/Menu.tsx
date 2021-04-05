@@ -32,6 +32,7 @@ export const Menu = ({ menu, forceHidden, isHidden }: MenuProps) => {
       {Object.keys(menu).map((key: any) => [
         <ButtonBase
           className={clsx({ [css.disabled]: menu[key].disabled, [css.menuItem]: true })}
+          disabled={menu[key].disabled}
           key={key}
         >
           {menu[key].title}

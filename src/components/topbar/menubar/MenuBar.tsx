@@ -24,8 +24,6 @@ export const MenuBar = () => {
   const [activeMenu, setActiveMenu] = useAtom(activeMenuStore);
   const [forceClosed, setForceCLosed] = useState(false);
 
-  const menuIDList = Object.keys(currentAppMenus);
-
   const parentRef = useRef<HTMLDivElement>();
 
   useOutsideClick(parentRef, () => {
@@ -41,7 +39,7 @@ export const MenuBar = () => {
 
   return (
     <div className={css.container} ref={parentRef}>
-      {menuIDList.map((menuID) => (
+      {Object.keys(currentAppMenus).map((menuID) => (
         <Tippy
           key={menuID}
           visible={activeMenu === menuID}
