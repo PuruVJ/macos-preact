@@ -1,7 +1,7 @@
 import { mdiApple } from '@mdi/js';
 import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'preact/hooks';
-import { useTimeout } from '__/hooks/use-timeout';
+import { useTimeout } from '__/hooks';
 import { AppIcon } from '../utils/AppIcon';
 import css from './StartupChime.module.scss';
 

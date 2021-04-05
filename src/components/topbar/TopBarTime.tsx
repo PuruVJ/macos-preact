@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { useState } from 'preact/hooks';
-import { useInterval } from 'use-interval';
+import { useInterval } from '__/hooks';
 
 export const TopBarTime = () => {
   const [time, setTime] = useState(new Date());

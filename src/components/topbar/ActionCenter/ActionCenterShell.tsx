@@ -1,6 +1,6 @@
 import { ComponentChildren } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
-import { useTheme } from '__/hooks/use-theme';
+import { useTheme } from '__/hooks';
 import css from './ActionCenterShell.module.scss';
 
 interface IMenuShell {

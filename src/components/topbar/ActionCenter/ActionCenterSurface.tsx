@@ -1,5 +1,5 @@
 import { ComponentChildren } from 'preact';
-import { useTheme } from '__/hooks/use-theme';
+import { useTheme } from '__/hooks';
 import css from './ActionCenterSurface.module.scss';
 
 interface ActionCenterSurfaceProps {

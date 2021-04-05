@@ -29,7 +29,7 @@ import { AirDropSVG } from '__/assets/sf-icons/AirDrop.svg';
 import { MoonSVG } from '__/assets/sf-icons/Moon.svg';
 import { AppIcon } from '__/components/utils/AppIcon';
 import { ButtonBase } from '__/components/utils/ButtonBase';
-import { useTheme } from '__/hooks/use-theme';
+import { useTheme } from '__/hooks';
 import { ActionCenterShell } from './ActionCenterShell';
 import { ActionCenterSurface } from './ActionCenterSurface';
 import { ActionCenterTile } from './ActionCenterTile';

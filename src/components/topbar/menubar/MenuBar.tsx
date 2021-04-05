@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { useRef, useState } from 'preact/hooks';
 import { ButtonBase } from '__/components/utils/ButtonBase';
-import { useOutsideClick } from '__/hooks/use-click-outside';
+import { useOutsideClick } from '__/hooks';
 import { activeMenuStore, menuBarMenusStore } from '__/stores/menubar.store';
 import { Menu } from './Menu';
 import css from './MenuBar.module.scss';

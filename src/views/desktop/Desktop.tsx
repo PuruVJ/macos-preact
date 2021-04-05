@@ -3,7 +3,7 @@ import { StartupChime } from '__/components/Desktop/StartupChime';
 import { WindowsArea } from '__/components/Desktop/Window/WindowsArea';
 import { Dock } from '__/components/dock/Dock';
 import { TopBar } from '__/components/topbar/TopBar';
-import { useTheme } from '__/hooks/use-theme';
+import { useTheme } from '__/hooks';
 import css from './Desktop.module.scss';
 
 const DarkBackground = '/assets/wallpapers/3-1.jpg';
