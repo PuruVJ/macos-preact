@@ -42,7 +42,7 @@ export const Window = ({ appID }: WindowProps) => {
       default={{
         height: 500,
         width: 600,
-        x: (document.body.clientWidth - 600 + randX) / 2,
+        x: ((3 / 2) * document.body.clientWidth + randX) / 2,
         y: (100 + randY) / 2,
       }}
       enableResizing={resizable}

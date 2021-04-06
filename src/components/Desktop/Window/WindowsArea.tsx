@@ -3,6 +3,7 @@ import { useEffect } from 'preact/hooks';
 import { appsConfig } from '__/data/apps/apps-config';
 import { activeAppStore, activeAppZIndexStore, openAppsStore } from '__/stores/apps.store';
 import { Window } from './Window';
+import css from './WindowsArea.module.scss';
 
 export const WindowsArea = () => {
   const [openApps] = useAtom(openAppsStore);
@@ -15,7 +16,7 @@ export const WindowsArea = () => {
   }, [activeApp]);
 
   return (
-    <section style={{ display: 'block' }}>
+    <section className={css.container}>
       {Object.keys(appsConfig).map(
         (appID) =>
           openApps[appID] &&
