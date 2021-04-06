@@ -8,6 +8,9 @@ let isFirstUpdate = true;
 const localValue = localStorage.getItem<Theme>('theme:type');
 const systemTheme: Theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
+/**
+ * Sitewide theme
+ */
 export function useTheme() {
   const [theme, setTheme] = useAtom(themeAtom);
 
