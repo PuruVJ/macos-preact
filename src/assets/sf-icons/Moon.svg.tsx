@@ -1,6 +1,4 @@
-import { FC, SVGAttributes } from 'react';
-
-export const MoonSVG: FC<SVGAttributes<SVGSVGElement> & { size: number }> = ({
+export const MoonSVG: React.FC<React.SVGAttributes<SVGSVGElement> & { size: number }> = ({
   size = 24,
   ...props
 }) => (
