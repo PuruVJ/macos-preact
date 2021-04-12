@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { useEffect, useMemo, useRef, useState } from 'preact/compat';
 import { Rnd } from 'react-rnd';
-import { PlaceholderApp } from '__/components/apps/Placeholder/Placeholder';
+import { App } from '__/components/apps/App';
 import { appsConfig } from '__/data/apps/apps-config';
 import { randint } from '__/helpers/random';
 import { activeAppStore, activeAppZIndexStore, AppID } from '__/stores/apps.store';
@@ -59,7 +59,7 @@ export const Window = ({ appID }: WindowProps) => {
           </header>
           <div className={css.divider} />
         </div>
-        <PlaceholderApp appID={appID} />
+        <App appID={appID} />
       </section>
     </Rnd>
   );
