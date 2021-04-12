@@ -3,11 +3,11 @@ import { useEffect, useRef } from 'preact/hooks';
 import { useTheme } from '__/hooks';
 import css from './ActionCenterShell.module.scss';
 
-interface IMenuShell {
+type MenuShellProps = {
   children: ComponentChildren;
-}
+};
 
-export const ActionCenterShell = ({ children }: IMenuShell) => {
+export const ActionCenterShell = ({ children }: MenuShellProps) => {
   const ref = useRef<HTMLElement>();
   const [theme] = useTheme();
 

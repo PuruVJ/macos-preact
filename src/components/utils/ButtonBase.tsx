@@ -1,20 +1,14 @@
-import clsx from 'clsx';
-import { FC } from 'preact/compat';
 import css from './ButtonBase.module.scss';
 
-export const ButtonBase: FC<React.HTMLProps<HTMLButtonElement>> = ({
+export const ButtonBase = ({
   children,
-  disabled,
+  disabled = false,
   ...props
-}) => {
+}: React.HTMLAttributes<HTMLButtonElement> & { disabled?: boolean }) => {
   const { className, ...rest } = props;
+
   return (
-    // @ts-ignore
-    <button
-      disabled={disabled}
-      className={clsx({ [className as string]: true, [css.button]: true })}
-      {...rest}
-    >
+    <button disabled={disabled} className={`${className} ${css.button}`} {...rest}>
       {children}
     </button>
   );
