@@ -1,5 +1,5 @@
-name: GitHub Actions Demo
-on: [push]
-jobs:
-  - name: WebPageTest GitHub Action
-    uses: WPO-Foundation/webpagetest-github-action@v.1.0.0
+- name: GitHub Actions Demo
+- on: [push]
+- jobs:
+    - name: WebPageTest GitHub Action
+      uses: WPO-Foundation/webpagetest-github-action@v.1.0.0
