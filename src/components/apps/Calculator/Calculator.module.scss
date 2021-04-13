@@ -6,7 +6,8 @@
   height: 100%;
   width: 100%;
 
-  background-color: #464646;
+  background-color: hsla(0, 0%, 27%, 0.7);
+  backdrop-filter: blur(30px);
 
   border-radius: inherit;
 

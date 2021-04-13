@@ -9,4 +9,7 @@ export default defineConfig({
       __: resolve(__dirname, './src'),
     },
   },
+  build: {
+    brotliSize: false,
+  },
 });
