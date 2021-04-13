@@ -7,12 +7,12 @@
   width: 100%;
 
   background-color: hsla(0, 0%, 27%, 0.7);
-  backdrop-filter: blur(30px);
+  backdrop-filter: blur(40px);
 
   border-radius: inherit;
 
   box-shadow: inset 0 0 0 0.9px hsla(var(--app-color-dark-hsl), 0.3),
-    0 0 0 1px hsla(var(--app-color-light-hsl), 0.3);
+    0 0 0 1.4px hsla(var(--app-color-light-hsl), 0.3);
 
   display: grid;
   grid-template-rows: auto auto 1fr;
