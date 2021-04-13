@@ -1,4 +1,7 @@
+import clsx from 'clsx';
 import { motion } from 'framer-motion';
+import { TrafficLights } from '__/components/Desktop/Window/TrafficLights';
+import { useTheme } from '__/hooks';
 import type { AppID } from '__/stores/apps.store';
 import css from './Placeholder.module.scss';
 
@@ -7,27 +10,28 @@ type PlaceholderAppTypes = {
 };
 
 export const PlaceholderApp = ({ appID }: PlaceholderAppTypes) => {
+  const [theme] = useTheme();
+
   return (
-    // <div>
-    //       <header className={clsx({ 'app-window-drag-handle': true, [css.titleBar]: true })}>
-    //         <TrafficLights appID={appID} />
-    //       </header>
-    //       <div className={css.divider} />
-    //     </div>,
-    <section className={css.container}>
-      <motion.img
-        className={css.img}
-        initial={{ scale: 0, rotate: 180 }}
-        animate={{ rotate: 360, scale: 1 }}
-        transition={{
-          type: 'spring',
-          stiffness: 250,
-          damping: 20,
-        }}
-        draggable={false}
-        src={`/assets/app-icons/${appID}/256.png`}
-      />
-      <h1>Apps coming soon!</h1>
+    <section className={clsx(css.container, theme === 'dark' && css.dark)}>
+      <header className={clsx('app-window-drag-handle', css.titleBar)}>
+        <TrafficLights appID={appID} />
+      </header>
+      <section className={css.mainArea}>
+        <motion.img
+          className={css.img}
+          initial={{ scale: 0, rotate: 180 }}
+          animate={{ rotate: 360, scale: 1 }}
+          transition={{
+            type: 'spring',
+            stiffness: 250,
+            damping: 20,
+          }}
+          draggable={false}
+          src={`/assets/app-icons/${appID}/256.png`}
+        />
+        <h1>Apps coming soon!</h1>
+      </section>
     </section>
   );
 };
