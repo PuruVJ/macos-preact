@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
 import { useEffect, useMemo, useRef, useState } from 'preact/compat';
 import { Rnd } from 'react-rnd';
-import { App } from '__/components/apps/App';
+import { AppNexus } from '__/components/apps/AppNexus';
 import { appsConfig } from '__/data/apps/apps-config';
 import { randint } from '__/helpers/random';
 import { activeAppStore, activeAppZIndexStore, AppID } from '__/stores/apps.store';
@@ -51,7 +51,7 @@ export const Window = ({ appID }: WindowProps) => {
       onDragStart={focusCurrentApp}
     >
       <section className={css.container} tabIndex={-1} ref={containerRef} onClick={focusCurrentApp}>
-        <App appID={appID} />
+        <AppNexus appID={appID} />
       </section>
     </Rnd>
   );
