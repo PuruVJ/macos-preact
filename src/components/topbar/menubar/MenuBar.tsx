@@ -45,6 +45,7 @@ export const MenuBar = () => {
           visible={activeMenu === menuID}
           placement="bottom-start"
           animation={true}
+          offset={[0, 4]}
           zIndex={99999999}
           popperOptions={popperOptions}
           onHide={() => setForceCLosed(false)}
