@@ -6,7 +6,7 @@ export type AppID = keyof typeof appsConfig;
 /** Which apps are currently open */
 export const openAppsStore = atom<Record<AppID, boolean>>({
   finder: false,
-  calculator: false,
+  calculator: import.meta.env.DEV,
   launchpad: false,
   safari: false,
   messages: false,

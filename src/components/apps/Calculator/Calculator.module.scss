@@ -1,0 +1,27 @@
+.header {
+  padding: 0.6rem;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+
+  background-color: #464646;
+
+  border-radius: inherit;
+
+  box-shadow: inset 0 0 0 0.9px hsla(var(--app-color-dark-hsl), 0.3),
+    0 0 0 1px hsla(var(--app-color-light-hsl), 0.3);
+
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+}
+
+.showArea {
+  font-size: 2.618rem;
+  color: white;
+  text-align: end;
+  font-weight: 200;
+
+  padding: 0.5rem 1rem;
+}

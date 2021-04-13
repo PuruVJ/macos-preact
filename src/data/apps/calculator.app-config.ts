@@ -2,5 +2,7 @@ import { createAppConfig } from '__/helpers/create-app-config';
 
 export const calculatorAppConfig = createAppConfig({
   title: 'Calculator',
-  resizable: true,
+
+  height: 300 * 1.414,
+  width: 300,
 });

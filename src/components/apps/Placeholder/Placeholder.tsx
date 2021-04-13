@@ -8,6 +8,12 @@ type PlaceholderAppTypes = {
 
 export const PlaceholderApp = ({ appID }: PlaceholderAppTypes) => {
   return (
+    // <div>
+    //       <header className={clsx({ 'app-window-drag-handle': true, [css.titleBar]: true })}>
+    //         <TrafficLights appID={appID} />
+    //       </header>
+    //       <div className={css.divider} />
+    //     </div>,
     <section className={css.container}>
       <motion.img
         className={css.img}

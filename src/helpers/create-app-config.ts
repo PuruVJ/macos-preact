@@ -1,6 +1,9 @@
 export type AppConfig = {
   title: string;
-  resizable: boolean;
+
+  resizable?: boolean;
+  height?: string | number;
+  width?: string | number;
 
   shouldOpenWindow?: boolean;
 
@@ -14,5 +17,9 @@ export type AppConfig = {
 export const createAppConfig = (et: AppConfig) => ({
   shouldOpenWindow: true,
   dockBreaksBefore: false,
+
+  resizable: true,
+  width: 600,
+  height: 500,
   ...et,
 });

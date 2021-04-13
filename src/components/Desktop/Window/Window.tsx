@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { useEffect, useMemo, useRef, useState } from 'preact/compat';
 import { Rnd } from 'react-rnd';
@@ -6,7 +5,6 @@ import { App } from '__/components/apps/App';
 import { appsConfig } from '__/data/apps/apps-config';
 import { randint } from '__/helpers/random';
 import { activeAppStore, activeAppZIndexStore, AppID } from '__/stores/apps.store';
-import { TrafficLights } from './TrafficLights';
 import css from './Window.module.scss';
 
 type WindowProps = {
@@ -24,7 +22,7 @@ export const Window = ({ appID }: WindowProps) => {
   const randX = useMemo(() => randint(-600, 600), []);
   const randY = useMemo(() => randint(-100, 100), []);
 
-  const { resizable } = appsConfig[appID];
+  const { resizable, width, height } = appsConfig[appID];
 
   useEffect(() => {
     if (activeApp === appID) setAppZIndex(activeAppZIndex);
@@ -40,8 +38,8 @@ export const Window = ({ appID }: WindowProps) => {
     <Rnd
       style={{ zIndex: appZIndex }}
       default={{
-        height: 500,
-        width: 600,
+        height,
+        width,
         x: ((3 / 2) * document.body.clientWidth + randX) / 2,
         y: (100 + randY) / 2,
       }}
@@ -53,12 +51,6 @@ export const Window = ({ appID }: WindowProps) => {
       onDragStart={focusCurrentApp}
     >
       <section className={css.container} tabIndex={-1} ref={containerRef} onClick={focusCurrentApp}>
-        <div>
-          <header className={clsx({ 'app-window-drag-handle': true, [css.titleBar]: true })}>
-            <TrafficLights appID={appID} />
-          </header>
-          <div className={css.divider} />
-        </div>
         <App appID={appID} />
       </section>
     </Rnd>
