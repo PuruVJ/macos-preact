@@ -34,6 +34,7 @@
   width: 100%;
 
   padding: 0.2rem 0.4rem;
+  margin: 0.1rem;
 
   letter-spacing: 0.4px;
   font-weight: 500 !important;
@@ -49,11 +50,9 @@
     --alpha: 0.5;
   }
 
-  &:not(.disabled) {
-    &:hover {
-      background-color: var(--app-color-primary);
-      color: var(--app-color-primary-contrast);
-    }
+  &:not(.disabled):hover {
+    background-color: var(--app-color-primary);
+    color: var(--app-color-primary-contrast);
   }
 }
 
