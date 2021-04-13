@@ -5,6 +5,7 @@ import { themeAtom, Theme } from '__/stores/theme.store';
 // This is needed here
 let isFirstUpdate = true;
 
+console.log(1);
 const localValue = localStorage.getItem<Theme>('theme:type');
 const systemTheme: Theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
@@ -15,7 +16,7 @@ export function useTheme() {
   const [theme, setTheme] = useAtom(themeAtom);
 
   useEffect(() => {
-    setTheme(localValue || systemTheme);
+    isFirstUpdate && setTheme(localValue || systemTheme);
   }, []);
 
   useLayoutEffect(() => {
