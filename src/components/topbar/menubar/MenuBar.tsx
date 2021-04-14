@@ -22,19 +22,19 @@ const popperOptions = {
 export const MenuBar = () => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
   const [activeMenu, setActiveMenu] = useAtom(activeMenuStore);
-  const [forceClosed, setForceCLosed] = useState(false);
+  const [forceClosed, setForceClosed] = useState(false);
 
   const parentRef = useRef<HTMLDivElement>();
 
   useOutsideClick(parentRef, () => {
     // If no menu open, then ignore
     // set force close here cuz clicking anywhere else makes the menu stay closed after clicking on it
-    if (activeMenu === '') return setForceCLosed(false);
+    if (activeMenu === '') return setForceClosed(false);
 
     setActiveMenu('');
 
     // To override the animation
-    setForceCLosed(true);
+    setForceClosed(true);
   });
 
   return (
@@ -45,10 +45,10 @@ export const MenuBar = () => {
           visible={activeMenu === menuID}
           placement="bottom-start"
           animation={true}
-          offset={[0, 4]}
+          offset={[0, 4.5]}
           zIndex={99999999}
           popperOptions={popperOptions}
-          onHide={() => setForceCLosed(false)}
+          onHide={() => setForceClosed(false)}
           interactive
           appendTo={document.body}
           render={(attrs) => (
