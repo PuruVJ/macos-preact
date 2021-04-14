@@ -1,9 +1,11 @@
+import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { useEffect, useMemo, useRef, useState } from 'preact/compat';
 import { Rnd } from 'react-rnd';
 import { AppNexus } from '__/components/apps/AppNexus';
 import { appsConfig } from '__/data/apps/apps-config';
 import { randint } from '__/helpers/random';
+import { useTheme } from '__/hooks';
 import { activeAppStore, activeAppZIndexStore, AppID } from '__/stores/apps.store';
 import css from './Window.module.scss';
 
@@ -14,6 +16,8 @@ type WindowProps = {
 export const Window = ({ appID }: WindowProps) => {
   const [activeAppZIndex] = useAtom(activeAppZIndexStore);
   const [activeApp, setActiveApp] = useAtom(activeAppStore);
+
+  const [theme] = useTheme();
 
   const containerRef = useRef<HTMLDivElement>();
 
@@ -50,7 +54,12 @@ export const Window = ({ appID }: WindowProps) => {
       minHeight="300"
       onDragStart={focusCurrentApp}
     >
-      <section className={css.container} tabIndex={-1} ref={containerRef} onClick={focusCurrentApp}>
+      <section
+        className={clsx(css.container, theme === 'dark' && css.dark)}
+        tabIndex={-1}
+        ref={containerRef}
+        onClick={focusCurrentApp}
+      >
         <AppNexus appID={appID} />
       </section>
     </Rnd>

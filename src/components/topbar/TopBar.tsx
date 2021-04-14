@@ -4,7 +4,7 @@ import { AppIcon } from '../utils/AppIcon';
 import { ButtonBase } from '../utils/ButtonBase';
 import { ActionCenterToggle } from './ActionCenter/ActionCenterToggle';
 import { MenuBar } from './menubar/MenuBar';
-import css from './Topbar.module.scss';
+import css from './TopBar.module.scss';
 import { TopBarIconButton } from './TopBarIconButton';
 import { TopBarTime } from './TopBarTime';
 
