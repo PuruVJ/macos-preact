@@ -29,11 +29,9 @@ export const Desktop = () => {
 
       <div
         className={css.backgroundCover}
-        style={
-          {
-            '--bgurl': `url(${theme === 'light' ? LightBackground : DarkBackground})`,
-          } as React.CSSProperties
-        }
+        style={{
+          backgroundImage: `url(${theme === 'light' ? LightBackground : DarkBackground})`,
+        }}
         aria-hidden="true"
       />
     </>
