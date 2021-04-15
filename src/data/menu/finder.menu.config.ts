@@ -32,8 +32,8 @@ export const finderMenuConfig = createMenuConfig({
   file: {
     title: 'File',
     menu: {
-      'new-folder-window': {
-        title: 'New Folder Window',
+      'new-finder-window': {
+        title: 'New Finder Window',
       },
       'new-folder': {
         title: 'New Folder',
@@ -94,7 +94,7 @@ export const finderMenuConfig = createMenuConfig({
         disabled: true,
       },
       'show-original': {
-        title: 'Show original',
+        title: 'Show Original',
         disabled: true,
       },
       'add-to-sidebar': {
