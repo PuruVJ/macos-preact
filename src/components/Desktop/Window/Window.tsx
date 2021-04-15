@@ -13,6 +13,16 @@ type WindowProps = {
   appID: AppID;
 };
 
+type WindowSize = {
+  width: string | number;
+  height: string | number;
+};
+
+type WindowPosition = {
+  x: number;
+  y: number;
+};
+
 export const Window = ({ appID }: WindowProps) => {
   const [activeAppZIndex] = useAtom(activeAppZIndexStore);
   const [activeApp, setActiveApp] = useAtom(activeAppStore);
@@ -24,6 +34,17 @@ export const Window = ({ appID }: WindowProps) => {
   const randX = useMemo(() => randint(-600, 600), []);
   const randY = useMemo(() => randint(-100, 100), []);
 
+  const [originalSize, setOriginalSize] = useState<WindowSize>({ height: 0, width: 0 });
+  const [originalPosition, setOriginalPosition] = useState<WindowPosition>({
+    x: 0,
+    y: 0,
+  });
+  const [windowSize, setWindowSize] = useState<WindowSize>({ height: 500, width: 600 });
+  const [windowPosition, setWindowPosition] = useState<WindowPosition>({
+    x: ((3 / 2) * document.body.clientWidth + randX) / 2,
+    y: (100 + randY) / 2,
+  });
+
   const { resizable } = appsConfig[appID];
 
   useEffect(() => {
@@ -34,17 +55,41 @@ export const Window = ({ appID }: WindowProps) => {
     containerRef.current?.focus();
   }, []);
 
+  const maximizeApp = () => {
+    const dockElementHeight = document.getElementById('dock')?.clientHeight ?? 0;
+    const topBarElementHeight = document.getElementById('top-bar')?.clientHeight ?? 0;
+
+    const desktopHeight = document.body.clientHeight - dockElementHeight - topBarElementHeight;
+    const deskTopWidth = document.body.clientWidth;
+
+    // When it's already maximized, revert the window to the previous size
+    if (windowSize.width === deskTopWidth && windowSize.height === desktopHeight) {
+      setWindowSize(originalSize);
+      setWindowPosition(originalPosition);
+    }
+    // Maximize the window to the size of the desktop
+    else {
+      setOriginalSize(windowSize);
+      setOriginalPosition(windowPosition);
+      setWindowSize({
+        height: desktopHeight,
+        width: deskTopWidth,
+      });
+      setWindowPosition({
+        x: document.body.clientWidth / 2,
+        y: 0,
+      });
+    }
+  };
+
   const focusCurrentApp = () => void setActiveApp(appID);
 
   return (
     <Rnd
+      className={css.window}
       style={{ zIndex: appZIndex }}
-      default={{
-        height: 500,
-        width: 600,
-        x: ((3 / 2) * document.body.clientWidth + randX) / 2,
-        y: (100 + randY) / 2,
-      }}
+      size={windowSize}
+      position={windowPosition}
       enableResizing={resizable}
       dragHandleClassName="app-window-drag-handle"
       bounds="parent"
@@ -55,7 +100,7 @@ export const Window = ({ appID }: WindowProps) => {
       <section className={css.container} tabIndex={-1} ref={containerRef} onClick={focusCurrentApp}>
         <div>
           <header className={clsx({ 'app-window-drag-handle': true, [css.titleBar]: true })}>
-            <TrafficLights appID={appID} />
+            <TrafficLights appID={appID} onMaximizeClick={maximizeApp} />
           </header>
           <div className={css.divider} />
         </div>
