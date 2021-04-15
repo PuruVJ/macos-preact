@@ -22,12 +22,12 @@
 
 .stretchLight {
   composes: trafficLight;
-  background-color: #ffbd2e;
-  box-shadow: 0 0 0 0.5px #dea123;
+  background-color: #27c93f;
+  box-shadow: 0 0 0 0.5px #1aab29;
 }
 
 .minimizeLight {
   composes: trafficLight;
-  background-color: #27c93f;
-  box-shadow: 0 0 0 0.5px #1aab29;
+  background-color: #ffbd2e;
+  box-shadow: 0 0 0 0.5px #dea123;
 }

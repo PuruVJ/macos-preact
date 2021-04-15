@@ -24,8 +24,8 @@ export const TrafficLights = ({ appID, onMaximizeClick }: TrafficLightProps) => 
   return (
     <div className={css.container}>
       <ButtonBase className={css.closeLight} onClick={closeApp} />
-      <ButtonBase className={css.stretchLight} />
-      <ButtonBase className={css.minimizeLight} onClick={maximizeApp} />
+      <ButtonBase className={css.minimizeLight} />
+      <ButtonBase className={css.stretchLight} onClick={maximizeApp} />
     </div>
   );
 };
