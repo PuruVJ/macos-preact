@@ -7,7 +7,7 @@ export const Calculator = () => {
   return (
     <section className={css.container}>
       <header className={clsx('app-window-drag-handle', css.header)}>
-        <TrafficLights appID="calculator" />
+        <TrafficLights appID="calculator" onMaximizeClick={() => {}} />
       </header>
       <section className={css.showArea}>0</section>
       <ButtonsArea />
