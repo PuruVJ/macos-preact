@@ -1,9 +1,17 @@
 .container {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.45rem;
 
   height: 100%;
+
+  &:hover svg {
+    visibility: visible;
+  }
+}
+
+svg {
+  visibility: hidden;
 }
 
 .trafficLight {
