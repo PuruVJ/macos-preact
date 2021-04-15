@@ -5,10 +5,9 @@ import css from './TrafficLights.module.scss';
 
 type TrafficLightProps = {
   appID: AppID;
-  onMaximizeClick: () => void;
 };
 
-export const TrafficLights = ({ appID, onMaximizeClick }: TrafficLightProps) => {
+export const TrafficLights = ({ appID }: TrafficLightProps) => {
   const [, setOpenApps] = useImmerAtom(openAppsStore);
 
   const closeApp = () =>
@@ -17,15 +16,11 @@ export const TrafficLights = ({ appID, onMaximizeClick }: TrafficLightProps) => 
       return openApps;
     });
 
-  const maximizeApp = () => {
-    onMaximizeClick();
-  };
-
   return (
     <div className={css.container}>
       <ButtonBase className={css.closeLight} onClick={closeApp} />
       <ButtonBase className={css.stretchLight} />
-      <ButtonBase className={css.minimizeLight} onClick={maximizeApp} />
+      <ButtonBase className={css.minimizeLight} />
     </div>
   );
 };
