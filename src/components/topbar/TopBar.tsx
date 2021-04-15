@@ -10,7 +10,7 @@ import { TopBarTime } from './TopBarTime';
 
 export const TopBar = () => {
   return (
-    <header id="top-bar" className={css.header}>
+    <header className={css.header}>
       <ButtonBase className={css.appleIconButton}>
         <AppIcon size={18} path={mdiApple} />
       </ButtonBase>

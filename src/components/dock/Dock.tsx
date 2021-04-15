@@ -11,7 +11,7 @@ export const Dock = () => {
   const mouseX = useMotionValue<number | null>(null);
 
   return (
-    <section id="dock" className={css.container}>
+    <section className={css.container}>
       <div
         className={css.dockEl}
         onMouseMove={(event) => mouseX.set(event.nativeEvent.x)}
