@@ -5,13 +5,13 @@
 
   height: 100%;
 
+  svg {
+    visibility: hidden;
+  }
+
   &:hover svg {
     visibility: visible;
   }
-}
-
-svg {
-  visibility: hidden;
 }
 
 .trafficLight {

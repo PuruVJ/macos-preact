@@ -2,9 +2,9 @@ import { useImmerAtom } from 'jotai/immer';
 import { ButtonBase } from '__/components/utils/ButtonBase';
 import { AppID, openAppsStore } from '__/stores/apps.store';
 import css from './TrafficLights.module.scss';
-import CloseIcon from '__/assets/traffic-icons/Close.svg';
-import MinimizeIcon from '__/assets/traffic-icons/Minimize.svg';
-import StretchIcon from '__/assets/traffic-icons/Stretch.svg';
+import { CloseIcon } from '__/assets/traffic-icons/Close.svg';
+import { MinimizeIcon } from '__/assets/traffic-icons/Minimize.svg';
+import { StretchIcon } from '__/assets/traffic-icons/Stretch.svg';
 
 type TrafficLightProps = {
   appID: AppID;

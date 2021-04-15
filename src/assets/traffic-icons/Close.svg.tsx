@@ -1,6 +1,4 @@
-import * as React from 'react';
-
-function SvgComponent(props: React.SVGProps<SVGSVGElement>) {
+export function CloseIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width={7} height={7} fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path
@@ -12,5 +10,3 @@ function SvgComponent(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-
-export default SvgComponent;

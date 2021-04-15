@@ -1,6 +1,4 @@
-import * as React from 'react';
-
-function SvgComponent(props: React.SVGProps<SVGSVGElement>) {
+export function StretchIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 13 13"
@@ -16,5 +14,3 @@ function SvgComponent(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-
-export default SvgComponent;
