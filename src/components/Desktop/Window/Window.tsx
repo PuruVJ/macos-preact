@@ -161,12 +161,6 @@ export const Window = ({ appID }: WindowProps) => {
         ref={containerRef}
         onClick={focusCurrentApp}
       >
-        <div>
-          <header className={clsx({ 'app-window-drag-handle': true, [css.titleBar]: true })}>
-            <TrafficLights appID={appID} onMaximizeClick={maximizeApp} />
-          </header>
-          <div className={css.divider} />
-        </div>
         <AppNexus appID={appID} />
       </section>
     </Rnd>
