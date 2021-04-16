@@ -143,7 +143,8 @@ const useMaximizeWindow = (windowRef: RefObject<WindowRnd>) => {
     );
 
     // Only when maximizing (not dragging or resizing), should it have transaction
-    windowRef.current.base.style.transition = 'height 0.5s, width 0.5s, transform 0.5s';
+    windowRef.current.base.style.transition =
+      'height 0.3s ease, width 0.3s ease, transform 0.3s ease';
 
     // Prevent removing transition styles when multiple times of maximizing action takes place in a short period
     clearTimeout(transitionClearanceRef.current);
@@ -154,7 +155,7 @@ const useMaximizeWindow = (windowRef: RefObject<WindowRnd>) => {
         windowRef.current.base.style.transition = '';
       }
       transitionClearanceRef.current = 0;
-    }, 500);
+    }, 300);
 
     // When it's already maximized, revert the window to the previous size
     if (windowWidth === deskTopWidth && windowHeight === desktopHeight) {
