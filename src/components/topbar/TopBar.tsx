@@ -1,4 +1,4 @@
-import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
+import { mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
 import { VolumeLowSVG } from '__/assets/sf-icons/VolumeLowSVG';
 import { AppIcon } from '../utils/AppIcon';
 import { ButtonBase } from '../utils/ButtonBase';
