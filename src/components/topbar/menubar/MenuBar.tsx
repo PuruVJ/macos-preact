@@ -48,12 +48,9 @@ export const MenuBar = () => {
           placement="bottom-start"
           animation={true}
           offset={[0, 4.5]}
-          // zIndex={98989}
           popperOptions={{ ...popperOptions, strategy: 'fixed' }}
           onHide={() => setForceClosed(false)}
           interactive
-          allowHTML={true}
-          // appendTo={document.body}
           render={(attrs) => (
             <div {...attrs}>
               <Menu
@@ -71,11 +68,12 @@ export const MenuBar = () => {
               className={clsx({
                 [css.menuButton]: true,
                 [css.defaultMenu]: menuID === 'default',
+                [css.appleIconButton]: menuID === 'apple',
               })}
               style={{ '--scale': activeMenu === menuID ? 1 : 0 } as React.CSSProperties}
             >
-              {currentAppMenus[menuID].title === 'apple' ? (
-                <AppIcon className={css.appleIconButton} size={18} path={mdiApple} />
+              {menuID === 'apple' ? (
+                <AppIcon size={18} path={mdiApple} />
               ) : (
                 currentAppMenus[menuID].title
               )}
