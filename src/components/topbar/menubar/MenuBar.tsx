@@ -46,12 +46,9 @@ export const MenuBar = () => {
           placement="bottom-start"
           animation={true}
           offset={[0, 4.5]}
-          // zIndex={98989}
           popperOptions={{ ...popperOptions, strategy: 'fixed' }}
           onHide={() => setForceClosed(false)}
           interactive
-          allowHTML={true}
-          // appendTo={document.body}
           render={(attrs) => (
             <div {...attrs}>
               <Menu
