@@ -47,10 +47,11 @@ export const MenuBar = () => {
           animation={true}
           offset={[0, 4.5]}
           zIndex={99999999}
-          popperOptions={popperOptions}
+          popperOptions={{ ...popperOptions, strategy: 'fixed' }}
           onHide={() => setForceClosed(false)}
           interactive
-          appendTo={document.body}
+          allowHTML={true}
+          // appendTo={document.body}
           render={(attrs) => (
             <div {...attrs}>
               <Menu
