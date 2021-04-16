@@ -30,3 +30,10 @@
 
   background-color: hsla(var(--app-color-dark-hsl), 0.2);
 }
+
+.trafficLightsContainer {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1;
+}

@@ -1,5 +1,5 @@
 .header {
-  padding: 0.6rem;
+  padding: 1rem;
 }
 
 .container {
@@ -10,7 +10,6 @@
   backdrop-filter: blur(40px);
 
   border-radius: inherit;
-  //
 
   display: grid;
   grid-template-rows: auto auto 1fr;

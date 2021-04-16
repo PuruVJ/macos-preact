@@ -8,6 +8,7 @@ import { appsConfig } from '__/data/apps/apps-config';
 import { randint } from '__/helpers/random';
 import { useTheme } from '__/hooks';
 import { activeAppStore, activeAppZIndexStore, AppID } from '__/stores/apps.store';
+import { TrafficLights } from './TrafficLights';
 import css from './Window.module.scss';
 
 type WindowProps = {
@@ -41,22 +42,11 @@ export const Window = ({ appID }: WindowProps) => {
   const randX = useMemo(() => randint(-600, 600), []);
   const randY = useMemo(() => randint(-100, 100), []);
 
-  const { resizable, height, width } = appsConfig[appID];
+  const { resizable, height, width, trafficLightsStyle } = appsConfig[appID];
 
   const windowRef = useRef<WindowRnd>();
-  const originalSizeRef = useRef<WindowSize>({ height: 0, width: 0 });
-  const originalPositionRef = useRef<WindowPosition>({
-    x: 0,
-    y: 0,
-  });
-  const transitionClearanceRef = useRef<number>();
 
-  const maximizeApp = useMaximizeWindow(
-    windowRef,
-    transitionClearanceRef,
-    originalSizeRef,
-    originalPositionRef,
-  );
+  const maximizeApp = useMaximizeWindow(windowRef);
 
   useEffect(() => {
     if (activeApp === appID) setAppZIndex(activeAppZIndex);
@@ -93,6 +83,12 @@ export const Window = ({ appID }: WindowProps) => {
         ref={containerRef}
         onClick={focusCurrentApp}
       >
+        <div
+          style={trafficLightsStyle}
+          className={clsx(css.trafficLightsContainer, 'app-window-drag-handle')}
+        >
+          <TrafficLights appID={appID} onMaximizeClick={maximizeApp} />
+        </div>
         <AppNexus appID={appID} />
       </section>
     </Rnd>
@@ -116,65 +112,69 @@ function extractPositionFromTransformStyle(transformStyle: string): WindowPositi
   }
 }
 
-const useMaximizeWindow = (
-  windowRef: RefObject<WindowRnd>,
-  transitionClearanceRef: RefObject<number>,
-  originalSizeRef: RefObject<WindowSize>,
-  originalPositionRef: RefObject<WindowPosition>,
-) => () => {
-  if (!windowRef?.current?.resizableElement?.current || !windowRef?.current?.base) {
-    return;
-  }
+const useMaximizeWindow = (windowRef: RefObject<WindowRnd>) => {
+  const originalSizeRef = useRef<WindowSize>({ height: 0, width: 0 });
+  const originalPositionRef = useRef<WindowPosition>({
+    x: 0,
+    y: 0,
+  });
+  const transitionClearanceRef = useRef<number>();
 
-  // Get desktop height and width
-  const dockElementHeight = document.getElementById('dock')?.clientHeight ?? 0;
-  const topBarElementHeight = document.getElementById('top-bar')?.clientHeight ?? 0;
-  const desktopHeight = document.body.clientHeight - dockElementHeight - topBarElementHeight;
-  const deskTopWidth = document.body.clientWidth;
-
-  // Get current height and width
-  const {
-    clientWidth: windowWidth,
-    clientHeight: windowHeight,
-  } = windowRef.current.resizableElement.current;
-
-  // Get current left and top position
-  const { x: windowLeft, y: windowTop } = extractPositionFromTransformStyle(
-    windowRef.current.base.style.transform,
-  );
-
-  // Only when maximizing (not dragging or resizing), should it have transaction
-  windowRef.current.base.style.transition = 'height 0.5s, width 0.5s, transform 0.5s';
-
-  // Prevent removing transition styles when multiple times of maximizing action takes place in a short period
-  clearTimeout(transitionClearanceRef.current as number);
-
-  // Transition style gets cleared after 0.5 second as transition only lasts 0.5 second
-  transitionClearanceRef.current = setTimeout(() => {
-    if (windowRef.current?.base) {
-      windowRef.current.base.style.transition = '';
+  return () => {
+    if (!windowRef?.current?.resizableElement?.current || !windowRef?.current?.base) {
+      return;
     }
-    transitionClearanceRef.current = 0;
-  }, 500);
 
-  // When it's already maximized, revert the window to the previous size
-  if (windowWidth === deskTopWidth && windowHeight === desktopHeight) {
-    windowRef.current.updateSize(originalSizeRef.current as WindowSize);
-    windowRef.current.updatePosition(originalPositionRef.current as WindowPosition);
-  }
-  // Maximize the window to the size of the desktop
-  else {
-    originalSizeRef.current = { width: windowWidth, height: windowHeight };
-    originalPositionRef.current = { x: windowLeft, y: windowTop };
+    // Get desktop height and width
+    const dockElementHeight = document.getElementById('dock')?.clientHeight ?? 0;
+    const topBarElementHeight = document.getElementById('top-bar')?.clientHeight ?? 0;
+    const desktopHeight = document.body.clientHeight - dockElementHeight - topBarElementHeight;
+    const deskTopWidth = document.body.clientWidth;
 
-    windowRef.current.updateSize({
-      height: desktopHeight,
-      width: deskTopWidth,
-    });
+    // Get current height and width
+    const {
+      clientWidth: windowWidth,
+      clientHeight: windowHeight,
+    } = windowRef.current.resizableElement.current;
 
-    windowRef.current.updatePosition({
-      x: document.body.clientWidth / 2,
-      y: 0,
-    });
-  }
+    // Get current left and top position
+    const { x: windowLeft, y: windowTop } = extractPositionFromTransformStyle(
+      windowRef.current.base.style.transform,
+    );
+
+    // Only when maximizing (not dragging or resizing), should it have transaction
+    windowRef.current.base.style.transition = 'height 0.5s, width 0.5s, transform 0.5s';
+
+    // Prevent removing transition styles when multiple times of maximizing action takes place in a short period
+    clearTimeout(transitionClearanceRef.current);
+
+    // Transition style gets cleared after 0.5 second as transition only lasts 0.5 second
+    transitionClearanceRef.current = setTimeout(() => {
+      if (windowRef.current?.base) {
+        windowRef.current.base.style.transition = '';
+      }
+      transitionClearanceRef.current = 0;
+    }, 500);
+
+    // When it's already maximized, revert the window to the previous size
+    if (windowWidth === deskTopWidth && windowHeight === desktopHeight) {
+      windowRef.current.updateSize(originalSizeRef.current);
+      windowRef.current.updatePosition(originalPositionRef.current);
+    }
+    // Maximize the window to the size of the desktop
+    else {
+      originalSizeRef.current = { width: windowWidth, height: windowHeight };
+      originalPositionRef.current = { x: windowLeft, y: windowTop };
+
+      windowRef.current.updateSize({
+        height: desktopHeight,
+        width: deskTopWidth,
+      });
+
+      windowRef.current.updatePosition({
+        x: document.body.clientWidth / 2,
+        y: 0,
+      });
+    }
+  };
 };

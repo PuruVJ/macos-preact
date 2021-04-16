@@ -12,6 +12,8 @@ export type AppConfig = {
 
   /** Break before this app */
   dockBreaksBefore?: boolean;
+
+  trafficLightsStyle?: React.CSSProperties;
 };
 
 export const createAppConfig = (et: AppConfig) => ({
@@ -19,6 +21,8 @@ export const createAppConfig = (et: AppConfig) => ({
   dockBreaksBefore: false,
 
   resizable: true,
+
+  trafficLightsStyle: { top: '0.8rem', left: '1rem' } as React.CSSProperties,
   width: 600,
   height: 500,
   ...et,

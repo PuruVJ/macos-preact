@@ -11,9 +11,7 @@ type PlaceholderAppTypes = {
 export const PlaceholderApp = ({ appID }: PlaceholderAppTypes) => {
   return (
     <section className={clsx(css.container)}>
-      <header className={clsx('app-window-drag-handle', css.titleBar)}>
-        <TrafficLights appID={appID} onMaximizeClick={() => void 0} />
-      </header>
+      <header className={clsx('app-window-drag-handle', css.titleBar)}></header>
       <section className={css.mainArea}>
         <motion.img
           className={css.img}
