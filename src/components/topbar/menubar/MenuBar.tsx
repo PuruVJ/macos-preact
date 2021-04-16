@@ -1,7 +1,7 @@
 import Tippy from '@tippyjs/react/headless';
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
-import { useRef, useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
 import { ButtonBase } from '__/components/utils/ButtonBase';
 import { useOutsideClick } from '__/hooks';
 import { activeMenuStore, menuBarMenusStore } from '__/stores/menubar.store';
@@ -46,7 +46,7 @@ export const MenuBar = () => {
           placement="bottom-start"
           animation={true}
           offset={[0, 4.5]}
-          zIndex={99999999}
+          // zIndex={98989}
           popperOptions={{ ...popperOptions, strategy: 'fixed' }}
           onHide={() => setForceClosed(false)}
           interactive
