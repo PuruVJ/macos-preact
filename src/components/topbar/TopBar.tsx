@@ -1,4 +1,4 @@
-import { mdiApple, mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
+import { mdiAppleAirplay, mdiWifiStrength4 } from '@mdi/js';
 import { VolumeLowSVG } from '__/assets/sf-icons/VolumeLowSVG';
 import { AppIcon } from '../utils/AppIcon';
 import { ButtonBase } from '../utils/ButtonBase';
@@ -11,10 +11,6 @@ import { TopBarTime } from './TopBarTime';
 export const TopBar = () => {
   return (
     <header id="top-bar" className={css.header}>
-      <ButtonBase className={css.appleIconButton}>
-        <AppIcon size={18} path={mdiApple} />
-      </ButtonBase>
-
       <MenuBar />
 
       <span style={{ flex: '1 1 auto' }} />
