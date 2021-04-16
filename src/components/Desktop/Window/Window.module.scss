@@ -36,4 +36,7 @@
   top: 1rem;
   left: 1rem;
   z-index: 1;
+
+  // Necessary, as `.container` tries to apply shadow on it
+  box-shadow: none !important;
 }
