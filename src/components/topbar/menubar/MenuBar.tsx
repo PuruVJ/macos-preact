@@ -1,7 +1,7 @@
 import Tippy from '@tippyjs/react/headless';
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
-import { useRef, useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
 import { ButtonBase } from '__/components/utils/ButtonBase';
 import { useOutsideClick } from '__/hooks';
 import { activeMenuStore, menuBarMenusStore } from '__/stores/menubar.store';
@@ -22,19 +22,19 @@ const popperOptions = {
 export const MenuBar = () => {
   const [currentAppMenus] = useAtom(menuBarMenusStore);
   const [activeMenu, setActiveMenu] = useAtom(activeMenuStore);
-  const [forceClosed, setForceCLosed] = useState(false);
+  const [forceClosed, setForceClosed] = useState(false);
 
   const parentRef = useRef<HTMLDivElement>();
 
   useOutsideClick(parentRef, () => {
     // If no menu open, then ignore
     // set force close here cuz clicking anywhere else makes the menu stay closed after clicking on it
-    if (activeMenu === '') return setForceCLosed(false);
+    if (activeMenu === '') return setForceClosed(false);
 
     setActiveMenu('');
 
     // To override the animation
-    setForceCLosed(true);
+    setForceClosed(true);
   });
 
   return (
@@ -45,11 +45,13 @@ export const MenuBar = () => {
           visible={activeMenu === menuID}
           placement="bottom-start"
           animation={true}
-          zIndex={99999999}
-          popperOptions={popperOptions}
-          onHide={() => setForceCLosed(false)}
+          offset={[0, 4.5]}
+          // zIndex={98989}
+          popperOptions={{ ...popperOptions, strategy: 'fixed' }}
+          onHide={() => setForceClosed(false)}
           interactive
-          appendTo={document.body}
+          allowHTML={true}
+          // appendTo={document.body}
           render={(attrs) => (
             <div {...attrs}>
               <Menu
