@@ -1,6 +1,6 @@
 import { useEffect, useCallback, useState } from 'preact/hooks';
 
-const useContextMenu = (outerRef: any) => {
+export const useContextMenu = (outerRef: any) => {
   const [xPos, setXPos] = useState('0px');
   const [yPos, setYPos] = useState('0px');
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -42,5 +42,3 @@ const useContextMenu = (outerRef: any) => {
 
   return { xPos, yPos, isMenuVisible };
 };
-
-export default useContextMenu;
