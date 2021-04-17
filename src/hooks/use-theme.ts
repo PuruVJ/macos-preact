@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
-import { useEffect, useLayoutEffect } from 'preact/hooks';
-import { themeAtom, Theme } from '__/stores/theme.store';
+import { useEffect } from 'preact/hooks';
+import { Theme, themeAtom } from '__/stores/theme.store';
 
 // This is needed here
 let isFirstUpdate = true;
