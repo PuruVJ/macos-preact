@@ -12,7 +12,6 @@ type MenuProps = {
 
 export const Menu = ({ menu, forceHidden, isHidden }: MenuProps) => {
   const ref = useRef<HTMLDivElement>();
-
   const opacity = useSpring(1);
 
   useEffect(() => {
