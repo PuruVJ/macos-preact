@@ -1,7 +1,4 @@
-import Tippy from '@tippyjs/react/headless';
 import { FC } from 'preact/compat';
-import { sticky } from 'tippy.js';
-import css from './DockTooltip.module.scss';
 
 type IDockTooltip = {
   label: string;
@@ -12,7 +9,7 @@ export const DockTooltip: FC<IDockTooltip> = ({ label, children }) => {
 
   return (
     <>
-      <Tippy
+      {/* <Tippy
         render={() => <div className={css.box}>{label}</div>}
         trigger="focusin mouseenter"
         appendTo={document.body}
@@ -37,7 +34,7 @@ export const DockTooltip: FC<IDockTooltip> = ({ label, children }) => {
         }}
       >
         {children as any}
-      </Tippy>{' '}
+      </Tippy>{' '} */}
       {/* <Arrow ref={ref} /> */}
     </>
   );
