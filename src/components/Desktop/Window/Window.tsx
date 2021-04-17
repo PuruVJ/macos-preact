@@ -60,9 +60,7 @@ export const Window = ({ appID }: WindowProps) => {
 
   return (
     <Rnd
-      ref={(c) => {
-        if (c) windowRef.current = c;
-      }}
+      ref={windowRef}
       style={{ zIndex: appZIndex }}
       default={{
         height,
