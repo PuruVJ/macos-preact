@@ -1,5 +1,6 @@
 .contextContainer {
   display: block;
+  z-index: 100;
 
   min-width: 16rem;
 
@@ -25,7 +26,8 @@
 
   width: 100%;
 
-  padding: 0.2rem 0.4rem;
+  padding: 0.3rem 0.4rem;
+  margin: 0.2rem 0;
 
   letter-spacing: 0.4px;
   font-weight: 500 !important;

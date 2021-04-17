@@ -1,23 +1,21 @@
-import { useEffect, useCallback, useState } from "preact/hooks";
+import { useEffect, useCallback, useState } from 'preact/hooks';
 
-const useContextMenu = outerRef => {
-  const [xPos, setXPos] = useState("0px");
-  const [yPos, setYPos] = useState("0px");
+const useContextMenu = (outerRef: any) => {
+  const [xPos, setXPos] = useState('0px');
+  const [yPos, setYPos] = useState('0px');
   const [menu, showMenu] = useState(false);
 
   const handleContextMenu = useCallback(
-    event => {
+    (event: any) => {
       event.preventDefault();
       if (outerRef && outerRef.current.contains(event.target)) {
-        let x = event.pageX
-        let y = event.pageY
-        if(window.innerWidth - x < 150){
-          console.log("runs x")
-          x = x - 250
+        let x = event.pageX;
+        let y = event.pageY;
+        if (window.innerWidth - x < 250) {
+          x = x - 250;
         }
-        if(window.innerHeight - y < 150){
-          console.log("runs y")
-          y = y - 200
+        if (window.innerHeight - y < 300) {
+          y = y - 250;
         }
         setXPos(`${x}px`);
         setYPos(`${y}px`);
@@ -26,7 +24,7 @@ const useContextMenu = outerRef => {
         showMenu(false);
       }
     },
-    [showMenu, outerRef, setXPos, setYPos]
+    [showMenu, outerRef, setXPos, setYPos],
   );
 
   const handleClick = useCallback(() => {
@@ -34,12 +32,11 @@ const useContextMenu = outerRef => {
   }, [showMenu]);
 
   useEffect(() => {
-    
-    document.addEventListener("click", handleClick);
-    document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener('click', handleClick);
+    document.addEventListener('contextmenu', handleContextMenu);
     return () => {
-      document.removeEventListener("click", handleClick);
-      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener('click', handleClick);
+      document.removeEventListener('contextmenu', handleContextMenu);
     };
   }, []);
 

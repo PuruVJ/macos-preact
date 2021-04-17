@@ -12,7 +12,7 @@ const LightBackground = '/assets/wallpapers/3-2.jpg';
 
 export const Desktop = () => {
   const [theme] = useTheme();
-  const outerRef = useRef(null);
+  const outerRef: React.LegacyRef<HTMLElement> | undefined = useRef(null);
 
   useEffect(() => {
     preloadImage(DarkBackground);
