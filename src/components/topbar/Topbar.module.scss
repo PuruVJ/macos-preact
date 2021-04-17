@@ -6,7 +6,7 @@
   height: 1.4rem;
 
   background-color: hsla(var(--app-color-light-hsl), 0.3);
-  backdrop-filter: blur(12px);
+  // backdrop-filter: blur(12px);
 
   color: var(--app-color-light-contrast);
   fill: var(--app-color-light-contrast);
@@ -24,9 +24,16 @@
   }
 }
 
-.appleIconButton {
-  border-radius: 30px;
+.header::before {
+  content: '';
 
-  padding: 0 0.5rem;
-  margin: 0 0.6rem;
+  width: inherit;
+  height: inherit;
+
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  z-index: 0;
+  backdrop-filter: blur(12px);
 }
