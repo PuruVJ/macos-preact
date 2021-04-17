@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import { TrafficLights } from '__/components/Desktop/Window/TrafficLights';
 import { ButtonsArea } from './ButtonsArea/ButtonsArea';
 import css from './Calculator.module.scss';
 

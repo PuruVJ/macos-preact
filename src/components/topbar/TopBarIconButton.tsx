@@ -4,11 +4,5 @@ import { ButtonBase } from '../utils/ButtonBase';
 import css from './TopBarIconButton.module.scss';
 
 export const TopBarIconButton: FC<React.ComponentProps<typeof ButtonBase>> = (props) => (
-  <ButtonBase
-    {...props}
-    className={clsx({
-      [css.button]: true,
-      [props.className as string]: true,
-    })}
-  />
+  <ButtonBase {...props} className={clsx(css.button, props.className)} />
 );

@@ -24,10 +24,10 @@ export const StartupChime = () => {
   return (
     <>
       <div
-        className={clsx({
-          [css.splashScreen]: true,
-          [css.hidden]: hiddenSplashScreen || import.meta.env.DEV,
-        })}
+        className={clsx(
+          css.splashScreen,
+          hiddenSplashScreen || (import.meta.env.DEV && css.hidden),
+        )}
         hidden={hiddenSplashScreen}
       >
         <AppIcon path={mdiApple} fill="white" size={100} />
