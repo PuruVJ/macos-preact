@@ -8,7 +8,7 @@
 .toggle {
   --size: 1.7rem;
 
-  height: var(--size);
+  height: var(--size) !important;
   width: var(--size);
 
   padding: 0;

@@ -1,9 +1,16 @@
 .container {
   height: 100%;
-  display: block;
+
+  display: flex;
   position: relative;
 
   height: 100%;
+}
+
+.menuParent {
+  z-index: 1;
+  position: absolute;
+  margin-top: 4.5px;
 }
 
 .menuButton {
