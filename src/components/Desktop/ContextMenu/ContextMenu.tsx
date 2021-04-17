@@ -7,9 +7,9 @@ type Props = {
 };
 
 const ContextMenu = ({ outerRef }: Props) => {
-  const { xPos, yPos, menu } = useContextMenu(outerRef);
+  const { xPos, yPos, isMenuVisible } = useContextMenu(outerRef);
   const defMenu = contextMenuConfig.default;
-  if (menu) {
+  if (isMenuVisible) {
     return (
       <div className={css.contextContainer} style={{ position: 'absolute', top: yPos, left: xPos }}>
         {Object.keys(defMenu).map((key) => (

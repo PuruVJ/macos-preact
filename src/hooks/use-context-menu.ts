@@ -3,7 +3,7 @@ import { useEffect, useCallback, useState } from 'preact/hooks';
 const useContextMenu = (outerRef: any) => {
   const [xPos, setXPos] = useState('0px');
   const [yPos, setYPos] = useState('0px');
-  const [menu, showMenu] = useState(false);
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const handleContextMenu = useCallback(
     (event: any) => {
@@ -19,17 +19,17 @@ const useContextMenu = (outerRef: any) => {
         }
         setXPos(`${x}px`);
         setYPos(`${y}px`);
-        showMenu(true);
+        setIsMenuVisible(true);
       } else {
-        showMenu(false);
+        setIsMenuVisible(false);
       }
     },
-    [showMenu, outerRef, setXPos, setYPos],
+    [setIsMenuVisible, outerRef, setXPos, setYPos],
   );
 
   const handleClick = useCallback(() => {
-    showMenu(false);
-  }, [showMenu]);
+    setIsMenuVisible(false);
+  }, [setIsMenuVisible]);
 
   useEffect(() => {
     document.addEventListener('click', handleClick);
@@ -40,7 +40,7 @@ const useContextMenu = (outerRef: any) => {
     };
   }, []);
 
-  return { xPos, yPos, menu };
+  return { xPos, yPos, isMenuVisible };
 };
 
 export default useContextMenu;
