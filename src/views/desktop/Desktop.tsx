@@ -1,16 +1,18 @@
-import { useEffect } from 'preact/hooks';
+import { useEffect, useRef } from 'preact/hooks';
 import { StartupChime } from '__/components/Desktop/StartupChime';
 import { WindowsArea } from '__/components/Desktop/Window/WindowsArea';
 import { Dock } from '__/components/dock/Dock';
 import { TopBar } from '__/components/topbar/TopBar';
 import { useTheme } from '__/hooks';
 import css from './Desktop.module.scss';
+import ContextMenu from '__/components/Desktop/ContextMenu/ContextMenu';
 
 const DarkBackground = '/assets/wallpapers/3-1.jpg';
 const LightBackground = '/assets/wallpapers/3-2.jpg';
 
 export const Desktop = () => {
   const [theme] = useTheme();
+  const outerRef = useRef<HTMLDivElement>();
 
   useEffect(() => {
     preloadImage(DarkBackground);
@@ -21,7 +23,8 @@ export const Desktop = () => {
     <>
       <StartupChime />
 
-      <main className={css.main}>
+      <main ref={outerRef} className={css.main}>
+        <ContextMenu outerRef={outerRef} />
         <TopBar />
         <WindowsArea />
         <Dock />
