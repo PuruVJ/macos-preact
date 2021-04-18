@@ -5,6 +5,11 @@
 
   height: 100%;
 
+  &.unFocussed .trafficLight {
+    --bgcolor: hsla(var(--app-color-dark-hsl), 0.3);
+    --border: none;
+  }
+
   svg {
     visibility: hidden;
   }
@@ -20,22 +25,25 @@
   width: var(--size);
 
   border-radius: 50%;
+
+  background-color: var(--bgcolor);
+  box-shadow: var(--border);
 }
 
 .closeLight {
   composes: trafficLight;
-  background-color: #ff5f56;
-  box-shadow: 0 0 0 0.5px #e0443e;
+  --bgcolor: #ff5f56;
+  --border: 0 0 0 0.5px #e0443e;
 }
 
 .stretchLight {
   composes: trafficLight;
-  background-color: #27c93f;
-  box-shadow: 0 0 0 0.5px #1aab29;
+  --bgcolor: #27c93f;
+  --border: 0 0 0 0.5px #1aab29;
 }
 
 .minimizeLight {
   composes: trafficLight;
-  background-color: #ffbd2e;
-  box-shadow: 0 0 0 0.5px #dea123;
+  --bgcolor: #ffbd2e;
+  --border: 0 0 0 0.5px #dea123;
 }
