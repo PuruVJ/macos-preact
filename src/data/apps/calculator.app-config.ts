@@ -7,7 +7,7 @@ export const calculatorAppConfig = createAppConfig({
   width: 300,
 
   trafficLightsStyle: {
-    top: '0.5rem',
+    top: '0.7rem',
     left: '0.7rem',
   },
 });

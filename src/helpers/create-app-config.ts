@@ -22,7 +22,7 @@ export const createAppConfig = (et: AppConfig) => ({
 
   resizable: true,
 
-  trafficLightsStyle: { top: '0.8rem', left: '1rem' } as React.CSSProperties,
+  trafficLightsStyle: { top: '0.9rem', left: '0.9rem' } as React.CSSProperties,
   width: 600,
   height: 500,
   ...et,
