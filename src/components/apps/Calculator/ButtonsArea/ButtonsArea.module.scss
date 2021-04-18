@@ -2,4 +2,32 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
+  gap: 1px;
+
+  margin: 2px;
+
+  & > button {
+    font-size: 1.618rem;
+    color: white;
+  }
+}
+
+.topRowButton {
+  background-color: #585858;
+}
+
+.numberButton {
+  background-color: #747474;
+}
+
+.operationButton {
+  background-color: #f2a13c;
+}
+
+.curvedBottomLeftButton {
+  border-radius: 0 0 0 0.75rem;
+}
+
+.curvedBottomRightButton {
+  border-radius: 0 0 0.75rem 0;
 }
