@@ -26,7 +26,7 @@ export const StartupChime = () => {
       <div
         className={clsx(
           css.splashScreen,
-          hiddenSplashScreen || (import.meta.env.DEV && css.hidden),
+          (hiddenSplashScreen || import.meta.env.DEV) && css.hidden,
         )}
         hidden={hiddenSplashScreen}
       >
