@@ -8,26 +8,28 @@
 
   & > button {
     font-size: 1.618rem;
+    font-weight: 300 !important;
     color: white;
+    fill: white;
   }
 }
 
 .topRowButton {
-  background-color: #585858;
+  background-color: hsla(0, 0%, 35%, 0.6);
 }
 
 .numberButton {
-  background-color: #747474;
+  background-color: hsla(0, 0%, 45%, 0.6);
 }
 
 .operationButton {
-  background-color: #f2a13c;
+  background-color: hsla(33, 87%, 59%, 1);
 }
 
 .curvedBottomLeftButton {
-  border-radius: 0 0 0 0.75rem;
+  border-radius: 0 0 0 0.7rem;
 }
 
 .curvedBottomRightButton {
-  border-radius: 0 0 0.75rem 0;
+  border-radius: 0 0 0.7rem 0;
 }
