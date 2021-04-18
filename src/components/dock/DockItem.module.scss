@@ -11,6 +11,48 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  position: relative;
+
+  .tooltip {
+    white-space: nowrap;
+    position: absolute;
+    color: white;
+    padding: 0.5rem;
+    background-color: hsla(var(--app-color-light-hsl), 0.3);
+    backdrop-filter: blur(25px);
+
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    display: none;
+    top: -35%;
+
+    i {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -12px;
+      width: 24px;
+      height: 12px;
+      overflow: hidden;
+    }
+
+    i:after {
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      background-color: hsla(var(--app-color-light-hsl), 0.3);
+      backdrop-filter: blur(25px);
+    }
+  }
+
+  &:hover {
+    .tooltip {
+      display: block;
+    }
+  }
 }
 
 .dot {
