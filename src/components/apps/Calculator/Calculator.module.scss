@@ -13,6 +13,8 @@
 
   display: grid;
   grid-template-rows: auto auto 1fr;
+
+  font-family: var(--app-font-family) !important;
 }
 
 .showArea {
