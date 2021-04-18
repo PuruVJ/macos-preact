@@ -15,37 +15,25 @@
 
   .tooltip {
     white-space: nowrap;
+
     position: absolute;
-    color: white;
-    padding: 0.5rem;
-    background-color: hsla(var(--app-color-light-hsl), 0.3);
-    backdrop-filter: blur(25px);
+    top: -25%;
 
-    border-radius: 0.5rem;
-    font-size: 1.2rem;
+    background-color: hsla(var(--app-color-light-hsl), 0.5);
+    backdrop-filter: blur(5px);
+
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+
+    box-shadow: hsla(0deg, 0%, 0%, 30%) 0px 1px 5px 2px;
+
+    color: var(--app-color-light-contrast);
+    font-family: var(--app-font-family);
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 0.3px;
+
     display: none;
-    top: -35%;
-
-    i {
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -12px;
-      width: 24px;
-      height: 12px;
-      overflow: hidden;
-    }
-
-    i:after {
-      content: '';
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(45deg);
-      background-color: hsla(var(--app-color-light-hsl), 0.3);
-      backdrop-filter: blur(25px);
-    }
   }
 
   &:hover {

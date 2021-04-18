@@ -48,10 +48,7 @@ export function DockItem({
           aria-label={`Launch ${title}`}
           onClick={(e) => openApp(e)}
         >
-          <p className={css.tooltip}>
-            {title}
-            <i></i>
-          </p>
+          <p className={css.tooltip}>{title}</p>
           <motion.img
             ref={ref}
             src={`/assets/app-icons/${appID}/256.png`}
