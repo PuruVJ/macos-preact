@@ -1,11 +1,13 @@
 import clsx from 'clsx';
 import { useImmerAtom } from 'jotai/immer';
 import { ButtonBase } from '__/components/utils/ButtonBase';
-import { AppID, openAppsStore } from '__/stores/apps.store';
+import { activeAppStore, AppID, openAppsStore } from '__/stores/apps.store';
 import css from './TrafficLights.module.scss';
 import { CloseIcon } from '__/assets/traffic-icons/Close.svg';
 import { MinimizeIcon } from '__/assets/traffic-icons/Minimize.svg';
 import { StretchIcon } from '__/assets/traffic-icons/Stretch.svg';
+import { useEffect } from 'preact/hooks';
+import { useAtom } from 'jotai';
 
 type TrafficLightProps = {
   appID: AppID;
@@ -15,6 +17,7 @@ type TrafficLightProps = {
 
 export const TrafficLights = ({ appID, onMaximizeClick, className }: TrafficLightProps) => {
   const [, setOpenApps] = useImmerAtom(openAppsStore);
+  const [activeApp] = useAtom(activeAppStore);
 
   const closeApp = () =>
     setOpenApps((openApps) => {
@@ -27,7 +30,7 @@ export const TrafficLights = ({ appID, onMaximizeClick, className }: TrafficLigh
   };
 
   return (
-    <div className={clsx(css.container, className)}>
+    <div className={clsx(css.container, activeApp !== appID && css.unFocussed, className)}>
       <ButtonBase className={css.closeLight} onClick={closeApp}>
         <CloseIcon />
       </ButtonBase>
