@@ -1,4 +1,3 @@
-import Tippy from '@tippyjs/react/headless';
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { useRef, useState } from 'preact/hooks';
@@ -42,28 +41,13 @@ export const MenuBar = () => {
   return (
     <div className={css.container} ref={parentRef}>
       {Object.keys(currentAppMenus).map((menuID) => (
-        <Tippy
-          key={menuID}
-          visible={activeMenu === menuID}
-          placement="bottom-start"
-          animation={true}
-          offset={[0, 4.5]}
-          popperOptions={{ ...popperOptions, strategy: 'fixed' }}
-          onHide={() => setForceClosed(false)}
-          interactive
-          render={(attrs) => (
-            <div {...attrs}>
-              <Menu
-                isHidden={activeMenu !== menuID}
-                forceHidden={forceClosed}
-                menu={currentAppMenus[menuID].menu}
-              />
-            </div>
-          )}
-        >
+        <div key={menuID}>
           <span style={{ height: '100%' }}>
             <ButtonBase
-              onClick={() => setActiveMenu(menuID)}
+              onClick={() => {
+                setActiveMenu(menuID);
+                setForceClosed(false);
+              }}
               onMouseOver={() => activeMenu && setActiveMenu(menuID)}
               className={clsx({
                 [css.menuButton]: true,
@@ -79,7 +63,19 @@ export const MenuBar = () => {
               )}
             </ButtonBase>
           </span>
-        </Tippy>
+          <div
+            className={clsx(css.menuParent)}
+            style={{
+              visibility: activeMenu !== menuID ? 'hidden' : 'visible',
+            }}
+          >
+            <Menu
+              isHidden={activeMenu !== menuID}
+              forceHidden={forceClosed}
+              menu={currentAppMenus[menuID].menu}
+            />
+          </div>
+        </div>
       ))}
     </div>
   );
