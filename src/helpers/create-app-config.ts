@@ -1,6 +1,9 @@
 export type AppConfig = {
   title: string;
-  resizable: boolean;
+
+  resizable?: boolean;
+  height?: string | number;
+  width?: string | number;
 
   shouldOpenWindow?: boolean;
 
@@ -9,10 +12,18 @@ export type AppConfig = {
 
   /** Break before this app */
   dockBreaksBefore?: boolean;
+
+  trafficLightsStyle?: React.CSSProperties;
 };
 
 export const createAppConfig = (et: AppConfig) => ({
   shouldOpenWindow: true,
   dockBreaksBefore: false,
+
+  resizable: true,
+
+  trafficLightsStyle: { top: '0.9rem', left: '0.9rem' } as React.CSSProperties,
+  width: 600,
+  height: 500,
   ...et,
 });

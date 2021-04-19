@@ -1,10 +1,12 @@
 import useRaf from '@rooks/use-raf';
+import clsx from 'clsx';
 import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useAtom } from 'jotai';
 import { useImmerAtom } from 'jotai/immer';
 import { RefObject } from 'preact';
 import { useRef } from 'preact/hooks';
 import { AppConfig } from '__/helpers/create-app-config';
+import { useTheme } from '__/hooks';
 import { activeAppStore, AppID, openAppsStore } from '__/stores/apps.store';
 import { ButtonBase } from '../utils/ButtonBase';
 import css from './DockItem.module.scss';
@@ -25,6 +27,8 @@ export function DockItem({
 }: DockItemProps) {
   const [, setOpenApps] = useImmerAtom(openAppsStore);
   const [, setActiveApp] = useAtom(activeAppStore);
+
+  const [theme] = useTheme();
 
   const ref = useRef<HTMLImageElement>();
 
@@ -48,7 +52,7 @@ export function DockItem({
           aria-label={`Launch ${title}`}
           onClick={(e) => openApp(e)}
         >
-          <p className={css.tooltip}>{title}</p>
+          <p className={clsx(css.tooltip, theme === 'dark' && css.dark)}>{title}</p>
           <motion.img
             ref={ref}
             src={`/assets/app-icons/${appID}/256.png`}
@@ -90,8 +94,8 @@ const useDockHoverAnimation = (
 ) => {
   const distance = useMotionValue(beyondTheDistanceLimit);
   const widthPX = useSpring(useTransform(distance, distanceInput, widthOutput), {
-    stiffness: 1100,
-    damping: 60,
+    stiffness: 1300,
+    damping: 82,
   });
 
   const width = useTransform(widthPX, (width) => `${width / 16}rem`);

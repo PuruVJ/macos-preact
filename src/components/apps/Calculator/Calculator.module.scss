@@ -1,0 +1,27 @@
+.header {
+  padding: 1rem;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+
+  background-color: hsla(0, 0%, 27%, 0.7);
+  backdrop-filter: blur(40px);
+
+  border-radius: inherit;
+
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+
+  font-family: var(--app-font-family) !important;
+}
+
+.showArea {
+  font-size: 3rem;
+  color: white;
+  text-align: end;
+  font-weight: 200;
+
+  padding: 0.5rem 1rem;
+}

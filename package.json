@@ -10,8 +10,8 @@
     "@reach/slider": "^0.15.0",
     "@rooks/use-raf": "^4.11.0",
     "clsx": "^1.1.1",
-    "date-fns": "^2.20.1",
-    "framer-motion": "^4.1.3",
+    "date-fns": "^2.21.1",
+    "framer-motion": "^4.1.4",
     "immer": "^9.0.1",
     "jotai": "^0.16.0",
     "preact": "^10.5.13",
@@ -25,6 +25,6 @@
     "typescript": "^4.2.4",
     "typescript-plugin-css-modules": "^3.2.0",
     "vite": "^2.1.5",
-    "workbox-cli": "^6.1.2"
+    "workbox-cli": "^6.1.5"
   }
 }

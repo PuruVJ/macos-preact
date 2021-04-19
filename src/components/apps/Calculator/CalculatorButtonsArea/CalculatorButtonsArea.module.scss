@@ -1,0 +1,35 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 0.9px;
+
+  margin: 2px;
+
+  & > button {
+    font-size: 1.618rem;
+    font-weight: 300 !important;
+    color: white;
+    fill: white;
+  }
+}
+
+.topRowButton {
+  background-color: hsla(0, 0%, 35%, 0.6);
+}
+
+.numberButton {
+  background-color: hsla(0, 0%, 45%, 0.6);
+}
+
+.operationButton {
+  background-color: hsla(33, 87%, 59%, 1);
+}
+
+.curvedBottomLeftButton {
+  border-radius: 0 0 0 0.7rem;
+}
+
+.curvedBottomRightButton {
+  border-radius: 0 0 0.7rem 0;
+}

@@ -1,10 +1,12 @@
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
+import { RefObject } from 'preact';
 import { useEffect, useMemo, useRef, useState } from 'preact/compat';
 import { Rnd } from 'react-rnd';
-import { PlaceholderApp } from '__/components/apps/Placeholder/Placeholder';
+import { AppNexus } from '__/components/apps/AppNexus';
 import { appsConfig } from '__/data/apps/apps-config';
 import { randint } from '__/helpers/random';
+import { useTheme } from '__/hooks';
 import { activeAppStore, activeAppZIndexStore, AppID } from '__/stores/apps.store';
 import { TrafficLights } from './TrafficLights';
 import css from './Window.module.scss';
@@ -27,6 +29,70 @@ class WindowRnd extends Rnd {
   base?: HTMLDivElement;
 }
 
+export const Window = ({ appID }: WindowProps) => {
+  const [activeAppZIndex] = useAtom(activeAppZIndexStore);
+  const [activeApp, setActiveApp] = useAtom(activeAppStore);
+
+  const [theme] = useTheme();
+
+  const containerRef = useRef<HTMLDivElement>();
+
+  const [appZIndex, setAppZIndex] = useState(0);
+
+  const randX = useMemo(() => randint(-600, 600), []);
+  const randY = useMemo(() => randint(-100, 100), []);
+
+  const { resizable, height, width, trafficLightsStyle } = appsConfig[appID];
+
+  const windowRef = useRef<WindowRnd>();
+
+  const maximizeApp = useMaximizeWindow(windowRef);
+
+  useEffect(() => {
+    if (activeApp === appID) setAppZIndex(activeAppZIndex);
+  }, [activeApp]);
+
+  useEffect(() => {
+    containerRef.current?.focus();
+  }, []);
+
+  const focusCurrentApp = () => void setActiveApp(appID);
+
+  return (
+    <Rnd
+      ref={windowRef}
+      style={{ zIndex: appZIndex }}
+      default={{
+        height,
+        width,
+        x: ((3 / 2) * document.body.clientWidth + randX) / 2,
+        y: (100 + randY) / 2,
+      }}
+      enableResizing={resizable}
+      dragHandleClassName="app-window-drag-handle"
+      bounds="parent"
+      minWidth="300"
+      minHeight="300"
+      onDragStart={focusCurrentApp}
+    >
+      <section
+        className={clsx(css.container, theme === 'dark' && css.dark)}
+        tabIndex={-1}
+        ref={containerRef}
+        onClick={focusCurrentApp}
+      >
+        <div
+          style={trafficLightsStyle}
+          className={clsx(css.trafficLightsContainer, 'app-window-drag-handle')}
+        >
+          <TrafficLights appID={appID} onMaximizeClick={maximizeApp} />
+        </div>
+        <AppNexus appID={appID} />
+      </section>
+    </Rnd>
+  );
+};
+
 /**
  * Extract the x and y from the transform style of the base element using Regex
  * Why using this hacking method:
@@ -44,18 +110,7 @@ function extractPositionFromTransformStyle(transformStyle: string): WindowPositi
   }
 }
 
-export const Window = ({ appID }: WindowProps) => {
-  const [activeAppZIndex] = useAtom(activeAppZIndexStore);
-  const [activeApp, setActiveApp] = useAtom(activeAppStore);
-
-  const containerRef = useRef<HTMLDivElement>();
-
-  const [appZIndex, setAppZIndex] = useState(0);
-
-  const randX = useMemo(() => randint(-600, 600), []);
-  const randY = useMemo(() => randint(-100, 100), []);
-
-  const windowRef = useRef<WindowRnd>();
+const useMaximizeWindow = (windowRef: RefObject<WindowRnd>) => {
   const originalSizeRef = useRef<WindowSize>({ height: 0, width: 0 });
   const originalPositionRef = useRef<WindowPosition>({
     x: 0,
@@ -63,17 +118,7 @@ export const Window = ({ appID }: WindowProps) => {
   });
   const transitionClearanceRef = useRef<number>();
 
-  const { resizable } = appsConfig[appID];
-
-  useEffect(() => {
-    if (activeApp === appID) setAppZIndex(activeAppZIndex);
-  }, [activeApp]);
-
-  useEffect(() => {
-    containerRef.current?.focus();
-  }, []);
-
-  const maximizeApp = () => {
+  return () => {
     if (!windowRef?.current?.resizableElement?.current || !windowRef?.current?.base) {
       return;
     }
@@ -96,18 +141,19 @@ export const Window = ({ appID }: WindowProps) => {
     );
 
     // Only when maximizing (not dragging or resizing), should it have transaction
-    windowRef.current.base.style.transition = 'height 0.5s, width 0.5s, transform 0.5s';
+    windowRef.current.base.style.transition =
+      'height 0.3s ease, width 0.3s ease, transform 0.3s ease';
 
     // Prevent removing transition styles when multiple times of maximizing action takes place in a short period
     clearTimeout(transitionClearanceRef.current);
 
     // Transition style gets cleared after 0.5 second as transition only lasts 0.5 second
     transitionClearanceRef.current = setTimeout(() => {
-      if (windowRef.current.base) {
+      if (windowRef.current?.base) {
         windowRef.current.base.style.transition = '';
       }
       transitionClearanceRef.current = 0;
-    }, 500);
+    }, 300);
 
     // When it's already maximized, revert the window to the previous size
     if (windowWidth === deskTopWidth && windowHeight === desktopHeight) {
@@ -130,37 +176,4 @@ export const Window = ({ appID }: WindowProps) => {
       });
     }
   };
-
-  const focusCurrentApp = () => void setActiveApp(appID);
-
-  return (
-    <Rnd
-      ref={(c) => {
-        if (c) windowRef.current = c;
-      }}
-      style={{ zIndex: appZIndex }}
-      default={{
-        height: 500,
-        width: 600,
-        x: ((3 / 2) * document.body.clientWidth + randX) / 2,
-        y: (100 + randY) / 2,
-      }}
-      enableResizing={resizable}
-      dragHandleClassName="app-window-drag-handle"
-      bounds="parent"
-      minWidth="300"
-      minHeight="300"
-      onDragStart={focusCurrentApp}
-    >
-      <section className={css.container} tabIndex={-1} ref={containerRef} onClick={focusCurrentApp}>
-        <div>
-          <header className={clsx({ 'app-window-drag-handle': true, [css.titleBar]: true })}>
-            <TrafficLights appID={appID} onMaximizeClick={maximizeApp} />
-          </header>
-          <div className={css.divider} />
-        </div>
-        <PlaceholderApp appID={appID} />
-      </section>
-    </Rnd>
-  );
 };

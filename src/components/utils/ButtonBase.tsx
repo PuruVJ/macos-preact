@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import css from './ButtonBase.module.scss';
 
 export const ButtonBase = ({
@@ -8,7 +9,7 @@ export const ButtonBase = ({
   const { className, ...rest } = props;
 
   return (
-    <button disabled={disabled} className={`${className} ${css.button}`} {...rest}>
+    <button disabled={disabled} className={clsx(className, css.button)} {...rest}>
       {children}
     </button>
   );
