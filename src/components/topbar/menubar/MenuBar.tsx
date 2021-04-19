@@ -2,10 +2,10 @@ import { mdiApple } from '@mdi/js';
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { useRef } from 'preact/hooks';
+import { AppIcon } from '__/components/utils/AppIcon';
 import { ButtonBase } from '__/components/utils/ButtonBase';
 import { useOutsideClick } from '__/hooks';
 import { activeMenuStore, menuBarMenusStore } from '__/stores/menubar.store';
-import { AppIcon } from '../../utils/AppIcon';
 import { Menu } from './Menu';
 import css from './MenuBar.module.scss';
 
