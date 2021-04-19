@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { CalculatorButtonsArea } from './ButtonsArea/CalculatorButtonsArea';
+import { CalculatorButtonsArea } from './CalculatorButtonsArea/CalculatorButtonsArea';
 import css from './Calculator.module.scss';
 
 export const Calculator = () => {
