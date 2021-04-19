@@ -2,9 +2,9 @@ import { mdiClose, mdiDivision, mdiMinus, mdiPercentOutline, mdiPlusMinusVariant
 import clsx from 'clsx';
 import { AppIcon } from '__/components/utils/AppIcon';
 import { ButtonBase } from '__/components/utils/ButtonBase';
-import css from './ButtonsArea.module.scss';
+import css from './CalculatorButtonsArea.module.scss';
 
-export const ButtonsArea = () => {
+export const CalculatorButtonsArea = () => {
   return (
     <section className={css.container}>
       <ButtonBase className={css.topRowButton}>AC</ButtonBase>

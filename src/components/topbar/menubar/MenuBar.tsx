@@ -17,8 +17,6 @@ export const MenuBar = () => {
 
   useOutsideClick(parentRef, () => {
     setActiveMenu('');
-
-    // To override the animation
   });
 
   return (

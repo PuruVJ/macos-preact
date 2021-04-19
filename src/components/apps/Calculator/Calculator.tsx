@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ButtonsArea } from './ButtonsArea/ButtonsArea';
+import { CalculatorButtonsArea } from './ButtonsArea/CalculatorButtonsArea';
 import css from './Calculator.module.scss';
 
 export const Calculator = () => {
@@ -7,7 +7,7 @@ export const Calculator = () => {
     <section className={css.container}>
       <header className={clsx('app-window-drag-handle', css.header)}></header>
       <section className={css.showArea}>0</section>
-      <ButtonsArea />
+      <CalculatorButtonsArea />
     </section>
   );
 };
