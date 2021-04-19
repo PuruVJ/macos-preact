@@ -10,11 +10,12 @@ import { purusTwitterAppConfig } from './purus-twitter.app-config';
 import { safariAppConfig } from './safari.app-config';
 import { systemPreferencesAppConfig } from './system-preferences.app-config';
 import { viewSourceAppConfig } from './view-source.app-config';
+import { vscodeAppConfig } from './vscode.app-config';
 
 export const appsConfig = {
   finder: finderAppConfig,
+  vscode: vscodeAppConfig,
   calculator: calculatorAppConfig,
-  launchpad: launchpadAppConfig,
   safari: safariAppConfig,
   messages: messagesAppConfig,
   mail: mailAppConfig,
