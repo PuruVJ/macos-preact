@@ -23,7 +23,7 @@ export const Desktop = () => {
     <>
       <StartupChime />
 
-      <main ref={outerRef} className={css.main}>
+      <main ref={outerRef} class={css.main}>
         <ContextMenu outerRef={outerRef} />
         <TopBar />
         <WindowsArea />
@@ -31,7 +31,7 @@ export const Desktop = () => {
       </main>
 
       <div
-        className={css.backgroundCover}
+        class={css.backgroundCover}
         style={{
           backgroundImage: `url(${theme === 'light' ? LightBackground : DarkBackground})`,
         }}

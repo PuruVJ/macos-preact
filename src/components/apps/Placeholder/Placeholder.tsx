@@ -10,11 +10,11 @@ type PlaceholderAppTypes = {
 
 export const PlaceholderApp = ({ appID }: PlaceholderAppTypes) => {
   return (
-    <section className={clsx(css.container)}>
-      <header className={clsx('app-window-drag-handle', css.titleBar)}></header>
-      <section className={css.mainArea}>
+    <section class={clsx(css.container)}>
+      <header class={clsx('app-window-drag-handle', css.titleBar)}></header>
+      <section class={css.mainArea}>
         <motion.img
-          className={css.img}
+          class={css.img}
           initial={{ scale: 0, rotate: 180 }}
           animate={{ rotate: 360, scale: 1 }}
           transition={{

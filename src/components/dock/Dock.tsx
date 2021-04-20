@@ -11,9 +11,9 @@ export const Dock = () => {
   const mouseX = useMotionValue<number | null>(null);
 
   return (
-    <section id="dock" className={css.container}>
+    <section id="dock" class={css.container}>
       <div
-        className={css.dockEl}
+        class={css.dockEl}
         onMouseMove={(event) => mouseX.set(event.nativeEvent.x)}
         onMouseLeave={() => mouseX.set(null)}
       >
@@ -22,7 +22,7 @@ export const Dock = () => {
           return (
             <>
               {dockBreaksBefore && (
-                <div className={css.divider} key={`${appID}-divider`} aria-hidden="true" />
+                <div class={css.divider} key={`${appID}-divider`} aria-hidden="true" />
               )}
               <DockItem
                 key={appID}

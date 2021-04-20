@@ -24,7 +24,7 @@ export const StartupChime = () => {
   return (
     <>
       <div
-        className={clsx({
+        class={clsx({
           [css.splashScreen]: true,
           [css.hidden]: hiddenSplashScreen || import.meta.env.DEV,
         })}

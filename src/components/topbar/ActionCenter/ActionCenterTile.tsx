@@ -11,7 +11,7 @@ export const ActionCenterTile = ({ grid, children }: IActionCenterTileProps) => 
 
   return (
     <div
-      className={css.container}
+      class={css.container}
       style={{ '--row-start': rowStart, '--row-span': rowsPan } as React.CSSProperties}
     >
       {children}

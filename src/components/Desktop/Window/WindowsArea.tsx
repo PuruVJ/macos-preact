@@ -17,7 +17,7 @@ export const WindowsArea = () => {
   }, [activeApp]);
 
   return (
-    <section className={css.container}>
+    <section class={css.container}>
       {Object.keys(appsConfig).map(
         (appID) =>
           openApps[appID] &&

@@ -7,11 +7,11 @@ type VSCodeProps = {
 
 export const VSCode = ({ isBeingDragged }: VSCodeProps) => {
   return (
-    <section className={css.container}>
-      <header className={clsx(css.header, 'app-window-drag-handle')}></header>
+    <section class={css.container}>
+      <header class={clsx(css.header, 'app-window-drag-handle')}></header>
       <div>
         <iframe
-          className={clsx(css.iframe, isBeingDragged && css.iframeDragged)}
+          class={clsx(css.iframe, isBeingDragged && css.iframeDragged)}
           src="https://github1s.com/puruvj/macos-web"
         />
       </div>

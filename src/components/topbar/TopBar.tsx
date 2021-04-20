@@ -10,7 +10,7 @@ import { TopBarTime } from './TopBarTime';
 
 export const TopBar = () => {
   return (
-    <header id="top-bar" className={css.header}>
+    <header id="top-bar" class={css.header}>
       <MenuBar />
 
       <span style={{ flex: '1 1 auto' }} />
