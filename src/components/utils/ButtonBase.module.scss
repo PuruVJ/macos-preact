@@ -20,7 +20,7 @@
 
   user-select: none;
   appearance: none;
-  cursor: default;
+  cursor: var(--app-cursor-default), auto;
 
   background-color: transparent;
 

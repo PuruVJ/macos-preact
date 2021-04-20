@@ -10,6 +10,8 @@
   border-radius: 0.75rem;
   box-shadow: 0 33px 81px rgba(0, 0, 0, 0.31);
 
+  cursor: var(--app-cursor-default), auto;
+
   &.dark > section,
   &.dark > div {
     border-radius: inherit;

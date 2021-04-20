@@ -62,6 +62,17 @@ body[data-theme='light'] {
 
   --app-color-grey-A700: #616161;
   --app-color-grey-A700-hsl: 0, 0%, 38%;
+
+  // Cursors
+  --app-cursor-default: url('/assets/cursors/normal-select.svg');
+  --app-cursor-pointer: url('/assets/cursors/link-select.svg');
+  --app-cursor-text-select: url('/assets/cursors/text-select.svg');
+  --app-cursor-help-select: url('/assets/cursors/help-select.svg');
+
+  // the following two cursors are animated, but will be rendered as a static
+  // image by the browser
+  --app-cursor-busy: url('/assets/cursors/busy.webp');
+  --app-cursor-working-in-bg: url('/assets/cursors/working-in-background.webp');
 }
 
 body[data-theme='dark'] {

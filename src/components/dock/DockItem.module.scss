@@ -2,7 +2,7 @@
   height: 100%;
   width: auto !important;
 
-  cursor: default !important;
+  cursor: var(--app-cursor-default), auto;
 
   transition: all 200ms ease-in;
 
