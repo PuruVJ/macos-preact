@@ -7,6 +7,8 @@ body {
 }
 
 body {
+  cursor: var(--app-cursor-default), auto;
+
   font-family: var(--app-font-family);
 
   overflow: hidden;
