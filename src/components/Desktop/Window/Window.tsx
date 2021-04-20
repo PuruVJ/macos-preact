@@ -38,6 +38,7 @@ export const Window = ({ appID }: WindowProps) => {
   const containerRef = useRef<HTMLDivElement>();
 
   const [appZIndex, setAppZIndex] = useState(0);
+  const [isBeingDragged, setIsBeingDragged] = useState(false);
 
   const randX = useMemo(() => randint(-600, 600), []);
   const randY = useMemo(() => randint(-100, 100), []);
@@ -73,7 +74,11 @@ export const Window = ({ appID }: WindowProps) => {
       bounds="parent"
       minWidth="300"
       minHeight="300"
-      onDragStart={focusCurrentApp}
+      onDragStart={() => {
+        focusCurrentApp();
+        setIsBeingDragged(true);
+      }}
+      onDragStop={() => setIsBeingDragged(false)}
     >
       <section
         className={clsx(css.container, theme === 'dark' && css.dark)}
@@ -87,7 +92,7 @@ export const Window = ({ appID }: WindowProps) => {
         >
           <TrafficLights appID={appID} onMaximizeClick={maximizeApp} />
         </div>
-        <AppNexus appID={appID} />
+        <AppNexus appID={appID} isBeingDragged={isBeingDragged} />
       </section>
     </Rnd>
   );

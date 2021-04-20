@@ -13,6 +13,10 @@
   height: 100%;
 
   border-radius: 0 0 0.75rem 0.75rem;
+
+  &.iframeDragged {
+    pointer-events: none;
+  }
 }
 
 .header {
