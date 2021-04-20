@@ -70,7 +70,7 @@ export const Window = ({ appID }: WindowProps) => {
         y: (100 + randY) / 2,
       }}
       enableResizing={resizable}
-      dragHandleClassName="app-window-drag-handle"
+      dragHandleclass="app-window-drag-handle"
       bounds="parent"
       minWidth="300"
       minHeight="300"
@@ -81,14 +81,14 @@ export const Window = ({ appID }: WindowProps) => {
       onDragStop={() => setIsBeingDragged(false)}
     >
       <section
-        className={clsx(css.container, theme === 'dark' && css.dark)}
+        class={clsx(css.container, theme === 'dark' && css.dark)}
         tabIndex={-1}
         ref={containerRef}
         onClick={focusCurrentApp}
       >
         <div
           style={trafficLightsStyle}
-          className={clsx(css.trafficLightsContainer, 'app-window-drag-handle')}
+          class={clsx(css.trafficLightsContainer, 'app-window-drag-handle')}
         >
           <TrafficLights appID={appID} onMaximizeClick={maximizeApp} />
         </div>

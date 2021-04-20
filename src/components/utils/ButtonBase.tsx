@@ -6,10 +6,10 @@ export const ButtonBase = ({
   disabled = false,
   ...props
 }: React.HTMLAttributes<HTMLButtonElement> & { disabled?: boolean }) => {
-  const { className, ...rest } = props;
+  const { class: className, ...rest } = props;
 
   return (
-    <button disabled={disabled} className={clsx(className, css.button)} {...rest}>
+    <button disabled={disabled} class={clsx(className, css.button)} {...rest}>
       {children}
     </button>
   );

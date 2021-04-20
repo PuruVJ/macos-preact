@@ -17,7 +17,7 @@ export const ActionCenterShell = ({ children }: MenuShellProps) => {
 
   return (
     <section
-      className={css.container}
+      class={css.container}
       style={{ '--border-size': `${theme === 'dark' ? 0.5 : 0}px` } as React.CSSProperties}
       ref={ref}
       tabIndex={-1}

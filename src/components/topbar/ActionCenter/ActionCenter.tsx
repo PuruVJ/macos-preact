@@ -45,7 +45,7 @@ export const ActionCenter = () => {
 
   return (
     <ActionCenterShell>
-      <section className={css.container}>
+      <section class={css.container}>
         {/* Main Controls: Wifi, Bluetooth, Airdrop */}
         <ActionCenterSurface
           grid={[
@@ -118,7 +118,7 @@ const Toggle: FC<{ filled: boolean } & React.ComponentProps<typeof ButtonBase>> 
   ...props
 }) => (
   <ButtonBase
-    className={css.toggle}
+    class={css.toggle}
     style={
       {
         '--bgcolor': `var(--app-color-${filled ? 'primary' : 'dark'}-hsl)`,

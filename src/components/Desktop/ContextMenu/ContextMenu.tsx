@@ -16,13 +16,13 @@ const ContextMenu = ({ outerRef }: Props) => {
 
   return isMenuVisible ? (
     <div
-      className={clsx(css.contextContainer, theme === 'dark' && css.dark)}
+      class={clsx(css.contextContainer, theme === 'dark' && css.dark)}
       style={{ position: 'absolute', top: yPos, left: xPos }}
     >
       {Object.keys(defMenu).map((key) => (
         <>
-          <p className={css.menuItem}>{defMenu[key].title}</p>
-          {(defMenu[key] as any).breakAfter && <div className={css.divider}></div>}
+          <p class={css.menuItem}>{defMenu[key].title}</p>
+          {(defMenu[key] as any).breakAfter && <div class={css.divider}></div>}
         </>
       ))}
     </div>

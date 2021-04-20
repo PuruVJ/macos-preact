@@ -6,45 +6,45 @@ import css from './CalculatorButtonsArea.module.scss';
 
 export const CalculatorButtonsArea = () => {
   return (
-    <section className={css.container}>
-      <ButtonBase className={css.topRowButton}>AC</ButtonBase>
-      <ButtonBase className={css.topRowButton}>
+    <section class={css.container}>
+      <ButtonBase class={css.topRowButton}>AC</ButtonBase>
+      <ButtonBase class={css.topRowButton}>
         <AppIcon path={mdiPlusMinusVariant} />
       </ButtonBase>
-      <ButtonBase className={css.topRowButton}>
+      <ButtonBase class={css.topRowButton}>
         <AppIcon path={mdiPercentOutline} />
       </ButtonBase>
-      <ButtonBase className={css.operationButton}>
+      <ButtonBase class={css.operationButton}>
         <AppIcon path={mdiDivision} />
       </ButtonBase>
 
-      <ButtonBase className={css.numberButton}>7</ButtonBase>
-      <ButtonBase className={css.numberButton}>8</ButtonBase>
-      <ButtonBase className={css.numberButton}>9</ButtonBase>
-      <ButtonBase className={css.operationButton}>
+      <ButtonBase class={css.numberButton}>7</ButtonBase>
+      <ButtonBase class={css.numberButton}>8</ButtonBase>
+      <ButtonBase class={css.numberButton}>9</ButtonBase>
+      <ButtonBase class={css.operationButton}>
         <AppIcon path={mdiClose} />
       </ButtonBase>
 
-      <ButtonBase className={css.numberButton}>4</ButtonBase>
-      <ButtonBase className={css.numberButton}>5</ButtonBase>
-      <ButtonBase className={css.numberButton}>6</ButtonBase>
-      <ButtonBase className={css.operationButton}>
+      <ButtonBase class={css.numberButton}>4</ButtonBase>
+      <ButtonBase class={css.numberButton}>5</ButtonBase>
+      <ButtonBase class={css.numberButton}>6</ButtonBase>
+      <ButtonBase class={css.operationButton}>
         <AppIcon path={mdiMinus} size={24} />
       </ButtonBase>
 
-      <ButtonBase className={css.numberButton}>1</ButtonBase>
-      <ButtonBase className={css.numberButton}>2</ButtonBase>
-      <ButtonBase className={css.numberButton}>3</ButtonBase>
-      <ButtonBase className={css.operationButton}>+</ButtonBase>
+      <ButtonBase class={css.numberButton}>1</ButtonBase>
+      <ButtonBase class={css.numberButton}>2</ButtonBase>
+      <ButtonBase class={css.numberButton}>3</ButtonBase>
+      <ButtonBase class={css.operationButton}>+</ButtonBase>
 
       <ButtonBase
-        className={clsx(css.numberButton, css.curvedBottomLeftButton)}
+        class={clsx(css.numberButton, css.curvedBottomLeftButton)}
         style={{ gridColumn: '1 / span 2' }}
       >
         0
       </ButtonBase>
-      <ButtonBase className={css.numberButton}>,</ButtonBase>
-      <ButtonBase className={clsx(css.operationButton, css.curvedBottomRightButton)}>=</ButtonBase>
+      <ButtonBase class={css.numberButton}>,</ButtonBase>
+      <ButtonBase class={clsx(css.operationButton, css.curvedBottomRightButton)}>=</ButtonBase>
     </section>
   );
 };

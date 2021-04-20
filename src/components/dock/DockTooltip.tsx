@@ -10,7 +10,7 @@ export const DockTooltip: FC<IDockTooltip> = ({ label, children }) => {
   return (
     <>
       {/* <Tippy
-        render={() => <div className={css.box}>{label}</div>}
+        render={() => <div class={css.box}>{label}</div>}
         trigger="focusin mouseenter"
         appendTo={document.body}
         sticky
