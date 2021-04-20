@@ -70,7 +70,7 @@ export const Window = ({ appID }: WindowProps) => {
         y: (100 + randY) / 2,
       }}
       enableResizing={resizable}
-      dragHandleclass="app-window-drag-handle"
+      dragHandleClassName="app-window-drag-handle"
       bounds="parent"
       minWidth="300"
       minHeight="300"
