@@ -2,6 +2,7 @@ export type AppConfig = {
   title: string;
 
   resizable?: boolean;
+  expandable?: boolean;
   height?: string | number;
   width?: string | number;
 
