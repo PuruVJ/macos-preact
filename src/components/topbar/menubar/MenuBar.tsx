@@ -20,7 +20,7 @@ export const MenuBar = () => {
   });
 
   return (
-    <div className={css.container} ref={parentRef}>
+    <div class={css.container} ref={parentRef}>
       {Object.keys(currentAppMenus).map((menuID) => (
         <div key={menuID}>
           <span style={{ height: '100%' }}>
@@ -29,7 +29,7 @@ export const MenuBar = () => {
                 setActiveMenu(menuID);
               }}
               onMouseOver={() => activeMenu && setActiveMenu(menuID)}
-              className={clsx({
+              class={clsx({
                 [css.menuButton]: true,
                 [css.defaultMenu]: menuID === 'default',
                 [css.appleIconButton]: menuID === 'apple',
@@ -44,7 +44,7 @@ export const MenuBar = () => {
             </ButtonBase>
           </span>
           <div
-            className={clsx(css.menuParent)}
+            class={clsx(css.menuParent)}
             style={{
               visibility: activeMenu !== menuID ? 'hidden' : 'visible',
             }}

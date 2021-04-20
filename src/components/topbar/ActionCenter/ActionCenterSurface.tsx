@@ -13,7 +13,7 @@ export const ActionCenterSurface = ({ grid, children }: ActionCenterSurfaceProps
 
   return (
     <section
-      className={css.container}
+      class={css.container}
       style={
         {
           '--column-start': columnStart,

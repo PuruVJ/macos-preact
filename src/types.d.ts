@@ -19,3 +19,9 @@ type Unpacked<ArrayLike> = ArrayLike extends (infer RootType)[] ? RootType : Arr
 type Unpromisify<PromiseLike> = PromiseLike extends Promise<infer RootType>
   ? RootType
   : PromiseLike;
+
+declare namespace React {
+  interface HTMLAttributes<T> {
+    class?: string;
+  }
+}

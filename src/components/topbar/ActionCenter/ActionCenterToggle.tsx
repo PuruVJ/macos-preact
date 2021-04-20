@@ -15,13 +15,13 @@ export const ActionCenterToggle = () => {
   });
 
   return (
-    <div className="container" ref={containerRef}>
+    <div class="container" ref={containerRef}>
       <span>
         <TopBarIconButton onClick={() => setState('visible')}>
           <SwitchSVG />
         </TopBarIconButton>
       </span>
-      <div className={clsx(css.menuParent, state === 'hidden' && css.hidden)}>
+      <div class={clsx(css.menuParent, state === 'hidden' && css.hidden)}>
         <ActionCenter />
       </div>
     </div>

@@ -11,10 +11,10 @@ import css from './TrafficLights.module.scss';
 type TrafficLightProps = {
   appID: AppID;
   onMaximizeClick: () => void;
-  className?: string | null;
+  class?: string | null;
 };
 
-export const TrafficLights = ({ appID, onMaximizeClick, className }: TrafficLightProps) => {
+export const TrafficLights = ({ appID, onMaximizeClick, class: className }: TrafficLightProps) => {
   const [, setOpenApps] = useImmerAtom(openAppsStore);
   const [activeApp] = useAtom(activeAppStore);
 
@@ -29,14 +29,14 @@ export const TrafficLights = ({ appID, onMaximizeClick, className }: TrafficLigh
   };
 
   return (
-    <div className={clsx(css.container, activeApp !== appID && css.unFocussed, className)}>
-      <ButtonBase className={css.closeLight} onClick={closeApp}>
+    <div class={clsx(css.container, activeApp !== appID && css.unFocussed, className)}>
+      <ButtonBase class={css.closeLight} onClick={closeApp}>
         <CloseIcon />
       </ButtonBase>
-      <ButtonBase className={css.minimizeLight}>
+      <ButtonBase class={css.minimizeLight}>
         <MinimizeIcon />
       </ButtonBase>
-      <ButtonBase className={css.stretchLight} onClick={maximizeApp}>
+      <ButtonBase class={css.stretchLight} onClick={maximizeApp}>
         <StretchIcon />
       </ButtonBase>
     </div>

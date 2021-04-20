@@ -48,18 +48,18 @@ export function DockItem({
     <section>
       <span>
         <ButtonBase
-          className={css.dockItemButton}
+          class={css.dockItemButton}
           aria-label={`Launch ${title}`}
           onClick={(e) => openApp(e)}
         >
-          <p className={clsx(css.tooltip, theme === 'dark' && css.dark)}>{title}</p>
+          <p class={clsx(css.tooltip, theme === 'dark' && css.dark)}>{title}</p>
           <motion.img
             ref={ref}
             src={`/assets/app-icons/${appID}/256.png`}
             draggable={false}
             style={{ width, willChange: 'width' }}
           />
-          <div className={css.dot} style={{ '--opacity': +isOpen } as React.CSSProperties} />
+          <div class={css.dot} style={{ '--opacity': +isOpen } as React.CSSProperties} />
         </ButtonBase>
       </span>
     </section>

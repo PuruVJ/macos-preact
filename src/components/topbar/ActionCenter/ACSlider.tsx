@@ -4,7 +4,7 @@ import { FC } from 'preact/compat';
 import css from './ACSlider.module.scss';
 
 export const ACSlider: FC<SliderProps> = ({ children, ...props }) => {
-  return <Slider {...props} className={clsx({ [css.slider]: true })}></Slider>;
+  return <Slider {...props} class={clsx({ [css.slider]: true })}></Slider>;
 };
 
 // const pickTrackColor = (index: number) => ['white', 'transparent'][index];
@@ -39,11 +39,11 @@ export const ACSlider: FC<SliderProps> = ({ children, ...props }) => {
 // const Track = (props: HTMLProps<HTMLDivElement>, state: State) => (
 //   <div
 //     {...props}
-//     className={clsx({ [css.track]: true, [props.className as string]: true })}
+//     class={clsx({ [css.track]: true, [props.class as string]: true })}
 //     style={{ '--bgcolor': pickTrackColor(state.index) } as React.CSSProperties}
 //   />
 // );
 
 // const Thumb = (props: HTMLProps<HTMLDivElement>, state: State) => (
-//   <div {...props} className={clsx({ [css.thumb]: true, [props.className as string]: true })} />
+//   <div {...props} class={clsx({ [css.thumb]: true, [props.class as string]: true })} />
 // );
