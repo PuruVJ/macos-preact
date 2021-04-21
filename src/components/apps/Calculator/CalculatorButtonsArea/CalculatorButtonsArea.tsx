@@ -1,12 +1,4 @@
-import {
-  mdiClose,
-  mdiDivision,
-  mdiEqual,
-  mdiMinus,
-  mdiPercentOutline,
-  mdiPlus,
-  mdiPlusMinusVariant,
-} from '@mdi/js';
+import { mdiClose, mdiDivision, mdiEqual, mdiMinus, mdiPlus, mdiPlusMinusVariant } from '@mdi/js';
 import clsx from 'clsx';
 import { AppIcon } from '__/components/utils/AppIcon';
 import { ButtonBase } from '__/components/utils/ButtonBase';
@@ -19,9 +11,7 @@ export const CalculatorButtonsArea = () => {
       <ButtonBase class={css.topRowButton}>
         <AppIcon path={mdiPlusMinusVariant} />
       </ButtonBase>
-      <ButtonBase class={css.topRowButton}>
-        {/* <AppIcon path={mdiPercentOutline} /> */}%
-      </ButtonBase>
+      <ButtonBase class={css.topRowButton}>%</ButtonBase>
       <ButtonBase class={css.operationButton}>
         <AppIcon path={mdiDivision} />
       </ButtonBase>
