@@ -1,5 +1,4 @@
 import { ComponentChildren } from 'preact';
-import { useTheme } from '__/hooks';
 import css from './ActionCenterSurface.module.scss';
 
 interface ActionCenterSurfaceProps {
@@ -9,7 +8,6 @@ interface ActionCenterSurfaceProps {
 
 export const ActionCenterSurface = ({ grid, children }: ActionCenterSurfaceProps) => {
   const [[columnStart, columnSpan], [rowStart, rowSpan]] = grid;
-  const [theme] = useTheme();
 
   return (
     <section
@@ -20,8 +18,6 @@ export const ActionCenterSurface = ({ grid, children }: ActionCenterSurfaceProps
           '--column-span': columnSpan,
           '--row-start': rowStart,
           '--row-span': rowSpan,
-
-          '--border-size': `${theme === 'dark' ? 0.4 : 0}px`,
         } as React.CSSProperties
       }
     >

@@ -12,8 +12,8 @@
 
   cursor: var(--app-cursor-default), auto;
 
-  &.dark > section,
-  &.dark > div {
+  :global(body[data-theme='dark']) & > section,
+  :global(body[data-theme='dark']) & > div {
     border-radius: inherit;
     box-shadow: inset 0 0 0 0.9px hsla(var(--app-color-dark-hsl), 0.3),
       0 0 0 1px hsla(var(--app-color-light-hsl), 0.5);

@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { ButtonBase } from '__/components/utils/ButtonBase';
-import { useTheme } from '__/hooks';
 import css from './Menu.module.scss';
 
 type MenuProps = {
@@ -8,10 +7,8 @@ type MenuProps = {
 };
 
 export const Menu = ({ menu }: MenuProps) => {
-  const [theme] = useTheme();
-
   return (
-    <div class={clsx(css.container, theme === 'dark' && css.dark)} tabIndex={-1}>
+    <div class={css.container} tabIndex={-1}>
       {Object.keys<string>(menu).map((key) => (
         <span key={key}>
           <ButtonBase

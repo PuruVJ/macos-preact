@@ -20,4 +20,10 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+
+  background-image: url(/assets/wallpapers/3-2.jpg);
+
+  :global(body[data-theme='dark']) & {
+    background-image: url(/assets/wallpapers/3-1.jpg);
+  }
 }
