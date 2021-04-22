@@ -1,17 +1,15 @@
 import { useEffect, useRef } from 'preact/hooks';
+import ContextMenu from '__/components/Desktop/ContextMenu/ContextMenu';
 import { StartupChime } from '__/components/Desktop/StartupChime';
 import { WindowsArea } from '__/components/Desktop/Window/WindowsArea';
 import { Dock } from '__/components/dock/Dock';
 import { TopBar } from '__/components/topbar/TopBar';
-import { useTheme } from '__/hooks';
 import css from './Desktop.module.scss';
-import ContextMenu from '__/components/Desktop/ContextMenu/ContextMenu';
 
 const DarkBackground = '/assets/wallpapers/3-1.jpg';
 const LightBackground = '/assets/wallpapers/3-2.jpg';
 
 export const Desktop = () => {
-  const [theme] = useTheme();
   const outerRef = useRef<HTMLDivElement>();
 
   useEffect(() => {
@@ -30,13 +28,7 @@ export const Desktop = () => {
         <Dock />
       </main>
 
-      <div
-        class={css.backgroundCover}
-        style={{
-          backgroundImage: `url(${theme === 'light' ? LightBackground : DarkBackground})`,
-        }}
-        aria-hidden="true"
-      />
+      <div class={css.backgroundCover} aria-hidden="true" />
     </>
   );
 };
