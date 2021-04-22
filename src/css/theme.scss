@@ -75,7 +75,7 @@ body[data-theme='light'] {
   --app-cursor-working-in-bg: url('/assets/cursors/working-in-background.webp');
 }
 
-body[data-theme='dark'] {
+body.dark {
   /* // Primary */
   --app-color-primary: hsl(211, 100%, 50%);
   --app-color-primary-hsl: 211, 100%, 50%;

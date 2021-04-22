@@ -29,7 +29,8 @@ export function useTheme() {
 
     localStorage.setItem('theme:type', theme);
 
-    document.body.dataset.theme = theme;
+    document.body.classList.remove('light', 'dark');
+    document.body.classList.add(theme);
   }, [theme]);
 
   return [theme, setTheme] as const;
