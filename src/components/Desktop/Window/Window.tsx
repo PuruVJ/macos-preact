@@ -54,7 +54,7 @@ export const Window = ({ appID }: WindowProps) => {
     containerRef.current?.focus();
   }, []);
 
-  const { resizable, height, width, trafficLightsStyle } = appsConfig[appID];
+  const { resizable, height, width, trafficLightsStyle, expandable } = appsConfig[appID];
 
   const focusCurrentApp = () => void setActiveApp(appID);
 
@@ -84,6 +84,7 @@ export const Window = ({ appID }: WindowProps) => {
         tabIndex={-1}
         ref={containerRef}
         onClick={focusCurrentApp}
+        onDoubleClick={() => !expandable && maximizeApp()}
       >
         <div
           style={trafficLightsStyle}
@@ -144,7 +145,7 @@ const useMaximizeWindow = (windowRef: RefObject<WindowRnd>) => {
       windowRef.current.base.style.transform,
     );
 
-    // Only when maximizing (not dragging or resizing), should it have transaction
+    // Only when maximizing (not dragging or resizing), should it have transition
     windowRef.current.base.style.transition =
       'height 0.3s ease, width 0.3s ease, transform 0.3s ease';
 

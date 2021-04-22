@@ -22,6 +22,7 @@ export const createAppConfig = (et: AppConfig) => ({
   dockBreaksBefore: false,
 
   resizable: true,
+  expandable: false,
 
   trafficLightsStyle: { top: '0.9rem', left: '0.9rem' } as React.CSSProperties,
   width: 600,
