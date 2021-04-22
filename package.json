@@ -11,9 +11,9 @@
     "@rooks/use-raf": "^4.11.0",
     "clsx": "^1.1.1",
     "date-fns": "^2.21.1",
-    "framer-motion": "^4.1.5",
+    "framer-motion": "^4.1.8",
     "immer": "^9.0.1",
-    "jotai": "^0.16.1",
+    "jotai": "^0.16.2",
     "preact": "^10.5.13",
     "react-rnd": "^10.2.4"
   },
