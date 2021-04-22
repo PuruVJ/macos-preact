@@ -43,10 +43,7 @@ export const Window = ({ appID }: WindowProps) => {
   const randX = useMemo(() => randint(-600, 600), []);
   const randY = useMemo(() => randint(-100, 100), []);
 
-  const { resizable, height, width, trafficLightsStyle } = appsConfig[appID];
-
   const windowRef = useRef<WindowRnd>();
-
   const maximizeApp = useMaximizeWindow(windowRef);
 
   useEffect(() => {
@@ -56,6 +53,8 @@ export const Window = ({ appID }: WindowProps) => {
   useEffect(() => {
     containerRef.current?.focus();
   }, []);
+
+  const { resizable, height, width, trafficLightsStyle, expandable } = appsConfig[appID];
 
   const focusCurrentApp = () => void setActiveApp(appID);
 
@@ -85,7 +84,7 @@ export const Window = ({ appID }: WindowProps) => {
         tabIndex={-1}
         ref={containerRef}
         onClick={focusCurrentApp}
-        onDoubleClick={maximizeApp}
+        onDoubleClick={() => !expandable && maximizeApp()}
       >
         <div
           style={trafficLightsStyle}

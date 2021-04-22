@@ -6,4 +6,9 @@ export const vscodeAppConfig = createAppConfig({
 
   height: 600,
   width: 800,
+
+  trafficLightsStyle: {
+    top: '0.6rem',
+    left: '0.6rem',
+  },
 });
