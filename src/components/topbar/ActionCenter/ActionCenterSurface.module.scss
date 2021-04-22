@@ -1,4 +1,6 @@
 .container {
+  --border-size: 0;
+
   display: grid;
   grid-auto-rows: 1fr;
   gap: 0.25rem;
@@ -16,4 +18,8 @@
 
   grid-column: var(--column-start) / span var(--column-span);
   grid-row: var(--row-start) / span var(--row-span);
+
+  :global(body[data-theme='dark']) & {
+    --border-size: 0.4px;
+  }
 }
