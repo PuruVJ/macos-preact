@@ -19,7 +19,7 @@
   grid-column: var(--column-start) / span var(--column-span);
   grid-row: var(--row-start) / span var(--row-span);
 
-  :global(body[data-theme='dark']) & {
+  :global(body.dark) & {
     --border-size: 0.4px;
   }
 }

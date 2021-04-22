@@ -37,7 +37,7 @@
 
     display: none;
 
-    :global(body[data-theme='dark']) & {
+    :global(body.dark) & {
       --double-border: inset 0 0 0 0.9px hsla(var(--app-color-dark-hsl), 0.3),
         0 0 0 1.2px hsla(var(--app-color-light-hsl), 0.3);
     }
