@@ -85,6 +85,7 @@ export const Window = ({ appID }: WindowProps) => {
         tabIndex={-1}
         ref={containerRef}
         onClick={focusCurrentApp}
+        onDoubleClick={maximizeApp}
       >
         <div
           style={trafficLightsStyle}
@@ -145,7 +146,7 @@ const useMaximizeWindow = (windowRef: RefObject<WindowRnd>) => {
       windowRef.current.base.style.transform,
     );
 
-    // Only when maximizing (not dragging or resizing), should it have transaction
+    // Only when maximizing (not dragging or resizing), should it have transition
     windowRef.current.base.style.transition =
       'height 0.3s ease, width 0.3s ease, transform 0.3s ease';
 
