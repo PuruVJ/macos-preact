@@ -1,8 +1,8 @@
 import { RefObject } from 'preact';
-import { Ref, useEffect, useRef } from 'preact/hooks';
+import { useEffect, useRef } from 'preact/hooks';
 import { ButtonBase } from '__/components/utils/ButtonBase';
 import { contextMenuConfig } from '__/data/menu/context.menu.config';
-import { useContextMenu } from '__/hooks';
+import { useContextMenu, useFocusOutside } from '__/hooks';
 import css from './ContextMenu.module.scss';
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const ContextMenu = ({ outerRef }: Props) => {
-  const { xPos, yPos, isMenuVisible } = useContextMenu(outerRef);
+  const { xPos, yPos, isMenuVisible, setIsMenuVisible } = useContextMenu(outerRef);
 
   const containerRef = useRef<HTMLDivElement>();
 
@@ -19,6 +19,8 @@ export const ContextMenu = ({ outerRef }: Props) => {
   useEffect(() => {
     isMenuVisible && containerRef.current.focus();
   }, [isMenuVisible]);
+
+  useFocusOutside(containerRef, () => isMenuVisible && setIsMenuVisible(false));
 
   return isMenuVisible ? (
     <div
