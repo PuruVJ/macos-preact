@@ -15,7 +15,8 @@
     "immer": "^9.0.1",
     "jotai": "^0.16.0",
     "preact": "^10.5.13",
-    "react-rnd": "^10.2.4"
+    "react-rnd": "^10.2.4",
+    "react-roving-tabindex": "^3.0.0"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.0.1",

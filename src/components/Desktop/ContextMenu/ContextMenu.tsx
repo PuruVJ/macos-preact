@@ -1,5 +1,6 @@
-import { RefObject } from 'preact';
+import { ComponentChildren, RefObject } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
+import { RovingTabIndexProvider, useFocusEffect, useRovingTabIndex } from 'react-roving-tabindex';
 import { ButtonBase } from '__/components/utils/ButtonBase';
 import { contextMenuConfig } from '__/data/menu/context.menu.config';
 import { useContextMenu, useFocusOutside } from '__/hooks';
@@ -29,14 +30,40 @@ export const ContextMenu = ({ outerRef }: Props) => {
       ref={containerRef}
       style={{ top: yPos, left: xPos }}
     >
-      {Object.keys(defMenu).map((key) => (
-        <>
-          <ButtonBase class={css.menuItem}>{defMenu[key].title}</ButtonBase>
-          {(defMenu[key] as any).breakAfter && <div class={css.divider}></div>}
-        </>
-      ))}
+      <RovingTabIndexProvider options={{ direction: 'vertical', loopAround: true }}>
+        {Object.keys(defMenu).map((key) => (
+          <>
+            <ContextMenuButton>{defMenu[key].title}</ContextMenuButton>
+            {(defMenu[key] as any).breakAfter && <div class={css.divider}></div>}
+          </>
+        ))}
+      </RovingTabIndexProvider>
     </div>
   ) : (
     <></>
+  );
+};
+
+type ContextMenuButtonProps = {
+  children: ComponentChildren;
+};
+
+const ContextMenuButton = ({ children }: ContextMenuButtonProps) => {
+  const ref = useRef<HTMLButtonElement>();
+
+  const [tabIndex, focused, handleKeyDown, handleClick] = useRovingTabIndex(ref, false);
+
+  useFocusEffect(focused, ref);
+
+  return (
+    <ButtonBase
+      onKeyDown={handleKeyDown}
+      onClick={handleClick}
+      tabIndex={tabIndex}
+      ref={ref}
+      class={css.menuItem}
+    >
+      {children}
+    </ButtonBase>
   );
 };
