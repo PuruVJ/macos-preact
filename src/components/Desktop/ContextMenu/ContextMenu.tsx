@@ -24,7 +24,6 @@ export const ContextMenu = ({ outerRef }: Props) => {
     <div
       class={css.contextContainer}
       tabIndex={-1}
-      onBlur={() => console.log('fddg')}
       ref={containerRef}
       style={{ top: yPos, left: xPos }}
     >
@@ -39,5 +38,3 @@ export const ContextMenu = ({ outerRef }: Props) => {
     <></>
   );
 };
-
-function useFocusOutside<T extends HTMLElement>(ref: Ref<T>) {}
