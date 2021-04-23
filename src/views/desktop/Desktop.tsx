@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'preact/hooks';
-import ContextMenu from '__/components/Desktop/ContextMenu/ContextMenu';
+import { ContextMenu } from '__/components/Desktop/ContextMenu/ContextMenu';
 import { StartupChime } from '__/components/Desktop/StartupChime';
 import { WindowsArea } from '__/components/Desktop/Window/WindowsArea';
 import { Dock } from '__/components/dock/Dock';

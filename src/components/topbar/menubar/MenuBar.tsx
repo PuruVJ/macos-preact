@@ -25,10 +25,9 @@ export const MenuBar = () => {
         <div key={menuID}>
           <span style={{ height: '100%' }}>
             <ButtonBase
-              onClick={() => {
-                setActiveMenu(menuID);
-              }}
+              onClick={() => setActiveMenu(menuID)}
               onMouseOver={() => activeMenu && setActiveMenu(menuID)}
+              onFocus={() => setActiveMenu(menuID)}
               class={clsx({
                 [css.menuButton]: true,
                 [css.defaultMenu]: menuID === 'default',
