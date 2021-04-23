@@ -43,7 +43,8 @@
     }
   }
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     .tooltip {
       display: block;
     }

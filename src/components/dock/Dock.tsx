@@ -1,5 +1,6 @@
 import { useMotionValue } from 'framer-motion';
 import { useAtom } from 'jotai';
+import { RovingTabIndexProvider } from 'react-roving-tabindex';
 import { appsConfig } from '__/data/apps/apps-config';
 import { openAppsStore } from '__/stores/apps.store';
 import css from './Dock.module.scss';
@@ -17,23 +18,23 @@ export const Dock = () => {
         onMouseMove={(event) => mouseX.set(event.nativeEvent.x)}
         onMouseLeave={() => mouseX.set(null)}
       >
-        {Object.keys(appsConfig).map((appID) => {
-          const { dockBreaksBefore } = appsConfig[appID];
-          return (
-            <>
-              {dockBreaksBefore && (
+        <RovingTabIndexProvider options={{ direction: 'horizontal' }}>
+          {Object.keys(appsConfig).map((appID, i) => (
+            <div>
+              {appsConfig[appID].dockBreaksBefore && (
                 <div class={css.divider} key={`${appID}-divider`} aria-hidden="true" />
               )}
               <DockItem
+                index={i}
                 key={appID}
                 mouseX={mouseX}
                 appID={appID}
                 isOpen={openApps[appID]}
                 {...appsConfig[appID]}
               />
-            </>
-          );
-        })}
+            </div>
+          ))}
+        </RovingTabIndexProvider>
       </div>
     </section>
   );
