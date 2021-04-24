@@ -15,3 +15,4 @@ export const MONTHS = [
   'NOV',
   'DEC',
 ];
+export const NUMBER_OF_CELLS_IN_CALENDAR = 42; // 6 rows x 7 columns

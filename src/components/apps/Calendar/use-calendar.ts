@@ -1,15 +1,7 @@
 import { useState } from 'preact/hooks';
 import dayjs from 'dayjs';
 import { DAYS, DAYS_LEAP } from './constants';
-
-function getStartDayOfMonth(date: dayjs.Dayjs) {
-  const startDate = date.startOf('month');
-  return startDate.day() === 0 ? 7 : startDate;
-}
-
-function isLeapYear(year: number) {
-  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-}
+import { getStartDayOfMonth, isLeapYear } from './utils';
 
 export function useCalendar() {
   const [selectedDate, setSelectedDate] = useState(dayjs());
@@ -25,10 +17,12 @@ export function useCalendar() {
   };
 
   return {
+    today: dayjs(),
     selectedDate,
     startDay: getStartDayOfMonth(selectedDate),
     days,
 
+    setSelectedDate,
     goPrevMonth,
     goNextMonth,
   };

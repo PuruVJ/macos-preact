@@ -1,3 +1,3 @@
-export default function YearView() {
+export const YearView = () => {
   return <div></div>;
-}
+};

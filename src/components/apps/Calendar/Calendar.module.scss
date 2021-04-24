@@ -23,12 +23,28 @@ $title-bar-height: 40px;
 }
 
 .mainArea {
-  font-size: 1.618rem;
   color: var(--app-color-light-contrast);
 
   margin-top: $title-bar-height;
-  padding: 10px;
-
-  height: calc(100% -$title-bar-height);
+  height: calc(100% - #{$title-bar-height});
   width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .calendarHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+
+    .month {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .year {
+      font-size: 1.5rem;
+    }
+  }
 }

@@ -1,5 +1,3 @@
-import React from 'react';
-
-export default function DayView() {
+export const DayView = () => {
   return <div></div>;
-}
+};
