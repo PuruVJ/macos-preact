@@ -1,8 +1,9 @@
 .monthView {
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto;
-  grid-template-rows: 30px auto auto auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 30px 1fr 1fr 1fr 1fr 1fr 1fr;
   flex-grow: 1;
+  font-size: 0.8rem;
 
   > div {
     padding: 0.5rem;

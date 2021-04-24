@@ -5,7 +5,8 @@ import { YearView } from './Views/YearView';
 import { WeekView } from './Views/WeekView';
 import { MonthView } from './Views/MonthView';
 import { DayView } from './Views/DayView';
-import { useCalendar } from './use-calendar';
+import dayjs from 'dayjs';
+import { CalendarAppContext } from './context';
 
 enum VIEW_OPTIONS {
   YEAR,
@@ -16,25 +17,46 @@ enum VIEW_OPTIONS {
 
 export const Calendar = () => {
   const [view, setView] = useState(VIEW_OPTIONS.MONTH);
-  const { selectedDate } = useCalendar();
+  const [selectedDate, setSelectedDate] = useState(dayjs());
+
+  const goToday = () => {
+    setSelectedDate(dayjs());
+  };
+
+  const goPrevMonth = () => {
+    setSelectedDate(selectedDate.add(-1, 'month'));
+  };
+
+  const goNextMonth = () => {
+    setSelectedDate(selectedDate.add(1, 'month'));
+  };
 
   return (
-    <section class={css.container}>
-      <header class={clsx('app-window-drag-handle', css.titleBar)}></header>
+    <CalendarAppContext.Provider value={{ selectedDate }}>
+      <section class={css.container}>
+        <header class={clsx('app-window-drag-handle', css.titleBar)}></header>
 
-      <section class={css.mainArea}>
-        <div className={css.calendarHeader}>
-          <div>
-            <span className={css.month}>{selectedDate.format('MMMM')}</span>{' '}
-            <span className={css.year}>{selectedDate.format('YYYY')}</span>
+        <section class={css.mainArea}>
+          <div className={css.calendarHeader}>
+            <div>
+              <span className={css.month}>{selectedDate.format('MMMM')}</span>{' '}
+              <span className={css.year}>{selectedDate.format('YYYY')}</span>
+            </div>
+            <div className={css.controlButtons}>
+              <button onClick={goPrevMonth}>&lt;</button>
+              <button onClick={goToday}>Today</button>
+              <button onClick={goNextMonth}>&gt;</button>
+            </div>
           </div>
-          <div>{/* Buttons */}</div>
-        </div>
-        {view === VIEW_OPTIONS.YEAR && <YearView />}
-        {view === VIEW_OPTIONS.MONTH && <MonthView />}
-        {view === VIEW_OPTIONS.WEEK && <WeekView />}
-        {view === VIEW_OPTIONS.DAY && <DayView />}
+          {view === VIEW_OPTIONS.YEAR && <YearView />}
+          {view === VIEW_OPTIONS.MONTH && <MonthView />}
+          {view === VIEW_OPTIONS.WEEK && <WeekView />}
+          {view === VIEW_OPTIONS.DAY && <DayView />}
+        </section>
       </section>
-    </section>
+    </CalendarAppContext.Provider>
   );
 };
+function isLeapYear(arg0: number) {
+  throw new Error('Function not implemented.');
+}

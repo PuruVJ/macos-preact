@@ -1,18 +1,20 @@
 import clsx from 'clsx';
 import dayjs from 'dayjs';
+import { useContext } from 'preact/hooks';
 import { DAYS_OF_THE_WEEK } from '../constants';
-import { useCalendar } from '../use-calendar';
+import { CalendarAppContext } from '../context';
 import { getDisplayDays } from '../utils';
 import css from './MonthView.module.scss';
 
 export const MonthView = () => {
-  const { today, selectedDate, setSelectedDate, startDay, days } = useCalendar();
+  const { selectedDate } = useContext(CalendarAppContext);
+  const today = dayjs();
 
   const { daysInPrevMonth, daysInThisMonth, daysInNextMonth } = getDisplayDays(selectedDate);
 
   const renderDay = (daysInPrevMonth: number[], isThisMonth: boolean) => {
     return daysInPrevMonth.map((d) => {
-      const isToday = isThisMonth && d === today.date();
+      const isToday = isThisMonth && selectedDate.month() === today.month() && d === today.date();
       const isSelected = isThisMonth && d === selectedDate.date();
 
       return (
