@@ -11,6 +11,7 @@
     "@rooks/use-raf": "^4.11.0",
     "clsx": "^1.1.1",
     "date-fns": "^2.21.1",
+    "dayjs": "^1.10.4",
     "framer-motion": "^4.1.4",
     "immer": "^9.0.1",
     "jotai": "^0.16.0",
