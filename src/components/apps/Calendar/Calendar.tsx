@@ -1,5 +1,6 @@
 import { useState } from 'preact/hooks';
 import clsx from 'clsx';
+import { AppIcon } from '__/components/utils/AppIcon';
 import css from './Calendar.module.scss';
 import { YearView } from './Views/YearView';
 import { WeekView } from './Views/WeekView';
@@ -7,6 +8,7 @@ import { MonthView } from './Views/MonthView';
 import { DayView } from './Views/DayView';
 import dayjs from 'dayjs';
 import { CalendarAppContext } from './context';
+import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
 
 enum VIEW_OPTIONS {
   YEAR,
@@ -43,9 +45,13 @@ export const Calendar = () => {
               <span className={css.year}>{selectedDate.format('YYYY')}</span>
             </div>
             <div className={css.controlButtons}>
-              <button onClick={goPrevMonth}>&lt;</button>
+              <button onClick={goPrevMonth}>
+                <AppIcon size={24} path={mdiChevronLeft} />
+              </button>
               <button onClick={goToday}>Today</button>
-              <button onClick={goNextMonth}>&gt;</button>
+              <button onClick={goNextMonth}>
+                <AppIcon size={24} path={mdiChevronRight} />
+              </button>
             </div>
           </div>
           {view === VIEW_OPTIONS.YEAR && <YearView />}
