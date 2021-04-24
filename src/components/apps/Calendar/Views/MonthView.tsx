@@ -12,8 +12,13 @@ export const MonthView = () => {
 
   const { daysInPrevMonth, daysInThisMonth, daysInNextMonth } = getDisplayDays(selectedDate);
 
-  const renderDay = (daysInPrevMonth: number[], isThisMonth: boolean) => {
-    return daysInPrevMonth.map((d) => {
+  /**
+   * Render each day block
+   * @param daysInMonth the number array of days in the month to be displayed
+   * @param isThisMonth flag to check if this day block belongs to current month
+   */
+  const renderDay = (daysInMonth: number[], isThisMonth: boolean) => {
+    return daysInMonth.map((d) => {
       const isToday = isThisMonth && selectedDate.month() === today.month() && d === today.date();
       const isSelected = isThisMonth && d === selectedDate.date();
 

@@ -1,10 +1,19 @@
 import dayjs from 'dayjs';
 import { DAYS, DAYS_LEAP, NUMBER_OF_CELLS_IN_CALENDAR } from './constants';
 
+/**
+ * Check if the year is a leap year
+ * @param year
+ */
 export function isLeapYear(year: number) {
   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 }
 
+/**
+ * Get an array of whole number integers in the range (lower, upper]
+ * @param lower lower bound, exclusive
+ * @param upper upper bound, inclusive
+ */
 export function getRangeArray(lower: number, upper: number) {
   const arr: number[] = [];
   for (let i = lower + 1; i <= upper; i++) {
@@ -13,6 +22,13 @@ export function getRangeArray(lower: number, upper: number) {
   return arr;
 }
 
+/**
+ * Get the display days in 3 parts:
+ * Ones belong to previous month,
+ * Ones belong to this month, and
+ * Ones belong to next month.
+ * @param selectedDate the selected date which indicates the current month
+ */
 export function getDisplayDays(selectedDate: dayjs.Dayjs) {
   const thisMonth = selectedDate.month();
   const prevMonth = thisMonth - 1 < 0 ? 11 : thisMonth - 1;
