@@ -46,11 +46,11 @@ export const Calendar = () => {
             </div>
             <div className={css.controlButtons}>
               <button onClick={goPrevMonth}>
-                <AppIcon size={24} path={mdiChevronLeft} />
+                <AppIcon size={16} path={mdiChevronLeft} />
               </button>
               <button onClick={goToday}>Today</button>
               <button onClick={goNextMonth}>
-                <AppIcon size={24} path={mdiChevronRight} />
+                <AppIcon size={16} path={mdiChevronRight} />
               </button>
             </div>
           </div>
