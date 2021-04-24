@@ -6,7 +6,7 @@ import { RefObject } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 import { useFocusEffect, useRovingTabIndex } from 'react-roving-tabindex';
 import { AppConfig } from '__/helpers/create-app-config';
-import { populateArrSymmetrically } from '__/helpers/populate-arr-symmetrically';
+import { symmFillArr } from '__/helpers/populate-arr-symmetrically';
 import { activeAppStore, AppID, openAppsStore } from '__/stores/apps.store';
 import { appSizeIndexAtom } from '__/stores/dock.store';
 import { ButtonBase } from '../utils/ButtonBase';
@@ -34,11 +34,9 @@ export function DockItem({
   const [appWidthOrder, setAppWidthOrder] = useAtom(appSizeIndexAtom);
 
   const imgRef = useRef<HTMLImageElement>();
-
   const buttonRef = useRef<HTMLButtonElement>();
 
   const [tabIndex, focused, handleKeyDown, handleClick] = useRovingTabIndex(buttonRef, false);
-
   useFocusEffect(focused, buttonRef);
 
   const { width, widthPX } = useDockHoverAnimation(mouseX, imgRef);
@@ -55,7 +53,7 @@ export function DockItem({
 
   function magnifyAppsByFocus() {
     setAppWidthOrder(
-      populateArrSymmetrically(
+      symmFillArr(
         appWidthOrder.map(() => 0),
         3,
         index,
@@ -65,7 +63,7 @@ export function DockItem({
 
   function reduceAppWidthByFocusOut() {
     setAppWidthOrder(
-      populateArrSymmetrically(
+      symmFillArr(
         appWidthOrder.map(() => 0),
         0,
         index,

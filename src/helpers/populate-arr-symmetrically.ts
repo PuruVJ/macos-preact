@@ -1,4 +1,4 @@
-export function populateArrSymmetrically(arr: number[], value: number, index: number) {
+export function symmFillArr(arr: number[], value: number, index: number) {
   let start = index;
   let end = index;
 
