@@ -37,7 +37,12 @@
 
     &:nth-child(7n),
     &:nth-child(7n-1) {
-      background-color: #f5f5f5;
+      background-color: var(--app-color-grey-100);
+      color: var(--app-color-dark);
+
+      :global(body.dark) & {
+        background-color: var(--app-color-grey-900);
+      }
     }
 
     .dateNumber {
@@ -47,11 +52,17 @@
       border-radius: 50%;
       display: inline-block;
       text-align: center;
-      color: #c0c0c0;
+      color: var(--app-color-grey-300);
+      :global(body.dark) & {
+        color: var(--app-color-grey-800);
+      }
     }
 
     .thisMonth {
-      color: #272727;
+      color: var(--app-color-dark);
+      :global(body.dark) & {
+        color: var(--app-color-dark);
+      }
     }
 
     &.today {

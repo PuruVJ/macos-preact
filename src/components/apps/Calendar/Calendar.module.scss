@@ -10,7 +10,7 @@
   overflow: hidden;
 }
 
-$title-bar-height: 40px;
+$title-bar-height: 2.5rem;
 
 .titleBar {
   padding: 1rem 1rem;
@@ -65,7 +65,7 @@ $title-bar-height: 40px;
         align-items: center;
         justify-content: center;
         font-weight: bold;
-        cursor: pointer;
+        cursor: var(--app-cursor-pointer);
         height: 1.3rem;
       }
     }
