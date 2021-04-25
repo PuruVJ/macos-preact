@@ -1,6 +1,8 @@
 import { useState } from 'preact/hooks';
 import clsx from 'clsx';
+import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
 import { AppIcon } from '__/components/utils/AppIcon';
+import { ButtonBase } from '__/components/utils/ButtonBase';
 import css from './Calendar.module.scss';
 import { YearView } from './Views/YearView';
 import { WeekView } from './Views/WeekView';
@@ -8,7 +10,6 @@ import { MonthView } from './Views/MonthView';
 import { DayView } from './Views/DayView';
 import { addMonths, format } from 'date-fns';
 import { CalendarAppContext } from './context';
-import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
 
 enum VIEW_OPTIONS {
   YEAR,
@@ -45,13 +46,13 @@ export const Calendar = () => {
               <span className={css.year}>{format(selectedDate, 'yyyy')}</span>
             </div>
             <div className={css.controlButtons}>
-              <button onClick={goPrevMonth}>
+              <ButtonBase onClick={goPrevMonth}>
                 <AppIcon size={16} path={mdiChevronLeft} />
-              </button>
-              <button onClick={goToday}>Today</button>
-              <button onClick={goNextMonth}>
+              </ButtonBase>
+              <ButtonBase onClick={goToday}>Today</ButtonBase>
+              <ButtonBase onClick={goNextMonth}>
                 <AppIcon size={16} path={mdiChevronRight} />
-              </button>
+              </ButtonBase>
             </div>
           </div>
           {view === VIEW_OPTIONS.YEAR && <YearView />}
