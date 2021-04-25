@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import { getDay, getMonth, getYear, startOfMonth } from 'date-fns';
 import { DAYS, DAYS_LEAP, NUMBER_OF_CELLS_IN_CALENDAR } from './constants';
 
 /**
@@ -29,12 +29,12 @@ export function getRangeArray(lower: number, upper: number) {
  * Ones belong to next month.
  * @param selectedDate the selected date which indicates the current month
  */
-export function getDisplayDays(selectedDate: dayjs.Dayjs) {
-  const thisMonth = selectedDate.month();
+export function getDisplayDays(selectedDate: Date) {
+  const thisMonth = getMonth(selectedDate);
   const prevMonth = thisMonth - 1 < 0 ? 11 : thisMonth - 1;
 
-  const days = isLeapYear(selectedDate.year()) ? DAYS_LEAP : DAYS;
-  const weekday = selectedDate.startOf('month').day();
+  const days = isLeapYear(getYear(selectedDate)) ? DAYS_LEAP : DAYS;
+  const weekday = getDay(startOfMonth(selectedDate));
 
   // If it's Sunday, weekday is 0
   const daysToShowInPrevMonth = weekday === 0 ? 6 : weekday - 1;

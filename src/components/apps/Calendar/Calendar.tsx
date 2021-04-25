@@ -6,7 +6,7 @@ import { YearView } from './Views/YearView';
 import { WeekView } from './Views/WeekView';
 import { MonthView } from './Views/MonthView';
 import { DayView } from './Views/DayView';
-import dayjs from 'dayjs';
+import { addMonths, format } from 'date-fns';
 import { CalendarAppContext } from './context';
 import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
 
@@ -19,18 +19,18 @@ enum VIEW_OPTIONS {
 
 export const Calendar = () => {
   const [view, setView] = useState(VIEW_OPTIONS.MONTH);
-  const [selectedDate, setSelectedDate] = useState(dayjs());
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const goToday = () => {
-    setSelectedDate(dayjs());
+    setSelectedDate(new Date());
   };
 
   const goPrevMonth = () => {
-    setSelectedDate(selectedDate.add(-1, 'month'));
+    setSelectedDate(addMonths(selectedDate, -1));
   };
 
   const goNextMonth = () => {
-    setSelectedDate(selectedDate.add(1, 'month'));
+    setSelectedDate(addMonths(selectedDate, 1));
   };
 
   return (
@@ -41,8 +41,8 @@ export const Calendar = () => {
         <section class={css.mainArea}>
           <div className={css.calendarHeader}>
             <div>
-              <span className={css.month}>{selectedDate.format('MMMM')}</span>{' '}
-              <span className={css.year}>{selectedDate.format('YYYY')}</span>
+              <span className={css.month}>{format(selectedDate, 'MMMM')}</span>{' '}
+              <span className={css.year}>{format(selectedDate, 'yyyy')}</span>
             </div>
             <div className={css.controlButtons}>
               <button onClick={goPrevMonth}>
