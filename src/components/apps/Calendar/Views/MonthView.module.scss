@@ -1,9 +1,11 @@
 .monthView {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 30px 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 30px repeat(6, 1fr);
+
   flex-grow: 1;
-  font-size: 0.8rem;
+
+  font-size: 0.95rem;
 
   > div {
     padding: 0.5rem;
@@ -23,6 +25,9 @@
     border: 1px solid #e6e5e6;
     border-top: none;
 
+    display: flex;
+    justify-content: flex-end;
+
     &:nth-child(7n) {
       border-right: none;
     }
@@ -37,29 +42,39 @@
 
     &:nth-child(7n),
     &:nth-child(7n-1) {
-      background-color: var(--app-color-grey-100);
-      color: var(--app-color-dark);
+      --bgcolor: var(--app-color-grey-100);
+      --color: var(--app-color-dark);
+
+      background-color: var(--bgcolor);
+      color: var(--color);
 
       :global(body.dark) & {
-        background-color: var(--app-color-grey-900);
+        --bgcolor: var(--app-color-grey-900);
+        --color: #eee;
       }
     }
 
     .dateNumber {
-      height: 1.5em;
-      width: 1.5em;
-      line-height: 1.5em;
-      border-radius: 50%;
-      display: inline-block;
+      --size: 1.5rem;
+
+      height: var(--size);
+      width: var(--size);
+
+      line-height: var(--size);
       text-align: center;
-      color: var(--app-color-grey-300);
-      :global(body.dark) & {
-        color: var(--app-color-grey-800);
-      }
+
+      border-radius: 50%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: var(--app-color-grey-500);
     }
 
     .thisMonth {
       color: var(--app-color-dark);
+
       :global(body.dark) & {
         color: var(--app-color-dark);
       }
@@ -69,6 +84,8 @@
       .dateNumber {
         color: #fff;
         background-color: #ec4d3c;
+
+        --size: 1.7rem;
       }
     }
   }

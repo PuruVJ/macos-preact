@@ -1,26 +1,22 @@
-import { useState } from 'preact/hooks';
-import clsx from 'clsx';
 import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
+import clsx from 'clsx';
+import { addMonths, format } from 'date-fns';
+import { useAtom } from 'jotai';
+import { useState } from 'preact/hooks';
 import { AppIcon } from '__/components/utils/AppIcon';
 import { ButtonBase } from '__/components/utils/ButtonBase';
+import { calendarAppStore } from '__/stores/calendar.app.store';
 import css from './Calendar.module.scss';
-import { YearView } from './Views/YearView';
-import { WeekView } from './Views/WeekView';
-import { MonthView } from './Views/MonthView';
 import { DayView } from './Views/DayView';
-import { addMonths, format } from 'date-fns';
-import { CalendarAppContext } from './context';
+import { MonthView } from './Views/MonthView';
+import { WeekView } from './Views/WeekView';
+import { YearView } from './Views/YearView';
 
-enum VIEW_OPTIONS {
-  YEAR,
-  MONTH,
-  WEEK,
-  DAY,
-}
+type ViewOptions = 'year' | 'month' | 'week' | 'day';
 
 export const Calendar = () => {
-  const [view, setView] = useState(VIEW_OPTIONS.MONTH);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [view] = useState<ViewOptions>('month');
+  const [selectedDate, setSelectedDate] = useAtom(calendarAppStore);
 
   const goToday = () => {
     setSelectedDate(new Date());
@@ -35,33 +31,33 @@ export const Calendar = () => {
   };
 
   return (
-    <CalendarAppContext.Provider value={{ selectedDate }}>
-      <section class={css.container}>
-        <header class={clsx('app-window-drag-handle', css.titleBar)}></header>
+    // <CalendarAppContext.Provider value={{ selectedDate }}>
+    <section class={css.container}>
+      <header class={clsx('app-window-drag-handle', css.titleBar)}></header>
 
-        <section class={css.mainArea}>
-          <div className={css.calendarHeader}>
-            <div>
-              <span className={css.month}>{format(selectedDate, 'MMMM')}</span>{' '}
-              <span className={css.year}>{format(selectedDate, 'yyyy')}</span>
-            </div>
-            <div className={css.controlButtons}>
-              <ButtonBase onClick={goPrevMonth}>
-                <AppIcon size={16} path={mdiChevronLeft} />
-              </ButtonBase>
-              <ButtonBase onClick={goToday}>Today</ButtonBase>
-              <ButtonBase onClick={goNextMonth}>
-                <AppIcon size={16} path={mdiChevronRight} />
-              </ButtonBase>
-            </div>
+      <section class={css.mainArea}>
+        <div className={css.calendarHeader}>
+          <div>
+            <span className={css.month}>{format(selectedDate, 'MMMM')}</span>{' '}
+            <span className={css.year}>{format(selectedDate, 'yyyy')}</span>
           </div>
-          {view === VIEW_OPTIONS.YEAR && <YearView />}
-          {view === VIEW_OPTIONS.MONTH && <MonthView />}
-          {view === VIEW_OPTIONS.WEEK && <WeekView />}
-          {view === VIEW_OPTIONS.DAY && <DayView />}
-        </section>
+          <div className={css.controlButtons}>
+            <ButtonBase onClick={goPrevMonth}>
+              <AppIcon size={18} path={mdiChevronLeft} />
+            </ButtonBase>
+            <ButtonBase onClick={goToday}>Today</ButtonBase>
+            <ButtonBase onClick={goNextMonth}>
+              <AppIcon size={18} path={mdiChevronRight} />
+            </ButtonBase>
+          </div>
+        </div>
+        {view === 'year' && <YearView />}
+        {view === 'month' && <MonthView />}
+        {view === 'week' && <WeekView />}
+        {view === 'day' && <DayView />}
       </section>
-    </CalendarAppContext.Provider>
+    </section>
+    // </CalendarAppContext.Provider>
   );
 };
 function isLeapYear(arg0: number) {
