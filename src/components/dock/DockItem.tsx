@@ -6,7 +6,7 @@ import { RefObject } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 import { useFocusEffect, useRovingTabIndex } from 'react-roving-tabindex';
 import { AppConfig } from '__/helpers/create-app-config';
-import { symmFillArr } from '__/helpers/populate-arr-symmetrically';
+import { symmFillArr } from '__/helpers/symm-fill-arr';
 import { activeAppStore, AppID, openAppsStore } from '__/stores/apps.store';
 import { appSizeIndexAtom } from '__/stores/dock.store';
 import { ButtonBase } from '../utils/ButtonBase';
@@ -52,23 +52,11 @@ export function DockItem({
   }
 
   function magnifyAppsByFocus() {
-    setAppWidthOrder(
-      symmFillArr(
-        appWidthOrder.map(() => 0),
-        3,
-        index,
-      ),
-    );
+    setAppWidthOrder(symmFillArr(appWidthOrder.length, 3, index));
   }
 
   function reduceAppWidthByFocusOut() {
-    setAppWidthOrder(
-      symmFillArr(
-        appWidthOrder.map(() => 0),
-        0,
-        index,
-      ),
-    );
+    setAppWidthOrder(symmFillArr(appWidthOrder.length, 0, index));
   }
 
   useEffect(() => {
