@@ -74,6 +74,7 @@
 
     .thisMonth {
       color: var(--app-color-dark);
+
       :global(body.dark) & {
         color: var(--app-color-dark);
       }
