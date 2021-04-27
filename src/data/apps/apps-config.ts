@@ -13,15 +13,15 @@ import { viewSourceAppConfig } from './view-source.app-config';
 import { vscodeAppConfig } from './vscode.app-config';
 
 export const appsConfig = {
-  finder: finderAppConfig,
-  vscode: vscodeAppConfig,
   calculator: calculatorAppConfig,
+  calendar: calendarAppConfig,
+  vscode: vscodeAppConfig,
+  finder: finderAppConfig,
   safari: safariAppConfig,
   messages: messagesAppConfig,
   mail: mailAppConfig,
   photos: photosAppConfig,
   facetime: facetimeAppConfig,
-  calendar: calendarAppConfig,
   'system-preferences': systemPreferencesAppConfig,
 
   'purus-twitter': purusTwitterAppConfig,

@@ -3,7 +3,7 @@
 
   border-radius: inherit;
 
-  &.dark {
+  :global(body.dark) & {
     box-shadow: inset 0 0 0 0.9px hsla(var(--app-color-dark-hsl), 0.2),
       0 0 0 1.5px hsla(var(--app-color-light-hsl), 0.5);
   }
