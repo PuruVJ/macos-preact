@@ -76,13 +76,7 @@ export const Window = ({ appID }: WindowProps) => {
       }}
       onDragStop={() => setIsBeingDragged(false)}
     >
-      <section
-        class={css.container}
-        tabIndex={-1}
-        ref={containerRef}
-        onClick={focusCurrentApp}
-        onDoubleClick={() => !expandable && maximizeApp()}
-      >
+      <section class={css.container} tabIndex={-1} ref={containerRef} onClick={focusCurrentApp}>
         <div
           style={trafficLightsStyle}
           class={clsx(css.trafficLightsContainer, 'app-window-drag-handle')}
