@@ -20,8 +20,14 @@
 
   background-color: hsla(var(--bgcolor), var(--bgalpha));
 
+  transition: box-shadow 100ms ease;
+
   svg {
     fill: hsla(var(--svgcolor), var(--svgalpha));
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 0.25rem hsla(var(--bgcolor), 0.4);
   }
 }
 

@@ -12,7 +12,7 @@
   user-select: none;
 
   background-color: hsla(var(--app-color-light-hsl), 0.3);
-  backdrop-filter: blur(25px);
+  backdrop-filter: blur(15px);
 
   border-radius: 0.5rem;
 
@@ -36,8 +36,8 @@
   margin: 0.2rem 0;
 
   letter-spacing: 0.4px;
-  font-weight: 500 !important;
-  font-size: 0.9rem !important;
+  font-weight: 400;
+  font-size: 0.9rem;
 
   border-radius: 0.3rem;
 
@@ -50,7 +50,8 @@
   }
 
   &:not(.disabled) {
-    &:hover {
+    &:hover,
+    &:focus-visible {
       background-color: var(--app-color-primary);
       color: var(--app-color-primary-contrast);
     }

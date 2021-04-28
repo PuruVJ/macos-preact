@@ -51,9 +51,12 @@
     --alpha: 0.5;
   }
 
-  &:not(.disabled):hover {
-    background-color: var(--app-color-primary);
-    color: var(--app-color-primary-contrast);
+  &:not(.disabled) {
+    &:hover,
+    &:focus-visible {
+      background-color: var(--app-color-primary);
+      color: var(--app-color-primary-contrast);
+    }
   }
 }
 

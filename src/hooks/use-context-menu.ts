@@ -39,5 +39,5 @@ export const useContextMenu = <T extends HTMLElement>(outerRef: RefObject<T>) =>
     };
   }, []);
 
-  return { xPos, yPos, isMenuVisible };
+  return { xPos, yPos, isMenuVisible, setIsMenuVisible };
 };

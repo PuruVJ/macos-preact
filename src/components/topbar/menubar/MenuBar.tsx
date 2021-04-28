@@ -4,7 +4,7 @@ import { useAtom } from 'jotai';
 import { useRef } from 'preact/hooks';
 import { AppIcon } from '__/components/utils/AppIcon';
 import { ButtonBase } from '__/components/utils/ButtonBase';
-import { useOutsideClick } from '__/hooks';
+import { useFocusOutside, useOutsideClick } from '__/hooks';
 import { activeMenuStore, menuBarMenusStore } from '__/stores/menubar.store';
 import { Menu } from './Menu';
 import css from './MenuBar.module.scss';
@@ -15,9 +15,11 @@ export const MenuBar = () => {
 
   const parentRef = useRef<HTMLDivElement>();
 
-  useOutsideClick(parentRef, () => {
-    setActiveMenu('');
-  });
+  /** Close when document focus isn't in any menubar */
+  useFocusOutside(parentRef, () => setActiveMenu(''));
+
+  /** Close when clicked outside */
+  useOutsideClick(parentRef, () => setActiveMenu(''));
 
   return (
     <div class={css.container} ref={parentRef}>
@@ -25,10 +27,9 @@ export const MenuBar = () => {
         <div key={menuID}>
           <span style={{ height: '100%' }}>
             <ButtonBase
-              onClick={() => {
-                setActiveMenu(menuID);
-              }}
+              onClick={() => setActiveMenu(menuID)}
               onMouseOver={() => activeMenu && setActiveMenu(menuID)}
+              onFocus={() => setActiveMenu(menuID)}
               class={clsx({
                 [css.menuButton]: true,
                 [css.defaultMenu]: menuID === 'default',
@@ -44,7 +45,7 @@ export const MenuBar = () => {
             </ButtonBase>
           </span>
           <div
-            class={clsx(css.menuParent)}
+            class={css.menuParent}
             style={{
               visibility: activeMenu !== menuID ? 'hidden' : 'visible',
             }}

@@ -25,3 +25,7 @@ declare namespace React {
     class?: string;
   }
 }
+
+interface Array<T> {
+  fill<T extends any>(value: T, start?: number | undefined, end?: number | undefined): T[];
+}

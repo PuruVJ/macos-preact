@@ -31,9 +31,9 @@
 
     color: var(--app-color-light-contrast);
     font-family: var(--app-font-family);
-    font-weight: 500;
-    font-size: 0.8rem;
-    letter-spacing: 0.3px;
+    font-weight: 400;
+    font-size: 0.9rem;
+    letter-spacing: 0.4px;
 
     display: none;
 
@@ -43,7 +43,8 @@
     }
   }
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     .tooltip {
       display: block;
     }
