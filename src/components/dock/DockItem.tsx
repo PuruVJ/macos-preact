@@ -3,12 +3,9 @@ import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'fr
 import { useAtom } from 'jotai';
 import { useImmerAtom } from 'jotai/immer';
 import { RefObject } from 'preact';
-import { useEffect, useRef } from 'preact/hooks';
-import { useFocusEffect, useRovingTabIndex } from 'react-roving-tabindex';
+import { useRef } from 'preact/hooks';
 import { AppConfig } from '__/helpers/create-app-config';
-import { symmFillArr } from '__/helpers/symm-fill-arr';
 import { activeAppStore, AppID, openAppsStore } from '__/stores/apps.store';
-import { appSizeIndexAtom } from '__/stores/dock.store';
 import { ButtonBase } from '../utils/ButtonBase';
 import css from './DockItem.module.scss';
 
@@ -31,15 +28,9 @@ export function DockItem({
   const [, setOpenApps] = useImmerAtom(openAppsStore);
   const [, setActiveApp] = useAtom(activeAppStore);
 
-  const [appWidthOrder, setAppWidthOrder] = useAtom(appSizeIndexAtom);
-
   const imgRef = useRef<HTMLImageElement>();
-  const buttonRef = useRef<HTMLButtonElement>();
 
-  const [tabIndex, focused, handleKeyDown, handleClick] = useRovingTabIndex(buttonRef, false);
-  useFocusEffect(focused, buttonRef);
-
-  const { width, widthPX } = useDockHoverAnimation(mouseX, imgRef);
+  const { width } = useDockHoverAnimation(mouseX, imgRef);
 
   function openApp(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     if (!shouldOpenWindow) return void externalAction?.(e);
@@ -51,35 +42,13 @@ export function DockItem({
     setActiveApp(appID);
   }
 
-  function magnifyAppsByFocus() {
-    setAppWidthOrder(symmFillArr(appWidthOrder.length, 3, index));
-  }
-
-  function reduceAppWidthByFocusOut() {
-    setAppWidthOrder(symmFillArr(appWidthOrder.length, 0, index));
-  }
-
-  useEffect(() => {
-    widthPX.set(widthOutput[appWidthOrder[index]]);
-  }, [appWidthOrder]);
-
-  useEffect(() => {
-    mouseX !== null && reduceAppWidthByFocusOut();
-  }, [mouseX]);
-
   return (
     <ButtonBase
       class={css.dockItemButton}
       aria-label={`Launch ${title}`}
       onClick={(e) => {
-        handleClick();
         openApp(e);
       }}
-      ref={buttonRef}
-      onKeyDown={handleKeyDown}
-      tabIndex={tabIndex}
-      onFocus={magnifyAppsByFocus}
-      onBlur={reduceAppWidthByFocusOut}
     >
       <p class={css.tooltip}>{title}</p>
       <motion.img
@@ -125,7 +94,7 @@ const useDockHoverAnimation = (
     damping: 82,
   });
 
-  const width = useTransform(widthPX, (width) => `${width / 16}rem`);
+  const width = useTransform(widthPX, (width: number) => `${width / 16}rem`);
 
   useRaf(() => {
     const el = ref.current;
