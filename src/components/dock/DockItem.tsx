@@ -4,6 +4,7 @@ import { useAtom } from 'jotai';
 import { useImmerAtom } from 'jotai/immer';
 import { RefObject } from 'preact';
 import { useRef } from 'preact/hooks';
+import { appsConfig } from '__/data/apps/apps-config';
 import { AppConfig } from '__/helpers/create-app-config';
 import { activeAppStore, AppID, openAppsStore } from '__/stores/apps.store';
 import { ButtonBase } from '../utils/ButtonBase';
@@ -43,19 +44,14 @@ export function DockItem({
   }
 
   return (
-    <ButtonBase
-      class={css.dockItemButton}
-      aria-label={`Launch ${title}`}
-      onClick={(e) => {
-        openApp(e);
-      }}
-    >
+    <ButtonBase class={css.dockItemButton} aria-label={`Launch ${title}`} onClick={openApp}>
       <p class={css.tooltip}>{title}</p>
       <motion.img
         ref={imgRef}
         src={`/assets/app-icons/${appID}/256.png`}
         draggable={false}
         style={{ width, willChange: 'width' }}
+        alt={`${title} app icon`}
       />
       <div class={css.dot} style={{ '--opacity': +isOpen } as React.CSSProperties} />
     </ButtonBase>
@@ -114,5 +110,5 @@ const useDockHoverAnimation = (
     distance.set(beyondTheDistanceLimit);
   }, true);
 
-  return { width, widthPX };
+  return { width };
 };

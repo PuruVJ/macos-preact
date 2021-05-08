@@ -8,10 +8,10 @@
   "dependencies": {
     "@mdi/js": "^5.9.55",
     "@reach/slider": "^0.15.0",
-    "@rooks/use-raf": "^4.11.0",
+    "@rooks/use-raf": "^4.11.2",
     "clsx": "^1.1.1",
-    "date-fns": "^2.21.1",
-    "framer-motion": "^4.1.11",
+    "date-fns": "^2.21.3",
+    "framer-motion": "^4.1.13",
     "immer": "^9.0.2",
     "jotai": "^0.16.3",
     "preact": "^10.5.13",
@@ -20,12 +20,12 @@
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.1.0",
-    "@types/react": "^17.0.4",
+    "@types/react": "^17.0.5",
     "autoprefixer": "^10.2.5",
     "sass": "^1.32.12",
     "typescript": "^4.2.4",
     "typescript-plugin-css-modules": "^3.2.0",
-    "vite": "^2.2.3",
+    "vite": "^2.2.4",
     "workbox-cli": "^6.1.5"
   }
 }
