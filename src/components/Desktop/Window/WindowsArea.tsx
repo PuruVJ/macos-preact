@@ -1,9 +1,11 @@
 import { useAtom } from 'jotai';
+import { lazy } from 'preact/compat';
 import { useEffect } from 'preact/hooks';
 import { appsConfig } from '__/data/apps/apps-config';
 import { activeAppStore, activeAppZIndexStore, openAppsStore } from '__/stores/apps.store';
-import { Window } from './Window';
 import css from './WindowsArea.module.scss';
+
+const Window = lazy(() => import('./Window').then((m) => ({ default: m.Window })));
 
 export const WindowsArea = () => {
   const [openApps] = useAtom(openAppsStore);
