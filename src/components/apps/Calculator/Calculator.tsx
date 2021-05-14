@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { CalculatorButtonsArea } from './CalculatorButtonsArea/CalculatorButtonsArea';
 import css from './Calculator.module.scss';
 
-export const Calculator = () => {
+const Calculator = () => {
   return (
     <section class={css.container}>
       <header class={clsx('app-window-drag-handle', css.header)}></header>
@@ -11,3 +11,5 @@ export const Calculator = () => {
     </section>
   );
 };
+
+export default Calculator;

@@ -1,13 +1,16 @@
 import { AppID } from '__/stores/apps.store';
-import { Calculator } from './Calculator/Calculator';
-import { PlaceholderApp } from './Placeholder/Placeholder';
-import { VSCode } from './VSCode/VSCode';
-import { Calendar } from './Calendar/Calendar';
+import { lazy } from 'react';
 
 type AppNexusProps = {
   appID: AppID;
   isBeingDragged: boolean;
 };
+
+const Calculator = lazy(() => import('./Calculator/Calculator'));
+const VSCode = lazy(() => import('./VSCode/VSCode'));
+const Calendar = lazy(() => import('./Calendar/Calendar'));
+
+const PlaceholderApp = lazy(() => import('./Placeholder/Placeholder'));
 
 export const AppNexus = ({ appID, isBeingDragged }: AppNexusProps) => {
   if (appID === 'calculator') return <Calculator />;

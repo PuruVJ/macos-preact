@@ -8,7 +8,7 @@ type PlaceholderAppTypes = {
   appID: AppID;
 };
 
-export const PlaceholderApp = ({ appID }: PlaceholderAppTypes) => {
+const PlaceholderApp = ({ appID }: PlaceholderAppTypes) => {
   return (
     <section class={clsx(css.container)}>
       <header class={clsx('app-window-drag-handle', css.titleBar)}></header>
@@ -30,3 +30,5 @@ export const PlaceholderApp = ({ appID }: PlaceholderAppTypes) => {
     </section>
   );
 };
+
+export default PlaceholderApp;

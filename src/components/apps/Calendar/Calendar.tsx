@@ -14,7 +14,7 @@ import { YearView } from './Views/YearView';
 
 type ViewOptions = 'year' | 'month' | 'week' | 'day';
 
-export const Calendar = () => {
+const Calendar = () => {
   const [view] = useState<ViewOptions>('month');
   const [selectedDate, setSelectedDate] = useAtom(calendarAppStore);
 
@@ -63,3 +63,5 @@ export const Calendar = () => {
 function isLeapYear(arg0: number) {
   throw new Error('Function not implemented.');
 }
+
+export default Calendar;

@@ -5,7 +5,7 @@ type VSCodeProps = {
   isBeingDragged: boolean;
 };
 
-export const VSCode = ({ isBeingDragged }: VSCodeProps) => {
+const VSCode = ({ isBeingDragged }: VSCodeProps) => {
   return (
     <section class={css.container}>
       <header class={clsx(css.header, 'app-window-drag-handle')}></header>
@@ -18,3 +18,5 @@ export const VSCode = ({ isBeingDragged }: VSCodeProps) => {
     </section>
   );
 };
+
+export default VSCode;

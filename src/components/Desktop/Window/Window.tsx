@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { RefObject } from 'preact';
 import { useEffect, useMemo, useRef, useState } from 'preact/compat';
+import { Suspense } from 'react';
 import { Rnd } from 'react-rnd';
 import { AppNexus } from '__/components/apps/AppNexus';
 import { appsConfig } from '__/data/apps/apps-config';
@@ -28,7 +29,7 @@ class WindowRnd extends Rnd {
   base?: HTMLDivElement;
 }
 
-export const Window = ({ appID }: WindowProps) => {
+const Window = ({ appID }: WindowProps) => {
   const [activeAppZIndex] = useAtom(activeAppZIndexStore);
   const [activeApp, setActiveApp] = useAtom(activeAppStore);
 
@@ -83,7 +84,9 @@ export const Window = ({ appID }: WindowProps) => {
         >
           <TrafficLights appID={appID} onMaximizeClick={maximizeApp} />
         </div>
-        <AppNexus appID={appID} isBeingDragged={isBeingDragged} />
+        <Suspense fallback={<span></span>}>
+          <AppNexus appID={appID} isBeingDragged={isBeingDragged} />
+        </Suspense>
       </section>
     </Rnd>
   );
@@ -126,10 +129,8 @@ const useMaximizeWindow = (windowRef: RefObject<WindowRnd>) => {
     const deskTopWidth = document.body.clientWidth;
 
     // Get current height and width
-    const {
-      clientWidth: windowWidth,
-      clientHeight: windowHeight,
-    } = windowRef.current.resizableElement.current;
+    const { clientWidth: windowWidth, clientHeight: windowHeight } =
+      windowRef.current.resizableElement.current;
 
     // Get current left and top position
     const { x: windowLeft, y: windowTop } = extractPositionFromTransformStyle(
@@ -173,3 +174,5 @@ const useMaximizeWindow = (windowRef: RefObject<WindowRnd>) => {
     }
   };
 };
+
+export default Window;
