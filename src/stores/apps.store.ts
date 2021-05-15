@@ -7,7 +7,7 @@ export type AppID = keyof typeof appsConfig;
 export const openAppsStore = atom<Record<AppID, boolean>>({
   finder: false,
   vscode: false,
-  calculator: import.meta.env.DEV && false,
+  calculator: false,
   safari: false,
   messages: false,
   mail: false,
@@ -23,5 +23,8 @@ export const openAppsStore = atom<Record<AppID, boolean>>({
 /** Which app is currently focused */
 export const activeAppStore = atom<AppID>('finder');
 
-/** Maximum zIndex for the active app */
-export const activeAppZIndexStore = atom(0);
+/**
+ * Maximum zIndex for the active app
+ * Initialize with -2, so that it becomes 0 when initialised
+ */
+export const activeAppZIndexStore = atom(-2);

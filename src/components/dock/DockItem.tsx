@@ -3,8 +3,7 @@ import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'fr
 import { useAtom } from 'jotai';
 import { useImmerAtom } from 'jotai/immer';
 import { RefObject } from 'preact';
-import { useRef } from 'preact/hooks';
-import { appsConfig } from '__/data/apps/apps-config';
+import { useRef, useState } from 'preact/hooks';
 import { AppConfig } from '__/helpers/create-app-config';
 import { activeAppStore, AppID, openAppsStore } from '__/stores/apps.store';
 import { ButtonBase } from '../utils/ButtonBase';
@@ -24,10 +23,10 @@ export function DockItem({
   appID,
   isOpen,
   shouldOpenWindow,
-  index,
 }: DockItemProps) {
   const [, setOpenApps] = useImmerAtom(openAppsStore);
   const [, setActiveApp] = useAtom(activeAppStore);
+  const [animateObj, setAnimateObj] = useState({ translateY: ['0%', '0%', '0%'] });
 
   const imgRef = useRef<HTMLImageElement>();
 
@@ -46,13 +45,20 @@ export function DockItem({
   return (
     <ButtonBase class={css.dockItemButton} aria-label={`Launch ${title}`} onClick={openApp}>
       <p class={css.tooltip}>{title}</p>
-      <motion.img
-        ref={imgRef}
-        src={`/assets/app-icons/${appID}/256.png`}
-        draggable={false}
-        style={{ width, willChange: 'width' }}
-        alt={`${title} app icon`}
-      />
+      <motion.span
+        onTap={() => setAnimateObj({ translateY: ['0%', '-39.2%', '0%'] })}
+        initial={false}
+        animate={animateObj}
+        transition={{ type: 'spring' }}
+      >
+        <motion.img
+          ref={imgRef}
+          src={`/assets/app-icons/${appID}/256.png`}
+          draggable={false}
+          style={{ width, willChange: 'width' }}
+          alt={`${title} app icon`}
+        />
+      </motion.span>
       <div class={css.dot} style={{ '--opacity': +isOpen } as React.CSSProperties} />
     </ButtonBase>
   );
@@ -73,9 +79,9 @@ const distanceInput = [
 const widthOutput = [
   baseWidth,
   baseWidth * 1.1,
-  baseWidth * 1.618,
-  baseWidth * 2.618,
-  baseWidth * 1.618,
+  baseWidth * 1.414,
+  baseWidth * 2,
+  baseWidth * 1.414,
   baseWidth * 1.1,
   baseWidth,
 ];

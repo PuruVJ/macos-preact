@@ -34,7 +34,6 @@ const Calendar = () => {
   };
 
   return (
-    // <CalendarAppContext.Provider value={{ selectedDate }}>
     <section class={css.container}>
       <header class={clsx('app-window-drag-handle', css.titleBar)}></header>
 

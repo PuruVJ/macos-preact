@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { RefObject } from 'preact';
-import { useEffect, useMemo, useRef, useState } from 'preact/compat';
+import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { Suspense } from 'react';
 import { Rnd } from 'react-rnd';
 import { AppNexus } from '__/components/apps/AppNexus';
@@ -29,7 +29,7 @@ class WindowRnd extends Rnd {
   base?: HTMLDivElement;
 }
 
-const Window = ({ appID }: WindowProps) => {
+export const Window = ({ appID }: WindowProps) => {
   const [activeAppZIndex] = useAtom(activeAppZIndexStore);
   const [activeApp, setActiveApp] = useAtom(activeAppStore);
 
@@ -54,7 +54,10 @@ const Window = ({ appID }: WindowProps) => {
 
   const { resizable, height, width, trafficLightsStyle, expandable } = appsConfig[appID];
 
-  const focusCurrentApp = () => void setActiveApp(appID);
+  const focusCurrentApp = () => {
+    setActiveApp(appID);
+    console.log(activeApp);
+  };
 
   return (
     <Rnd

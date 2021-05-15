@@ -23,7 +23,6 @@ export const MonthView = () => {
         isThisMonth &&
         selectedDate.getMonth() === today.getMonth() &&
         d === today.getDate();
-      // const isSelected = isThisMonth && d === getDate(selectedDate);
 
       return (
         <div

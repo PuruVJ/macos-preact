@@ -13,6 +13,11 @@
   justify-content: flex-end;
   position: relative;
 
+  & > span {
+    display: flex;
+    place-items: center;
+  }
+
   .tooltip {
     --double-border: 0 0 0 0 white;
 
