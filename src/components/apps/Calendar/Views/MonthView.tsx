@@ -19,7 +19,10 @@ export const MonthView = () => {
   const renderDay = (daysInMonth: number[], isThisMonth: boolean) => {
     return daysInMonth.map((d, i) => {
       const isToday =
-        isThisMonth && selectedDate.getMonth() === today.getMonth() && d === today.getDate();
+        selectedDate.getFullYear() === today.getFullYear() &&
+        isThisMonth &&
+        selectedDate.getMonth() === today.getMonth() &&
+        d === today.getDate();
       // const isSelected = isThisMonth && d === getDate(selectedDate);
 
       return (
@@ -48,3 +51,5 @@ export const MonthView = () => {
     </div>
   );
 };
+
+export default MonthView;

@@ -14,7 +14,6 @@ export const WindowsArea = () => {
   const [activeAppZIndex, setActiveAppZIndex] = useAtom(activeAppZIndexStore);
 
   // Update the active app Z Index here
-  //
   useEffect(() => {
     setActiveAppZIndex(activeAppZIndex + 2);
   }, [activeApp]);

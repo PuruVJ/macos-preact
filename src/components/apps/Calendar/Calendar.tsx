@@ -2,15 +2,18 @@ import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
 import clsx from 'clsx';
 import { addMonths, format } from 'date-fns';
 import { useAtom } from 'jotai';
+import { lazy } from 'preact/compat';
 import { useState } from 'preact/hooks';
+import { Suspense } from 'react';
 import { AppIcon } from '__/components/utils/AppIcon';
 import { ButtonBase } from '__/components/utils/ButtonBase';
 import { calendarAppStore } from '__/stores/calendar.app.store';
 import css from './Calendar.module.scss';
-import { DayView } from './Views/DayView';
-import { MonthView } from './Views/MonthView';
-import { WeekView } from './Views/WeekView';
-import { YearView } from './Views/YearView';
+
+const DayView = lazy(() => import('./Views/DayView'));
+const MonthView = lazy(() => import('./Views/MonthView'));
+const WeekView = lazy(() => import('./Views/WeekView'));
+const YearView = lazy(() => import('./Views/YearView'));
 
 type ViewOptions = 'year' | 'month' | 'week' | 'day';
 
@@ -51,10 +54,12 @@ const Calendar = () => {
             </ButtonBase>
           </div>
         </div>
-        {view === 'year' && <YearView />}
-        {view === 'month' && <MonthView />}
-        {view === 'week' && <WeekView />}
-        {view === 'day' && <DayView />}
+        <Suspense fallback={<></>}>
+          {view === 'year' && <YearView />}
+          {view === 'month' && <MonthView />}
+          {view === 'week' && <WeekView />}
+          {view === 'day' && <DayView />}
+        </Suspense>
       </section>
     </section>
     // </CalendarAppContext.Provider>
