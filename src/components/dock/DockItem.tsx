@@ -49,7 +49,7 @@ export function DockItem({
         onTap={() => setAnimateObj({ translateY: ['0%', '-39.2%', '0%'] })}
         initial={false}
         animate={animateObj}
-        transition={{ type: 'spring', duration: 0.6 }}
+        transition={{ type: 'spring', duration: 0.7 }}
         transformTemplate={({ translateY }) => `translateY(${translateY})`}
       >
         <motion.img

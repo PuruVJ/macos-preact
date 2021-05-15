@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
-import { TrafficLights } from '__/components/Desktop/Window/TrafficLights';
 import type { AppID } from '__/stores/apps.store';
 import css from './Placeholder.module.scss';
 
