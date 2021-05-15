@@ -23,7 +23,7 @@ const PlaceholderApp = ({ appID }: PlaceholderAppTypes) => {
             damping: 20,
           }}
           draggable={false}
-          src={`/assets/app-icons/${appID}/256.png`}
+          src={`/assets/app-icons/${appID}/256.webp`}
         />
         <h1>Apps coming soon!</h1>
       </section>
