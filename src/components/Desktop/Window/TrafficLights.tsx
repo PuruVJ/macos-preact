@@ -1,11 +1,10 @@
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { useImmerAtom } from 'jotai/immer';
-import { appsConfig } from '__/data/apps/apps-config';
 import { CloseIcon } from '__/assets/traffic-icons/Close.svg';
-import { MinimizeIcon } from '__/assets/traffic-icons/Minimize.svg';
 import { GreenLightIcon } from '__/assets/traffic-icons/GreenLightIcon';
-import { ButtonBase } from '__/components/utils/ButtonBase';
+import { MinimizeIcon } from '__/assets/traffic-icons/Minimize.svg';
+import { appsConfig } from '__/data/apps/apps-config';
 import { activeAppStore, AppID, openAppsStore } from '__/stores/apps.store';
 import css from './TrafficLights.module.scss';
 
@@ -35,15 +34,15 @@ export const TrafficLights = ({ appID, onMaximizeClick, class: className }: Traf
 
   return (
     <div class={clsx(css.container, activeApp !== appID && css.unFocussed, className)}>
-      <ButtonBase class={css.closeLight} onClick={closeApp}>
+      <button class={css.closeLight} onClick={closeApp}>
         <CloseIcon />
-      </ButtonBase>
-      <ButtonBase class={css.minimizeLight}>
+      </button>
+      <button class={css.minimizeLight}>
         <MinimizeIcon />
-      </ButtonBase>
-      <ButtonBase class={css.stretchLight} onClick={greenLightAction}>
+      </button>
+      <button class={css.stretchLight} onClick={greenLightAction}>
         <GreenLightIcon {...appsConfig[appID]} />
-      </ButtonBase>
+      </button>
     </div>
   );
 };

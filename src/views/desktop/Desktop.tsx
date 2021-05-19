@@ -19,14 +19,14 @@ export const Desktop = () => {
 
   return (
     <>
-      <StartupChime />
-
       <main ref={outerRef} class={css.main}>
         <ContextMenu outerRef={outerRef} />
         <TopBar />
         <WindowsArea />
         <Dock />
       </main>
+
+      <StartupChime />
 
       <div class={css.backgroundCover} aria-hidden="true" />
     </>

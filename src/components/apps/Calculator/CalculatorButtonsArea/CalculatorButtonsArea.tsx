@@ -1,50 +1,49 @@
 import { mdiClose, mdiDivision, mdiMinus, mdiPercentOutline, mdiPlusMinusVariant } from '@mdi/js';
 import clsx from 'clsx';
 import { AppIcon } from '__/components/utils/AppIcon';
-import { ButtonBase } from '__/components/utils/ButtonBase';
 import css from './CalculatorButtonsArea.module.scss';
 
 export const CalculatorButtonsArea = () => {
   return (
     <section class={css.container}>
-      <ButtonBase class={css.topRowButton}>AC</ButtonBase>
-      <ButtonBase class={css.topRowButton}>
+      <button class={css.topRowButton}>AC</button>
+      <button class={css.topRowButton}>
         <AppIcon path={mdiPlusMinusVariant} />
-      </ButtonBase>
-      <ButtonBase class={css.topRowButton}>
+      </button>
+      <button class={css.topRowButton}>
         <AppIcon path={mdiPercentOutline} />
-      </ButtonBase>
-      <ButtonBase class={css.operationButton}>
+      </button>
+      <button class={css.operationButton}>
         <AppIcon path={mdiDivision} />
-      </ButtonBase>
+      </button>
 
-      <ButtonBase class={css.numberButton}>7</ButtonBase>
-      <ButtonBase class={css.numberButton}>8</ButtonBase>
-      <ButtonBase class={css.numberButton}>9</ButtonBase>
-      <ButtonBase class={css.operationButton}>
+      <button class={css.numberButton}>7</button>
+      <button class={css.numberButton}>8</button>
+      <button class={css.numberButton}>9</button>
+      <button class={css.operationButton}>
         <AppIcon path={mdiClose} />
-      </ButtonBase>
+      </button>
 
-      <ButtonBase class={css.numberButton}>4</ButtonBase>
-      <ButtonBase class={css.numberButton}>5</ButtonBase>
-      <ButtonBase class={css.numberButton}>6</ButtonBase>
-      <ButtonBase class={css.operationButton}>
+      <button class={css.numberButton}>4</button>
+      <button class={css.numberButton}>5</button>
+      <button class={css.numberButton}>6</button>
+      <button class={css.operationButton}>
         <AppIcon path={mdiMinus} size={24} />
-      </ButtonBase>
+      </button>
 
-      <ButtonBase class={css.numberButton}>1</ButtonBase>
-      <ButtonBase class={css.numberButton}>2</ButtonBase>
-      <ButtonBase class={css.numberButton}>3</ButtonBase>
-      <ButtonBase class={css.operationButton}>+</ButtonBase>
+      <button class={css.numberButton}>1</button>
+      <button class={css.numberButton}>2</button>
+      <button class={css.numberButton}>3</button>
+      <button class={css.operationButton}>+</button>
 
-      <ButtonBase
+      <button
         class={clsx(css.numberButton, css.curvedBottomLeftButton)}
         style={{ gridColumn: '1 / span 2' }}
       >
         0
-      </ButtonBase>
-      <ButtonBase class={css.numberButton}>,</ButtonBase>
-      <ButtonBase class={clsx(css.operationButton, css.curvedBottomRightButton)}>=</ButtonBase>
+      </button>
+      <button class={css.numberButton}>,</button>
+      <button class={clsx(css.operationButton, css.curvedBottomRightButton)}>=</button>
     </section>
   );
 };
