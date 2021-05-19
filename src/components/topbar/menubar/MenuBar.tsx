@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { useRef } from 'preact/hooks';
 import { AppIcon } from '__/components/utils/AppIcon';
-import { ButtonBase } from '__/components/utils/ButtonBase';
 import { useFocusOutside, useOutsideClick } from '__/hooks';
 import { activeMenuStore, menuBarMenusStore } from '__/stores/menubar.store';
 import { Menu } from './Menu';
@@ -26,7 +25,7 @@ export const MenuBar = () => {
       {Object.keys(currentAppMenus).map((menuID) => (
         <div key={menuID}>
           <span style={{ height: '100%' }}>
-            <ButtonBase
+            <button
               onClick={() => setActiveMenu(menuID)}
               onMouseOver={() => activeMenu && setActiveMenu(menuID)}
               onFocus={() => setActiveMenu(menuID)}
@@ -42,7 +41,7 @@ export const MenuBar = () => {
               ) : (
                 currentAppMenus[menuID].title
               )}
-            </ButtonBase>
+            </button>
           </span>
           <div
             class={css.menuParent}

@@ -1,4 +1,3 @@
-import { ButtonBase } from '../utils/ButtonBase';
 import { ActionCenterToggle } from './ActionCenter/ActionCenterToggle';
 import { MenuBar } from './menubar/MenuBar';
 import css from './Topbar.module.scss';
@@ -13,9 +12,9 @@ export const TopBar = () => {
 
       <ActionCenterToggle />
 
-      <ButtonBase>
+      <button>
         <TopBarTime />
-      </ButtonBase>
+      </button>
     </header>
   );
 };

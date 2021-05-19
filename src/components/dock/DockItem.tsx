@@ -6,7 +6,6 @@ import { RefObject } from 'preact';
 import { useRef, useState } from 'preact/hooks';
 import { AppConfig } from '__/helpers/create-app-config';
 import { activeAppStore, AppID, openAppsStore } from '__/stores/apps.store';
-import { ButtonBase } from '../utils/ButtonBase';
 import css from './DockItem.module.scss';
 
 type DockItemProps = AppConfig & {
@@ -43,7 +42,7 @@ export function DockItem({
   }
 
   return (
-    <ButtonBase class={css.dockItemButton} aria-label={`Launch ${title}`} onClick={openApp}>
+    <button class={css.dockItemButton} aria-label={`Launch ${title}`} onClick={openApp}>
       <p class={css.tooltip}>{title}</p>
       <motion.span
         onTap={() => setAnimateObj({ translateY: ['0%', '-39.2%', '0%'] })}
@@ -61,7 +60,7 @@ export function DockItem({
         />
       </motion.span>
       <div class={css.dot} style={{ '--opacity': +isOpen } as React.CSSProperties} />
-    </ButtonBase>
+    </button>
   );
 }
 

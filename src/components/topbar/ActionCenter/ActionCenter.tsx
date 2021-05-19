@@ -25,16 +25,15 @@ Thank you for your attention
 */
 
 import { mdiBluetooth, mdiKeyboard, mdiWifiStrength4 } from '@mdi/js';
+import { FC } from 'preact/compat';
 import { AirDropSVG } from '__/assets/sf-icons/AirDrop.svg';
 import { MoonSVG } from '__/assets/sf-icons/Moon.svg';
 import { AppIcon } from '__/components/utils/AppIcon';
-import { ButtonBase } from '__/components/utils/ButtonBase';
 import { useTheme } from '__/hooks';
+import css from './ActionCenter.module.scss';
 import { ActionCenterShell } from './ActionCenterShell';
 import { ActionCenterSurface } from './ActionCenterSurface';
 import { ActionCenterTile } from './ActionCenterTile';
-import css from './ActionCenter.module.scss';
-import { FC } from 'preact/compat';
 
 export const ActionCenter = () => {
   const [theme, setTheme] = useTheme();
@@ -112,12 +111,12 @@ export const ActionCenter = () => {
   );
 };
 
-const Toggle: FC<{ filled: boolean } & React.ComponentProps<typeof ButtonBase>> = ({
+const Toggle: FC<{ filled: boolean } & JSX.IntrinsicElements['button']> = ({
   filled,
   children,
   ...props
 }) => (
-  <ButtonBase
+  <button
     class={css.toggle}
     style={
       {
@@ -131,5 +130,5 @@ const Toggle: FC<{ filled: boolean } & React.ComponentProps<typeof ButtonBase>> 
     {...props}
   >
     {children}
-  </ButtonBase>
+  </button>
 );

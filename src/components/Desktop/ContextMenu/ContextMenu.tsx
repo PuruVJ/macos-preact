@@ -1,7 +1,6 @@
 import { ComponentChildren, RefObject } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 import { RovingTabIndexProvider, useFocusEffect, useRovingTabIndex } from 'react-roving-tabindex';
-import { ButtonBase } from '__/components/utils/ButtonBase';
 import { contextMenuConfig } from '__/data/menu/context.menu.config';
 import { useContextMenu, useFocusOutside } from '__/hooks';
 import css from './ContextMenu.module.scss';
@@ -56,7 +55,7 @@ const ContextMenuButton = ({ children }: ContextMenuButtonProps) => {
   useFocusEffect(focused, ref);
 
   return (
-    <ButtonBase
+    <button
       onKeyDown={handleKeyDown}
       onClick={handleClick}
       tabIndex={tabIndex}
@@ -64,6 +63,6 @@ const ContextMenuButton = ({ children }: ContextMenuButtonProps) => {
       class={css.menuItem}
     >
       {children}
-    </ButtonBase>
+    </button>
   );
 };

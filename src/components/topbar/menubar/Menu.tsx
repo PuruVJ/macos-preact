@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import { useRef } from 'preact/hooks';
 import { RovingTabIndexProvider, useFocusEffect, useRovingTabIndex } from 'react-roving-tabindex';
-import { ButtonBase } from '__/components/utils/ButtonBase';
 import css from './Menu.module.scss';
 
 type MenuProps = {
@@ -33,7 +32,7 @@ const MenuItemButton = ({
   children,
   disabled = false,
   ...props
-}: React.ComponentProps<typeof ButtonBase>) => {
+}: JSX.IntrinsicElements['button']) => {
   const ref = useRef<HTMLButtonElement>();
 
   const [tabIndex, focused, handleKeyDown, handleClick] = useRovingTabIndex(ref, disabled);
@@ -41,7 +40,7 @@ const MenuItemButton = ({
   useFocusEffect(focused, ref);
 
   return (
-    <ButtonBase
+    <button
       tabIndex={tabIndex}
       ref={ref}
       onKeyDown={handleKeyDown}
@@ -49,6 +48,6 @@ const MenuItemButton = ({
       {...props}
     >
       {children}
-    </ButtonBase>
+    </button>
   );
 };
