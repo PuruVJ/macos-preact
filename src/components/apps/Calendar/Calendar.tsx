@@ -6,7 +6,6 @@ import { lazy } from 'preact/compat';
 import { useState } from 'preact/hooks';
 import { Suspense } from 'react';
 import { AppIcon } from '__/components/utils/AppIcon';
-import { ButtonBase } from '__/components/utils/ButtonBase';
 import { calendarAppStore } from '__/stores/calendar.app.store';
 import css from './Calendar.module.scss';
 
@@ -44,13 +43,13 @@ const Calendar = () => {
             <span className={css.year}>{format(selectedDate, 'yyyy')}</span>
           </div>
           <div className={css.controlButtons}>
-            <ButtonBase onClick={goPrevMonth}>
+            <button onClick={goPrevMonth}>
               <AppIcon size={18} path={mdiChevronLeft} />
-            </ButtonBase>
-            <ButtonBase onClick={goToday}>Today</ButtonBase>
-            <ButtonBase onClick={goNextMonth}>
+            </button>
+            <button onClick={goToday}>Today</button>
+            <button onClick={goNextMonth}>
               <AppIcon size={18} path={mdiChevronRight} />
-            </ButtonBase>
+            </button>
           </div>
         </div>
         <Suspense fallback={<></>}>
