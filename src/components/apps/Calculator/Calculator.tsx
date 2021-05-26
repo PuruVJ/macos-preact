@@ -6,7 +6,6 @@ const Calculator = () => {
   return (
     <section class={css.container}>
       <header class={clsx('app-window-drag-handle', css.header)}></header>
-      <section class={css.showArea}>0</section>
       <CalculatorButtonsArea />
     </section>
   );

@@ -2,48 +2,222 @@ import { mdiClose, mdiDivision, mdiMinus, mdiPercentOutline, mdiPlusMinusVariant
 import clsx from 'clsx';
 import { AppIcon } from '__/components/utils/AppIcon';
 import css from './CalculatorButtonsArea.module.scss';
+import { useState } from 'preact/hooks';
+
+enum Operator {
+  Plus = 'Plus',
+  Minus = 'Minus',
+  Multiply = 'Multiply',
+  Divide = 'Divide',
+  Modulus = 'Modulus',
+}
+
+enum Mode {
+  InitFirstNumber = 'InitFirstNumber',
+  Operator = 'Operator',
+  InitSecondNumber = 'InitSecondNumber',
+  ShowResult = 'ShowResult',
+  Idle = 'Idle',
+}
+
+function getMathResult({
+  first,
+  operator,
+  second,
+}: {
+  first: number;
+  operator: Operator;
+  second: number;
+}) {
+  switch (operator) {
+    case Operator.Plus:
+      return first + second;
+    case Operator.Minus:
+      return first - second;
+    case Operator.Multiply:
+      return first * second;
+    case Operator.Divide:
+      return first / second;
+    case Operator.Modulus:
+      return first % second;
+  }
+}
 
 export const CalculatorButtonsArea = () => {
+  const [operator, setOperator] = useState<Operator | null>(null);
+  const [firstNumberText, setFirstNumberText] = useState('');
+  const [secondNumberText, setSecondNumberText] = useState('');
+  const [mode, setMode] = useState(Mode.Idle);
+
+  function renderResult() {
+    switch (mode) {
+      case Mode.Idle:
+        return 0;
+      case Mode.InitFirstNumber:
+        return firstNumberText;
+      case Mode.InitSecondNumber:
+        return secondNumberText;
+      case Mode.Operator:
+        return secondNumberText.length
+          ? secondNumberText
+          : firstNumberText.length
+          ? firstNumberText
+          : 0;
+      case Mode.ShowResult: {
+        return operator && firstNumberText && secondNumberText
+          ? getMathResult({
+              first: Number(firstNumberText),
+              operator,
+              second: Number(secondNumberText),
+            })
+          : undefined;
+      }
+    }
+  }
+
+  function handleReset() {
+    setOperator(null);
+    setFirstNumberText('');
+    setSecondNumberText('');
+    setMode(Mode.Idle);
+  }
+
+  function handleChangeOperator(operator: Operator) {
+    if(mode === Mode.Operator){
+
+    }
+    setOperator(operator);
+    setMode(Mode.Operator);
+  }
+
+  function handlePressDot() {
+    switch (mode) {
+      case Mode.Idle: {
+        setFirstNumberText(() => '0.1');
+        break;
+      }
+      case Mode.InitSecondNumber: {
+        setSecondNumberText((num) => (num.includes('.') ? num : `${num}.`));
+        break;
+      }
+      case Mode.InitFirstNumber: {
+        setFirstNumberText((num) => (num.includes('.') ? num : `${num}.`));
+        break;
+      }
+    }
+  }
+
+  function handlePressNumber(number: number) {
+    switch (mode) {
+      case Mode.Idle:
+      case Mode.InitFirstNumber: {
+        setFirstNumberText((existNumber) => `${existNumber}${number}`);
+        setMode(Mode.InitFirstNumber);
+        break;
+      }
+      case Mode.InitSecondNumber: {
+        setSecondNumberText((existNumber) => `${existNumber}${number}`);
+        break;
+      }
+      case Mode.Operator: {
+        setMode(Mode.InitSecondNumber);
+        setSecondNumberText(`${number}`);
+        break;
+      }
+      case Mode.ShowResult: {
+        setOperator(null);
+        setFirstNumberText(`${number}`);
+        setSecondNumberText('');
+        setMode(Mode.InitFirstNumber);
+      }
+    }
+  }
+
+  function handleShowResult() {
+    setMode(Mode.ShowResult);
+  }
+
   return (
-    <section class={css.container}>
-      <button class={css.topRowButton}>AC</button>
-      <button class={css.topRowButton}>
-        <AppIcon path={mdiPlusMinusVariant} />
-      </button>
-      <button class={css.topRowButton}>
-        <AppIcon path={mdiPercentOutline} />
-      </button>
-      <button class={css.operationButton}>
-        <AppIcon path={mdiDivision} />
-      </button>
+    <>
+      <section class={css.showArea}>{renderResult()}</section>
+      <section class={css.container}>
+        <button class={css.topRowButton} onClick={handleReset}>
+          AC
+        </button>
+        <button class={css.topRowButton}>
+          <AppIcon path={mdiPlusMinusVariant} />
+        </button>
+        <button class={css.topRowButton}>
+          <AppIcon path={mdiPercentOutline} />
+        </button>
+        <button class={css.operationButton} onClick={() => handleChangeOperator(Operator.Divide)}>
+          <AppIcon path={mdiDivision} />
+        </button>
 
-      <button class={css.numberButton}>7</button>
-      <button class={css.numberButton}>8</button>
-      <button class={css.numberButton}>9</button>
-      <button class={css.operationButton}>
-        <AppIcon path={mdiClose} />
-      </button>
+        <button class={css.numberButton} onClick={() => handlePressNumber(7)}>
+          7
+        </button>
+        <button class={css.numberButton} onClick={() => handlePressNumber(8)}>
+          8
+        </button>
+        <button class={css.numberButton} onClick={() => handlePressNumber(9)}>
+          9
+        </button>
+        <button class={css.operationButton} onClick={() => handleChangeOperator(Operator.Multiply)}>
+          <AppIcon path={mdiClose} />
+        </button>
 
-      <button class={css.numberButton}>4</button>
-      <button class={css.numberButton}>5</button>
-      <button class={css.numberButton}>6</button>
-      <button class={css.operationButton}>
-        <AppIcon path={mdiMinus} size={24} />
-      </button>
+        <button class={css.numberButton} onClick={() => handlePressNumber(4)}>
+          4
+        </button>
+        <button class={css.numberButton} onClick={() => handlePressNumber(5)}>
+          5
+        </button>
+        <button class={css.numberButton} onClick={() => handlePressNumber(6)}>
+          6
+        </button>
+        <button class={css.operationButton} onClick={() => handleChangeOperator(Operator.Minus)}>
+          <AppIcon path={mdiMinus} size={24} />
+        </button>
 
-      <button class={css.numberButton}>1</button>
-      <button class={css.numberButton}>2</button>
-      <button class={css.numberButton}>3</button>
-      <button class={css.operationButton}>+</button>
+        <button class={css.numberButton} onClick={() => handlePressNumber(1)}>
+          1
+        </button>
+        <button class={css.numberButton} onClick={() => handlePressNumber(2)}>
+          2
+        </button>
+        <button class={css.numberButton} onClick={() => handlePressNumber(3)}>
+          3
+        </button>
+        <button class={css.operationButton} onClick={() => handleChangeOperator(Operator.Plus)}>
+          +
+        </button>
 
-      <button
-        class={clsx(css.numberButton, css.curvedBottomLeftButton)}
-        style={{ gridColumn: '1 / span 2' }}
-      >
-        0
-      </button>
-      <button class={css.numberButton}>,</button>
-      <button class={clsx(css.operationButton, css.curvedBottomRightButton)}>=</button>
-    </section>
+        <button
+          class={clsx(css.numberButton, css.curvedBottomLeftButton)}
+          style={{ gridColumn: '1 / span 2' }}
+          onClick={() => handlePressNumber(0)}
+        >
+          0
+        </button>
+        <button class={css.numberButton} onClick={() => handlePressDot()}>
+          .
+        </button>
+        <button
+          class={clsx(css.operationButton, css.curvedBottomRightButton)}
+          onClick={handleShowResult}
+        >
+          =
+        </button>
+      </section>
+      <div>
+        {JSON.stringify({
+          operator,
+          firstNumberText,
+          secondNumberText,
+          mode,
+        })}
+      </div>
+    </>
   );
 };
