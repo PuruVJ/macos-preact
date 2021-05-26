@@ -9,7 +9,6 @@ enum Operator {
   Minus = 'Minus',
   Multiply = 'Multiply',
   Divide = 'Divide',
-  Modulus = 'Modulus',
 }
 
 enum Mode {
@@ -28,7 +27,7 @@ function getMathResult({
   first: number;
   operator: Operator;
   second: number;
-}) {
+}): number {
   switch (operator) {
     case Operator.Plus:
       return first + second;
@@ -38,8 +37,6 @@ function getMathResult({
       return first * second;
     case Operator.Divide:
       return first / second;
-    case Operator.Modulus:
-      return first % second;
   }
 }
 
@@ -64,13 +61,15 @@ export const CalculatorButtonsArea = () => {
           ? firstNumberText
           : 0;
       case Mode.ShowResult: {
-        return operator && firstNumberText && secondNumberText
-          ? getMathResult({
-              first: Number(firstNumberText),
-              operator,
-              second: Number(secondNumberText),
-            })
-          : undefined;
+        if (operator && firstNumberText && secondNumberText) {
+          const result = getMathResult({
+            first: Number(firstNumberText),
+            operator,
+            second: Number(secondNumberText),
+          });
+          return isNaN(result) ? 'Not a number' : result;
+        }
+        return firstNumberText;
       }
     }
   }
@@ -82,11 +81,21 @@ export const CalculatorButtonsArea = () => {
     setMode(Mode.Idle);
   }
 
-  function handleChangeOperator(operator: Operator) {
-    if(mode === Mode.Operator){
-
+  function handleChangeOperator(operatorValue: Operator) {
+    if (secondNumberText && operator && firstNumberText) {
+      setFirstNumberText(
+        `${getMathResult({
+          first: Number(firstNumberText),
+          operator,
+          second: Number(secondNumberText),
+        })}`,
+      );
+      setSecondNumberText('');
     }
-    setOperator(operator);
+    if (!firstNumberText) {
+      setFirstNumberText('0');
+    }
+    setOperator(operatorValue);
     setMode(Mode.Operator);
   }
 
@@ -102,6 +111,31 @@ export const CalculatorButtonsArea = () => {
       }
       case Mode.InitFirstNumber: {
         setFirstNumberText((num) => (num.includes('.') ? num : `${num}.`));
+        break;
+      }
+    }
+  }
+
+  function handlePlusMinusOperator() {
+    switch (mode) {
+      case Mode.InitFirstNumber: {
+        setFirstNumberText((num) => `${-Number(num)}`);
+        break;
+      }
+      case Mode.InitSecondNumber: {
+        setSecondNumberText((num) => `${-Number(num)}`);
+        break;
+      }
+    }
+  }
+  function handlePercentOperator() {
+    switch (mode) {
+      case Mode.InitFirstNumber: {
+        setFirstNumberText((num) => `${Number(num) / 100}`);
+        break;
+      }
+      case Mode.InitSecondNumber: {
+        setSecondNumberText((num) => `${Number(num) / 100}`);
         break;
       }
     }
@@ -145,9 +179,9 @@ export const CalculatorButtonsArea = () => {
           AC
         </button>
         <button class={css.topRowButton}>
-          <AppIcon path={mdiPlusMinusVariant} />
+          <AppIcon path={mdiPlusMinusVariant} onClick={handlePlusMinusOperator} />
         </button>
-        <button class={css.topRowButton}>
+        <button class={css.topRowButton} onClick={handlePercentOperator}>
           <AppIcon path={mdiPercentOutline} />
         </button>
         <button class={css.operationButton} onClick={() => handleChangeOperator(Operator.Divide)}>
