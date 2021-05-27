@@ -83,9 +83,10 @@ export const ActionCenter = () => {
             [7, 6],
             [1, 2],
           ]}
+          onClick={toggleTheme}
         >
           <ActionCenterTile grid={[1, 1]}>
-            <Toggle onClick={toggleTheme} filled={theme === 'dark'}>
+            <Toggle filled={theme === 'dark'}>
               <ThemeSVGComp size={16} />
             </Toggle>
             Dark mode
