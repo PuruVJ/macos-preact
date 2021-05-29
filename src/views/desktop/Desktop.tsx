@@ -11,6 +11,8 @@ import css from './Desktop.module.scss';
 
 export const Desktop = () => {
   const outerRef = useRef<HTMLDivElement>();
+
+  useWallpaperName();
   const [currWallpaperImg, setCurrWallpaperImg] = useTimelyWallpapers();
 
   const [wallpaper, setWallpaper] = useState('');
