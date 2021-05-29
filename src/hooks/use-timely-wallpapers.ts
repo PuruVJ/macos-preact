@@ -14,8 +14,6 @@ export const useTimelyWallpapers = () => {
   const [currWallpaperImg, setCurrWallpaperImg] = useAtom(wallpaperImageStore);
   const [theme, setTheme] = useTheme();
 
-  console.log({ wallpaperName });
-
   function handler() {
     if (wallpapersConfig[wallpaperName].type === 'standalone') return;
     // console.log({ wallpaperName });
@@ -39,10 +37,8 @@ export const useTimelyWallpapers = () => {
     }
 
     // Now set the right timestamp
-    console.log({ timestamps });
     const chosenTimeStamp = smallerClosestValue(timestamps, hour);
     setCurrWallpaperImg(wallpaperTimestampsMap?.[chosenTimeStamp] || currWallpaperImg);
-    console.log({ chosenTimeStamp });
     setTheme('light');
   }
 

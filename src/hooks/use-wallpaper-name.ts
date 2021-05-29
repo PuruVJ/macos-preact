@@ -27,6 +27,5 @@ export function useWallpaperName() {
     localStorage.setItem('wallpaper:name', wallpaperName);
   }, [wallpaperName]);
 
-  console.log([wallpaperName, setWallpaperName]);
   return [wallpaperName, setWallpaperName] as const;
 }

@@ -41,7 +41,7 @@ export const wallpapersConfig = createWallpapersConfig({
     },
     themeTimestamps: {
       9: 'light',
-      18: 'dark',
+      17: 'dark',
     },
   },
 });
