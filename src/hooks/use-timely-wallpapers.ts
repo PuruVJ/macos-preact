@@ -48,14 +48,14 @@ export const useTimelyWallpapers = () => {
 
   useEffect(() => {
     handler();
-  }, []);
+  }, [wallpaperName]);
 
   useInterval(() => {
     // Return if this instance has already been initialised
     if (isInitialized) return;
 
     handler();
-  }, 1000);
+  }, 60 * 1000);
 
   return [currWallpaperImg, setCurrWallpaperImg] as const;
 };
