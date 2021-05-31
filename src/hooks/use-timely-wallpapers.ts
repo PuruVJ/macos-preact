@@ -10,9 +10,9 @@ import { useWallpaperName } from './use-wallpaper-name';
 let isInitialized = false;
 
 export const useTimelyWallpapers = () => {
-  const [wallpaperName, setWallpaperName] = useWallpaperName();
+  const [wallpaperName] = useWallpaperName();
   const [currWallpaperImg, setCurrWallpaperImg] = useAtom(wallpaperImageStore);
-  const [theme, setTheme] = useTheme();
+  const [, setTheme] = useTheme();
 
   function handleWallpaper() {
     const date = new Date();

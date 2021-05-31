@@ -5,3 +5,5 @@ export { useTimeout } from './use-timeout';
 export { useContextMenu } from './use-context-menu';
 export { useFocusOutside } from './use-focus-outside';
 export { useTimelyWallpapers } from './use-timely-wallpapers';
+export { useWallpaperName } from './use-wallpaper-name';
+export { usePrevious } from './use-previous';

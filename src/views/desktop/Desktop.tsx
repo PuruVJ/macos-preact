@@ -1,4 +1,3 @@
-import { useAtom } from 'jotai';
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { ContextMenu } from '__/components/Desktop/ContextMenu/ContextMenu';
 import { StartupChime } from '__/components/Desktop/StartupChime';
