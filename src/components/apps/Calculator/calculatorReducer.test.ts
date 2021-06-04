@@ -44,6 +44,8 @@ describe('calculator', () => {
       handlePress(key);
       expect(state.result).toBe(result);
     }
+
+    handlePressReset();
   }
 
   function handlePressNumber(number: number) {
@@ -126,7 +128,19 @@ describe('calculator', () => {
   test('Simple equations', () => {
     testEquation([1, '+', 3, '='], ['1', '1', '3', '4']);
     testEquation([5, 5, '+', 2, 3, '='], ['5', '55', '55', '2', '23', '78']);
-    // testEquation([1, 0, '+', 2, 4, '+', 5, '='], ['1', '10', '10', '2', '24', '34', '5', '39']);
+  });
+
+  test('Equations with more than one operator', () => {
+    testEquation([1, 0, '+', 2, 4, '+', 5, '='], ['1', '10', '10', '2', '24', '34', '5', '39']);
+    testEquation(
+      [1, 0, '+', 2, 4, '+', 5, '+', 1, 0, '='],
+      ['1', '10', '10', '2', '24', '34', '5', '39', '1', '10', '49'],
+    );
+  });
+
+  test('Double equal should calculate same operator', () => {
+    testEquation([1, 0, '+', 2, 4, '=', '='], ['1', '10', '10', '2', '24', '34', '58']);
+    // testEquation([2, 4, '+', 1, 0, '=', '=', '='], ['2', '24', '24', '1', '10', '34', '44', '54']);
   });
 });
 
