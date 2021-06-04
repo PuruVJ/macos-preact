@@ -145,6 +145,10 @@ describe('calculator', () => {
   test('More than two equal at row', () => {
     testEquation([2, 4, '+', 1, 0, '=', '=', '='], ['2', '24', '24', '1', '10', '34', '44', '54']);
   });
+
+  test('Operator after equal', () => {
+    testEquation([8, '*', 9, '=', '+', 5, '='], ['8', '8', '9', '72', '72', '5', '77']);
+  });
 });
 
 export {};

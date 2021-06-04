@@ -85,7 +85,7 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
     case 'ChangeOperator': {
       const { operatorValue } = action.payload;
       const { firstNumberText, secondNumberText, operator } = state;
-      if (operator && state.mode !== Mode.InsertOperator) {
+      if (operator && ![Mode.InsertOperator, Mode.ShowingResult].includes(state.mode)) {
         const result = `${getMathResult({
           first: Number(firstNumberText),
           operator: operator,
