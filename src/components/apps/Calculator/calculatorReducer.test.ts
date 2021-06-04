@@ -140,7 +140,10 @@ describe('calculator', () => {
 
   test('Double equal should calculate same operator', () => {
     testEquation([1, 0, '+', 2, 4, '=', '='], ['1', '10', '10', '2', '24', '34', '58']);
-    // testEquation([2, 4, '+', 1, 0, '=', '=', '='], ['2', '24', '24', '1', '10', '34', '44', '54']);
+  });
+
+  test('More than two equal at row', () => {
+    testEquation([2, 4, '+', 1, 0, '=', '=', '='], ['2', '24', '24', '1', '10', '34', '44', '54']);
   });
 });
 

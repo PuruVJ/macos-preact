@@ -274,8 +274,7 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
           return {
             ...state,
             mode: Mode.ShowingResult,
-            firstNumberText: state.result,
-            secondNumberText: updatedResult,
+            firstNumberText: updatedResult,
             result: updatedResult,
           };
         }
