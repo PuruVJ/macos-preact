@@ -93,15 +93,22 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
           operator: operatorValue,
           mode: Mode.InsertOperator,
           firstNumberText: result,
-          result: result,
+          // For converting 0. to 0
+          result: String(Number(result)),
         };
       }
-      return { ...state, operator: operatorValue, mode: Mode.InsertOperator };
+      return {
+        ...state,
+        operator: operatorValue,
+        mode: Mode.InsertOperator,
+        // For converting 0. to 0
+        result: String(Number(state.result)),
+      };
     }
     case 'PressDot': {
       switch (state.mode) {
         case Mode.Idle: {
-          const result = '0.1';
+          const result = '0.';
           return {
             ...state,
             mode: Mode.InsertFirstNumber,
@@ -130,9 +137,9 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
           return {
             mode: Mode.InsertSecondNumber,
             firstNumberText: state.result,
-            secondNumberText: '0.1',
+            secondNumberText: '0',
             operator: null,
-            result: '0.1',
+            result: '0.',
           };
         }
       }
