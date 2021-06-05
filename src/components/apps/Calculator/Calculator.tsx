@@ -1,8 +1,8 @@
-import { useReducer } from 'react';
-import { mdiClose, mdiDivision, mdiMinus, mdiPercentOutline, mdiPlusMinusVariant } from '@mdi/js';
+import {useReducer} from 'react';
+import {mdiClose, mdiDivision, mdiMinus, mdiPercentOutline, mdiPlusMinusVariant} from '@mdi/js';
 import clsx from 'clsx';
-import { AppIcon } from '__/components/utils/AppIcon';
-import { ActionT, calculatorReducer, initialState, IState, Operator } from './calculatorReducer';
+import {AppIcon} from '__/components/utils/AppIcon';
+import {ActionT, CalculatorKeyT, calculatorReducer, initialState, IState,} from './calculatorReducer';
 import css from './Calculator.module.scss';
 
 const Calculator = () => {
@@ -13,33 +13,45 @@ const Calculator = () => {
 
   const { result } = state;
 
-  function handleReset() {
-    dispatch({ type: 'Reset' });
-  }
-
-  function handleChangeOperator(operatorValue: Operator) {
-    dispatch({ type: 'ChangeOperator', payload: { operatorValue } });
-  }
-
-  function handlePressDot() {
-    dispatch({ type: 'PressDot' });
-  }
-
-  function handlePlusMinusOperator() {
-    dispatch({ type: 'PlusMinusOperator' });
-  }
-
-  function handlePercentOperator() {
-    dispatch({ type: 'PercentOperator' });
-  }
-
-  // After percent, when inerting first number the result appear but we can;t feed the number
-  function handlePressNumber(number: number) {
-    dispatch({ type: 'PressNumber', payload: { number } });
-  }
-
-  function handleShowResult() {
-    dispatch({ type: 'ShowResult' });
+  function handlePress(key: CalculatorKeyT) {
+    switch (key) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+      case 9: {
+        dispatch({ type: 'PressNumber', payload: { number: key } });
+        break;
+      }
+      case '.': {
+        dispatch({ type: 'PressDot' });
+        break;
+      }
+      case '+':
+      case '-':
+      case '*':
+      case '/': {
+        dispatch({ type: 'ChangeOperator', payload: { operatorValue: key } });
+        break;
+      }
+      case '%': {
+        dispatch({ type: 'PercentOperator' });
+        break;
+      }
+      case 'AC': {
+        dispatch({ type: 'Reset' });
+        break;
+      }
+      case '=': {
+        dispatch({ type: 'ShowResult' });
+        break;
+      }
+    }
   }
 
   return (
@@ -47,67 +59,67 @@ const Calculator = () => {
       <header class={clsx('app-window-drag-handle', css.header)} />
       <section class={css.showArea}>{result}</section>
       <section class={css.buttonsContainer}>
-        <button class={css.topRowButton} onClick={handleReset}>
+        <button class={css.topRowButton} onClick={() => handlePress('AC')}>
           AC
         </button>
-        <button class={css.topRowButton} onClick={handlePlusMinusOperator}>
+        <button class={css.topRowButton} onClick={() => handlePress('-')}>
           <AppIcon path={mdiPlusMinusVariant} />
         </button>
-        <button class={css.topRowButton} onClick={handlePercentOperator}>
+        <button class={css.topRowButton} onClick={() => handlePress('%')}>
           <AppIcon path={mdiPercentOutline} />
         </button>
-        <button class={css.operationButton} onClick={() => handleChangeOperator(Operator.Divide)}>
+        <button class={css.operationButton} onClick={() => handlePress('/')}>
           <AppIcon path={mdiDivision} />
         </button>
-        <button class={css.numberButton} onClick={() => handlePressNumber(7)}>
+        <button class={css.numberButton} onClick={() => handlePress(7)}>
           7
         </button>
-        <button class={css.numberButton} onClick={() => handlePressNumber(8)}>
+        <button class={css.numberButton} onClick={() => handlePress(8)}>
           8
         </button>
-        <button class={css.numberButton} onClick={() => handlePressNumber(9)}>
+        <button class={css.numberButton} onClick={() => handlePress(9)}>
           9
         </button>
-        <button class={css.operationButton} onClick={() => handleChangeOperator(Operator.Multiply)}>
+        <button class={css.operationButton} onClick={() => handlePress('*')}>
           <AppIcon path={mdiClose} />
         </button>
-        <button class={css.numberButton} onClick={() => handlePressNumber(4)}>
+        <button class={css.numberButton} onClick={() => handlePress(4)}>
           4
         </button>
-        <button class={css.numberButton} onClick={() => handlePressNumber(5)}>
+        <button class={css.numberButton} onClick={() => handlePress(5)}>
           5
         </button>
-        <button class={css.numberButton} onClick={() => handlePressNumber(6)}>
+        <button class={css.numberButton} onClick={() => handlePress(6)}>
           6
         </button>
-        <button class={css.operationButton} onClick={() => handleChangeOperator(Operator.Minus)}>
+        <button class={css.operationButton} onClick={() => handlePress('-')}>
           <AppIcon path={mdiMinus} size={24} />
         </button>
-        <button class={css.numberButton} onClick={() => handlePressNumber(1)}>
+        <button class={css.numberButton} onClick={() => handlePress(1)}>
           1
         </button>
-        <button class={css.numberButton} onClick={() => handlePressNumber(2)}>
+        <button class={css.numberButton} onClick={() => handlePress(2)}>
           2
         </button>
-        <button class={css.numberButton} onClick={() => handlePressNumber(3)}>
+        <button class={css.numberButton} onClick={() => handlePress(3)}>
           3
         </button>
-        <button class={css.operationButton} onClick={() => handleChangeOperator(Operator.Plus)}>
+        <button class={css.operationButton} onClick={() => handlePress('+')}>
           +
         </button>
         <button
           class={clsx(css.numberButton, css.curvedBottomLeftButton)}
           style={{ gridColumn: '1 / span 2' }}
-          onClick={() => handlePressNumber(0)}
+          onClick={() => handlePress(0)}
         >
           0
         </button>
-        <button class={css.numberButton} onClick={() => handlePressDot()}>
+        <button class={css.numberButton} onClick={() => handlePress('.')}>
           .
         </button>
         <button
           class={clsx(css.operationButton, css.curvedBottomRightButton)}
-          onClick={handleShowResult}
+          onClick={() => handlePress('=')}
         >
           =
         </button>

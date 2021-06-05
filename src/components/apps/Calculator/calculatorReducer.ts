@@ -1,9 +1,6 @@
-export enum Operator {
-  Plus = 'Plus',
-  Minus = 'Minus',
-  Multiply = 'Multiply',
-  Divide = 'Divide',
-}
+export type OperatorT = '+' | '-' | '*' | '/';
+export type DigitT = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+export type CalculatorKeyT = DigitT | OperatorT | 'AC' | '=' | '%' | '.';
 
 export enum Mode {
   InsertFirstNumber = 'InsertFirstNumber',
@@ -14,7 +11,7 @@ export enum Mode {
 }
 
 export interface IState {
-  operator: Operator | null;
+  operator: OperatorT | null;
   firstNumberText: string;
   secondNumberText: string;
   mode: Mode;
@@ -35,7 +32,7 @@ export type ActionT =
   | {
       type: 'ChangeOperator';
       payload: {
-        operatorValue: Operator;
+        operatorValue: OperatorT;
       };
     }
   | {
@@ -50,7 +47,7 @@ export type ActionT =
   | {
       type: 'PressNumber';
       payload: {
-        number: number;
+        number: DigitT;
       };
     }
   | {
@@ -63,17 +60,17 @@ function getMathResult({
   second,
 }: {
   first: number;
-  operator: Operator;
+  operator: OperatorT;
   second: number;
 }): number {
   switch (operator) {
-    case Operator.Plus:
+    case '+':
       return first + second;
-    case Operator.Minus:
+    case '-':
       return first - second;
-    case Operator.Multiply:
+    case '*':
       return first * second;
-    case Operator.Divide:
+    case '/':
       return first / second;
   }
 }

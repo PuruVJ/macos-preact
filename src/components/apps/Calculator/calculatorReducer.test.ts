@@ -1,13 +1,12 @@
-import { calculatorReducer, initialState, IState, Operator } from './calculatorReducer';
+import { CalculatorKeyT, calculatorReducer, initialState, IState } from './calculatorReducer';
 
-type Key = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | '+' | '-' | '*' | '/' | 'AC' | '=';
 let state: IState = initialState;
-describe('calculator', () => {
+describe('calculatorReducer', () => {
   beforeEach(() => {
     state = initialState;
   });
 
-  function handlePress(key: Key) {
+  function handlePress(key: CalculatorKeyT) {
     switch (key) {
       case 0:
       case 1:
@@ -18,24 +17,40 @@ describe('calculator', () => {
       case 6:
       case 7:
       case 8:
-      case 9:
-        return handlePressNumber(key);
+      case 9: {
+        state = calculatorReducer(state, { type: 'PressNumber', payload: { number: key } });
+        break;
+      }
+      case '.': {
+        state = calculatorReducer(state, { type: 'PressDot' });
+        break;
+      }
       case '+':
-        return handlePressOperator(Operator.Plus);
       case '-':
-        return handlePressOperator(Operator.Minus);
       case '*':
-        return handlePressOperator(Operator.Multiply);
-      case '/':
-        return handlePressOperator(Operator.Divide);
-      case 'AC':
-        return handlePressReset();
-      case '=':
-        return handleShowResult();
+      case '/': {
+        state = calculatorReducer(state, {
+          type: 'ChangeOperator',
+          payload: { operatorValue: key },
+        });
+        break;
+      }
+      case '%': {
+        state = calculatorReducer(state, { type: 'PercentOperator' });
+        break;
+      }
+      case 'AC': {
+        state = calculatorReducer(state, { type: 'Reset' });
+        break;
+      }
+      case '=': {
+        state = calculatorReducer(state, { type: 'ShowResult' });
+        break;
+      }
     }
   }
 
-  function testEquation(keys: Key[], results: string[]) {
+  function testEquation(keys: CalculatorKeyT[], results: string[]) {
     expect(keys).toHaveLength(results.length);
 
     for (let i = 0; i < results.length; i++) {
@@ -45,87 +60,24 @@ describe('calculator', () => {
       expect(state.result).toBe(result);
     }
 
-    handlePressReset();
-  }
-
-  function handlePressNumber(number: number) {
-    state = calculatorReducer(state, {
-      type: 'PressNumber',
-      payload: { number },
-    });
-  }
-
-  function handlePressDot() {
-    state = calculatorReducer(state, {
-      type: 'PressDot',
-    });
-  }
-
-  function handlePressReset() {
-    state = calculatorReducer(state, {
-      type: 'Reset',
-    });
-  }
-
-  function handlePressOperator(operator: Operator) {
-    state = calculatorReducer(state, {
-      type: 'ChangeOperator',
-      payload: { operatorValue: operator },
-    });
-  }
-
-  function handleShowResult() {
-    state = calculatorReducer(state, {
-      type: 'ShowResult',
-    });
+    // Reset state
+    state = initialState;
   }
 
   test('Show number', () => {
-    expect(state.result).toBe('0');
-    handlePressNumber(1);
-    expect(state.result).toBe('1');
-    handlePressNumber(2);
-    expect(state.result).toBe('12');
-    handlePressNumber(3);
-    expect(state.result).toBe('123');
+    testEquation([1, 2, 3], ['1', '12', '123']);
   });
 
   test('Reset number', () => {
-    handlePressNumber(1);
-    expect(state.result).toBe('1');
-    handlePressReset();
-    expect(state.result).toBe('0');
-    handlePressNumber(3);
-    expect(state.result).toBe('3');
-    handlePressNumber(4);
-    expect(state.result).toBe('34');
+    testEquation([1, 'AC', 3, 4], ['1', '0', '3', '34']);
   });
 
   test('Decimal number', () => {
-    handlePressNumber(1);
-    expect(state.result).toBe('1');
-    handlePressDot();
-    expect(state.result).toBe('1.');
-    handlePressDot();
-    expect(state.result).toBe('1.');
-    handlePressNumber(3);
-    expect(state.result).toBe('1.3');
-    handlePressDot();
-    expect(state.result).toBe('1.3');
+    testEquation([1, '.', '.', 3, '.'], ['1', '1.', '1.', '1.3', '1.3']);
   });
 
   test('Simple Math', () => {
-    handlePressNumber(6);
-    expect(state.result).toBe('6');
-    handlePressOperator(Operator.Plus);
-    expect(state.result).toBe('6');
-    handlePressNumber(7);
-    expect(state.result).toBe('7');
-    handleShowResult();
-    expect(state.result).toBe('13');
-  });
-
-  test('Simple equations', () => {
+    testEquation([6, '+', 7, '='], ['6', '6', '7', '13']);
     testEquation([1, '+', 3, '='], ['1', '1', '3', '4']);
     testEquation([5, 5, '+', 2, 3, '='], ['5', '55', '55', '2', '23', '78']);
   });
