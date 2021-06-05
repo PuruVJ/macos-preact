@@ -6,7 +6,7 @@ describe('calculatorReducer', () => {
     state = initialState;
   });
 
-  function handlePress(key: CalculatorKeyT) {
+  function updateStateAfterPress(key: CalculatorKeyT) {
     switch (key) {
       case 0:
       case 1:
@@ -56,7 +56,7 @@ describe('calculatorReducer', () => {
     for (let i = 0; i < results.length; i++) {
       const key = keys[i];
       const result = results[i];
-      handlePress(key);
+      updateStateAfterPress(key);
       expect(state.result).toBe(result);
     }
 
