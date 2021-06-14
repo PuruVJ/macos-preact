@@ -7,8 +7,6 @@ import { useInterval } from './use-interval';
 import { useTheme } from './use-theme';
 import { useWallpaperName } from './use-wallpaper-name';
 
-let isInitialized = false;
-
 export const useTimelyWallpapers = () => {
   const [wallpaperName] = useWallpaperName();
   const [currWallpaperImg, setCurrWallpaperImg] = useAtom(wallpaperImageStore);
@@ -71,9 +69,6 @@ export const useTimelyWallpapers = () => {
   }, [wallpaperName]);
 
   useInterval(() => {
-    // Return if this instance has already been initialised
-    if (isInitialized) return;
-
     handler();
   }, 60 * 1000);
 
