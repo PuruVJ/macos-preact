@@ -26,6 +26,20 @@ export const wallpapersConfig = createWallpapersConfig({
       18: 'dark',
     },
   },
+
+  monterey: {
+    name: 'Monterey',
+    type: 'automatic',
+    wallpaperTimestamps: {
+      7: '37-2',
+      18: '37-1',
+    },
+    themeTimestamps: {
+      7: 'light',
+      18: 'dark',
+    },
+  },
+
   catalina: {
     name: 'Catalina',
     type: 'dynamic',
