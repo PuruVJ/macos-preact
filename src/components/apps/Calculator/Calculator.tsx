@@ -31,7 +31,7 @@ const Calculator = () => {
         <button class={css.topRowButton} onClick={() => handlePress('AC')}>
           AC
         </button>
-        <button class={css.topRowButton} onClick={() => handlePress('-')}>
+        <button class={css.topRowButton} onClick={() => handlePress('+/-')}>
           <AppIcon path={mdiPlusMinusVariant} />
         </button>
         <button class={css.topRowButton} onClick={() => handlePress('%')}>
