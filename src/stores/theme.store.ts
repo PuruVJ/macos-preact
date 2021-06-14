@@ -1,5 +1,8 @@
-import { atom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 
 export type Theme = 'light' | 'dark';
 
-export const themeAtom = atom<Theme>('light');
+export const themeAtom = atomWithStorage<Theme>(
+  'theme:type',
+  matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+);

@@ -1,12 +1,6 @@
 import { useAtom } from 'jotai';
 import { useEffect } from 'preact/hooks';
-import { Theme, themeAtom } from '__/stores/theme.store';
-
-// This is needed here
-let isFirstUpdate = true;
-
-const localValue = localStorage.getItem<Theme>('theme:type');
-const systemTheme: Theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+import { themeAtom } from '__/stores/theme.store';
 
 /**
  * Sitewide theme
@@ -15,20 +9,6 @@ export function useTheme() {
   const [theme, setTheme] = useAtom(themeAtom);
 
   useEffect(() => {
-    if (isFirstUpdate) setTheme(localValue || systemTheme);
-  }, []);
-
-  /**
-   * Don't use `useLayoutEffect` here, as it runs before `useEffect`, so it persists to the initial value of
-   * the `theme` atom provided, and by the time the onMount useEffect runs, `isFirstUpdate` is already false,
-   * hence initial theme is not set
-   */
-  useEffect(() => {
-    // Needed, because without it, the theme after reload stays light only
-    if (isFirstUpdate) return void (isFirstUpdate = false);
-
-    localStorage.setItem('theme:type', theme);
-
     document.body.classList.remove('light', 'dark');
     document.body.classList.add(theme);
   }, [theme]);
