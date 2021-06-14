@@ -1,6 +1,6 @@
-# Mac OS Big Sur Web
+# Mac OS Monterey Web
 
-This open source project aims to replicate some of the Mac OS(Big Sur, at the time)'s desktop experience on web, using standard web technologies like HTML, CSS and JS
+This open source project aims to replicate some of the Mac OS(Moneterey, at the time)'s desktop experience on web, using standard web technologies like HTML, CSS and JS
 
 🔗🔗 [macos.now.sh](https://macos.now.sh)
 
