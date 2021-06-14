@@ -6,57 +6,13 @@ describe('calculatorReducer', () => {
     state = initialState;
   });
 
-  function updateStateAfterPress(key: CalculatorKeyT) {
-    switch (key) {
-      case 0:
-      case 1:
-      case 2:
-      case 3:
-      case 4:
-      case 5:
-      case 6:
-      case 7:
-      case 8:
-      case 9: {
-        state = calculatorReducer(state, { type: 'PressNumber', payload: { number: key } });
-        break;
-      }
-      case '.': {
-        state = calculatorReducer(state, { type: 'PressDot' });
-        break;
-      }
-      case '+':
-      case '-':
-      case '*':
-      case '/': {
-        state = calculatorReducer(state, {
-          type: 'ChangeOperator',
-          payload: { operatorValue: key },
-        });
-        break;
-      }
-      case '%': {
-        state = calculatorReducer(state, { type: 'PercentOperator' });
-        break;
-      }
-      case 'AC': {
-        state = calculatorReducer(state, { type: 'Reset' });
-        break;
-      }
-      case '=': {
-        state = calculatorReducer(state, { type: 'ShowResult' });
-        break;
-      }
-    }
-  }
-
   function testEquation(keys: CalculatorKeyT[], results: string[]) {
     expect(keys).toHaveLength(results.length);
 
     for (let i = 0; i < results.length; i++) {
       const key = keys[i];
       const result = results[i];
-      updateStateAfterPress(key);
+      state = calculatorReducer(state, { type: 'Press', payload: key });
       expect(state.result).toBe(result);
     }
 

@@ -1,6 +1,6 @@
 export type OperatorT = '+' | '-' | '*' | '/';
 export type DigitT = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
-export type CalculatorKeyT = DigitT | OperatorT | 'AC' | '=' | '%' | '.';
+export type CalculatorKeyT = DigitT | OperatorT | 'AC' | '=' | '%' | '.' | '+/-';
 
 export enum Mode {
   InsertFirstNumber = 'InsertFirstNumber',
@@ -25,34 +25,8 @@ export const initialState: IState = {
   mode: Mode.Idle,
   result: '0',
 };
-export type ActionT =
-  | {
-      type: 'Reset';
-    }
-  | {
-      type: 'ChangeOperator';
-      payload: {
-        operatorValue: OperatorT;
-      };
-    }
-  | {
-      type: 'PressDot';
-    }
-  | {
-      type: 'PlusMinusOperator';
-    }
-  | {
-      type: 'PercentOperator';
-    }
-  | {
-      type: 'PressNumber';
-      payload: {
-        number: DigitT;
-      };
-    }
-  | {
-      type: 'ShowResult';
-    };
+
+export type ActionT = { type: 'Press'; payload: CalculatorKeyT };
 
 function getMathResult({
   first,
@@ -76,11 +50,14 @@ function getMathResult({
 }
 
 export function calculatorReducer(state: IState, action: ActionT): IState {
-  switch (action.type) {
-    case 'Reset':
+  switch (action.payload) {
+    case 'AC':
       return initialState;
-    case 'ChangeOperator': {
-      const { operatorValue } = action.payload;
+    case '+':
+    case '-':
+    case '*':
+    case '/': {
+      const operatorValue = action.payload;
       const { firstNumberText, secondNumberText, operator } = state;
       if (operator && ![Mode.InsertOperator, Mode.ShowingResult].includes(state.mode)) {
         const result = `${getMathResult({
@@ -105,7 +82,7 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
         result: String(Number(state.result)),
       };
     }
-    case 'PressDot': {
+    case '.': {
       switch (state.mode) {
         case Mode.Idle: {
           const result = '0.';
@@ -145,7 +122,7 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
       }
       return state;
     }
-    case 'PlusMinusOperator': {
+    case '+/-': {
       switch (state.mode) {
         case Mode.InsertFirstNumber: {
           const result = `${-Number(state.firstNumberText)}`;
@@ -184,7 +161,7 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
       }
       return state;
     }
-    case 'PercentOperator': {
+    case '%': {
       const { result } = state;
 
       switch (state.mode) {
@@ -224,8 +201,17 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
       }
       return state;
     }
-    case 'PressNumber': {
-      const { number } = action.payload;
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9: {
+      const number = action.payload;
       switch (state.mode) {
         case Mode.Idle: {
           const result = `${state.firstNumberText}${number}`;
@@ -266,7 +252,7 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
       }
       return state;
     }
-    case 'ShowResult': {
+    case '=': {
       {
         const { firstNumberText, secondNumberText, operator } = state;
         if (firstNumberText && secondNumberText && operator) {

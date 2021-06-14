@@ -1,8 +1,14 @@
-import {useReducer} from 'react';
-import {mdiClose, mdiDivision, mdiMinus, mdiPercentOutline, mdiPlusMinusVariant} from '@mdi/js';
+import { useReducer } from 'react';
+import { mdiClose, mdiDivision, mdiMinus, mdiPercentOutline, mdiPlusMinusVariant } from '@mdi/js';
 import clsx from 'clsx';
-import {AppIcon} from '__/components/utils/AppIcon';
-import {ActionT, CalculatorKeyT, calculatorReducer, initialState, IState,} from './calculatorReducer';
+import { AppIcon } from '__/components/utils/AppIcon';
+import {
+  ActionT,
+  CalculatorKeyT,
+  calculatorReducer,
+  initialState,
+  IState,
+} from './calculatorReducer';
 import css from './Calculator.module.scss';
 
 const Calculator = () => {
@@ -14,44 +20,7 @@ const Calculator = () => {
   const { result } = state;
 
   function handlePress(key: CalculatorKeyT) {
-    switch (key) {
-      case 0:
-      case 1:
-      case 2:
-      case 3:
-      case 4:
-      case 5:
-      case 6:
-      case 7:
-      case 8:
-      case 9: {
-        dispatch({ type: 'PressNumber', payload: { number: key } });
-        break;
-      }
-      case '.': {
-        dispatch({ type: 'PressDot' });
-        break;
-      }
-      case '+':
-      case '-':
-      case '*':
-      case '/': {
-        dispatch({ type: 'ChangeOperator', payload: { operatorValue: key } });
-        break;
-      }
-      case '%': {
-        dispatch({ type: 'PercentOperator' });
-        break;
-      }
-      case 'AC': {
-        dispatch({ type: 'Reset' });
-        break;
-      }
-      case '=': {
-        dispatch({ type: 'ShowResult' });
-        break;
-      }
-    }
+    dispatch({ type: 'Press', payload: key });
   }
 
   return (
