@@ -12,8 +12,7 @@ export const Desktop = () => {
   const outerRef = useRef<HTMLDivElement>();
 
   const [wallpaperName, setWallpaperName] = useWallpaperName();
-  setWallpaperName('monterey');
-  console.log('hello', wallpaperName);
+
   const [currWallpaperImg] = useTimelyWallpapers();
 
   const [wallpaper, setWallpaper] = useState('');
