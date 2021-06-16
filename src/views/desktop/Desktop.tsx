@@ -13,6 +13,7 @@ export const Desktop = () => {
 
   const [wallpaperName, setWallpaperName] = useWallpaperName();
 
+  setWallpaperName('big-sur-graphic');
   const [currWallpaperImg] = useTimelyWallpapers();
 
   const [wallpaper, setWallpaper] = useState('');
