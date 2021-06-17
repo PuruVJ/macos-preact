@@ -11,18 +11,12 @@ export enum Mode {
 }
 
 export interface IState {
-  operator: OperatorT | null;
-  firstNumberText: string;
-  secondNumberText: string;
-  mode: Mode;
+  firstNumber: null | number;
   result: string;
 }
 
 export const initialState: IState = {
-  operator: null,
-  firstNumberText: '',
-  secondNumberText: '',
-  mode: Mode.Idle,
+  firstNumber: null,
   result: '0',
 };
 
@@ -50,157 +44,8 @@ function getMathResult({
 }
 
 export function calculatorReducer(state: IState, action: ActionT): IState {
-  switch (action.payload) {
-    case 'AC':
-      return initialState;
-    case '+':
-    case '-':
-    case '*':
-    case '/': {
-      const operatorValue = action.payload;
-      const { firstNumberText, secondNumberText, operator } = state;
-      if (operator && ![Mode.InsertOperator, Mode.ShowingResult].includes(state.mode)) {
-        const result = `${getMathResult({
-          first: Number(firstNumberText),
-          operator: operator,
-          second: Number(secondNumberText),
-        })}`;
-        return {
-          ...state,
-          operator: operatorValue,
-          mode: Mode.InsertOperator,
-          firstNumberText: result,
-          // For converting 0. to 0
-          result: String(Number(result)),
-        };
-      }
-      return {
-        ...state,
-        operator: operatorValue,
-        mode: Mode.InsertOperator,
-        // For converting 0. to 0
-        result: String(Number(state.result)),
-      };
-    }
-    case '.': {
-      switch (state.mode) {
-        case Mode.Idle: {
-          const result = '0.';
-          return {
-            ...state,
-            mode: Mode.InsertFirstNumber,
-            firstNumberText: result,
-            result: result,
-          };
-        }
-        case Mode.InsertSecondNumber: {
-          const { secondNumberText } = state;
-          const updatedResult = secondNumberText.includes('.')
-            ? secondNumberText
-            : `${secondNumberText}.`;
-          return {
-            ...state,
-            result: updatedResult,
-            secondNumberText: updatedResult,
-          };
-        }
-        case Mode.InsertFirstNumber: {
-          const { firstNumberText } = state;
-          const result = firstNumberText.includes('.') ? firstNumberText : `${firstNumberText}.`;
-          return { ...state, firstNumberText: result, result: result };
-        }
-        case Mode.InsertOperator:
-        case Mode.ShowingResult: {
-          return {
-            mode: Mode.InsertSecondNumber,
-            firstNumberText: state.result,
-            secondNumberText: '0',
-            operator: null,
-            result: '0.',
-          };
-        }
-      }
-      return state;
-    }
-    case '+/-': {
-      switch (state.mode) {
-        case Mode.InsertFirstNumber: {
-          const result = `${-Number(state.firstNumberText)}`;
-          return { ...state, firstNumberText: result, result };
-        }
-        case Mode.InsertSecondNumber: {
-          const result = `${-Number(state.secondNumberText)}`;
-          return { ...state, secondNumberText: result, result };
-        }
-        case Mode.ShowingResult: {
-          const updatedResult = `${-Number(state.result)}`;
-          return {
-            ...state,
-            firstNumberText: updatedResult,
-            secondNumberText: '',
-            operator: null,
-            result: updatedResult,
-          };
-        }
-        case Mode.InsertOperator: {
-          const updatedResult = `${-Number(state.result)}`;
-          if (state.secondNumberText) {
-            return {
-              ...state,
-              secondNumberText: updatedResult,
-            };
-          } else {
-            return {
-              ...state,
-              firstNumberText: updatedResult,
-            };
-          }
-        }
-        case Mode.Idle:
-          return state;
-      }
-      return state;
-    }
-    case '%': {
-      const { result } = state;
-
-      switch (state.mode) {
-        case Mode.InsertFirstNumber: {
-          const updatedResult = `${Number(result) / 100}`;
-          return {
-            ...state,
-            firstNumberText: updatedResult,
-            result: updatedResult,
-          };
-        }
-        case Mode.InsertSecondNumber: {
-          const updatedResult = `${Number(result) / 100}`;
-          return {
-            ...state,
-            secondNumberText: updatedResult,
-            result: updatedResult,
-          };
-        }
-        case Mode.InsertOperator:
-        case Mode.ShowingResult: {
-          const updatedResult = `${Number(result) / 100}`;
-          if (state.secondNumberText) {
-            return {
-              ...state,
-              secondNumberText: updatedResult,
-              result: updatedResult,
-            };
-          } else {
-            return {
-              ...state,
-              firstNumberText: updatedResult,
-              result: updatedResult,
-            };
-          }
-        }
-      }
-      return state;
-    }
+  const payload = action.payload;
+  switch (payload) {
     case 0:
     case 1:
     case 2:
@@ -211,85 +56,25 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
     case 7:
     case 8:
     case 9: {
-      const number = action.payload;
-      switch (state.mode) {
-        case Mode.Idle: {
-          const result = `${state.firstNumberText}${number}`;
+      if (state.firstNumber != null) {
+        if (state.firstNumber === 0) {
           return {
-            ...state,
-            firstNumberText: result,
-            result: result,
-            mode: Mode.InsertFirstNumber,
+            result: `${payload}`,
+            firstNumber: payload,
           };
         }
-        case Mode.InsertFirstNumber: {
-          const result = `${state.firstNumberText}${number}`;
-          return { ...state, firstNumberText: result, result: result };
-        }
-        case Mode.InsertSecondNumber: {
-          const result = `${state.secondNumberText}${number}`;
-          return { ...state, secondNumberText: result, result: result };
-        }
-        case Mode.InsertOperator: {
-          const result = `${number}`;
-          return {
-            ...state,
-            secondNumberText: result,
-            result: result,
-            mode: Mode.InsertSecondNumber,
-          };
-        }
-        case Mode.ShowingResult: {
-          const result = `${number}`;
-          return {
-            operator: null,
-            firstNumberText: result,
-            result: result,
-            secondNumberText: '',
-            mode: Mode.InsertFirstNumber,
-          };
-        }
-      }
-      return state;
-    }
-    case '=': {
-      {
-        const { firstNumberText, secondNumberText, operator } = state;
-        if (firstNumberText && secondNumberText && operator) {
-          const updatedResult = `${getMathResult({
-            first: Number(firstNumberText),
-            operator,
-            second: Number(secondNumberText),
-          })}`;
-          return {
-            ...state,
-            mode: Mode.ShowingResult,
-            firstNumberText: updatedResult,
-            result: updatedResult,
-          };
-        }
-        if (!firstNumberText) {
-          return {
-            ...state,
-            mode: Mode.ShowingResult,
-            firstNumberText: '0',
-            result: '0',
-          };
-        }
-        if (!secondNumberText || !operator) {
-          const result = `${Number(firstNumberText)}`;
-          return {
-            ...state,
-            mode: Mode.ShowingResult,
-            result: result,
-            firstNumberText: result,
-          };
-        }
+
+        return {
+          result: `${state.firstNumber}${payload}`,
+          firstNumber: Number(`${state.firstNumber}${payload}`),
+        };
       }
 
-      return { ...state, mode: Mode.ShowingResult };
+      return {
+        result: `${payload}`,
+        firstNumber: Number(`${payload}`),
+      };
     }
-    default:
-      throw new Error();
   }
+  return initialState;
 }
