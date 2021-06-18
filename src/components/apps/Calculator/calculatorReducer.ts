@@ -77,6 +77,11 @@ function getInsertedNumberResult({
     mode,
   );
   const isDecimalNumberThatEndsWithDot = isDecimalMode && !isDecimal(existingNumber);
+  const isOperatorPressed = [Mode.OperatorPressed, Mode.ShowingResult].includes(mode);
+
+  if (isOperatorPressed) {
+    return { updatedResult: `${digit}`, updatedNumber: digit };
+  }
 
   const updatedResult = isDecimalNumberThatEndsWithDot
     ? `${existingNumber}.${digit}`
@@ -107,7 +112,7 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
       mode,
       existingNumber: isFirstNumberInput ? firstNumber : secondNumber,
       digit: payload,
-      result: mode === Mode.OperatorPressed ? '' : result,
+      result: result,
     });
 
     return {
@@ -129,11 +134,15 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
   }
 
   if (isOperator(payload)) {
+    const builtNumberResult = result.endsWith('.') ? result.substr(0, result.length - 1) : result;
+    const updatedResult = isFirstNumberInput
+      ? builtNumberResult
+      : getMathResult({ first: firstNumber, second: secondNumber, operator: payload });
     return {
       ...state,
       mode: Mode.OperatorPressed,
       operator: payload,
-      result: result.endsWith('.') ? result.substr(0, result.length - 1) : result,
+      result: `${updatedResult}`,
     };
   }
 

@@ -145,9 +145,19 @@ describe('calculatorReducer', () => {
       expectResultToBe('123');
     });
 
-    // it('should perform math equation when pressing operator after equation', () => {
-    //   performPresses([1, 0, '+', 1, 2, 3, '+']);
-    //   expectResultToBe('133');
+    it('should perform math equation when pressing operator after equation', () => {
+      performPresses([1, 0, '+', 1, 2, 3, '+']);
+      expectResultToBe('133');
+    });
+
+    it('should reset equation with multiple operators after input feed', () => {
+      performPresses([1, 0, '+', 2, 0, '+', 3, 5]);
+      expectResultToBe('35');
+    });
+
+    // it('should support multiple operation equations', () => {
+    //   performPresses([1, 0, '+', 2, 0, '+', 3,'+' ]);
+    //   expectResultToBe('33');
     // });
 
     // it('should init numbers after operators', () => {
@@ -191,7 +201,6 @@ describe('calculatorReducer', () => {
       performPresses([1, 1, '=', '=', '+', 2, '=']);
       expectResultToBe('13');
     });
-
   });
 });
 
