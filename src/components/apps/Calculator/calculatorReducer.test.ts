@@ -76,6 +76,16 @@ describe('calculatorReducer', () => {
     it('blocks multiple .', () => {
       performPresses([1, '.', '.', '.']);
       expectResultToBe('1.');
+
+      state = initialState;
+
+      performPresses([1, '.', '.', '.', 1]);
+      expectResultToBe('1.1');
+
+      state = initialState;
+
+      performPresses([1, '.', '.', '.', 1, '.', '.', '.']);
+      expectResultToBe('1.1');
     });
 
     it('enable writing numbers after the dot', () => {
