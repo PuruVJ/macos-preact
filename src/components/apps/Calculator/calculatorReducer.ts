@@ -89,38 +89,20 @@ function getInsertedNumberResult({
   return { updatedResult, updatedNumber };
 }
 
-// TODO: migrate to class instead of adding params
-function getUpdatedResult({
-  firstNumber,
-  secondNumber,
-  operator,
-  mode,
-}: {
-  operator: OperatorT | null;
-  secondNumber: number;
-  firstNumber: number;
-  mode: Mode;
-}) {
-  if (operator == null) {
-    return firstNumber;
-  }
-  // TODO: reuse
-  const isFirstNumberInput = [Mode.InsertFirstNumber, Mode.InsertDecimalFirstNumber].includes(mode);
-  if (isFirstNumberInput) {
-    return firstNumber;
-  }
-  return getMathResult({ first: firstNumber, second: secondNumber, operator });
-}
-
 export function calculatorReducer(state: IState, action: ActionT): IState {
   const payload = action.payload;
   const { mode, firstNumber, secondNumber, operator, result } = state;
 
-  if (isDigit(payload)) {
-    const isFirstNumberInput = [Mode.InsertFirstNumber, Mode.InsertDecimalFirstNumber].includes(
-      mode,
-    );
+  const isFirstNumberInput = [Mode.InsertFirstNumber, Mode.InsertDecimalFirstNumber].includes(mode);
 
+  function getEquationResult() {
+    if (isFirstNumberInput || operator == null) {
+      return firstNumber;
+    }
+    return getMathResult({ first: firstNumber, second: secondNumber, operator });
+  }
+
+  if (isDigit(payload)) {
     const { updatedResult, updatedNumber } = getInsertedNumberResult({
       mode,
       existingNumber: isFirstNumberInput ? firstNumber : secondNumber,
@@ -156,11 +138,12 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
   }
 
   if (payload === '=') {
-    const updatedResult = getUpdatedResult({ secondNumber, operator, firstNumber, mode });
+    const updatedResult = getEquationResult();
     return {
       ...state,
       mode: Mode.ShowingResult,
       result: `${updatedResult}`,
+      firstNumber: updatedResult,
     };
   }
 
