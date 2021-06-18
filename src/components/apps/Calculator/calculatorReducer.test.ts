@@ -146,7 +146,7 @@ describe('calculatorReducer', () => {
     });
 
     // it('should perform math equation when pressing operator after equation', () => {
-    //   performPresses([1, 0, '+', 1, 2, 3, '-']);
+    //   performPresses([1, 0, '+', 1, 2, 3, '+']);
     //   expectResultToBe('133');
     // });
 
@@ -173,8 +173,8 @@ describe('calculatorReducer', () => {
     });
 
     it('should reset input after =', () => {
-      performPresses([1, 1, '=', 2]);
-      expectResultToBe('2');
+      performPresses([1, 1, '=', 5]);
+      expectResultToBe('5');
     });
 
     it('double equal should keep the same result if no operator', () => {
@@ -186,6 +186,12 @@ describe('calculatorReducer', () => {
       performPresses([1, '+', 2, '=', '=']);
       expectResultToBe('5');
     });
+
+    it('should add numbers to result', () => {
+      performPresses([1, 1, '=', '=', '+', 2, '=']);
+      expectResultToBe('13');
+    });
+
   });
 });
 
