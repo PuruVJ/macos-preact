@@ -12,13 +12,13 @@ export enum Mode {
 
 export interface IState {
   isCreatingDecimalNumber: boolean;
-  firstNumber: null | number;
+  firstNumber: number;
   result: string;
 }
 
 export const initialState: IState = {
   isCreatingDecimalNumber: false,
-  firstNumber: null,
+  firstNumber: 0,
   result: '0',
 };
 
@@ -70,26 +70,18 @@ function isDigit(value: unknown): value is DigitT {
 export function calculatorReducer(state: IState, action: ActionT): IState {
   const payload = action.payload;
   if (isDigit(payload)) {
-    if (state.firstNumber != null) {
-      if (state.isCreatingDecimalNumber && !isDecimal(state.firstNumber)) {
-        return {
-          ...state,
-          result: `${state.firstNumber}.${payload}`,
-          firstNumber: Number(`${state.firstNumber}.${payload}`),
-        };
-      }
-
+    if (state.isCreatingDecimalNumber && !isDecimal(state.firstNumber)) {
       return {
         ...state,
-        result: `${state.firstNumber === 0 ? '' : state.firstNumber}${payload}`,
-        firstNumber: Number(`${state.result}${payload}`),
+        result: `${state.firstNumber}.${payload}`,
+        firstNumber: Number(`${state.firstNumber}.${payload}`),
       };
     }
 
     return {
       ...state,
-      result: `${payload}`,
-      firstNumber: Number(`${payload}`),
+      result: `${state.firstNumber === 0 ? '' : state.firstNumber}${payload}`,
+      firstNumber: Number(`${state.result}${payload}`),
     };
   }
 
@@ -98,8 +90,8 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
     return {
       ...state,
       isCreatingDecimalNumber: true,
-      result: `${state.firstNumber ?? 0}.`,
-      firstNumber: state.firstNumber ?? 0,
+      result: `${state.firstNumber}.`,
+      firstNumber: state.firstNumber,
     };
   }
   return initialState;

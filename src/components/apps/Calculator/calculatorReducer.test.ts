@@ -123,6 +123,29 @@ describe('calculatorReducer', () => {
       expectResultToBe('2.12345');
     });
   });
+
+  describe('Equal Operator', () => {
+    it('should return 0 when pressing at first', () => {
+      performPresses(['=']);
+      expectResultToBe('0');
+    });
+  });
+
+  describe.skip('Operator', () => {
+    it.skip('reset input', () => {
+      performPresses([5, 5, '+']);
+      expectResultToBe('0');
+    });
+    it('should enable create the second number', () => {
+      performPresses([5, 5, '+', 1]);
+      expectResultToBe('1');
+    });
+
+    it('should ', () => {
+      performPresses([5, 5, '+', 1]);
+      expectResultToBe('1');
+    });
+  });
 });
 
 export {};
