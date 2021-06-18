@@ -156,17 +156,40 @@ describe('calculatorReducer', () => {
     // });
   });
 
-  // describe('Equal Operator', () => {
-  //   it('should return 0 when pressing at first', () => {
-  //     performPresses(['=']);
-  //     expectResultToBe('0');
-  //   });
-  //
-  //   it('should return math result', () => {
-  //     performPresses([1,'+', 1, '=']);
-  //     expectResultToBe('2');
-  //   });
-  // });
+  describe('Equal Operator', () => {
+    it('should return 0 when pressing at first', () => {
+      performPresses(['=']);
+      expectResultToBe('0');
+    });
+
+    it('should return math result', () => {
+      performPresses([1,'+', 1, '=']);
+      expectResultToBe('2');
+    });
+
+    it('should return the number if no operator', () => {
+      performPresses([1, 1, '=']);
+      expectResultToBe('11');
+    });
+
+    it('should reset input after =', () => {
+      performPresses([1, 1, '=', 2]);
+      expectResultToBe('2');
+    });
+
+
+    it('double equal should keep the same result if no operator', () => {
+      performPresses([1, 1, '=', '=']);
+      expectResultToBe('11');
+    });
+
+
+    // it('should perform the same operator on result after double =', () => {
+    //   performPresses([1,"+", 1, '=', '=']);
+    //   expectResultToBe('3');
+    // });
+
+  });
 
 });
 

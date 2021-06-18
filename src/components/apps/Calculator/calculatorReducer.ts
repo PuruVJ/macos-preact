@@ -89,9 +89,32 @@ function getInsertedNumberResult({
   return { updatedResult, updatedNumber };
 }
 
+// TODO: migrate to class instead of adding params
+function getUpdatedResult({
+  firstNumber,
+  secondNumber,
+  operator,
+  mode,
+}: {
+  operator: OperatorT | null;
+  secondNumber: number;
+  firstNumber: number;
+  mode: Mode;
+}) {
+  if (operator == null) {
+    return firstNumber;
+  }
+  // TODO: reuse
+  const isFirstNumberInput = [Mode.InsertFirstNumber, Mode.InsertDecimalFirstNumber].includes(mode);
+  if (isFirstNumberInput) {
+    return firstNumber;
+  }
+  return getMathResult({ first: firstNumber, second: secondNumber, operator });
+}
+
 export function calculatorReducer(state: IState, action: ActionT): IState {
   const payload = action.payload;
-  const { mode, firstNumber, secondNumber, result } = state;
+  const { mode, firstNumber, secondNumber, operator, result } = state;
 
   if (isDigit(payload)) {
     const isFirstNumberInput = [Mode.InsertFirstNumber, Mode.InsertDecimalFirstNumber].includes(
@@ -129,6 +152,15 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
       mode: Mode.OperatorPressed,
       operator: payload,
       result: result.endsWith('.') ? result.substr(0, result.length - 1) : result,
+    };
+  }
+
+  if (payload === '=') {
+    const updatedResult = getUpdatedResult({ secondNumber, operator, firstNumber, mode });
+    return {
+      ...state,
+      mode: Mode.ShowingResult,
+      result: `${updatedResult}`,
     };
   }
 
