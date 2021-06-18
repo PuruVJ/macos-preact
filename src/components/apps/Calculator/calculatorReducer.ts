@@ -4,20 +4,21 @@ export type CalculatorKeyT = DigitT | OperatorT | 'AC' | '=' | '%' | '.' | '+/-'
 
 export enum Mode {
   InsertFirstNumber = 'InsertFirstNumber',
-  InsertOperator = 'InsertOperator',
+  InsertDecimalFirstNumber = 'InsertDecimalFirstNumber',
+  OperatorPressed = 'OperatorPressed',
   InsertSecondNumber = 'InsertSecondNumber',
+  InsertDecimalSecondNumber = 'InsertDecimalSecondNumber',
   ShowingResult = 'ShowingResult',
-  Idle = 'Idle',
 }
 
 export interface IState {
-  isCreatingDecimalNumber: boolean;
+  mode: Mode;
   firstNumber: number;
   result: string;
 }
 
 export const initialState: IState = {
-  isCreatingDecimalNumber: false,
+  mode: Mode.InsertFirstNumber,
   firstNumber: 0,
   result: '0',
 };
@@ -69,30 +70,33 @@ function isDigit(value: unknown): value is DigitT {
 
 export function calculatorReducer(state: IState, action: ActionT): IState {
   const payload = action.payload;
+  const { mode, firstNumber, result } = state;
+
   if (isDigit(payload)) {
-    if (state.isCreatingDecimalNumber && !isDecimal(state.firstNumber)) {
+    if (mode === Mode.InsertDecimalFirstNumber && !isDecimal(firstNumber)) {
       return {
         ...state,
-        result: `${state.firstNumber}.${payload}`,
-        firstNumber: Number(`${state.firstNumber}.${payload}`),
+        result: `${firstNumber}.${payload}`,
+        firstNumber: Number(`${firstNumber}.${payload}`),
       };
     }
 
     return {
       ...state,
-      result: `${state.firstNumber === 0 ? '' : state.firstNumber}${payload}`,
-      firstNumber: Number(`${state.result}${payload}`),
+      result: `${firstNumber === 0 ? '' : firstNumber}${payload}`,
+      firstNumber: Number(`${result}${payload}`),
     };
   }
 
   if (payload === '.') {
-    if (state.isCreatingDecimalNumber) return state;
+    if (mode === Mode.InsertDecimalFirstNumber) return state;
     return {
       ...state,
-      isCreatingDecimalNumber: true,
-      result: `${state.firstNumber}.`,
-      firstNumber: state.firstNumber,
+      mode: Mode.InsertDecimalFirstNumber,
+      result: `${firstNumber}.`,
+      firstNumber: firstNumber,
     };
   }
+
   return initialState;
 }

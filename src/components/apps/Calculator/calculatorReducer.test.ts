@@ -129,6 +129,11 @@ describe('calculatorReducer', () => {
       performPresses(['=']);
       expectResultToBe('0');
     });
+
+    it.skip('should return math result', () => {
+      performPresses([1,'+', 1, '=']);
+      expectResultToBe('2');
+    });
   });
 
   describe.skip('Operator', () => {
