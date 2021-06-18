@@ -217,9 +217,8 @@ describe('calculatorReducer', () => {
       expectResultToBe('3.2');
     });
 
-
     // it('dot after operator result should create new number', () => {
-    //   performPresses([1, '.', 1, '+', 2, '.', '.', 1, '=', '.',]);
+    //   performPresses([1, '.', 1, '+', 2, '.', '.', 1, '=', '.']);
     //   expectResultToBe('0.');
     // });
 
