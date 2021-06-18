@@ -142,6 +142,7 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
       ...state,
       mode: Mode.OperatorPressed,
       operator: payload,
+      firstNumber: Number(updatedResult),
       result: `${updatedResult}`,
     };
   }

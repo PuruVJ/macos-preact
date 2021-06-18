@@ -150,20 +150,15 @@ describe('calculatorReducer', () => {
       expectResultToBe('133');
     });
 
-    it('should reset equation with multiple operators after input feed', () => {
+    it('should init number feeds after operators', () => {
       performPresses([1, 0, '+', 2, 0, '+', 3, 5]);
       expectResultToBe('35');
     });
 
-    // it('should support multiple operation equations', () => {
-    //   performPresses([1, 0, '+', 2, 0, '+', 3,'+' ]);
-    //   expectResultToBe('33');
-    // });
-
-    // it('should init numbers after operators', () => {
-    //   performPresses([5, 5, '+', 1, 2, 3, '-', 4, 4]);
-    //   expectResultToBe('44');
-    // });
+    it('should support multiple operation equations', () => {
+      performPresses([1, 0, '+', 2, 0, '+', 3, '+']);
+      expectResultToBe('33');
+    });
   });
 
   describe('Equal Operator', () => {
