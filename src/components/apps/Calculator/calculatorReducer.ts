@@ -73,15 +73,16 @@ function getInsertedNumberResult({
   digit: DigitT;
   result: string;
 }) {
-  const isDecimalMode = [Mode.InsertDecimalFirstNumber, Mode.InsertDecimalSecondNumber].includes(
-    mode,
-  );
-  const isDecimalNumberThatEndsWithDot = isDecimalMode && !isDecimal(existingNumber);
   const isOperatorPressed = [Mode.OperatorPressed, Mode.ShowingResult].includes(mode);
 
   if (isOperatorPressed) {
     return { updatedResult: `${digit}`, updatedNumber: digit };
   }
+
+  const isDecimalMode = [Mode.InsertDecimalFirstNumber, Mode.InsertDecimalSecondNumber].includes(
+    mode,
+  );
+  const isDecimalNumberThatEndsWithDot = isDecimalMode && !isDecimal(existingNumber);
 
   const updatedResult = isDecimalNumberThatEndsWithDot
     ? `${existingNumber}.${digit}`
