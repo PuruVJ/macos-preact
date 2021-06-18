@@ -124,12 +124,18 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
   }
 
   if (payload === '.') {
-    if (mode === Mode.InsertDecimalFirstNumber) return state;
+    const isDecimalNumberMode = [
+      Mode.InsertDecimalFirstNumber,
+      Mode.InsertDecimalSecondNumber,
+    ].includes(mode);
+
+    if (isDecimalNumberMode) return state;
+
     return {
       ...state,
-      mode: Mode.InsertDecimalFirstNumber,
-      result: `${firstNumber}.`,
-      firstNumber: firstNumber,
+      mode: isFirstNumberInput ? Mode.InsertDecimalFirstNumber : Mode.InsertDecimalSecondNumber,
+      result: isFirstNumberInput ? `${firstNumber}.` : `${secondNumber}.`,
+      ...(isFirstNumberInput ? { firstNumber } : { secondNumber }),
     };
   }
 

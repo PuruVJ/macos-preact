@@ -196,6 +196,38 @@ describe('calculatorReducer', () => {
       performPresses([1, 1, '=', '=', '+', 2, '=']);
       expectResultToBe('13');
     });
+
+    it('should enable math of decimal numbers', () => {
+      performPresses([1, '.', 1, '+', 2, '=']);
+      expectResultToBe('3.1');
+    });
+
+    it('should show dot after second number', () => {
+      performPresses([1, '+', 2, '.']);
+      expectResultToBe('2.');
+    });
+
+    it('should refer . after operator as 0.', () => {
+      performPresses([1, '.', 1, '+', '.']);
+      expectResultToBe('0.');
+    });
+
+    it('should do math with decimal numbers', () => {
+      performPresses([1, '.', 1, '+', 2, '.', 1, '=']);
+      expectResultToBe('3.2');
+    });
+
+
+    // it('dot after operator result should create new number', () => {
+    //   performPresses([1, '.', 1, '+', 2, '.', '.', 1, '=', '.',]);
+    //   expectResultToBe('0.');
+    // });
+
+    //
+    // it('should do math with decimal numbers', () => {
+    //   performPresses([1, '.', 1, '+', 2, '.','.', 1, '+', '.',1,'=']);
+    //   expectResultToBe('3.3');
+    // });
   });
 });
 
