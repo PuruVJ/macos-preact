@@ -14,12 +14,16 @@ export enum Mode {
 export interface IState {
   mode: Mode;
   firstNumber: number;
+  secondNumber: number;
+  operator: OperatorT | null;
   result: string;
 }
 
 export const initialState: IState = {
   mode: Mode.InsertFirstNumber,
   firstNumber: 0,
+  secondNumber: 0,
+  operator: null,
   result: '0',
 };
 
@@ -50,41 +54,62 @@ function isDecimal(number: number) {
   return String(number).includes('.');
 }
 
+function isOperator(value: unknown): value is OperatorT {
+  return ['+', '-', '*', '/'].includes(value as OperatorT);
+}
+
 function isDigit(value: unknown): value is DigitT {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-      return true;
-    default:
-      return false;
-  }
+  return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].includes(value as DigitT);
+}
+
+function getInsertedNumberResult({
+  mode,
+  existingNumber,
+  result,
+  digit,
+}: {
+  mode: Mode;
+  existingNumber: number;
+  digit: DigitT;
+  result: string;
+}) {
+  const isDecimalMode = [Mode.InsertDecimalFirstNumber, Mode.InsertDecimalSecondNumber].includes(
+    mode,
+  );
+  const isDecimalNumberThatEndsWithDot = isDecimalMode && !isDecimal(existingNumber);
+
+  const updatedResult = isDecimalNumberThatEndsWithDot
+    ? `${existingNumber}.${digit}`
+    : `${existingNumber === 0 ? '' : existingNumber}${digit}`;
+
+  const updatedNumber = isDecimalNumberThatEndsWithDot
+    ? Number(`${existingNumber}.${digit}`)
+    : Number(`${result}${digit}`);
+
+  return { updatedResult, updatedNumber };
 }
 
 export function calculatorReducer(state: IState, action: ActionT): IState {
   const payload = action.payload;
-  const { mode, firstNumber, result } = state;
+  const { mode, firstNumber, secondNumber, result } = state;
 
   if (isDigit(payload)) {
-    if (mode === Mode.InsertDecimalFirstNumber && !isDecimal(firstNumber)) {
-      return {
-        ...state,
-        result: `${firstNumber}.${payload}`,
-        firstNumber: Number(`${firstNumber}.${payload}`),
-      };
-    }
+    const isFirstNumberInput = [Mode.InsertFirstNumber, Mode.InsertDecimalFirstNumber].includes(
+      mode,
+    );
+
+    const { updatedResult, updatedNumber } = getInsertedNumberResult({
+      mode,
+      existingNumber: isFirstNumberInput ? firstNumber : secondNumber,
+      digit: payload,
+      result: mode === Mode.OperatorPressed ? '' : result,
+    });
 
     return {
       ...state,
-      result: `${firstNumber === 0 ? '' : firstNumber}${payload}`,
-      firstNumber: Number(`${result}${payload}`),
+      mode: mode === Mode.OperatorPressed ? Mode.InsertSecondNumber : mode,
+      result: updatedResult,
+      ...(isFirstNumberInput ? { firstNumber: updatedNumber } : { secondNumber: updatedNumber }),
     };
   }
 
@@ -95,6 +120,15 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
       mode: Mode.InsertDecimalFirstNumber,
       result: `${firstNumber}.`,
       firstNumber: firstNumber,
+    };
+  }
+
+  if (isOperator(payload)) {
+    return {
+      ...state,
+      mode: Mode.OperatorPressed,
+      operator: payload,
+      result: result.endsWith('.') ? result.substr(0, result.length - 1) : result,
     };
   }
 

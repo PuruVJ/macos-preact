@@ -124,33 +124,50 @@ describe('calculatorReducer', () => {
     });
   });
 
-  describe('Equal Operator', () => {
-    it('should return 0 when pressing at first', () => {
-      performPresses(['=']);
-      expectResultToBe('0');
+  describe('Operator', () => {
+    it('keep input after pressing', () => {
+      performPresses([5, '+']);
+      expectResultToBe('5');
     });
 
-    it.skip('should return math result', () => {
-      performPresses([1,'+', 1, '=']);
-      expectResultToBe('2');
+    it('should remove . after number that ends with dot', () => {
+      performPresses([5, '.', '+']);
+      expectResultToBe('5');
     });
+
+    it('should keep the result when changing operators', () => {
+      performPresses([5, '+', '-']);
+      expectResultToBe('5');
+    });
+
+    it('should enable build second number after operator', () => {
+      performPresses([5, 5, '+', 1, 2, 3]);
+      expectResultToBe('123');
+    });
+
+    // it('should perform math equation when pressing operator after equation', () => {
+    //   performPresses([1, 0, '+', 1, 2, 3, '-']);
+    //   expectResultToBe('133');
+    // });
+
+    // it('should init numbers after operators', () => {
+    //   performPresses([5, 5, '+', 1, 2, 3, '-', 4, 4]);
+    //   expectResultToBe('44');
+    // });
   });
 
-  describe.skip('Operator', () => {
-    it.skip('reset input', () => {
-      performPresses([5, 5, '+']);
-      expectResultToBe('0');
-    });
-    it('should enable create the second number', () => {
-      performPresses([5, 5, '+', 1]);
-      expectResultToBe('1');
-    });
+  // describe('Equal Operator', () => {
+  //   it('should return 0 when pressing at first', () => {
+  //     performPresses(['=']);
+  //     expectResultToBe('0');
+  //   });
+  //
+  //   it('should return math result', () => {
+  //     performPresses([1,'+', 1, '=']);
+  //     expectResultToBe('2');
+  //   });
+  // });
 
-    it('should ', () => {
-      performPresses([5, 5, '+', 1]);
-      expectResultToBe('1');
-    });
-  });
 });
 
 export {};
