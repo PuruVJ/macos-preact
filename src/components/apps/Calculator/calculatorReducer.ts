@@ -79,17 +79,9 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
         };
       }
 
-      if (state.firstNumber === 0) {
-        return {
-          ...state,
-          result: `${payload}`,
-          firstNumber: payload,
-        };
-      }
-
       return {
         ...state,
-        result: `${state.firstNumber}${payload}`,
+        result: `${state.firstNumber === 0 ? '' : state.firstNumber}${payload}`,
         firstNumber: Number(`${state.result}${payload}`),
       };
     }
@@ -100,20 +92,14 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
       firstNumber: Number(`${payload}`),
     };
   }
+
   if (payload === '.') {
     if (state.isCreatingDecimalNumber) return state;
-    if (state.firstNumber === null) {
-      return {
-        ...state,
-        isCreatingDecimalNumber: true,
-        result: `0.`,
-        firstNumber: 0,
-      };
-    }
     return {
       ...state,
       isCreatingDecimalNumber: true,
-      result: `${state.firstNumber}.`,
+      result: `${state.firstNumber ?? 0}.`,
+      firstNumber: state.firstNumber ?? 0,
     };
   }
   return initialState;
