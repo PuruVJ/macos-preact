@@ -67,6 +67,51 @@ describe('calculatorReducer', () => {
       performPresses([0, 0, 2, 1, 0]);
       expectResultToBe('210');
     });
+
+    it('shows decimal number after .', () => {
+      performPresses([1, '.']);
+      expectResultToBe('1.');
+    });
+
+    it('blocks multiple .', () => {
+      performPresses([1, '.', '.', '.']);
+      expectResultToBe('1.');
+    });
+
+    it('enable writing numbers after the dot', () => {
+      performPresses([3, '.', 1, 2]);
+      expectResultToBe('3.12');
+    });
+
+    it('shows 0. when start with .', () => {
+      performPresses(['.']);
+      expectResultToBe('0.');
+
+      state = initialState;
+
+      performPresses(['.', '.']);
+      expectResultToBe('0.');
+    });
+
+    it('create decimal number that start with zero when creating . at first', () => {
+      performPresses(['.', 1, 2, 3]);
+      expectResultToBe('0.123');
+    });
+
+    it('handle decimal number with multiple does', () => {
+      performPresses(['.', 1, 2, 3, '.']);
+      expectResultToBe('0.123');
+
+      state = initialState;
+
+      performPresses(['.', 1, 2, 3, '.', 4, 5]);
+      expectResultToBe('0.12345');
+
+      state = initialState;
+
+      performPresses([2, '.', 1, 2, 3, '.', 4, 5]);
+      expectResultToBe('2.12345');
+    });
   });
 });
 

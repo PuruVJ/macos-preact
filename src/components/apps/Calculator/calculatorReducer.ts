@@ -11,11 +11,13 @@ export enum Mode {
 }
 
 export interface IState {
+  isCreatingDecimalNumber: boolean;
   firstNumber: null | number;
   result: string;
 }
 
 export const initialState: IState = {
+  isCreatingDecimalNumber: false,
   firstNumber: null,
   result: '0',
 };
@@ -43,9 +45,12 @@ function getMathResult({
   }
 }
 
-export function calculatorReducer(state: IState, action: ActionT): IState {
-  const payload = action.payload;
-  switch (payload) {
+function isDecimal(number: number) {
+  return String(number).includes('.');
+}
+
+function isDigit(value: unknown): value is DigitT {
+  switch (value) {
     case 0:
     case 1:
     case 2:
@@ -55,26 +60,61 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
     case 6:
     case 7:
     case 8:
-    case 9: {
-      if (state.firstNumber != null) {
-        if (state.firstNumber === 0) {
-          return {
-            result: `${payload}`,
-            firstNumber: payload,
-          };
-        }
+    case 9:
+      return true;
+    default:
+      return false;
+  }
+}
 
+export function calculatorReducer(state: IState, action: ActionT): IState {
+  const payload = action.payload;
+  if (isDigit(payload)) {
+    if (state.firstNumber != null) {
+      if (state.isCreatingDecimalNumber && !isDecimal(state.firstNumber)) {
         return {
-          result: `${state.firstNumber}${payload}`,
-          firstNumber: Number(`${state.firstNumber}${payload}`),
+          ...state,
+          result: `${state.firstNumber}.${payload}`,
+          firstNumber: Number(`${state.firstNumber}.${payload}`),
+        };
+      }
+
+      if (state.firstNumber === 0) {
+        return {
+          ...state,
+          result: `${payload}`,
+          firstNumber: payload,
         };
       }
 
       return {
-        result: `${payload}`,
-        firstNumber: Number(`${payload}`),
+        ...state,
+        result: `${state.firstNumber}${payload}`,
+        firstNumber: Number(`${state.result}${payload}`),
       };
     }
+
+    return {
+      ...state,
+      result: `${payload}`,
+      firstNumber: Number(`${payload}`),
+    };
+  }
+  if (payload === '.') {
+    if (state.isCreatingDecimalNumber) return state;
+    if (state.firstNumber === null) {
+      return {
+        ...state,
+        isCreatingDecimalNumber: true,
+        result: `0.`,
+        firstNumber: 0,
+      };
+    }
+    return {
+      ...state,
+      isCreatingDecimalNumber: true,
+      result: `${state.firstNumber}.`,
+    };
   }
   return initialState;
 }
