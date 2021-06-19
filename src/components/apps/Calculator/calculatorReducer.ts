@@ -164,6 +164,14 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
   }
 
   if (isOperator(payload)) {
+    const isReplacingOperator = mode === Mode.OperatorPressed;
+    if (isReplacingOperator) {
+      return {
+        ...state,
+        operator: payload,
+      };
+    }
+
     const builtNumberResult = result.endsWith('.') ? result.substr(0, result.length - 1) : result;
     const updatedResult = isFirstNumberInput
       ? builtNumberResult

@@ -165,10 +165,15 @@ describe('calculatorReducer', () => {
       expectResultToBe('8');
     });
 
-    // it('should enable replace operator', () => {
-    //   performPresses([6, '/', '-', 4, '=']);
-    //   expectResultToBe('2');
-    // });
+    it('should enable replace operator', () => {
+      performPresses([6, '/', '-', 4, '=']);
+      expectResultToBe('2');
+    });
+
+    it('should enable replace operator - ', () => {
+      performPresses([6, '-', 2, '/', '-', 4, '/']);
+      expectResultToBe('0');
+    });
   });
 
   describe('Equal Operator', () => {
