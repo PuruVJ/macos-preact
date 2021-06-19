@@ -79,7 +79,11 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
   const payload = action.payload;
   const { mode, firstNumber, secondNumber, operator, result } = state;
 
-  const isFirstNumberInput = [Mode.InsertFirstNumber, Mode.InsertDecimalFirstNumber].includes(mode);
+  const isFirstNumberInput = [
+    Mode.InsertFirstNumber,
+    Mode.InsertDecimalFirstNumber,
+    Mode.ShowingResult,
+  ].includes(mode);
   const isOperatorPressed = [Mode.OperatorPressed, Mode.ShowingResult].includes(mode);
 
   function getInsertedNumberResult(digit: DigitT) {
@@ -106,8 +110,10 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
   }
 
   function getEquationResult() {
-    if (isFirstNumberInput || operator == null) {
-      return firstNumber;
+    if (operator == null) {
+      return ![Mode.InsertSecondNumber, Mode.InsertDecimalSecondNumber].includes(mode)
+        ? firstNumber
+        : secondNumber;
     }
     return getMathResult({ first: firstNumber, second: secondNumber, operator });
   }

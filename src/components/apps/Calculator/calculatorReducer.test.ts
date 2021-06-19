@@ -234,6 +234,11 @@ describe('calculatorReducer', () => {
       performPresses([1, '.', 1, '+', 2, '.', '.', 1, '+', '.', 1, '=']);
       expectResultToBe('3.3');
     });
+
+    it('reset equation after =', () => {
+      performPresses([6, '=', 4, '=', '=']);
+      expectResultToBe('4');
+    });
   });
 });
 
