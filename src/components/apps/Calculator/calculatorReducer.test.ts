@@ -159,6 +159,16 @@ describe('calculatorReducer', () => {
       performPresses([1, 0, '+', 2, 0, '+', 3, '+']);
       expectResultToBe('33');
     });
+
+    it('should calculate multiple operator types', () => {
+      performPresses([6, '+', 4, '-', 2, '+']);
+      expectResultToBe('8');
+    });
+
+    // it('should enable replace operator', () => {
+    //   performPresses([6, '/', '-', 4, '=']);
+    //   expectResultToBe('2');
+    // });
   });
 
   describe('Equal Operator', () => {
