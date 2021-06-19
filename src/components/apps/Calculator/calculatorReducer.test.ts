@@ -217,16 +217,23 @@ describe('calculatorReducer', () => {
       expectResultToBe('3.2');
     });
 
-    // it('dot after operator result should create new number', () => {
-    //   performPresses([1, '.', 1, '+', 2, '.', '.', 1, '=', '.']);
-    //   expectResultToBe('0.');
-    // });
+    it('dot after operator result should create new number', () => {
+      performPresses([1, '.', 1, '+', 2, '.', '.', 1, '=', '.']);
+      expectResultToBe('0.');
+    });
 
-    //
-    // it('should do math with decimal numbers', () => {
-    //   performPresses([1, '.', 1, '+', 2, '.','.', 1, '+', '.',1,'=']);
-    //   expectResultToBe('3.3');
-    // });
+    it('should do math with floating point numbers bug', () => {
+      // Given this weired JS behavior:
+      expect(3.2 + 0.1).toBe(3.3000000000000003);
+
+      performPresses([3, '.', 1, '+', 0, '.', 1, '=']);
+      expectResultToBe('3.2');
+    });
+
+    it('should do math with decimal numbers', () => {
+      performPresses([1, '.', 1, '+', 2, '.', '.', 1, '+', '.', 1, '=']);
+      expectResultToBe('3.3');
+    });
   });
 });
 

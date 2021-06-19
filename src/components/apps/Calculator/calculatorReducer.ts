@@ -29,7 +29,7 @@ export const initialState: IState = {
 
 export type ActionT = { type: 'Press'; payload: CalculatorKeyT };
 
-function getMathResult({
+function performJSMathResult({
   first,
   operator,
   second,
@@ -37,7 +37,7 @@ function getMathResult({
   first: number;
   operator: OperatorT;
   second: number;
-}): number {
+}) {
   switch (operator) {
     case '+':
       return first + second;
@@ -48,6 +48,19 @@ function getMathResult({
     case '/':
       return first / second;
   }
+}
+
+function getMathResult({
+  first,
+  operator,
+  second,
+}: {
+  first: number;
+  operator: OperatorT;
+  second: number;
+}): number {
+  const fractionDigits = 12;
+  return Number(performJSMathResult({ first, operator, second }).toFixed(fractionDigits));
 }
 
 function isDecimal(number: number) {
@@ -118,6 +131,23 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
     ].includes(mode);
 
     if (isDecimalNumberMode) return state;
+    if (mode === Mode.ShowingResult) {
+      return {
+        ...state,
+        mode: Mode.InsertDecimalFirstNumber,
+        firstNumber: 0,
+        result: '0.',
+      };
+    }
+
+    if (mode === Mode.OperatorPressed) {
+      return {
+        ...state,
+        mode: Mode.InsertDecimalSecondNumber,
+        secondNumber: 0,
+        result: '0.',
+      };
+    }
 
     return {
       ...state,
