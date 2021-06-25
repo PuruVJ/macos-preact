@@ -254,6 +254,11 @@ describe('calculatorReducer', () => {
       performPresses([6, '=', 4, '=', '=']);
       expectResultToBe('4');
     });
+
+    it('should reset equation on dot after =', () => {
+      performPresses([5, '*', 2, '=', '.', 5, '=']);
+      expectResultToBe('0.5');
+    });
   });
 });
 

@@ -140,6 +140,7 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
     if (mode === Mode.ShowingResult) {
       return {
         ...state,
+        operator: null,
         mode: Mode.InsertDecimalFirstNumber,
         firstNumber: 0,
         result: '0.',
