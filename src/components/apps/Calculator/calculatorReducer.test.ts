@@ -277,6 +277,11 @@ describe('calculatorReducer', () => {
       expectResultToBe('5');
     });
 
+    it('should invert result if after result', () => {
+      performPresses([0, '-', 5, '=', '+/-', '+', 2, '=']);
+      expectResultToBe('7');
+    });
+
     it('should be able to build negative number', () => {
       performPresses([5, '+/-', '+', 2, '=']);
       expectResultToBe('-3');
