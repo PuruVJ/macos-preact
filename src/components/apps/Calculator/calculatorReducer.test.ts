@@ -358,6 +358,11 @@ describe('calculatorReducer', () => {
       performPresses([1, '+', 5, '+', 1, 0, 0, '%', '=']);
       expectResultToBe('12');
     });
+
+    it('should not operate multiple times for multiple = press', () => {
+      performPresses([5, '=', '%', '=', '=']);
+      expectResultToBe('0.05');
+    });
   });
 });
 
