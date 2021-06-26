@@ -1,6 +1,7 @@
+export type UnaryOperatorT = '+/-' | '%';
 export type OperatorT = '+' | '-' | '*' | '/';
 export type DigitT = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
-export type CalculatorKeyT = DigitT | OperatorT | 'AC' | '=' | '%' | '.' | '+/-';
+export type CalculatorKeyT = DigitT | OperatorT | UnaryOperatorT | 'AC' | '=' | '.';
 
 export enum Mode {
   InsertFirstNumber = 'InsertFirstNumber',
@@ -37,7 +38,7 @@ function performJSMathResult({
   first: number;
   operator: OperatorT;
   second: number;
-}) {
+}): number {
   switch (operator) {
     case '+':
       return first + second;
@@ -73,6 +74,25 @@ function isOperator(value: unknown): value is OperatorT {
 
 function isDigit(value: unknown): value is DigitT {
   return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].includes(value as DigitT);
+}
+
+function isUnaryOperator(value: unknown): value is UnaryOperatorT {
+  return ['+/-', '%'].includes(value as UnaryOperatorT);
+}
+
+function getMathUnaryOperatorResult({
+  operator,
+  number,
+}: {
+  operator: UnaryOperatorT;
+  number: number;
+}): number {
+  switch (operator) {
+    case '%':
+      return number / 100;
+    case '+/-':
+      return -number;
+  }
 }
 
 export function calculatorReducer(state: IState, action: ActionT): IState {
@@ -186,17 +206,8 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
     };
   }
 
-  if (payload === '+/-') {
-    const updatedNumber = -Number(result);
-    return {
-      ...state,
-      ...(isFirstNumberInput ? { firstNumber: updatedNumber } : { secondNumber: updatedNumber }),
-      result: `${updatedNumber}`,
-    };
-  }
-
-  if (payload === '%') {
-    const updatedNumber = Number(result) / 100;
+  if (isUnaryOperator(payload)) {
+    const updatedNumber = getMathUnaryOperatorResult({ operator: payload, number: Number(result) });
     return {
       ...state,
       ...(isFirstNumberInput ? { firstNumber: updatedNumber } : { secondNumber: updatedNumber }),
