@@ -336,7 +336,27 @@ describe('calculatorReducer', () => {
 
     it('should change the inserted number for math', () => {
       performPresses([3, '+', 2, '%', '=']);
-      expectResultToBe('3.02');
+      expectResultToBe('3.06');
+    });
+
+    it('should operate as a binary operator if first arguments exists', () => {
+      performPresses([4, '+', 5, '%']);
+      expectResultToBe('0.2');
+    });
+
+    it('should operate on result if second argument', () => {
+      performPresses([5, '+', 1, 0, 0, '%', '=']);
+      expectResultToBe('10');
+    });
+
+    it('should change the second number after performing % as a binary operator', () => {
+      performPresses([5, '+', 1, 0, 0, '%', '=', '=']);
+      expectResultToBe('15');
+    });
+
+    it('should behave as binary operator with multi operator', () => {
+      performPresses([1, '+', 5, '+', 1, 0, 0, '%', '=']);
+      expectResultToBe('12');
     });
   });
 });
