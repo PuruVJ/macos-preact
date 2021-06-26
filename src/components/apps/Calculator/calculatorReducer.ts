@@ -123,7 +123,6 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
 
     return {
       ...state,
-      // TODO: check if isOperatorPressed is better here
       mode: mode === Mode.OperatorPressed ? Mode.InsertSecondNumber : mode,
       result: updatedResult,
       ...(isFirstNumberInput ? { firstNumber: updatedNumber } : { secondNumber: updatedNumber }),
