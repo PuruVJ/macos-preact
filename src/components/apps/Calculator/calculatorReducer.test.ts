@@ -267,8 +267,13 @@ describe('calculatorReducer', () => {
       expectResultToBe('0');
     });
 
-    it('should invert number positive sign', () => {
+    it('should invert result number positive sign', () => {
       performPresses([5, '+/-']);
+      expectResultToBe('-5');
+    });
+
+    it('should invert number positive sign', () => {
+      performPresses([5, '+/-', '=']);
       expectResultToBe('-5');
     });
 
@@ -301,6 +306,11 @@ describe('calculatorReducer', () => {
   describe('% Operator', () => {
     it('should divide number by 100', () => {
       performPresses([5, '%']);
+      expectResultToBe('0.05');
+    });
+
+    it('should affect first input', () => {
+      performPresses([5, '%', '=']);
       expectResultToBe('0.05');
     });
 
