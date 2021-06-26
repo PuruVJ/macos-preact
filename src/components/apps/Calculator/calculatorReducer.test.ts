@@ -297,6 +297,38 @@ describe('calculatorReducer', () => {
       expectResultToBe('1');
     });
   });
+
+  describe('% Operator', () => {
+    it('should divide number by 100', () => {
+      performPresses([5, '%']);
+      expectResultToBe('0.05');
+    });
+
+    it('should operate on negative numbers', () => {
+      performPresses([0, '-', 5, '=', '%']);
+      expectResultToBe('-0.05');
+    });
+
+    it('should operate on the number input after =', () => {
+      performPresses([0, '-', 5, '=', '%', '+', 2, '=']);
+      expectResultToBe('1.95');
+    });
+
+    it('should work on first number', () => {
+      performPresses([5, '%', '+', 2, '=']);
+      expectResultToBe('2.05');
+    });
+
+    it('should not effect if insert before', () => {
+      performPresses(['%', 5, '=']);
+      expectResultToBe('5');
+    });
+
+    it('should change the inserted number for math', () => {
+      performPresses([3, '+', 2, '%', '=']);
+      expectResultToBe('3.02');
+    });
+  });
 });
 
 export {};
