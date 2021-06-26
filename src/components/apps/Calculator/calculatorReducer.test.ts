@@ -260,6 +260,38 @@ describe('calculatorReducer', () => {
       expectResultToBe('0.5');
     });
   });
+
+  describe('+/- Operator', () => {
+    it('do nothing on 0', () => {
+      performPresses(['+/-']);
+      expectResultToBe('0');
+    });
+
+    it('should invert number positive sign', () => {
+      performPresses([5, '+/-']);
+      expectResultToBe('-5');
+    });
+
+    it('should invert negative positive sign', () => {
+      performPresses([0, '-', 5, '=', '+/-']);
+      expectResultToBe('5');
+    });
+
+    it('should be able to build negative number', () => {
+      performPresses([5, '+/-', '+', 2, '=']);
+      expectResultToBe('-3');
+    });
+
+    it('should not effect if insert before', () => {
+      performPresses(['+/-', 5, '=']);
+      expectResultToBe('5');
+    });
+
+    it('should change the inserted number for math', () => {
+      performPresses([3, '+', 2, '+/-', '=']);
+      expectResultToBe('1');
+    });
+  });
 });
 
 export {};

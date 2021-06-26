@@ -186,6 +186,15 @@ export function calculatorReducer(state: IState, action: ActionT): IState {
     };
   }
 
+  if (payload === '+/-') {
+    const updatedNumber = -Number(result);
+    return {
+      ...state,
+      ...(isFirstNumberInput ? { firstNumber: updatedNumber } : { secondNumber: updatedNumber }),
+      result: `${updatedNumber}`,
+    };
+  }
+
   if (payload === '=') {
     const updatedResult = getEquationResult();
     return {
