@@ -1,5 +1,3 @@
-/* `useWallpaperName` starts here */
-
 import { useAtom } from 'jotai';
 import { wallpaperNameStore } from '__/stores/wallpapers.store';
 
