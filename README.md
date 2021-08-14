@@ -1,4 +1,4 @@
-> 🛑🛑 You're viewing the legacy version. macOS Web has moved over to Svelte! Check out here: [PuruVJ/macos-web](https://github.com/puruvj/macos-preact) 🛑🛑
+> 🛑🛑 You're viewing the legacy version. macOS Web has moved over to Svelte! Check out here: [PuruVJ/macos-web](https://github.com/puruvj/macos-web) 🛑🛑
 
 # Mac OS Monterey Web
 
