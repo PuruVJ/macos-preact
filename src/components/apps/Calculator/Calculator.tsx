@@ -1,7 +1,8 @@
-import { useReducer } from 'react';
 import { mdiClose, mdiDivision, mdiMinus, mdiPercentOutline, mdiPlusMinusVariant } from '@mdi/js';
 import clsx from 'clsx';
+import { useReducer } from 'react';
 import { AppIcon } from '__/components/utils/AppIcon';
+import css from './Calculator.module.scss';
 import {
   ActionT,
   CalculatorKeyT,
@@ -9,7 +10,6 @@ import {
   initialState,
   IState,
 } from './calculatorReducer';
-import css from './Calculator.module.scss';
 
 const Calculator = () => {
   const [state, dispatch] = useReducer<React.Reducer<IState, ActionT>>(
@@ -29,7 +29,7 @@ const Calculator = () => {
       <section class={css.showArea}>{result}</section>
       <section class={css.buttonsContainer}>
         <button class={css.topRowButton} onClick={() => handlePress('AC')}>
-          AC
+          {Number(result) > 0 ? 'C' : 'AC'}
         </button>
         <button class={css.topRowButton} onClick={() => handlePress('+/-')}>
           <AppIcon path={mdiPlusMinusVariant} />
