@@ -31,7 +31,7 @@ export const MonthView = () => {
             [css.today]: isToday,
             // [css.selected]: isSelected,
           })}
-          key={`day-${i}-${d}`}
+          key={`day-${i}-${d}-${selectedDate.getMonth()}`}
         >
           <div className={clsx({ [css.dateNumber]: true, [css.thisMonth]: isThisMonth })}>{d}</div>
         </div>
