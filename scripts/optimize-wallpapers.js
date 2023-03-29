@@ -45,8 +45,6 @@ async function main() {
   for (let imagePath of filesInWallpapers) {
     increment();
 
-    const path = `../src/assets/wallpapers/${imagePath}`;
-
     // Check if it exists
     try {
       await access(`../src/assets/wallpapers/optimized/${imagePath}`, constants.F_OK);
@@ -54,13 +52,13 @@ async function main() {
       continue;
     } catch {}
 
-    const { height, width } = await sizeOf(path);
+    const { height, width } = await sizeOf(`../src/assets/wallpapers/${imagePath}`);
     const aspectRatio = height / width;
 
     if (width === 2000) continue;
 
     // Resize
-    const buffer = await resizeImg(await readFile(path), {
+    const buffer = await resizeImg(await readFile(`../src/assets/wallpapers/${imagePath}`), {
       width: 2000,
       height: 2000 * aspectRatio,
     });
