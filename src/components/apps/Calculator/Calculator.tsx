@@ -1,6 +1,6 @@
 import { mdiClose, mdiDivision, mdiMinus, mdiPercentOutline, mdiPlusMinusVariant } from '@mdi/js';
 import clsx from 'clsx';
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { AppIcon } from '__/components/utils/AppIcon';
 import css from './Calculator.module.scss';
 import {
@@ -22,6 +22,31 @@ const Calculator = () => {
   function handlePress(key: CalculatorKeyT) {
     dispatch({ type: 'Press', payload: key });
   }
+
+  // Keyboard input handling
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      const key = event.key;
+
+      // Map keyboard keys to calculator keys
+      if (key >= '0' && key <= '9') {
+        handlePress(Number(key) as CalculatorKeyT);
+      } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+        handlePress(key as CalculatorKeyT);
+      } else if (key === 'Enter' || key === '=') {
+        handlePress('=');
+      } else if (key === 'Escape' || key.toLowerCase() === 'c') {
+        handlePress('AC');
+      } else if (key === '.' || key === ',') {
+        handlePress('.');
+      } else if (key === '%') {
+        handlePress('%');
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <section class={css.container}>
